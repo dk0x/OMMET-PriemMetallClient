@@ -69,5 +69,10 @@ namespace PriemMetalClient
 			ConfigForm ConfigForm = new ConfigForm();
 			ConfigForm.Show();
 		}
+
+		private void MainForm_Load(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
