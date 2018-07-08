@@ -64,9 +64,12 @@ namespace PriemMetalClient
 				DevNet = null;
 				return null;
 			}
+		}
 
-			
-			return null;
+		public static VesData GetDataFromComport()
+		{
+			VesData d = new VesData();
+
 		}
 	}
 }
