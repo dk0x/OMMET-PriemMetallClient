@@ -1,0 +1,12 @@
+C:\Users\igorl\Desktop\OMMET\CSHARP\vesTest\vesTest\bin\Debug\vesTest.exe
+C:\Users\igorl\Desktop\OMMET\CSHARP\vesTest\vesTest\bin\Debug\vesTest.pdb
+C:\Users\igorl\Desktop\OMMET\CSHARP\vesTest\vesTest\obj\Debug\vesTest.csprojResolveAssemblyReference.cache
+C:\Users\igorl\Desktop\OMMET\CSHARP\vesTest\vesTest\obj\Debug\Interop.DevNet.dll
+C:\Users\igorl\Desktop\OMMET\CSHARP\vesTest\vesTest\obj\Debug\vesTest.csproj.ResolveComReference.cache
+C:\Users\igorl\Desktop\OMMET\CSHARP\vesTest\vesTest\obj\Debug\vesTest.Properties.Resources.resources
+C:\Users\igorl\Desktop\OMMET\CSHARP\vesTest\vesTest\obj\Debug\vesTest.csproj.GenerateResource.Cache
+C:\Users\igorl\Desktop\OMMET\CSHARP\vesTest\vesTest\obj\Debug\vesTest.csproj.CoreCompileInputs.cache
+C:\Users\igorl\Desktop\OMMET\CSHARP\vesTest\vesTest\obj\Debug\vesTest.exe
+C:\Users\igorl\Desktop\OMMET\CSHARP\vesTest\vesTest\obj\Debug\vesTest.pdb
+C:\Users\igorl\Desktop\OMMET\CSHARP\vesTest\vesTest\obj\Debug\vesTest.ConfigForm.resources
+C:\Users\igorl\Desktop\OMMET\CSHARP\vesTest\vesTest\obj\Debug\vesTest.MainForm.resources

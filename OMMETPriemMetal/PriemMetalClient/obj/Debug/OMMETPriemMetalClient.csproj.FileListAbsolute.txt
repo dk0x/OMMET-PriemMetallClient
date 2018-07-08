@@ -1,0 +1,11 @@
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetalClient\OMMETPriemMetalClient\obj\Debug\Interop.DevNet.dll
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetalClient\OMMETPriemMetalClient\obj\Debug\OMMETPriemMetalClient.csproj.ResolveComReference.cache
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetalClient\OMMETPriemMetalClient\obj\Debug\vesTest.Properties.Resources.resources
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetalClient\OMMETPriemMetalClient\obj\Debug\OMMETPriemMetalClient.csproj.GenerateResource.Cache
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetalClient\OMMETPriemMetalClient\obj\Debug\OMMETPriemMetalClient.csproj.CoreCompileInputs.cache
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetalClient\OMMETPriemMetalClient\obj\Debug\vesTest.exe
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetalClient\OMMETPriemMetalClient\obj\Debug\vesTest.pdb
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetalClient\OMMETPriemMetalClient\obj\Debug\OMMETPriemMetalClient.ConfigForm.resources
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetalClient\OMMETPriemMetalClient\obj\Debug\OMMETPriemMetalClient.MainForm.resources
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetalClient\OMMETPriemMetalClient\bin\Debug\vesTest.exe
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetalClient\OMMETPriemMetalClient\bin\Debug\vesTest.pdb
