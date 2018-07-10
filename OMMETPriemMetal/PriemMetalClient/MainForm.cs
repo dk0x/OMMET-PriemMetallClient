@@ -31,7 +31,7 @@ namespace PriemMetalClient
 		private void VesUpdateTimer_Tick(object sender, EventArgs e)
 		{
 			VesMain.Text = "Нет данных";
-			bool compete = false;
+            /* bool compete = false;
 			if (DevNet != null)
 			{
 				try
@@ -48,7 +48,9 @@ namespace PriemMetalClient
 
 				}
 				VesMain.Text = "Ошибка";
-			}
+			}*/
+
+
 
 
 		}
@@ -74,5 +76,11 @@ namespace PriemMetalClient
 		{
 
 		}
-	}
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            VesManager.GetDataFromComport();
+
+        }
+    }
 }
