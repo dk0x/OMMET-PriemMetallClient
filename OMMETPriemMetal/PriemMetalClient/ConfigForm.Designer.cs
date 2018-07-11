@@ -28,28 +28,57 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.ComPortsComboBox = new System.Windows.Forms.ComboBox();
+			this.ComPortGroupBox = new System.Windows.Forms.GroupBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.BaudRateComboBox = new System.Windows.Forms.ComboBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.ComPortsComboBox = new System.Windows.Forms.ComboBox();
 			this.SaveButton = new System.Windows.Forms.Button();
 			this.CancelButton = new System.Windows.Forms.Button();
-			this.groupBox1.SuspendLayout();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.DriverMethodRadioButton = new System.Windows.Forms.RadioButton();
+			this.ComportMethodRadioButton = new System.Windows.Forms.RadioButton();
+			this.ComPortGroupBox.SuspendLayout();
+			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// groupBox1
+			// ComPortGroupBox
 			// 
-			this.groupBox1.Controls.Add(this.label2);
-			this.groupBox1.Controls.Add(this.BaudRateComboBox);
-			this.groupBox1.Controls.Add(this.label1);
-			this.groupBox1.Controls.Add(this.ComPortsComboBox);
-			this.groupBox1.Location = new System.Drawing.Point(12, 12);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(200, 74);
-			this.groupBox1.TabIndex = 2;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Параметры Com порта";
+			this.ComPortGroupBox.AutoSize = true;
+			this.ComPortGroupBox.Controls.Add(this.label2);
+			this.ComPortGroupBox.Controls.Add(this.BaudRateComboBox);
+			this.ComPortGroupBox.Controls.Add(this.label1);
+			this.ComPortGroupBox.Controls.Add(this.ComPortsComboBox);
+			this.ComPortGroupBox.Location = new System.Drawing.Point(12, 96);
+			this.ComPortGroupBox.Name = "ComPortGroupBox";
+			this.ComPortGroupBox.Size = new System.Drawing.Size(200, 80);
+			this.ComPortGroupBox.TabIndex = 2;
+			this.ComPortGroupBox.TabStop = false;
+			this.ComPortGroupBox.Text = "Параметры Com порта";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(6, 43);
+			this.label2.Name = "label2";
+			this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+			this.label2.Size = new System.Drawing.Size(55, 13);
+			this.label2.TabIndex = 5;
+			this.label2.Text = "Скорость";
+			// 
+			// BaudRateComboBox
+			// 
+			this.BaudRateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.BaudRateComboBox.FormattingEnabled = true;
+			this.BaudRateComboBox.Items.AddRange(new object[] {
+            "1200",
+            "2400",
+            "4800",
+            "9600"});
+			this.BaudRateComboBox.Location = new System.Drawing.Point(67, 40);
+			this.BaudRateComboBox.Name = "BaudRateComboBox";
+			this.BaudRateComboBox.Size = new System.Drawing.Size(127, 21);
+			this.BaudRateComboBox.TabIndex = 4;
 			// 
 			// label1
 			// 
@@ -68,31 +97,8 @@
 			this.ComPortsComboBox.Location = new System.Drawing.Point(67, 19);
 			this.ComPortsComboBox.Name = "ComPortsComboBox";
 			this.ComPortsComboBox.Size = new System.Drawing.Size(127, 21);
+			this.ComPortsComboBox.Sorted = true;
 			this.ComPortsComboBox.TabIndex = 2;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(6, 43);
-			this.label2.Name = "label2";
-			this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-			this.label2.Size = new System.Drawing.Size(55, 13);
-			this.label2.TabIndex = 5;
-			this.label2.Text = "Скорость";
-			// 
-			// BaudRateComboBox
-			// 
-			this.BaudRateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.BaudRateComboBox.FormattingEnabled = true;
-			this.BaudRateComboBox.Items.AddRange(new object[] {
-			"1200",
-			"2400",
-			"4800",
-			"9600"});
-			this.BaudRateComboBox.Location = new System.Drawing.Point(67, 40);
-			this.BaudRateComboBox.Name = "BaudRateComboBox";
-			this.BaudRateComboBox.Size = new System.Drawing.Size(127, 21);
-			this.BaudRateComboBox.TabIndex = 4;
 			// 
 			// SaveButton
 			// 
@@ -116,34 +122,80 @@
 			this.CancelButton.UseVisualStyleBackColor = true;
 			this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
 			// 
+			// groupBox2
+			// 
+			this.groupBox2.AutoSize = true;
+			this.groupBox2.Controls.Add(this.ComportMethodRadioButton);
+			this.groupBox2.Controls.Add(this.DriverMethodRadioButton);
+			this.groupBox2.Location = new System.Drawing.Point(12, 12);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(200, 78);
+			this.groupBox2.TabIndex = 5;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Режим работы с весами";
+			// 
+			// DriverMethodRadioButton
+			// 
+			this.DriverMethodRadioButton.AutoSize = true;
+			this.DriverMethodRadioButton.Location = new System.Drawing.Point(6, 19);
+			this.DriverMethodRadioButton.Name = "DriverMethodRadioButton";
+			this.DriverMethodRadioButton.Size = new System.Drawing.Size(70, 17);
+			this.DriverMethodRadioButton.TabIndex = 0;
+			this.DriverMethodRadioButton.TabStop = true;
+			this.DriverMethodRadioButton.Text = "Драйвер";
+			this.DriverMethodRadioButton.UseVisualStyleBackColor = true;
+			this.DriverMethodRadioButton.CheckedChanged += new System.EventHandler(this.DriverMethodRadioButton_CheckedChanged);
+			// 
+			// ComportMethodRadioButton
+			// 
+			this.ComportMethodRadioButton.AutoSize = true;
+			this.ComportMethodRadioButton.Location = new System.Drawing.Point(6, 42);
+			this.ComportMethodRadioButton.Name = "ComportMethodRadioButton";
+			this.ComportMethodRadioButton.Size = new System.Drawing.Size(151, 17);
+			this.ComportMethodRadioButton.TabIndex = 1;
+			this.ComportMethodRadioButton.TabStop = true;
+			this.ComportMethodRadioButton.Text = "Напрямую с Com портом";
+			this.ComportMethodRadioButton.UseVisualStyleBackColor = true;
+			this.ComportMethodRadioButton.CheckedChanged += new System.EventHandler(this.ComportMethodRadioButton_CheckedChanged);
+			// 
 			// ConfigForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(556, 403);
+			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.SaveButton);
 			this.Controls.Add(this.CancelButton);
-			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.ComPortGroupBox);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "ConfigForm";
+			this.ShowIcon = false;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Настройки";
 			this.Load += new System.EventHandler(this.ConfigForm_Load);
 			this.Shown += new System.EventHandler(this.ConfigForm_Shown);
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
+			this.ComPortGroupBox.ResumeLayout(false);
+			this.ComPortGroupBox.PerformLayout();
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.GroupBox ComPortGroupBox;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox BaudRateComboBox;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox ComPortsComboBox;
 		private System.Windows.Forms.Button SaveButton;
 		private System.Windows.Forms.Button CancelButton;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.RadioButton ComportMethodRadioButton;
+		private System.Windows.Forms.RadioButton DriverMethodRadioButton;
 	}
 }

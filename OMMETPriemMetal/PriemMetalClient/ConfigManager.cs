@@ -9,8 +9,9 @@ namespace PriemMetalClient
 {
 	public class ConfigParams
 	{
-		public string ComPort = "COM1";
+		public string ComPort = "-";
 		public int BaudRate = 9600;
+		public VesWorkMethod VesWorkMethod = VesWorkMethod.COMPORT;
 	}
 	public static class ConfigManager
 	{
@@ -31,12 +32,10 @@ namespace PriemMetalClient
 		{
 			if (File.Exists(@"config.xml"))
 			{
-				using (var sr = new StreamReader(@"config.xml"))
-				{
-					XmlSerializer xs = new XmlSerializer(typeof(ConfigParams));
-					configParams = (ConfigParams)xs.Deserialize(sr);
-					sr.Close();
-				}
+				StreamReader sr = new StreamReader(@"config.xml");
+				XmlSerializer xs = new XmlSerializer(typeof(ConfigParams));
+				configParams = (ConfigParams)xs.Deserialize(sr);
+				sr.Close();
 			}
 		}
 	}

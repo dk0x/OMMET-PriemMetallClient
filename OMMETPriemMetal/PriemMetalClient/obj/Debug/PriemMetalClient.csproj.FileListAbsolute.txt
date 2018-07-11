@@ -20,4 +20,4 @@ D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\Pri
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.csproj.CoreCompileInputs.cache
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.exe
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.pdb
-D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.csprojAssemblyReference.cache
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.csprojResolveAssemblyReference.cache
