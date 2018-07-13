@@ -34,7 +34,7 @@ namespace PriemMetalClient
 			if (ConfigManager.configParams.ComPort != null)
 			{
 				index = ComPortsComboBox.Items.IndexOf(ConfigManager.configParams.ComPort);
-				if (index == -1) ComPortsComboBox.Items.IndexOf("-");
+				if (index == -1) ComPortsComboBox.SelectedIndex = ComPortsComboBox.Items.IndexOf("-");
 			}
 			ComPortsComboBox.SelectedIndex = index;
 			BaudRateComboBox.SelectedIndex = BaudRateComboBox.Items.IndexOf(ConfigManager.configParams.BaudRate.ToString());
