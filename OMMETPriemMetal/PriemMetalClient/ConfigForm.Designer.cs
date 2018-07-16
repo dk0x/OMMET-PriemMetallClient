@@ -36,8 +36,8 @@
 			this.SaveButton = new System.Windows.Forms.Button();
 			this.CancelButton = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.DriverMethodRadioButton = new System.Windows.Forms.RadioButton();
 			this.ComportMethodRadioButton = new System.Windows.Forms.RadioButton();
+			this.DriverMethodRadioButton = new System.Windows.Forms.RadioButton();
 			this.ComPortGroupBox.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -74,7 +74,11 @@
             "1200",
             "2400",
             "4800",
-            "9600"});
+            "9600",
+            "19200",
+            "38400",
+            "57600",
+            "115200"});
 			this.BaudRateComboBox.Location = new System.Drawing.Point(67, 40);
 			this.BaudRateComboBox.Name = "BaudRateComboBox";
 			this.BaudRateComboBox.Size = new System.Drawing.Size(127, 21);
@@ -134,18 +138,6 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Режим работы с весами";
 			// 
-			// DriverMethodRadioButton
-			// 
-			this.DriverMethodRadioButton.AutoSize = true;
-			this.DriverMethodRadioButton.Location = new System.Drawing.Point(6, 19);
-			this.DriverMethodRadioButton.Name = "DriverMethodRadioButton";
-			this.DriverMethodRadioButton.Size = new System.Drawing.Size(70, 17);
-			this.DriverMethodRadioButton.TabIndex = 0;
-			this.DriverMethodRadioButton.TabStop = true;
-			this.DriverMethodRadioButton.Text = "Драйвер";
-			this.DriverMethodRadioButton.UseVisualStyleBackColor = true;
-			this.DriverMethodRadioButton.CheckedChanged += new System.EventHandler(this.DriverMethodRadioButton_CheckedChanged);
-			// 
 			// ComportMethodRadioButton
 			// 
 			this.ComportMethodRadioButton.AutoSize = true;
@@ -157,6 +149,18 @@
 			this.ComportMethodRadioButton.Text = "Напрямую с Com портом";
 			this.ComportMethodRadioButton.UseVisualStyleBackColor = true;
 			this.ComportMethodRadioButton.CheckedChanged += new System.EventHandler(this.ComportMethodRadioButton_CheckedChanged);
+			// 
+			// DriverMethodRadioButton
+			// 
+			this.DriverMethodRadioButton.AutoSize = true;
+			this.DriverMethodRadioButton.Location = new System.Drawing.Point(6, 19);
+			this.DriverMethodRadioButton.Name = "DriverMethodRadioButton";
+			this.DriverMethodRadioButton.Size = new System.Drawing.Size(161, 17);
+			this.DriverMethodRadioButton.TabIndex = 0;
+			this.DriverMethodRadioButton.TabStop = true;
+			this.DriverMethodRadioButton.Text = "Драйвер (только Windows)";
+			this.DriverMethodRadioButton.UseVisualStyleBackColor = true;
+			this.DriverMethodRadioButton.CheckedChanged += new System.EventHandler(this.DriverMethodRadioButton_CheckedChanged);
 			// 
 			// ConfigForm
 			// 

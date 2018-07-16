@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace PriemMetalClient
@@ -17,25 +18,41 @@ namespace PriemMetalClient
 	{
 
 		public static ConfigParams configParams = new ConfigParams();
+		private static string FileName = @"./config.xml";
 
 		public static void Save()
 		{
-			if (File.Exists(@"config.xml"))
-				File.Delete(@"config.xml");
-			XmlSerializer xs = new XmlSerializer(typeof(ConfigParams));
-			TextWriter tw = new StreamWriter(@"config.xml");
-			xs.Serialize(tw, configParams);
-			tw.Close();
+			try
+			{
+				if (File.Exists(FileName))
+					File.Delete(FileName);
+				XmlSerializer xs = new XmlSerializer(typeof(ConfigParams));
+				TextWriter tw = new StreamWriter(FileName);
+				xs.Serialize(tw, configParams);
+				tw.Close();
+			} catch
+			{
+				MessageBox.Show("ERROR: SAVE CONFIG FAILED");
+			}
 		}
 
 		public static void Load()
 		{
-			if (File.Exists(@"config.xml"))
+			if (File.Exists(FileName))
 			{
-				StreamReader sr = new StreamReader(@"config.xml");
-				XmlSerializer xs = new XmlSerializer(typeof(ConfigParams));
-				configParams = (ConfigParams)xs.Deserialize(sr);
-				sr.Close();
+				try
+				{
+					StreamReader sr = new StreamReader(FileName);
+					XmlSerializer xs = new XmlSerializer(typeof(ConfigParams));
+					configParams = (ConfigParams)xs.Deserialize(sr);
+					sr.Close();
+				} catch
+				{
+					MessageBox.Show("ERROR: LOAD CONFIG FAILED");
+					if (File.Exists(FileName))
+						File.Delete(FileName);
+					configParams = new ConfigParams();
+				}
 			}
 		}
 	}

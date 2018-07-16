@@ -4,6 +4,8 @@ using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Timers;
+using System.Windows.Forms;
 using DevNet;
 
 namespace PriemMetalClient
@@ -14,18 +16,82 @@ namespace PriemMetalClient
 	}
 	public class VesData
 	{
-		public bool Stable = false;
 		public double Value = -1;
 		public DateTime Timestamp = DateTime.MinValue;
 	}
+	public class VesDataReport
+	{
+		public double AverageValue = -1;
+		public int ReadoutCount = 0;
+		public TimeSpan TimeRange = TimeSpan.Zero;
+		public double Deviation = 0;
+		public override string ToString() => "[V:" + AverageValue.ToString() + ",D:" + Deviation.ToString() + ",C:" + ReadoutCount.ToString() + "]";
+	}
+	public class VesDataManager
+	{
+		private Queue<VesData> DataFIFO = new Queue<VesData>(100);
+		public VesData AddData(VesData data)
+		{
+			if (DataFIFO.Count >= 100)
+				DataFIFO.Dequeue();
+			DataFIFO.Enqueue(data);
+			return data;
+		}
+		public VesDataReport Report(TimeSpan TimeRange)
+		{
+			VesDataReport report = new VesDataReport();
+			report.TimeRange = TimeRange;
+			DateTime now = DateTime.Now;
+			double sumAll = 0;
+			int count = 0;
+			double maxValue = double.MinValue;
+			double minValue = double.MaxValue;
+			Queue<VesData> fifo_backup = new Queue<VesData>(DataFIFO);
+			var rnd = new Random();
+			foreach (VesData data in fifo_backup)
+			{
+				//data.Value = rnd.Next(1000, 1100) / 10;
+				if ((now - data.Timestamp) <= TimeRange)
+				{
+					sumAll += data.Value;
+					count++;
+					maxValue = Math.Max(maxValue, data.Value);
+					minValue = Math.Min(minValue, data.Value);
+				}
+			}
+			if (count > 0) report.AverageValue = sumAll / count;
+			report.Deviation = (maxValue - minValue) / 2;
+			report.ReadoutCount = count;
+			return report;
+		}
+	}
 	public static class VesManager
 	{
-		private static dynamic DevNet = null;
-		private static SerialPort ComPort_ = null;
-		public static SerialPort ComPort { get {return GetComport(); } }
-		private static VesData Data_ = new VesData();
-		public static VesData Data { get { return GetData(); } }
-		public static VesData GetData()
+		private static System.Timers.Timer Timer = null;
+		private static VesWorkMethod VesWorkMethod_ = VesWorkMethod.COMPORT;
+		public static VesWorkMethod VesWorkMethod { get => VesWorkMethod_; set { SetWorkMethod(value); } }
+		public static VesDataManager VesDataManager = new VesDataManager();
+		public static VesDataReport Report => ReportCustomTimeRange(new TimeSpan(0, 0, 10));
+		public static VesDataReport ReportCustomTimeRange(TimeSpan TimeRange) => VesDataManager.Report(TimeRange);
+
+		public static void SetWorkMethod(VesWorkMethod method, bool force = false)
+		{
+			if (!force)
+				if (VesWorkMethod_ == method) return;
+			switch (VesWorkMethod_)
+			{
+				case VesWorkMethod.COMPORT: CloseComport(); break;
+				case VesWorkMethod.DRIVER: CloseDevNet(); break;
+			}
+			switch (method)
+			{
+				case VesWorkMethod.COMPORT: ReopenComport(); break;
+				case VesWorkMethod.DRIVER: ReopenDevNet(); break;
+			}
+			VesWorkMethod_ = method;
+
+		}
+		/*public static VesDataReport GetData(VesWorkMethod VesWorkMethod)
 		{
 			if (ConfigManager.configParams.VesWorkMethod == VesWorkMethod.DRIVER)
 			{
@@ -36,8 +102,8 @@ namespace PriemMetalClient
 				return GetDataFromComport();
             }
             return null;
-		}
-		public static VesData GetDataFromDriver()
+		}*/
+		/*public static VesData GetDataFromDriver()
 		{
 			if (DevNet == null)
 			{
@@ -58,7 +124,6 @@ namespace PriemMetalClient
 				byte ErrState, Flags0, Flags1, DFlags, DState;
 				DevNet.GetWeight(1, 0, out ves, out ErrState, out Flags0, out Flags1, out DFlags, out DState);
 				Data_.Value = ves;
-				Data_.Stable = true;
 				Data_.Timestamp = DateTime.Now;
 
 				return Data_;
@@ -69,7 +134,43 @@ namespace PriemMetalClient
 				Data_ = null;
 				return null;
 			}
+		}*/
+		#region DEVNET
+		private static dynamic DevNet = null;
+		public static bool ReopenDevNet()
+		{
+			CloseDevNet();
+			try
+			{
+				DevNet = Activator.CreateInstance(Type.GetTypeFromProgID("DevNet.Drv"), false);
+				Timer = new System.Timers.Timer(100);
+				Timer.Elapsed += Timer_Elapsed;
+				Timer.Start();
+				return true;
+			}
+			catch
+			{
+				MessageBox.Show("ERROR: DRIVER MODE FAILED");
+				CloseDevNet();
+				return false;
+			}
 		}
+
+
+		public static void CloseDevNet()
+		{
+			if (Timer != null)
+			{
+				Timer.Elapsed -= Timer_Elapsed;
+				Timer.Stop();
+				Timer = null;
+			}
+			DevNet = null;
+		}
+		#endregion
+		#region COMPORT
+		private static SerialPort ComPort_ = null;
+		public static SerialPort ComPort { get { return GetComport(); } }
 		public static SerialPort GetComport()
 		{
 			if (CheckComport()) return ComPort_;
@@ -87,45 +188,207 @@ namespace PriemMetalClient
 		}
 		public static bool ReopenComport()
 		{
-			if (ComPort_ != null)
-			{
-				try
-				{
-					if (ComPort_.IsOpen) ComPort_.Close();
-					ComPort_ = null;
-				} catch
-				{
-					ComPort_ = null;
-				}
-			}
+			CloseComport();
 			try
 			{
 				ComPort_ = new SerialPort(ConfigManager.configParams.ComPort,
 					ConfigManager.configParams.BaudRate, Parity.None, 8, StopBits.One);
-				ComPort_.DataReceived += ComPort_DataReceived;
+				//ComPort_.DataReceived += ComPort_DataReceived;
 				ComPort_.Open();
+				SendCommandToComport(ComPortCommands.Continuous_transfer_of_value_by_mask_mode);
+				Timer = new System.Timers.Timer(100);
+				Timer.Elapsed += Timer_Elapsed;
+				Timer.Start();
 				return true;
 			} catch
 			{
-				ComPort_ = null;
+				MessageBox.Show("ERROR: COMPORT MODE FAILED");
+				CloseComport();
 				return false;
 			}
 		}
-		public static VesData GetDataFromComport()
+		public static void CloseComport()
+		{
+			if (Timer != null)
+			{
+				Timer.Elapsed -= Timer_Elapsed;
+				Timer.Stop();
+				Timer = null;
+			}
+			if (ComPort_ != null)
+			{
+				try
+				{
+					ComPort_.DataReceived -= ComPort_DataReceived;
+					if (ComPort_.IsOpen) ComPort_.Close();
+					ComPort_ = null;
+				}
+				catch
+				{
+					ComPort_ = null;
+				}
+			}
+
+		}
+		private static List<byte> DataPacket = null;
+		private static void ComPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+		{
+			/*var com = ComPort;
+			if (com != null)
+			{
+				while (com.BytesToRead > 0)
+				{
+					byte b = (byte)com.ReadByte();
+					if (b == 0xff)
+						DataPacket = new List<byte>();
+					if (DataPacket != null)
+					{
+						if (DataPacket.Count >= 128)
+						{
+							DataPacket = null;
+						}
+						else
+						{
+							DataPacket.Add(b);
+							if (b == 0x03)
+							{
+								if (DataPacket[0] == 0xff && DataPacket[DataPacket.Count - 1] == 0x03)
+								{
+									ParseData(DataPacket.ToArray());
+									DataPacket = null;
+								}
+							}
+						}
+					}
+				}
+				//string data = com.ReadExisting();
+				//byte[] arr = Encoding.ASCII.GetBytes(data);
+				// 0xFF, 0x20, 0x22, 0x2A, 0x10, 0xFC, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
+				// 0xFF, 0x20, 0x22, 0x2A, 0x03, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
+				//ParseData(arr);
+			}*/
+		}
+		public static void ParseData(byte[] arr)
+		{
+			arr = DLERemove(arr);
+			// [0xFF,] 0x20, 0x22, 0x2A, 0x03, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
+			//List<byte> arr = new List<byte>(arr);
+			int i = 0;
+			if (arr[i] == 0xff)
+			{
+				i++;
+				// [0x20,] [0x22,] 0x2A, 0x03, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
+				byte to = arr[i];
+				byte from = arr[i + 1];
+				i += 2;
+				// [0x2A,] 0x03, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
+				byte com = arr[i];
+				i++;
+				// 3.9.10.	0x2a ‘+’ Постоянная передача значений по маске
+				// ПРИМЕЧАНИЕ 2: Пакет от прибора в режиме постоянной передачи имеет код команды ‘*’ (0x2A)
+				if (com == 0x2a)
+				{
+					// [0x03,] 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
+					//byte pmask = a[i];
+					i++;
+					// [0x00, 0x00, 0xD1, 0x0F,] 0x00, 0x00, 0x3F, 0x03
+					//byte[] acp_code = { a[i], a[i + 1], a[i + 2], a[i + 3] };
+					//Array.Reverse(acp_code);
+					//ulong acp_code_ulong = BitConverter.ToUInt32(acp_code, 0);
+					i += 4;
+					// [0x00, 0x00,] 0x3F, 0x03
+					byte[] brutto = { arr[i], arr[i + 1] };
+					Array.Reverse(brutto);
+					int brutto_int = BitConverter.ToInt16(brutto, 0);
+					VesData v = new VesData();
+					v.Timestamp = DateTime.Now;
+					v.Value = brutto_int;
+					VesDataManager.AddData(v);
+					//i += 2;
+					// [0x3F,] [0x03]
+					//byte crc = a[i];
+					//byte etx = a[i+1];
+					//i += 2;
+				}
+			}
+		}
+		#endregion
+		private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
+		{
+			if (VesWorkMethod == VesWorkMethod.DRIVER)
+			{
+				if (DevNet != null)
+				{
+					try
+					{
+						VesData data = new VesData();
+						double ves = 0;
+						byte ErrState, Flags0, Flags1, DFlags, DState;
+						DevNet.GetWeight(1, 0, out ves, out ErrState, out Flags0, out Flags1, out DFlags, out DState);
+						data.Value = ves;
+						data.Timestamp = DateTime.Now;
+						VesDataManager.AddData(data);
+					}
+					catch
+					{
+						ReopenDevNet();
+					}
+				}
+			}
+			else if (VesWorkMethod == VesWorkMethod.COMPORT)
+			{
+				var com = ComPort;
+				if (com != null)
+				{
+					while (com.BytesToRead > 0)
+					{
+						byte b = (byte)com.ReadByte();
+						if (b == 0xff)
+							DataPacket = new List<byte>();
+						if (DataPacket != null)
+						{
+							if (DataPacket.Count >= 128)
+							{
+								DataPacket = null;
+							}
+							else
+							{
+								DataPacket.Add(b);
+								if (b == 0x03)
+								{
+									if (DataPacket[0] == 0xff && DataPacket[DataPacket.Count - 1] == 0x03)
+									{
+										ParseData(DataPacket.ToArray());
+										DataPacket = null;
+									}
+								}
+							}
+						}
+					}
+					//string data = com.ReadExisting();
+					//byte[] arr = Encoding.ASCII.GetBytes(data);
+					// 0xFF, 0x20, 0x22, 0x2A, 0x10, 0xFC, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
+					// 0xFF, 0x20, 0x22, 0x2A, 0x03, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
+					//ParseData(arr);
+				}
+			}
+		}
+
+		/*public static VesData GetDataFromComport()
         {
 			if ((DateTime.Now - Data_.Timestamp).TotalMilliseconds <= 1000) return Data_;
 			if (ComPort != null)
 			{
 				SendCommandToComport(ComPortCommands.Continuous_transfer_of_value_by_mask_mode);
-				/*byte[] arr = { 0xff, 0x7f, 0x20, 0x56, 0x10, 0x00, 0x09, 0x03 };
-				ComPort.Write(arr, 0, 8);
-				byte[] arr2 = { 0xff, 0x7f, 0x20, 0x2e, 0x7f, 0xf1, 0x03 };*/
+				//byte[] arr = { 0xff, 0x7f, 0x20, 0x56, 0x10, 0x00, 0x09, 0x03 };
+				//ComPort.Write(arr, 0, 8);
+				//byte[] arr2 = { 0xff, 0x7f, 0x20, 0x2e, 0x7f, 0xf1, 0x03 };
 				//ComPort.Write(arr2, 0, 7);
 
 				return Data_;
 			}
 			return null;
-        }
+        }*/
 
 		public static class ComPortCommands
 		{
@@ -156,7 +419,12 @@ namespace PriemMetalClient
 			arr.AddRange(DLECheck(DATA));
 			arr.AddRange(DLECheck(CRC));
 			arr.AddRange(ETX);
-
+			var com = ComPort;
+			if (com != null)
+			{
+				var barr = arr.ToArray();
+				com.Write(barr, 0, barr.Length);
+			}
 		}
 
 		public static byte[] DLECheck(byte b)
@@ -239,57 +507,8 @@ namespace PriemMetalClient
 			return crc;
 		}
 
-		public static void ParseData(byte[] arr)
-		{
-			// 0xFF, 0x20, 0x22, 0x2A, 0x03, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
-			List<byte> a = new List<byte>(arr);
-			int i = 0;
-			if (a[i] == 0xff)
-			{
-				i++;
-				// 0x20, 0x22, 0x2A, 0x03, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
-				byte to = a[i];
-				byte from = a[i+1];
-				i += 2;
-				// 0x2A, 0x03, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
-				byte com = a[i];
-				i++;
-				// 3.9.10.	0x2a ‘+’ Постоянная передача значений по маске
-				// ПРИМЕЧАНИЕ 2: Пакет от прибора в режиме постоянной передачи имеет код команды ‘*’ (0x2A)
-				if (com == 0x2a)
-				{
-					// 0x03, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
-					byte pmask = a[i];
-					i++;
-					// 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
-					byte[] acp_code = { a[i], a[i + 1], a[i + 2], a[i + 3] };
-					Array.Reverse(acp_code);
-					ulong acp_code_ulong = BitConverter.ToUInt32(acp_code, 0);
-					i += 4;
-					// 0x00, 0x00, 0x3F, 0x03
-					byte[] brutto = { a[i], a[i + 1] };
-					Array.Reverse(brutto);
-					int brutto_int = BitConverter.ToInt16(brutto, 0);
-					//i += 2;
-					// 0x3F, 0x03
-					//byte crc = a[i];
-					//byte etx = a[i+1];
-					//i += 2;
-				}
-			}
-		}
 
-		private static void ComPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-			if (ComPort != null)
-			{
-				string data = ComPort.ReadExisting();
-				byte[] arr = Encoding.ASCII.GetBytes(data);
-				// 0xFF, 0x20, 0x22, 0x2A, 0x10, 0xFC, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
-				arr = DLERemove(arr);
-				// 0xFF, 0x20, 0x22, 0x2A, 0x03, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03
-				ParseData(arr);
-			}
-        }
+
+
     }
 }
