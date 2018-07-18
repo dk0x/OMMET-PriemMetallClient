@@ -48,6 +48,7 @@ namespace PriemMetalClient
 		private void параметрыToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			ConfigForm ConfigForm = new ConfigForm();
+			ConfigForm.MdiParent = this;
 			ConfigForm.Show();
 		}
 
