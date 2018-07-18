@@ -30,8 +30,20 @@ namespace PriemMetalClient
 	public class VesDataManager
 	{
 		private Queue<VesData> DataFIFO = new Queue<VesData>(100);
+		private bool LockThread = false;
 		public VesData AddData(VesData data)
 		{
+			if (LockThread)
+			{
+				DateTime dt = DateTime.Now;
+
+				while (LockThread)
+				{
+					System.Threading.Thread.Sleep(100);
+					if ((dt - DateTime.Now).TotalSeconds >= 10)
+						return data;
+				};
+			}
 			if (DataFIFO.Count >= 100)
 				DataFIFO.Dequeue();
 			DataFIFO.Enqueue(data);
@@ -46,7 +58,9 @@ namespace PriemMetalClient
 			int count = 0;
 			double maxValue = double.MinValue;
 			double minValue = double.MaxValue;
+			LockThread = true;
 			Queue<VesData> fifo_backup = new Queue<VesData>(DataFIFO);
+			LockThread = false;
 			var rnd = new Random();
 			foreach (VesData data in fifo_backup)
 			{
@@ -302,7 +316,8 @@ namespace PriemMetalClient
 					int brutto_int = BitConverter.ToInt16(brutto, 0);
 					VesData v = new VesData();
 					v.Timestamp = DateTime.Now;
-					v.Value = brutto_int;
+					v.Value = (double)brutto_int / 100;
+					v.Value = Math.Round(v.Value, 2);
 					VesDataManager.AddData(v);
 					//i += 2;
 					// [0x3F,] [0x03]
