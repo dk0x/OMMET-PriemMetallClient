@@ -13,6 +13,8 @@ namespace PriemMetalClient
 {
 	public partial class MainForm : Form
 	{
+		private ConfigForm ConfigForm = null;
+		private List<Form> mdiForms = new List<Form>();
 		public MainForm()
 		{
 			InitializeComponent();
@@ -40,6 +42,27 @@ namespace PriemMetalClient
 
 		}
 
+		public Form GetMdiFormByCaption(string text)
+		{
+			foreach(Form f in this.MdiChildren)
+				if (text == f.Text) return f;
+			return null;
+		}
+
+		private void AddMdiFormToPanel(Form form)
+		{
+			Label l = new Label();
+			l.TextAlign = ContentAlignment.MiddleCenter;
+			l.Dock = DockStyle.Top;
+			l.Text = form.Text;
+		}
+
+		private void MainForm_MdiChildActivate(object sender, EventArgs e)
+		{
+
+		}
+
+
 		private void выходToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Close();
@@ -47,9 +70,22 @@ namespace PriemMetalClient
 
 		private void параметрыToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			ConfigForm ConfigForm = new ConfigForm();
-			ConfigForm.MdiParent = this;
+			if (ConfigForm != null)
+			{
+				if (ConfigForm.WindowState == FormWindowState.Minimized)
+					ConfigForm.WindowState = FormWindowState.Normal;
+				ConfigForm.Focus();
+				return;
+			}
+			ConfigForm = new ConfigForm();
+			ConfigForm.FormClosed += ConfigForm_FormClosed;
+			ConfigForm.Owner = this;
 			ConfigForm.Show();
+		}
+
+		private void ConfigForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			ConfigForm = null;
 		}
 
 		private void MainForm_Load(object sender, EventArgs e)
@@ -59,21 +95,38 @@ namespace PriemMetalClient
 
         private void button1_Click(object sender, EventArgs e)
         {
-			//VesManager.GetDataFromComport();
-			//byte[] arr = { 0xff, 0x20, 0x22, 0x56, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xac, 0x03 };
-			//byte[] arr = { 0xff, 0x20, 0x22, 0x56, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-			//byte[] arr2 = { 0xff, 0x20, 0x22, 0x2e, 0x7f, 0x10, 0x00, 0x00, 0x01, 0x45, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0xf5, 0x1c, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x75, 0x10, 0x00, 0x10, 0x00, 0x10, 0x00, 0x40, 0xc0, 0xc0, 0xdc, 0x03 };
-			//byte[] arr2 = { 0xff, 0x20, 0x22, 0x2e, 0x7f, 0x10, 0x00, 0x00, 0x01, 0x45, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0xf5, 0x1c, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x75, 0x10, 0x00, 0x10, 0x00, 0x10, 0x00, 0x40, 0xc0, 0xc0 };
-			//byte[] arr3 = { 0xFF, 0x20, 0x22, 0x2A, 0x03, 0x00, 0x00, 0xD1, 0x0F, 0x00, 0x00, 0x3F, 0x03 };
-			//arr2 = VesManager.ETXRemove(arr2);
-			//textBox1.Text = VesManager.CalculateCRC(arr2, 0).ToString();
-			//VesManager.ParseData(arr3);
-
+			//menuStrip1.MdiWindowListItem
 		}
 
 		private void toolStripButton1_Click(object sender, EventArgs e)
 		{
 			VesManager.SetWorkMethod(ConfigManager.configParams.VesWorkMethod, true);
+		}
+
+		private void новыйДокументToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			DocumentForm docForm = new DocumentForm();
+			//docForm.MdiParent = this;
+			docForm.Show();
+		}
+
+		BuyPriceMetallBookForm buyPriceMetallBookForm = null;
+		private void закупочныеЦеныНаМеталлоломToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (buyPriceMetallBookForm != null)
+			{
+				buyPriceMetallBookForm.Focus();
+				return;
+			}
+			buyPriceMetallBookForm = new BuyPriceMetallBookForm();
+			buyPriceMetallBookForm.Owner = this;
+			buyPriceMetallBookForm.FormClosed += BuyPriceMetallBookForm_FormClosed;
+			buyPriceMetallBookForm.Show();
+		}
+
+		private void BuyPriceMetallBookForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			buyPriceMetallBookForm = null;
 		}
 	}
 }

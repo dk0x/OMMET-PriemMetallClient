@@ -171,8 +171,10 @@
 			this.Controls.Add(this.SaveButton);
 			this.Controls.Add(this.CancelButton);
 			this.Controls.Add(this.ComPortGroupBox);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Name = "ConfigForm";
 			this.ShowIcon = false;
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Настройки";
 			this.Load += new System.EventHandler(this.ConfigForm_Load);

@@ -205,6 +205,7 @@ namespace PriemMetalClient
 			CloseComport();
 			try
 			{
+				if (ConfigManager.configParams.ComPort == "-") return false;
 				ComPort_ = new SerialPort(ConfigManager.configParams.ComPort,
 					ConfigManager.configParams.BaudRate, Parity.None, 8, StopBits.One);
 				//ComPort_.DataReceived += ComPort_DataReceived;

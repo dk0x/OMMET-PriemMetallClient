@@ -43,6 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuyPriceMetallBookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuyPriceMetallBookForm.Designer.cs">
+      <DependentUpon>BuyPriceMetallBookForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuyPriceMetallEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuyPriceMetallEditForm.Designer.cs">
+      <DependentUpon>BuyPriceMetallEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfigManager.cs" />
     <Compile Include="ConfigForm.cs">
       <SubType>Form</SubType>
@@ -50,17 +62,33 @@
     <Compile Include="ConfigForm.Designer.cs">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DocumentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentForm.Designer.cs">
+      <DependentUpon>DocumentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MdiWindowsManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VesManager.cs" />
+    <EmbeddedResource Include="BuyPriceMetallBookForm.resx">
+      <DependentUpon>BuyPriceMetallBookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuyPriceMetallEditForm.resx">
+      <DependentUpon>BuyPriceMetallEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentForm.resx">
+      <DependentUpon>DocumentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -75,6 +103,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,6 +124,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\new-file.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
