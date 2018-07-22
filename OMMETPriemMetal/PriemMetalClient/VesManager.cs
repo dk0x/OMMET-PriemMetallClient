@@ -194,8 +194,8 @@ namespace PriemMetalClient
 		public static bool CheckComport()
 		{
 			if (ComPort_ != null)
-				if (ComPort_.PortName == ConfigManager.configParams.ComPort)
-					if (ComPort_.BaudRate == ConfigManager.configParams.BaudRate)
+				if (ComPort_.PortName == ConfigManager.Parameters.ComPort)
+					if (ComPort_.BaudRate == ConfigManager.Parameters.BaudRate)
 						if (ComPort_.IsOpen)
 							return true;
 			return false;
@@ -205,9 +205,9 @@ namespace PriemMetalClient
 			CloseComport();
 			try
 			{
-				if (ConfigManager.configParams.ComPort == "-") return false;
-				ComPort_ = new SerialPort(ConfigManager.configParams.ComPort,
-					ConfigManager.configParams.BaudRate, Parity.None, 8, StopBits.One);
+				if (ConfigManager.Parameters.ComPort == "-") return false;
+				ComPort_ = new SerialPort(ConfigManager.Parameters.ComPort,
+					ConfigManager.Parameters.BaudRate, Parity.None, 8, StopBits.One);
 				//ComPort_.DataReceived += ComPort_DataReceived;
 				ComPort_.Open();
 				SendCommandToComport(ComPortCommands.Continuous_transfer_of_value_by_mask_mode);

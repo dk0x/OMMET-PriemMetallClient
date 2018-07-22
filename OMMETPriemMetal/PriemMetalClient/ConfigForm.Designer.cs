@@ -28,19 +28,88 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.SaveButton = new System.Windows.Forms.Button();
+			this.CancelButton = new System.Windows.Forms.Button();
+			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.ComportMethodRadioButton = new System.Windows.Forms.RadioButton();
+			this.DriverMethodRadioButton = new System.Windows.Forms.RadioButton();
 			this.ComPortGroupBox = new System.Windows.Forms.GroupBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.BaudRateComboBox = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.ComPortsComboBox = new System.Windows.Forms.ComboBox();
-			this.SaveButton = new System.Windows.Forms.Button();
-			this.CancelButton = new System.Windows.Forms.Button();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.ComportMethodRadioButton = new System.Windows.Forms.RadioButton();
-			this.DriverMethodRadioButton = new System.Windows.Forms.RadioButton();
-			this.ComPortGroupBox.SuspendLayout();
+			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
+			this.ComPortGroupBox.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// SaveButton
+			// 
+			this.SaveButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.SaveButton.Location = new System.Drawing.Point(0, 306);
+			this.SaveButton.Name = "SaveButton";
+			this.SaveButton.Size = new System.Drawing.Size(592, 23);
+			this.SaveButton.TabIndex = 3;
+			this.SaveButton.Text = "Сохранить";
+			this.SaveButton.UseVisualStyleBackColor = true;
+			this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+			// 
+			// CancelButton
+			// 
+			this.CancelButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.CancelButton.Location = new System.Drawing.Point(0, 329);
+			this.CancelButton.Name = "CancelButton";
+			this.CancelButton.Size = new System.Drawing.Size(592, 23);
+			this.CancelButton.TabIndex = 4;
+			this.CancelButton.Text = "Отмена";
+			this.CancelButton.UseVisualStyleBackColor = true;
+			this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+			// 
+			// flowLayoutPanel1
+			// 
+			this.flowLayoutPanel1.Controls.Add(this.groupBox2);
+			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(592, 306);
+			this.flowLayoutPanel1.TabIndex = 6;
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Controls.Add(this.ComPortGroupBox);
+			this.groupBox2.Controls.Add(this.ComportMethodRadioButton);
+			this.groupBox2.Controls.Add(this.DriverMethodRadioButton);
+			this.groupBox2.Location = new System.Drawing.Point(3, 3);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(210, 133);
+			this.groupBox2.TabIndex = 7;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Режим работы с весами";
+			// 
+			// ComportMethodRadioButton
+			// 
+			this.ComportMethodRadioButton.AutoSize = true;
+			this.ComportMethodRadioButton.Dock = System.Windows.Forms.DockStyle.Top;
+			this.ComportMethodRadioButton.Location = new System.Drawing.Point(3, 33);
+			this.ComportMethodRadioButton.Name = "ComportMethodRadioButton";
+			this.ComportMethodRadioButton.Size = new System.Drawing.Size(204, 17);
+			this.ComportMethodRadioButton.TabIndex = 1;
+			this.ComportMethodRadioButton.TabStop = true;
+			this.ComportMethodRadioButton.Text = "Напрямую с Com портом";
+			this.ComportMethodRadioButton.UseVisualStyleBackColor = true;
+			// 
+			// DriverMethodRadioButton
+			// 
+			this.DriverMethodRadioButton.AutoSize = true;
+			this.DriverMethodRadioButton.Dock = System.Windows.Forms.DockStyle.Top;
+			this.DriverMethodRadioButton.Location = new System.Drawing.Point(3, 16);
+			this.DriverMethodRadioButton.Name = "DriverMethodRadioButton";
+			this.DriverMethodRadioButton.Size = new System.Drawing.Size(204, 17);
+			this.DriverMethodRadioButton.TabIndex = 0;
+			this.DriverMethodRadioButton.TabStop = true;
+			this.DriverMethodRadioButton.Text = "Драйвер (только Windows)";
+			this.DriverMethodRadioButton.UseVisualStyleBackColor = true;
 			// 
 			// ComPortGroupBox
 			// 
@@ -49,10 +118,11 @@
 			this.ComPortGroupBox.Controls.Add(this.BaudRateComboBox);
 			this.ComPortGroupBox.Controls.Add(this.label1);
 			this.ComPortGroupBox.Controls.Add(this.ComPortsComboBox);
-			this.ComPortGroupBox.Location = new System.Drawing.Point(12, 96);
+			this.ComPortGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.ComPortGroupBox.Location = new System.Drawing.Point(3, 50);
 			this.ComPortGroupBox.Name = "ComPortGroupBox";
-			this.ComPortGroupBox.Size = new System.Drawing.Size(200, 80);
-			this.ComPortGroupBox.TabIndex = 2;
+			this.ComPortGroupBox.Size = new System.Drawing.Size(204, 80);
+			this.ComPortGroupBox.TabIndex = 7;
 			this.ComPortGroupBox.TabStop = false;
 			this.ComPortGroupBox.Text = "Параметры Com порта";
 			// 
@@ -104,73 +174,14 @@
 			this.ComPortsComboBox.Sorted = true;
 			this.ComPortsComboBox.TabIndex = 2;
 			// 
-			// SaveButton
-			// 
-			this.SaveButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.SaveButton.Location = new System.Drawing.Point(0, 357);
-			this.SaveButton.Name = "SaveButton";
-			this.SaveButton.Size = new System.Drawing.Size(556, 23);
-			this.SaveButton.TabIndex = 3;
-			this.SaveButton.Text = "Сохранить";
-			this.SaveButton.UseVisualStyleBackColor = true;
-			this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
-			// 
-			// CancelButton
-			// 
-			this.CancelButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.CancelButton.Location = new System.Drawing.Point(0, 380);
-			this.CancelButton.Name = "CancelButton";
-			this.CancelButton.Size = new System.Drawing.Size(556, 23);
-			this.CancelButton.TabIndex = 4;
-			this.CancelButton.Text = "Отмена";
-			this.CancelButton.UseVisualStyleBackColor = true;
-			this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.AutoSize = true;
-			this.groupBox2.Controls.Add(this.ComportMethodRadioButton);
-			this.groupBox2.Controls.Add(this.DriverMethodRadioButton);
-			this.groupBox2.Location = new System.Drawing.Point(12, 12);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(200, 78);
-			this.groupBox2.TabIndex = 5;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Режим работы с весами";
-			// 
-			// ComportMethodRadioButton
-			// 
-			this.ComportMethodRadioButton.AutoSize = true;
-			this.ComportMethodRadioButton.Location = new System.Drawing.Point(6, 42);
-			this.ComportMethodRadioButton.Name = "ComportMethodRadioButton";
-			this.ComportMethodRadioButton.Size = new System.Drawing.Size(151, 17);
-			this.ComportMethodRadioButton.TabIndex = 1;
-			this.ComportMethodRadioButton.TabStop = true;
-			this.ComportMethodRadioButton.Text = "Напрямую с Com портом";
-			this.ComportMethodRadioButton.UseVisualStyleBackColor = true;
-			this.ComportMethodRadioButton.CheckedChanged += new System.EventHandler(this.ComportMethodRadioButton_CheckedChanged);
-			// 
-			// DriverMethodRadioButton
-			// 
-			this.DriverMethodRadioButton.AutoSize = true;
-			this.DriverMethodRadioButton.Location = new System.Drawing.Point(6, 19);
-			this.DriverMethodRadioButton.Name = "DriverMethodRadioButton";
-			this.DriverMethodRadioButton.Size = new System.Drawing.Size(161, 17);
-			this.DriverMethodRadioButton.TabIndex = 0;
-			this.DriverMethodRadioButton.TabStop = true;
-			this.DriverMethodRadioButton.Text = "Драйвер (только Windows)";
-			this.DriverMethodRadioButton.UseVisualStyleBackColor = true;
-			this.DriverMethodRadioButton.CheckedChanged += new System.EventHandler(this.DriverMethodRadioButton_CheckedChanged);
-			// 
 			// ConfigForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(556, 403);
-			this.Controls.Add(this.groupBox2);
+			this.ClientSize = new System.Drawing.Size(592, 352);
+			this.Controls.Add(this.flowLayoutPanel1);
 			this.Controls.Add(this.SaveButton);
 			this.Controls.Add(this.CancelButton);
-			this.Controls.Add(this.ComPortGroupBox);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Name = "ConfigForm";
 			this.ShowIcon = false;
@@ -179,25 +190,25 @@
 			this.Text = "Настройки";
 			this.Load += new System.EventHandler(this.ConfigForm_Load);
 			this.Shown += new System.EventHandler(this.ConfigForm_Shown);
-			this.ComPortGroupBox.ResumeLayout(false);
-			this.ComPortGroupBox.PerformLayout();
+			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
+			this.ComPortGroupBox.ResumeLayout(false);
+			this.ComPortGroupBox.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
-
+		private System.Windows.Forms.Button SaveButton;
+		private System.Windows.Forms.Button CancelButton;
+		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.GroupBox ComPortGroupBox;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox BaudRateComboBox;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox ComPortsComboBox;
-		private System.Windows.Forms.Button SaveButton;
-		private System.Windows.Forms.Button CancelButton;
-		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.RadioButton ComportMethodRadioButton;
 		private System.Windows.Forms.RadioButton DriverMethodRadioButton;
 	}

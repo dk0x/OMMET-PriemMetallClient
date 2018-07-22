@@ -34,23 +34,22 @@ namespace PriemMetalClient
 			BaudRateComboBox.SelectedIndex = BaudRateComboBox.Items.IndexOf("9600");
 
 			int index = 0;
-			if (ConfigManager.configParams.ComPort != null)
+			if (ConfigManager.Parameters.ComPort != null)
 			{
-				index = ComPortsComboBox.Items.IndexOf(ConfigManager.configParams.ComPort);
+				index = ComPortsComboBox.Items.IndexOf(ConfigManager.Parameters.ComPort);
 				if (index == -1) index = ComPortsComboBox.Items.IndexOf("-");
 			}
 			ComPortsComboBox.SelectedIndex = index;
-			BaudRateComboBox.SelectedIndex = BaudRateComboBox.Items.IndexOf(ConfigManager.configParams.BaudRate.ToString());
+			BaudRateComboBox.SelectedIndex = BaudRateComboBox.Items.IndexOf(ConfigManager.Parameters.BaudRate.ToString());
 
-			DriverMethodRadioButton.Checked = ConfigManager.configParams.VesWorkMethod == VesWorkMethod.DRIVER;
-			ComportMethodRadioButton.Checked = ConfigManager.configParams.VesWorkMethod == VesWorkMethod.COMPORT;
+			DriverMethodRadioButton.Checked = ConfigManager.Parameters.VesWorkMethod == VesWorkMethod.DRIVER;
+			ComportMethodRadioButton.Checked = ConfigManager.Parameters.VesWorkMethod == VesWorkMethod.COMPORT;
 			if (Environment.OSVersion.Platform == PlatformID.Unix)
 			{
 				DriverMethodRadioButton.Enabled = false;
 				DriverMethodRadioButton.Checked = false;
 				ComportMethodRadioButton.Checked = true;
-				ConfigManager.configParams.VesWorkMethod = VesWorkMethod.COMPORT;
-
+				ConfigManager.Parameters.VesWorkMethod = VesWorkMethod.COMPORT;
 			}
 		}
 
@@ -61,12 +60,12 @@ namespace PriemMetalClient
 
 		private void SaveButton_Click(object sender, EventArgs e)
 		{
-			ConfigManager.configParams.ComPort = (string)ComPortsComboBox.SelectedItem;
-			ConfigManager.configParams.BaudRate = int.Parse((string)BaudRateComboBox.SelectedItem);
-			if (DriverMethodRadioButton.Checked) ConfigManager.configParams.VesWorkMethod = VesWorkMethod.DRIVER;
-			if (ComportMethodRadioButton.Checked) ConfigManager.configParams.VesWorkMethod = VesWorkMethod.COMPORT;
+			ConfigManager.Parameters.ComPort = (string)ComPortsComboBox.SelectedItem;
+			ConfigManager.Parameters.BaudRate = int.Parse((string)BaudRateComboBox.SelectedItem);
+			if (DriverMethodRadioButton.Checked) ConfigManager.Parameters.VesWorkMethod = VesWorkMethod.DRIVER;
+			if (ComportMethodRadioButton.Checked) ConfigManager.Parameters.VesWorkMethod = VesWorkMethod.COMPORT;
 			ConfigManager.Save();
-			VesManager.SetWorkMethod(ConfigManager.configParams.VesWorkMethod, true);
+			VesManager.SetWorkMethod(ConfigManager.Parameters.VesWorkMethod, true);
 			Close();
 		}
 

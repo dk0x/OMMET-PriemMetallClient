@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevNet;
 using System.IO.Ports;
+using LiteDB;
 
 namespace PriemMetalClient
 {
@@ -19,7 +20,7 @@ namespace PriemMetalClient
 		{
 			InitializeComponent();
 			ConfigManager.Load();
-			VesManager.SetWorkMethod(ConfigManager.configParams.VesWorkMethod, true);
+			VesManager.SetWorkMethod(ConfigManager.Parameters.VesWorkMethod, true);
 		}
 		private int counter = 0;
 		private void VesUpdateTimer_Tick(object sender, EventArgs e)
@@ -100,7 +101,7 @@ namespace PriemMetalClient
 
 		private void toolStripButton1_Click(object sender, EventArgs e)
 		{
-			VesManager.SetWorkMethod(ConfigManager.configParams.VesWorkMethod, true);
+			VesManager.SetWorkMethod(ConfigManager.Parameters.VesWorkMethod, true);
 		}
 
 		private void новыйДокументToolStripMenuItem_Click(object sender, EventArgs e)
@@ -127,6 +128,39 @@ namespace PriemMetalClient
 		private void BuyPriceMetallBookForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			buyPriceMetallBookForm = null;
+		}
+
+		private void buyPriceMetallViewControl1_Load(object sender, EventArgs e)
+		{
+
+		}
+		LiteDatabase db = null;
+		private void button1_Click_1(object sender, EventArgs e)
+		{
+			if (db == null) db = new LiteDatabase(Tools.Path(@"/MyData.db"));
+			var col = db.GetCollection<BuyPriceMetall>("BuyPriceMetall");
+			var record = new BuyPriceMetall
+			{
+				Category = "CAT",
+				Description = "DESC",
+				Guid = Guid.NewGuid(),
+				Price = 100500
+			};
+			col.EnsureIndex(x => x.Guid, true);
+			col.Insert(record);
+			record.Price += 100;
+			col.Update(record);
+
+
+			var results = col.FindAll();
+			listView2.Items.Clear();
+			foreach(var s in results) listView2.Items.Add(s.ToString());
+			
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			textBox1.Text = Tools.ExePath;
 		}
 	}
 }

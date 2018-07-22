@@ -10,9 +10,26 @@
     <AssemblyName>PriemMetalClient</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -31,7 +48,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiteDB, Version=4.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.4.1.4\lib\net40\LiteDB.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,17 +64,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuyPriceMetallBookForm.cs">
+    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BuyPriceMetallBookForm.Designer.cs">
+    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallBookForm.Designer.cs">
       <DependentUpon>BuyPriceMetallBookForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BuyPriceMetallEditForm.cs">
+    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BuyPriceMetallEditForm.Designer.cs">
+    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallEditForm.Designer.cs">
       <DependentUpon>BuyPriceMetallEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallManager.cs" />
+    <Compile Include="Data\BuyPriceMetall\BuyPriceMetall.cs" />
+    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallViewControl.Designer.cs">
+      <DependentUpon>BuyPriceMetallViewControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigManager.cs" />
     <Compile Include="ConfigForm.cs">
@@ -62,6 +91,8 @@
     <Compile Include="ConfigForm.Designer.cs">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\DataBase.cs" />
+    <Compile Include="Data\DBListViewItem.cs" />
     <Compile Include="DocumentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,15 +105,18 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MdiWindowsManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools.cs" />
     <Compile Include="VesManager.cs" />
-    <EmbeddedResource Include="BuyPriceMetallBookForm.resx">
+    <EmbeddedResource Include="Data\BuyPriceMetall\BuyPriceMetallBookForm.resx">
       <DependentUpon>BuyPriceMetallBookForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BuyPriceMetallEditForm.resx">
+    <EmbeddedResource Include="Data\BuyPriceMetall\BuyPriceMetallEditForm.resx">
       <DependentUpon>BuyPriceMetallEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\BuyPriceMetall\BuyPriceMetallViewControl.resx">
+      <DependentUpon>BuyPriceMetallViewControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
@@ -103,6 +137,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -126,7 +161,11 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icons\new-file.png" />
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

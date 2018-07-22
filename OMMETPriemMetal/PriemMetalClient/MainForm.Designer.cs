@@ -42,30 +42,35 @@
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.новыйДокументToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
 			this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
 			this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.окнаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.новыйДокументToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+			this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
 			this.listView1 = new System.Windows.Forms.ListView();
-			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.icon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.complete = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.datetime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.docno = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.button1 = new System.Windows.Forms.Button();
+			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.listView2 = new System.Windows.Forms.ListView();
+			this.button2 = new System.Windows.Forms.Button();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.toolStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.toolStrip2.SuspendLayout();
+			this.tabPage2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// VesUpdateTimer
@@ -182,6 +187,18 @@
 			this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
 			this.файлToolStripMenuItem.Text = "Файл";
 			// 
+			// новыйДокументToolStripMenuItem
+			// 
+			this.новыйДокументToolStripMenuItem.Name = "новыйДокументToolStripMenuItem";
+			this.новыйДокументToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+			this.новыйДокументToolStripMenuItem.Text = "Новый документ...";
+			this.новыйДокументToolStripMenuItem.Click += new System.EventHandler(this.новыйДокументToolStripMenuItem_Click);
+			// 
+			// toolStripMenuItem2
+			// 
+			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(173, 6);
+			// 
 			// параметрыToolStripMenuItem
 			// 
 			this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
@@ -207,17 +224,20 @@
 			this.окнаToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
 			this.окнаToolStripMenuItem.Text = "Окна";
 			// 
-			// новыйДокументToolStripMenuItem
+			// справочникиToolStripMenuItem
 			// 
-			this.новыйДокументToolStripMenuItem.Name = "новыйДокументToolStripMenuItem";
-			this.новыйДокументToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-			this.новыйДокументToolStripMenuItem.Text = "Новый документ...";
-			this.новыйДокументToolStripMenuItem.Click += new System.EventHandler(this.новыйДокументToolStripMenuItem_Click);
+			this.справочникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.закупочныеЦеныНаМеталлоломToolStripMenuItem});
+			this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
+			this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
+			this.справочникиToolStripMenuItem.Text = "Справочники";
 			// 
-			// toolStripMenuItem2
+			// закупочныеЦеныНаМеталлоломToolStripMenuItem
 			// 
-			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-			this.toolStripMenuItem2.Size = new System.Drawing.Size(173, 6);
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Name = "закупочныеЦеныНаМеталлоломToolStripMenuItem";
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Text = "Закупочные цены на металлолом";
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Click += new System.EventHandler(this.закупочныеЦеныНаМеталлоломToolStripMenuItem_Click);
 			// 
 			// tabControl1
 			// 
@@ -242,37 +262,6 @@
 			this.tabPage1.Text = "Список документов";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
-			// tabPage2
-			// 
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(1028, 395);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "tabPage2";
-			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// toolStrip2
-			// 
-			this.toolStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
-			this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2});
-			this.toolStrip2.Location = new System.Drawing.Point(3, 3);
-			this.toolStrip2.Name = "toolStrip2";
-			this.toolStrip2.Size = new System.Drawing.Size(1022, 54);
-			this.toolStrip2.TabIndex = 0;
-			this.toolStrip2.Text = "toolStrip2";
-			// 
-			// toolStripButton2
-			// 
-			this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripButton2.Name = "toolStripButton2";
-			this.toolStripButton2.Size = new System.Drawing.Size(104, 51);
-			this.toolStripButton2.Text = "Новый документ";
-			this.toolStripButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			// 
 			// listView1
 			// 
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -291,12 +280,6 @@
 			this.listView1.TabIndex = 1;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
-			// 
-			// imageList1
-			// 
-			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "new-file.png");
 			// 
 			// icon
 			// 
@@ -319,20 +302,82 @@
 			this.docno.Text = "Номер";
 			this.docno.Width = 100;
 			// 
-			// справочникиToolStripMenuItem
+			// toolStrip2
 			// 
-			this.справочникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.закупочныеЦеныНаМеталлоломToolStripMenuItem});
-			this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
-			this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
-			this.справочникиToolStripMenuItem.Text = "Справочники";
+			this.toolStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
+			this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton2});
+			this.toolStrip2.Location = new System.Drawing.Point(3, 3);
+			this.toolStrip2.Name = "toolStrip2";
+			this.toolStrip2.Size = new System.Drawing.Size(1022, 54);
+			this.toolStrip2.TabIndex = 0;
+			this.toolStrip2.Text = "toolStrip2";
 			// 
-			// закупочныеЦеныНаМеталлоломToolStripMenuItem
+			// toolStripButton2
 			// 
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Name = "закупочныеЦеныНаМеталлоломToolStripMenuItem";
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Text = "Закупочные цены на металлолом";
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Click += new System.EventHandler(this.закупочныеЦеныНаМеталлоломToolStripMenuItem_Click);
+			this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton2.Name = "toolStripButton2";
+			this.toolStripButton2.Size = new System.Drawing.Size(104, 51);
+			this.toolStripButton2.Text = "Новый документ";
+			this.toolStripButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.textBox1);
+			this.tabPage2.Controls.Add(this.button2);
+			this.tabPage2.Controls.Add(this.listView2);
+			this.tabPage2.Controls.Add(this.button1);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(1028, 395);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "tabPage2";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(180, 68);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 1;
+			this.button1.Text = "button1";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click_1);
+			// 
+			// imageList1
+			// 
+			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList1.Images.SetKeyName(0, "new-file.png");
+			// 
+			// listView2
+			// 
+			this.listView2.Location = new System.Drawing.Point(393, 109);
+			this.listView2.Name = "listView2";
+			this.listView2.Size = new System.Drawing.Size(368, 236);
+			this.listView2.TabIndex = 2;
+			this.listView2.UseCompatibleStateImageBehavior = false;
+			this.listView2.View = System.Windows.Forms.View.List;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(134, 151);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.TabIndex = 3;
+			this.button2.Text = "button2";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(49, 251);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(338, 20);
+			this.textBox1.TabIndex = 4;
 			// 
 			// MainForm
 			// 
@@ -358,6 +403,8 @@
 			this.tabPage1.PerformLayout();
 			this.toolStrip2.ResumeLayout(false);
 			this.toolStrip2.PerformLayout();
+			this.tabPage2.ResumeLayout(false);
+			this.tabPage2.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -395,6 +442,10 @@
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ToolStripMenuItem справочникиToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem закупочныеЦеныНаМеталлоломToolStripMenuItem;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.ListView listView2;
+		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Button button2;
 	}
 }
 
