@@ -134,33 +134,21 @@ namespace PriemMetalClient
 		{
 
 		}
-		LiteDatabase db = null;
 		private void button1_Click_1(object sender, EventArgs e)
 		{
-			if (db == null) db = new LiteDatabase(Tools.Path(@"/MyData.db"));
-			var col = db.GetCollection<BuyPriceMetall>("BuyPriceMetall");
-			var record = new BuyPriceMetall
-			{
-				Category = "CAT",
-				Description = "DESC",
-				Guid = Guid.NewGuid(),
-				Price = 100500
-			};
-			col.EnsureIndex(x => x.Guid, true);
-			col.Insert(record);
-			record.Price += 100;
-			col.Update(record);
+			BuyPriceMetallBookForm f = new BuyPriceMetallBookForm();
+			f.ShowNormal(this);
+			//BaseBookForm<BuyPriceMetall> testbook = new BaseBookForm<BuyPriceMetall>();
+			//test testbook = new test();
+			//testbook.SetDefaultColumns();
+			//testbook.ShowNormal(this);
 
 
-			var results = col.FindAll();
-			listView2.Items.Clear();
-			foreach(var s in results) listView2.Items.Add(s.ToString());
-			
 		}
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			textBox1.Text = Tools.ExePath;
+			
 		}
 	}
 }

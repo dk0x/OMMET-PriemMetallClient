@@ -1,6 +1,6 @@
 ﻿namespace PriemMetalClient
 {
-	partial class BuyPriceMetallViewControl
+	partial class BuyPriceMetallUserControl
 	{
 		/// <summary> 
 		/// Обязательная переменная конструктора.
@@ -31,14 +31,14 @@
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+			this.price = new System.Windows.Forms.NumericUpDown();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.desc = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.cat = new System.Windows.Forms.TextBox();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.price)).BeginInit();
 			this.groupBox3.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -62,10 +62,11 @@
 			this.button1.TabIndex = 0;
 			this.button1.Text = "Выбрать";
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.numericUpDown1);
+			this.groupBox2.Controls.Add(this.price);
 			this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.groupBox2.Location = new System.Drawing.Point(0, 116);
 			this.groupBox2.Name = "groupBox2";
@@ -74,29 +75,24 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Цена за 1 тонну, руб. (без НДС)";
 			// 
-			// numericUpDown1
+			// price
 			// 
-			this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.numericUpDown1.Location = new System.Drawing.Point(3, 16);
-			this.numericUpDown1.Maximum = new decimal(new int[] {
+			this.price.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.price.Location = new System.Drawing.Point(3, 16);
+			this.price.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.ReadOnly = true;
-			this.numericUpDown1.Size = new System.Drawing.Size(244, 20);
-			this.numericUpDown1.TabIndex = 0;
-			this.numericUpDown1.ThousandsSeparator = true;
-			this.numericUpDown1.Value = new decimal(new int[] {
-            15000,
-            0,
-            0,
-            0});
+			this.price.Name = "price";
+			this.price.ReadOnly = true;
+			this.price.Size = new System.Drawing.Size(244, 20);
+			this.price.TabIndex = 0;
+			this.price.ThousandsSeparator = true;
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Controls.Add(this.textBox2);
+			this.groupBox3.Controls.Add(this.desc);
 			this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
 			this.groupBox3.Location = new System.Drawing.Point(0, 39);
 			this.groupBox3.Name = "groupBox3";
@@ -105,20 +101,20 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Условия поставки";
 			// 
-			// textBox2
+			// desc
 			// 
-			this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox2.Location = new System.Drawing.Point(3, 16);
-			this.textBox2.Multiline = true;
-			this.textBox2.Name = "textBox2";
-			this.textBox2.ReadOnly = true;
-			this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox2.Size = new System.Drawing.Size(244, 58);
-			this.textBox2.TabIndex = 0;
+			this.desc.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.desc.Location = new System.Drawing.Point(3, 16);
+			this.desc.Multiline = true;
+			this.desc.Name = "desc";
+			this.desc.ReadOnly = true;
+			this.desc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.desc.Size = new System.Drawing.Size(244, 58);
+			this.desc.TabIndex = 0;
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.textBox1);
+			this.groupBox1.Controls.Add(this.cat);
 			this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
 			this.groupBox1.Name = "groupBox1";
@@ -127,15 +123,14 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Категория лома";
 			// 
-			// textBox1
+			// cat
 			// 
-			this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox1.Location = new System.Drawing.Point(3, 16);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ReadOnly = true;
-			this.textBox1.Size = new System.Drawing.Size(244, 20);
-			this.textBox1.TabIndex = 0;
-			this.textBox1.Text = "123123123";
+			this.cat.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.cat.Location = new System.Drawing.Point(3, 16);
+			this.cat.Name = "cat";
+			this.cat.ReadOnly = true;
+			this.cat.Size = new System.Drawing.Size(244, 20);
+			this.cat.TabIndex = 0;
 			// 
 			// BuyPriceMetallViewControl
 			// 
@@ -150,7 +145,7 @@
 			this.Size = new System.Drawing.Size(250, 187);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.price)).EndInit();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
@@ -165,10 +160,10 @@
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.NumericUpDown numericUpDown1;
+		private System.Windows.Forms.NumericUpDown price;
 		private System.Windows.Forms.GroupBox groupBox3;
-		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TextBox desc;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox cat;
 	}
 }

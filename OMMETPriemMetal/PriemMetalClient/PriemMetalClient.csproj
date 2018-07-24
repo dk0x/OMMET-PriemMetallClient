@@ -64,35 +64,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallBookForm.cs">
+    <Compile Include="ModelView\Base\BaseBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallBookForm.Designer.cs">
-      <DependentUpon>BuyPriceMetallBookForm.cs</DependentUpon>
+    <Compile Include="ModelView\Base\BaseBookForm.Designer.cs">
+      <DependentUpon>BaseBookForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallEditForm.cs">
+    <Compile Include="ModelView\Base\BaseEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallEditForm.Designer.cs">
-      <DependentUpon>BuyPriceMetallEditForm.cs</DependentUpon>
+    <Compile Include="ModelView\Base\BaseEditForm.Designer.cs">
+      <DependentUpon>BaseEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallManager.cs" />
-    <Compile Include="Data\BuyPriceMetall\BuyPriceMetall.cs" />
-    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallViewControl.cs">
+    <Compile Include="ModelView\Base\BaseFilterUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Data\BuyPriceMetall\BuyPriceMetallViewControl.Designer.cs">
-      <DependentUpon>BuyPriceMetallViewControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ConfigManager.cs" />
-    <Compile Include="ConfigForm.cs">
+    <Compile Include="ModelView\Base\BaseRecord.cs" />
+    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallBookForm_bak.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConfigForm.Designer.cs">
+    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallBookForm_bak.Designer.cs">
+      <DependentUpon>BuyPriceMetallBookForm_bak.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallBookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallBookForm.Designer.cs">
+      <DependentUpon>BuyPriceMetallBookForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallEditForm.Designer.cs">
+      <DependentUpon>BuyPriceMetallEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetall.cs" />
+    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallUserControl.Designer.cs">
+      <DependentUpon>BuyPriceMetallUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\ConfigManager.cs" />
+    <Compile Include="Misc\ConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\ConfigForm.Designer.cs">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data\DataBase.cs" />
-    <Compile Include="Data\DBListViewItem.cs" />
+    <Compile Include="Misc\DataBase.cs" />
+    <Compile Include="ModelView\DBListViewItem.cs" />
     <Compile Include="DocumentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,20 +126,44 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelView\Filters\NumericFilterUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelView\Filters\NumericFilterUserControl.Designer.cs">
+      <DependentUpon>NumericFilterUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelView\Filters\TextFilterUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelView\Filters\TextFilterUserControl.Designer.cs">
+      <DependentUpon>TextFilterUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tools.cs" />
-    <Compile Include="VesManager.cs" />
-    <EmbeddedResource Include="Data\BuyPriceMetall\BuyPriceMetallBookForm.resx">
-      <DependentUpon>BuyPriceMetallBookForm.cs</DependentUpon>
+    <Compile Include="Misc\Tools.cs" />
+    <Compile Include="Misc\VesManager.cs" />
+    <Compile Include="test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="test.Designer.cs">
+      <DependentUpon>test.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ModelView\Base\BaseBookForm.resx">
+      <DependentUpon>BaseBookForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\BuyPriceMetall\BuyPriceMetallEditForm.resx">
+    <EmbeddedResource Include="ModelView\Base\BaseEditForm.resx">
+      <DependentUpon>BaseEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelView\BuyPriceMetall\BuyPriceMetallBookForm_bak.resx">
+      <DependentUpon>BuyPriceMetallBookForm_bak.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelView\BuyPriceMetall\BuyPriceMetallEditForm.resx">
       <DependentUpon>BuyPriceMetallEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\BuyPriceMetall\BuyPriceMetallViewControl.resx">
-      <DependentUpon>BuyPriceMetallViewControl.cs</DependentUpon>
+    <EmbeddedResource Include="ModelView\BuyPriceMetall\BuyPriceMetallUserControl.resx">
+      <DependentUpon>BuyPriceMetallUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConfigForm.resx">
+    <EmbeddedResource Include="Misc\ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DocumentForm.resx">
@@ -126,6 +171,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelView\Filters\NumericFilterUserControl.resx">
+      <DependentUpon>NumericFilterUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelView\Filters\TextFilterUserControl.resx">
+      <DependentUpon>TextFilterUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

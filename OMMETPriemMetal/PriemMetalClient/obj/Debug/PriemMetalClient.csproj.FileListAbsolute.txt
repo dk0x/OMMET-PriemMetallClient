@@ -16,9 +16,7 @@ D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\bin\Debug\Lit
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\bin\Debug\LiteDB.xml
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\Interop.DevNet.dll
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.csproj.ResolveComReference.cache
-D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.BuyPriceMetallBookForm.resources
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.BuyPriceMetallEditForm.resources
-D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.BuyPriceMetallViewControl.resources
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.ConfigForm.resources
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.DocumentForm.resources
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.MainForm.resources
@@ -27,3 +25,10 @@ D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\Pri
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.csproj.CoreCompileInputs.cache
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.exe
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.pdb
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.BaseBookForm.resources
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.csprojResolveAssemblyReference.cache
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.BaseEditForm.resources
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.BuyPriceMetallBookForm_bak.resources
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.BuyPriceMetallUserControl.resources
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.NumericFilterUserControl.resources
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.TextFilterUserControl.resources

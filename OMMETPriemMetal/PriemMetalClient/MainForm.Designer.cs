@@ -32,13 +32,13 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.VesUpdateTimer = new System.Windows.Forms.Timer(this.components);
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.VesCountText = new System.Windows.Forms.ToolStripTextBox();
 			this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
 			this.VesDeviationText = new System.Windows.Forms.ToolStripTextBox();
 			this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
 			this.VesMainText = new System.Windows.Forms.ToolStripTextBox();
 			this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,11 +60,11 @@
 			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
 			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.buyPriceMetallViewControl1 = new PriemMetalClient.BuyPriceMetallUserControl();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-			this.listView2 = new System.Windows.Forms.ListView();
-			this.button2 = new System.Windows.Forms.Button();
-			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.toolStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -82,18 +82,29 @@
 			// 
 			this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
             this.VesCountText,
             this.toolStripLabel3,
             this.VesDeviationText,
             this.toolStripLabel2,
             this.VesMainText,
-            this.toolStripLabel1,
-            this.toolStripButton1});
+            this.toolStripLabel1});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 445);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(1036, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// toolStripButton1
+			// 
+			this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton1.Name = "toolStripButton1";
+			this.toolStripButton1.Size = new System.Drawing.Size(120, 22);
+			this.toolStripButton1.Text = "Перезагрузка порта";
+			this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
 			// 
 			// VesCountText
 			// 
@@ -143,16 +154,6 @@
 			this.toolStripLabel1.Name = "toolStripLabel1";
 			this.toolStripLabel1.Size = new System.Drawing.Size(156, 22);
 			this.toolStripLabel1.Text = "Текущие показания весов: ";
-			// 
-			// toolStripButton1
-			// 
-			this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripButton1.Name = "toolStripButton1";
-			this.toolStripButton1.Size = new System.Drawing.Size(120, 22);
-			this.toolStripButton1.Text = "Перезагрузка порта";
-			this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
 			// 
 			// statusStrip1
 			// 
@@ -325,9 +326,9 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.buyPriceMetallViewControl1);
 			this.tabPage2.Controls.Add(this.textBox1);
 			this.tabPage2.Controls.Add(this.button2);
-			this.tabPage2.Controls.Add(this.listView2);
 			this.tabPage2.Controls.Add(this.button1);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
@@ -336,6 +337,33 @@
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// buyPriceMetallViewControl1
+			// 
+			this.buyPriceMetallViewControl1.AutoSize = true;
+			this.buyPriceMetallViewControl1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.buyPriceMetallViewControl1.BuyPriceMetallRecord = null;
+			this.buyPriceMetallViewControl1.Location = new System.Drawing.Point(529, 151);
+			this.buyPriceMetallViewControl1.Name = "buyPriceMetallViewControl1";
+			this.buyPriceMetallViewControl1.Size = new System.Drawing.Size(250, 187);
+			this.buyPriceMetallViewControl1.TabIndex = 5;
+			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(49, 251);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(338, 20);
+			this.textBox1.TabIndex = 4;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(134, 151);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.TabIndex = 3;
+			this.button2.Text = "button2";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// button1
 			// 
@@ -353,32 +381,6 @@
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "new-file.png");
 			// 
-			// listView2
-			// 
-			this.listView2.Location = new System.Drawing.Point(393, 109);
-			this.listView2.Name = "listView2";
-			this.listView2.Size = new System.Drawing.Size(368, 236);
-			this.listView2.TabIndex = 2;
-			this.listView2.UseCompatibleStateImageBehavior = false;
-			this.listView2.View = System.Windows.Forms.View.List;
-			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(134, 151);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 3;
-			this.button2.Text = "button2";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// textBox1
-			// 
-			this.textBox1.Location = new System.Drawing.Point(49, 251);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(338, 20);
-			this.textBox1.TabIndex = 4;
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -390,6 +392,7 @@
 			this.Controls.Add(this.statusStrip1);
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "MainForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Form1";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
 			this.Load += new System.EventHandler(this.MainForm_Load);
@@ -443,9 +446,9 @@
 		private System.Windows.Forms.ToolStripMenuItem справочникиToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem закупочныеЦеныНаМеталлоломToolStripMenuItem;
 		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.ListView listView2;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Button button2;
+		private BuyPriceMetallUserControl buyPriceMetallViewControl1;
 	}
 }
 

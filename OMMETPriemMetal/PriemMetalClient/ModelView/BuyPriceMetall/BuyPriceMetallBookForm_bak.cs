@@ -9,33 +9,39 @@ using System.Windows.Forms;
 
 namespace PriemMetalClient
 {
-	public partial class BuyPriceMetallBookForm : Form
+	public partial class BuyPriceMetallBookForm_bak : Form
 	{
-		public BuyPriceMetallBookForm()
+		public delegate void FormClosedSelectHandler(object sender, BuyPriceMetall r);
+		public event FormClosedSelectHandler FormClosedSelect;
+
+		public BuyPriceMetallBookForm_bak()
 		{
 			InitializeComponent();
+			RefreshList();
+			listView1_SelectedIndexChanged(listView1, new EventArgs());
 		}
 
 		private void BuyPriceMetallBook_Load(object sender, EventArgs e)
 		{
-			RefreshList();
+
 		}
+
 		public void RefreshList()
 		{
 			listView1.Items.Clear();
 			foreach (var el in DataBase.BuyPriceMetallTable.FindAll())
 			{
-				DBListViewItem item = new DBListViewItem();
-				item.Guid = el.Guid;
-				item.Id = el.Id;
+				ListViewItemBaseRecord item = new ListViewItemBaseRecord();
+				item.Record = el;
 				item.Text = el.Category;
 				item.SubItems.Add(el.Price.ToString());
 				listView1.Items.Add(item);
 			}
 
 		}
+
 		BuyPriceMetallEditForm buyPriceMetallEditForm_new = null;
-		private void button5_Click(object sender, EventArgs e)
+		private void NewBtn_Click(object sender, EventArgs e)
 		{
 			if (buyPriceMetallEditForm_new != null)
 			{
@@ -54,6 +60,8 @@ namespace PriemMetalClient
 		{
 			DataBase.BuyPriceMetallTable.Insert(r);
 			RefreshList();
+			buyPriceMetallEditForm_new.FormClosed -= BuyPriceMetallEditForm_new_FormClosed;
+			buyPriceMetallEditForm_new.FormClosedSave -= BuyPriceMetallEditForm_new_FormClosedSave;
 			buyPriceMetallEditForm_new = null;
 		}
 
@@ -67,8 +75,8 @@ namespace PriemMetalClient
 		{
 			if (listView1.SelectedItems.Count > 0)
 			{
-				DBListViewItem item = (DBListViewItem)listView1.SelectedItems[0];
-				var selected = DataBase.BuyPriceMetallTable.FindOne(x => x.Guid == item.Guid);
+				ListViewItemBaseRecord item = (ListViewItemBaseRecord)listView1.SelectedItems[0];
+				var selected = DataBase.BuyPriceMetallTable.FindOne(x => x.Guid == item.Record.Guid);
 				if (selected != null)
 				{
 					if (buyPriceMetallEditForm_edit != null)
@@ -82,7 +90,6 @@ namespace PriemMetalClient
 					buyPriceMetallEditForm_edit.FormClosedSave += BuyPriceMetallEditForm_edit_FormClosedSave;
 					buyPriceMetallEditForm_edit.LoadRecord(selected);
 					buyPriceMetallEditForm_edit.Show();
-
 				}
 
 			}
@@ -92,12 +99,51 @@ namespace PriemMetalClient
 		{
 			DataBase.BuyPriceMetallTable.Upsert(r);
 			RefreshList();
-			buyPriceMetallEditForm_edit = null;
+			buyPriceMetallEditForm_edit.FormClosed -= BuyPriceMetallEditForm_edit_FormClosed;
+			buyPriceMetallEditForm_edit.FormClosedSave -= BuyPriceMetallEditForm_edit_FormClosedSave;
 		}
 
 		private void BuyPriceMetallEditForm_edit_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			buyPriceMetallEditForm_edit = null;
 		}
+
+		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			EditBtn.Enabled = listView1.SelectedItems.Count > 0;
+			DeleteBtn.Enabled = listView1.SelectedItems.Count > 0;
+			SelectBtn.Enabled = listView1.SelectedItems.Count > 0;
+		}
+
+		private void DeleteBtn_Click(object sender, EventArgs e)
+		{
+			if (listView1.SelectedItems.Count > 0)
+			{
+				ListViewItemBaseRecord item = (ListViewItemBaseRecord)listView1.SelectedItems[0];
+				DataBase.BuyPriceMetallTable.Delete(item.Record.Id);
+				listView1.Items.Remove(item);
+			}
+		}
+
+		private void CloseBtn_Click(object sender, EventArgs e)
+		{
+			FormClosedSelect?.Invoke(this, null);
+			Close();
+		}
+
+		private void SelectBtn_Click(object sender, EventArgs e)
+		{
+			if (listView1.SelectedItems.Count > 0)
+			{
+				ListViewItemBaseRecord item = (ListViewItemBaseRecord)listView1.SelectedItems[0];
+				var selected = DataBase.BuyPriceMetallTable.FindOne(x => x.Guid == item.Record.Guid);
+				if (selected != null)
+				{
+					FormClosedSelect?.Invoke(this, selected);
+					Close();
+				}
+			}
+		}
+
 	}
 }

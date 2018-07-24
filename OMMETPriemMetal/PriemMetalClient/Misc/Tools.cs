@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
@@ -28,6 +29,22 @@ namespace PriemMetalClient
 			string dir = System.IO.Path.GetDirectoryName(add);
 			Directory.CreateDirectory(dir);
 			return add;
+		}
+		public static PropertyInfo[] GetProperties<T>()
+		{
+			return typeof(T).GetProperties();
+		}
+		public static PropertyInfo GetProperty<T>(string propName)
+		{
+			try
+			{
+				var props = GetProperties<T>();
+				return props.Single(x => x.Name == propName);
+			}
+			catch
+			{
+				return null;
+			}
 		}
 	}
 }

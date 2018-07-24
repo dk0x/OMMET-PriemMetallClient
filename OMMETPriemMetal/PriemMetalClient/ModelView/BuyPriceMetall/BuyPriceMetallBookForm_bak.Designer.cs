@@ -1,6 +1,6 @@
 ﻿namespace PriemMetalClient
 {
-	partial class BuyPriceMetallBookForm
+	partial class BuyPriceMetallBookForm_bak
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -30,9 +30,9 @@
 		{
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-			this.SelectBtn = new System.Windows.Forms.Button();
 			this.CloseBtn = new System.Windows.Forms.Button();
-			this.SaveBtn = new System.Windows.Forms.Button();
+			this.SelectBtn = new System.Windows.Forms.Button();
+			this.DeleteBtn = new System.Windows.Forms.Button();
 			this.EditBtn = new System.Windows.Forms.Button();
 			this.NewBtn = new System.Windows.Forms.Button();
 			this.listView1 = new System.Windows.Forms.ListView();
@@ -52,9 +52,9 @@
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.AutoSize = true;
-			this.flowLayoutPanel1.Controls.Add(this.SelectBtn);
 			this.flowLayoutPanel1.Controls.Add(this.CloseBtn);
-			this.flowLayoutPanel1.Controls.Add(this.SaveBtn);
+			this.flowLayoutPanel1.Controls.Add(this.SelectBtn);
+			this.flowLayoutPanel1.Controls.Add(this.DeleteBtn);
 			this.flowLayoutPanel1.Controls.Add(this.EditBtn);
 			this.flowLayoutPanel1.Controls.Add(this.NewBtn);
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -64,35 +64,38 @@
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(627, 29);
 			this.flowLayoutPanel1.TabIndex = 11;
 			// 
-			// SelectBtn
-			// 
-			this.SelectBtn.AutoSize = true;
-			this.SelectBtn.Location = new System.Drawing.Point(530, 3);
-			this.SelectBtn.Name = "SelectBtn";
-			this.SelectBtn.Size = new System.Drawing.Size(94, 23);
-			this.SelectBtn.TabIndex = 1;
-			this.SelectBtn.Text = "Выбрать";
-			this.SelectBtn.UseVisualStyleBackColor = true;
-			// 
 			// CloseBtn
 			// 
 			this.CloseBtn.AutoSize = true;
-			this.CloseBtn.Location = new System.Drawing.Point(430, 3);
+			this.CloseBtn.Location = new System.Drawing.Point(530, 3);
 			this.CloseBtn.Name = "CloseBtn";
 			this.CloseBtn.Size = new System.Drawing.Size(94, 23);
 			this.CloseBtn.TabIndex = 3;
 			this.CloseBtn.Text = "Закрыть";
 			this.CloseBtn.UseVisualStyleBackColor = true;
+			this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
 			// 
-			// SaveBtn
+			// SelectBtn
 			// 
-			this.SaveBtn.AutoSize = true;
-			this.SaveBtn.Location = new System.Drawing.Point(330, 3);
-			this.SaveBtn.Name = "SaveBtn";
-			this.SaveBtn.Size = new System.Drawing.Size(94, 23);
-			this.SaveBtn.TabIndex = 2;
-			this.SaveBtn.Text = "Сохранить";
-			this.SaveBtn.UseVisualStyleBackColor = true;
+			this.SelectBtn.AutoSize = true;
+			this.SelectBtn.Location = new System.Drawing.Point(430, 3);
+			this.SelectBtn.Name = "SelectBtn";
+			this.SelectBtn.Size = new System.Drawing.Size(94, 23);
+			this.SelectBtn.TabIndex = 1;
+			this.SelectBtn.Text = "Выбрать";
+			this.SelectBtn.UseVisualStyleBackColor = true;
+			this.SelectBtn.Click += new System.EventHandler(this.SelectBtn_Click);
+			// 
+			// DeleteBtn
+			// 
+			this.DeleteBtn.AutoSize = true;
+			this.DeleteBtn.Location = new System.Drawing.Point(330, 3);
+			this.DeleteBtn.Name = "DeleteBtn";
+			this.DeleteBtn.Size = new System.Drawing.Size(94, 23);
+			this.DeleteBtn.TabIndex = 2;
+			this.DeleteBtn.Text = "Удалить";
+			this.DeleteBtn.UseVisualStyleBackColor = true;
+			this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
 			// 
 			// EditBtn
 			// 
@@ -114,7 +117,7 @@
 			this.NewBtn.TabIndex = 4;
 			this.NewBtn.Text = "Новая запись";
 			this.NewBtn.UseVisualStyleBackColor = true;
-			this.NewBtn.Click += new System.EventHandler(this.button5_Click);
+			this.NewBtn.Click += new System.EventHandler(this.NewBtn_Click);
 			// 
 			// listView1
 			// 
@@ -132,6 +135,7 @@
 			this.listView1.TabIndex = 12;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
+			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
 			// 
 			// category
 			// 
@@ -168,11 +172,11 @@
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.Button EditBtn;
 		private System.Windows.Forms.Button SelectBtn;
-		private System.Windows.Forms.Button SaveBtn;
 		private System.Windows.Forms.Button CloseBtn;
 		private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.ColumnHeader category;
 		private System.Windows.Forms.ColumnHeader price;
 		private System.Windows.Forms.Button NewBtn;
+		private System.Windows.Forms.Button DeleteBtn;
 	}
 }
