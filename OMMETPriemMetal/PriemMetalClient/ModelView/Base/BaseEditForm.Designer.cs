@@ -54,6 +54,7 @@
 			this.SaveBtn.TabIndex = 0;
 			this.SaveBtn.Text = "Сохранить";
 			this.SaveBtn.UseVisualStyleBackColor = true;
+			this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
 			// 
 			// CancelBtn
 			// 
@@ -63,6 +64,7 @@
 			this.CancelBtn.TabIndex = 1;
 			this.CancelBtn.Text = "Отмена";
 			this.CancelBtn.UseVisualStyleBackColor = true;
+			this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
 			// 
 			// BaseEditForm
 			// 
@@ -72,6 +74,7 @@
 			this.Controls.Add(this.flowLayoutPanel2);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
 			this.Name = "BaseEditForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "BaseEditForm";
 			this.flowLayoutPanel2.ResumeLayout(false);
 			this.ResumeLayout(false);

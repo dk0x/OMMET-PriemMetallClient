@@ -18,8 +18,8 @@ namespace PriemMetalClient
 		public List<string> Columns = new List<string>();
 		//public List<BaseFilterUserControl> Filters = new List<BaseFilterUserControl>();
 
-		private Form editForm_edit = null;
-		private Form editForm_new = null;
+		private BaseEditForm<RecordType> editForm_edit = null;
+		private BaseEditForm<RecordType> editForm_new = null;
 
 		public BaseBookForm()
 		{
@@ -45,7 +45,8 @@ namespace PriemMetalClient
 					{
 						TextFilterUserControl<RecordType> f = new TextFilterUserControl<RecordType>();
 						if (f.SetProperty(p)) f.Parent = FilterFlowPanel;
-					} else
+					}
+					else
 					if (new[] { typeof(int), typeof(decimal), typeof(float), typeof(double) }.Contains(t))
 					{
 						NumericFilterUserControl<RecordType> f = new NumericFilterUserControl<RecordType>();
@@ -90,8 +91,8 @@ namespace PriemMetalClient
 			foreach (var propName in newColumns)
 			{
 				Columns.Add(propName);
-				var prop = props.Single(x => x.Name == propName);
-				List.Columns.Add(TextAttribute.GetPropertyTextAttribute(prop));
+				var prop = props.FirstOrDefault(x => x.Name == propName);
+				if (prop != null) List.Columns.Add(TextAttribute.GetPropertyTextAttribute(prop));
 			}
 		}
 
@@ -101,8 +102,8 @@ namespace PriemMetalClient
 			var props = typeof(RecordType).GetProperties();
 			foreach (var c in Columns)
 			{
-				var prop = props.Single(x => x.Name == c);
-				item.SubItems.Add(prop.GetValue(record, null).ToString());
+				var prop = props.FirstOrDefault(x => x.Name == c);
+				if (prop != null) item.SubItems.Add(prop.GetValue(record, null).ToString());
 			}
 			item.Record = record;
 			List.Items.Add(item);
@@ -116,10 +117,11 @@ namespace PriemMetalClient
 			if (filter)
 			{
 				List<Query> q = new List<Query>();
-				foreach(BaseFilterUserControl f in FilterFlowPanel.Controls)
+				foreach (BasePropertyFilterUserControl f in FilterFlowPanel.Controls)
 					q.Add(f.GetQueryFilter());
 				col = DataBase.DB.GetCollection<RecordType>().Find(Query.And(q.ToArray()));
-			} else
+			}
+			else
 			{
 				col = DataBase.DB.GetCollection<RecordType>().FindAll();
 			}
@@ -165,10 +167,15 @@ namespace PriemMetalClient
 			}
 		}
 
+		/*public virtual Form CreateNewForm()
+		{
+			return CreateEditForm(Activator.CreateInstance<RecordType>());
+		}
+
 		public virtual Form CreateEditForm(RecordType record)
 		{
-			return null;
-		}
+			return new BaseEditForm<RecordType>();
+		}*/
 
 		private void EditBtn_Click(object sender, EventArgs e)
 		{
@@ -181,13 +188,16 @@ namespace PriemMetalClient
 					if (editForm_edit != null)
 					{
 						editForm_edit.Focus();
+						editForm_edit.SetRecord(selected);
 						return;
 					}
-					editForm_edit = CreateEditForm(selected);
+					editForm_edit = new BaseEditForm<RecordType>(); //CreateEditForm(selected);
 					if (editForm_edit != null)
 					{
 						editForm_edit.Owner = this;
+						editForm_edit.SetRecord(selected);
 						editForm_edit.FormClosed += EditForm_edit_FormClosed;
+						editForm_edit.FormClosedSave += EditForm_FormClosedSave;
 						editForm_edit.Show();
 					}
 				}
@@ -200,34 +210,28 @@ namespace PriemMetalClient
 			editForm_edit = null;
 		}
 
-
-		public virtual Form CreateNewForm()
+		protected void EditForm_FormClosedSave(object sender, RecordType r)
 		{
-			return null;
+			DataBase.DB.GetCollection<RecordType>().Upsert(r);
+			RefreshList();
 		}
-
 
 		private void NewBtn_Click(object sender, EventArgs e)
 		{
-			if (List.SelectedItems.Count > 0)
+			if (editForm_new != null)
 			{
-
-				if (editForm_new != null)
-				{
-					editForm_new.Focus();
-					return;
-				}
-				editForm_new = CreateNewForm();
-				if (editForm_new != null)
-				{
-					editForm_new.Owner = this;
-					editForm_new.FormClosed += EditForm_new_FormClosed;
-					editForm_new.Show();
-				}
+				editForm_new.Focus();
+				return;
 			}
-
-
-
+			editForm_new = new BaseEditForm<RecordType>();// CreateNewForm();
+			if (editForm_new != null)
+			{
+				editForm_new.SetRecord(Activator.CreateInstance<RecordType>());
+				editForm_new.Owner = this;
+				editForm_new.FormClosed += EditForm_new_FormClosed;
+				editForm_new.FormClosedSave += EditForm_FormClosedSave;
+				editForm_new.Show();
+			}
 		}
 
 		private void EditForm_new_FormClosed(object sender, FormClosedEventArgs e)
@@ -238,6 +242,11 @@ namespace PriemMetalClient
 		private void button1_Click(object sender, EventArgs e)
 		{
 			RefreshList(true);
+		}
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+			RefreshList(false);
 		}
 	}
 }

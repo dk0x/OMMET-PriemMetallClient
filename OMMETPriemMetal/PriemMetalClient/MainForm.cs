@@ -111,7 +111,7 @@ namespace PriemMetalClient
 			docForm.Show();
 		}
 
-		BuyPriceMetallBookForm buyPriceMetallBookForm = null;
+		BaseBookForm<BuyPriceMetall> buyPriceMetallBookForm = null;
 		private void закупочныеЦеныНаМеталлоломToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (buyPriceMetallBookForm != null)
@@ -119,10 +119,9 @@ namespace PriemMetalClient
 				buyPriceMetallBookForm.Focus();
 				return;
 			}
-			buyPriceMetallBookForm = new BuyPriceMetallBookForm();
-			buyPriceMetallBookForm.Owner = this;
+			buyPriceMetallBookForm = new BaseBookForm<BuyPriceMetall>();
 			buyPriceMetallBookForm.FormClosed += BuyPriceMetallBookForm_FormClosed;
-			buyPriceMetallBookForm.Show();
+			buyPriceMetallBookForm.ShowNormal(this);
 		}
 
 		private void BuyPriceMetallBookForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -136,14 +135,17 @@ namespace PriemMetalClient
 		}
 		private void button1_Click_1(object sender, EventArgs e)
 		{
-			BuyPriceMetallBookForm f = new BuyPriceMetallBookForm();
-			f.ShowNormal(this);
+			//BuyPriceMetallBookForm f = new BuyPriceMetallBookForm();
+			//f.ShowNormal(this);
 			//BaseBookForm<BuyPriceMetall> testbook = new BaseBookForm<BuyPriceMetall>();
 			//test testbook = new test();
 			//testbook.SetDefaultColumns();
 			//testbook.ShowNormal(this);
 
-
+			BaseRecordEditUserControl<BuyPriceMetall> f = new BaseRecordEditUserControl<BuyPriceMetall>();
+			f.SetRecord(new BuyPriceMetall { Price = 100.25m, Category = "1212" });
+			f.Parent = tabPage2;
+			f.SelectBtnVisible = true;
 		}
 
 		private void button2_Click(object sender, EventArgs e)

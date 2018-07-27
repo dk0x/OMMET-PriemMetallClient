@@ -19,7 +19,7 @@ namespace PriemMetalClient
 			InitializeComponent();
 		}
 
-		public void LoadRecord(BuyPriceMetall r)
+		public void SetRecord(BuyPriceMetall r)
 		{
 			record = r;
 			cat.Text = r.Category;

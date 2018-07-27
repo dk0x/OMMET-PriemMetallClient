@@ -11,19 +11,17 @@ using LiteDB;
 
 namespace PriemMetalClient
 {
-	public partial class TextFilterUserControl<RecordType> : BaseFilterUserControl where RecordType : BaseRecord
+	public partial class TextFilterUserControl<RecordType> : BasePropertyFilterUserControl where RecordType : BaseRecord
 	{
-		public PropertyInfo Property { get; set; } = null;
 		public TextFilterUserControl()
 		{
 			InitializeComponent();
+			SupportTypes.AddRange(new[] { typeof(string) });
 		}
 
-		public bool SetProperty(PropertyInfo prop)
+		public override bool SetProperty(PropertyInfo prop)
 		{
-			if (prop == null) return false;
-			if (prop.PropertyType != typeof(string)) return false;
-			Property = prop;
+			if (base.SetProperty(prop) == false) return false;
 			GroupBox.Text = TextAttribute.GetPropertyTextAttribute(prop);
 			LoadStrings(prop);
 			return true;

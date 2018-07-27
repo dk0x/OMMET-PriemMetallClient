@@ -13,7 +13,7 @@ namespace PriemMetalClient
 		[Text("Условия поставки")]
 		public string Description { get; set; } = "";
 		[Text("Цена за 1 тонну, руб. (без НДС)")]
-		public int Price { get; set; } = 0;
+		public decimal Price { get; set; } = 0;
 
 		public override string ToString() => $"Категория лома: '{Category}', Цена за тонну: {Price.ToString("N")} руб.";
 		

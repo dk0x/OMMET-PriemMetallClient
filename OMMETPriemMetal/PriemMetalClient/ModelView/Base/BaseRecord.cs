@@ -17,11 +17,20 @@ namespace PriemMetalClient
 		public static string GetPropertyTextAttribute(PropertyInfo propInfo)
 		{
 			object[] attrs = propInfo.GetCustomAttributes(false);
-			TextAttribute ta = (TextAttribute)attrs.Single(x => x.GetType() == typeof(TextAttribute));
+			TextAttribute ta = (TextAttribute)attrs.FirstOrDefault(x => x.GetType() == typeof(TextAttribute));
 			if (ta != null)
 				return ta.Text;
 			return propInfo.Name;
 		}
+		public static string GetClassTextAttribute<T>()
+		{
+			object[] attrs = typeof(T).GetCustomAttributes(false);
+			TextAttribute ta = (TextAttribute)attrs.FirstOrDefault(x => x.GetType() == typeof(TextAttribute));
+			if (ta != null)
+				return ta.Text;
+			return typeof(T).Name;
+		}
+
 	}
 	public class BaseRecord
 	{

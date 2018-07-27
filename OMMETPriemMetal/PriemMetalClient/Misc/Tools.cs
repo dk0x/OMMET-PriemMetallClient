@@ -36,15 +36,17 @@ namespace PriemMetalClient
 		}
 		public static PropertyInfo GetProperty<T>(string propName)
 		{
-			try
-			{
-				var props = GetProperties<T>();
-				return props.Single(x => x.Name == propName);
-			}
-			catch
-			{
-				return null;
-			}
+			var props = GetProperties<T>();
+			return props.FirstOrDefault(x => x.Name == propName);
+		}
+
+		public static void SetValueByPropertyName(object value, object obj, string propName)
+		{
+			obj.GetType().GetProperty(propName).SetValue(obj, value, null);
+		}
+		public static object GetValueByPropertyName(object obj, string propName)
+		{
+			return obj.GetType().GetProperty(propName).GetValue(obj, null);
 		}
 	}
 }

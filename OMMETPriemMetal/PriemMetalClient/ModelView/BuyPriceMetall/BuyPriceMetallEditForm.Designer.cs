@@ -121,6 +121,7 @@
 			// 
 			// price
 			// 
+			this.price.DecimalPlaces = 2;
 			this.price.Dock = System.Windows.Forms.DockStyle.Top;
 			this.price.Location = new System.Drawing.Point(3, 16);
 			this.price.Maximum = new decimal(new int[] {
@@ -128,6 +129,11 @@
             0,
             0,
             0});
+			this.price.Minimum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            -2147483648});
 			this.price.Name = "price";
 			this.price.Size = new System.Drawing.Size(351, 20);
 			this.price.TabIndex = 0;

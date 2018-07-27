@@ -2,7 +2,7 @@
 
 namespace PriemMetalClient
 {
-	partial class BaseBookForm<RecordType>
+	partial class BaseBookForm<RecordType> : Form where RecordType : BaseRecord
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -207,6 +207,7 @@ namespace PriemMetalClient
 			this.button3.TabIndex = 1;
 			this.button3.Text = "Сбросить фильтр";
 			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// BaseBookForm
 			// 

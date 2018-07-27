@@ -11,20 +11,18 @@ using LiteDB;
 
 namespace PriemMetalClient
 {
-	public partial class NumericFilterUserControl<RecordType> : BaseFilterUserControl where RecordType : BaseRecord
+	public partial class NumericFilterUserControl<RecordType> : BasePropertyFilterUserControl where RecordType : BaseRecord
 	{
-		public PropertyInfo Property { get; set; } = null;
 		public NumericFilterUserControl()
 		{
 			InitializeComponent();
 			comboBox.SelectedIndex = 0;
+			SupportTypes.AddRange(new[]{ typeof(int), typeof(decimal), typeof(float), typeof(double) });
 		}
 
-		public bool SetProperty(PropertyInfo prop)
+		public override bool SetProperty(PropertyInfo prop)
 		{
-			if (prop == null) return false;
-			if (!(new[] { typeof(int), typeof(decimal), typeof(float), typeof(double) }.Contains(prop.PropertyType))) return false;
-			Property = prop;
+			if (base.SetProperty(prop) == false) return false;
 			GroupBox.Text = TextAttribute.GetPropertyTextAttribute(prop);
 			return true;
 		}

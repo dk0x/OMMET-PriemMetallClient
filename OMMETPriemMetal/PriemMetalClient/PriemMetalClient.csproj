@@ -76,35 +76,17 @@
     <Compile Include="ModelView\Base\BaseEditForm.Designer.cs">
       <DependentUpon>BaseEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelView\Base\BaseFilterUserControl.cs">
+    <Compile Include="ModelView\Base\BaseRecordEditUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelView\Base\BasePropertyEditUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelView\Base\BasePropertyFilterUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ModelView\Base\BaseRecord.cs" />
-    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallBookForm_bak.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallBookForm_bak.Designer.cs">
-      <DependentUpon>BuyPriceMetallBookForm_bak.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallBookForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallBookForm.Designer.cs">
-      <DependentUpon>BuyPriceMetallBookForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallEditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallEditForm.Designer.cs">
-      <DependentUpon>BuyPriceMetallEditForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetall.cs" />
-    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ModelView\BuyPriceMetall\BuyPriceMetallUserControl.Designer.cs">
-      <DependentUpon>BuyPriceMetallUserControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Misc\ConfigManager.cs" />
     <Compile Include="Misc\ConfigForm.cs">
       <SubType>Form</SubType>
@@ -125,6 +107,18 @@
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelView\Edits\DecimalPropertyEditUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelView\Edits\DecimalPropertyEditUserControl.Designer.cs">
+      <DependentUpon>DecimalPropertyEditUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelView\Edits\TextPropertyEditUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelView\Edits\TextPropertyEditUserControl.Designer.cs">
+      <DependentUpon>TextPropertyEditUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelView\Filters\NumericFilterUserControl.cs">
       <SubType>UserControl</SubType>
@@ -154,15 +148,6 @@
     <EmbeddedResource Include="ModelView\Base\BaseEditForm.resx">
       <DependentUpon>BaseEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModelView\BuyPriceMetall\BuyPriceMetallBookForm_bak.resx">
-      <DependentUpon>BuyPriceMetallBookForm_bak.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ModelView\BuyPriceMetall\BuyPriceMetallEditForm.resx">
-      <DependentUpon>BuyPriceMetallEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ModelView\BuyPriceMetall\BuyPriceMetallUserControl.resx">
-      <DependentUpon>BuyPriceMetallUserControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Misc\ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,6 +156,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelView\Edits\DecimalPropertyEditUserControl.resx">
+      <DependentUpon>DecimalPropertyEditUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelView\Edits\TextPropertyEditUserControl.resx">
+      <DependentUpon>TextPropertyEditUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelView\Filters\NumericFilterUserControl.resx">
       <DependentUpon>NumericFilterUserControl.cs</DependentUpon>
