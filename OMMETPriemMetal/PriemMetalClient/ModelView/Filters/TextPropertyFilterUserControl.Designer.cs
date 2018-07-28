@@ -1,6 +1,6 @@
 ﻿namespace PriemMetalClient
 {
-	partial class TextFilterUserControl<RecordType>
+	partial class TextPropertyFilterUserControl<RecordType>
 	{
 		/// <summary> 
 		/// Обязательная переменная конструктора.
@@ -28,22 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.GroupBox = new System.Windows.Forms.GroupBox();
 			this.ComboBox = new System.Windows.Forms.ComboBox();
-			this.GroupBox.SuspendLayout();
+			this.label = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
-			// 
-			// GroupBox
-			// 
-			this.GroupBox.AutoSize = true;
-			this.GroupBox.Controls.Add(this.ComboBox);
-			this.GroupBox.Dock = System.Windows.Forms.DockStyle.Top;
-			this.GroupBox.Location = new System.Drawing.Point(0, 0);
-			this.GroupBox.Name = "GroupBox";
-			this.GroupBox.Size = new System.Drawing.Size(200, 40);
-			this.GroupBox.TabIndex = 0;
-			this.GroupBox.TabStop = false;
-			this.GroupBox.Text = "Text";
 			// 
 			// ComboBox
 			// 
@@ -51,28 +38,41 @@
 			this.ComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.ComboBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.ComboBox.FormattingEnabled = true;
-			this.ComboBox.Location = new System.Drawing.Point(3, 16);
+			this.ComboBox.Location = new System.Drawing.Point(0, 20);
 			this.ComboBox.Name = "ComboBox";
-			this.ComboBox.Size = new System.Drawing.Size(194, 21);
+			this.ComboBox.Size = new System.Drawing.Size(200, 21);
 			this.ComboBox.Sorted = true;
-			this.ComboBox.TabIndex = 0;
+			this.ComboBox.TabIndex = 2;
+			this.ComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
+			this.ComboBox.TextUpdate += new System.EventHandler(this.ComboBox_TextUpdate);
+			this.ComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ComboBox_KeyUp);
 			// 
-			// TextFilterViewControl
+			// label
+			// 
+			this.label.Dock = System.Windows.Forms.DockStyle.Top;
+			this.label.Location = new System.Drawing.Point(0, 0);
+			this.label.Name = "label";
+			this.label.Size = new System.Drawing.Size(200, 20);
+			this.label.TabIndex = 4;
+			this.label.Text = "text";
+			this.label.UseVisualStyleBackColor = true;
+			this.label.CheckedChanged += new System.EventHandler(this.label_CheckedChanged);
+			// 
+			// TextPropertyFilterUserControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.GroupBox);
-			this.Name = "TextFilterViewControl";
-			this.Size = new System.Drawing.Size(200, 44);
-			this.GroupBox.ResumeLayout(false);
+			this.Controls.Add(this.ComboBox);
+			this.Controls.Add(this.label);
+			this.Name = "TextPropertyFilterUserControl";
+			this.Size = new System.Drawing.Size(200, 42);
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.GroupBox GroupBox;
 		private System.Windows.Forms.ComboBox ComboBox;
+		private System.Windows.Forms.CheckBox label;
 	}
 }

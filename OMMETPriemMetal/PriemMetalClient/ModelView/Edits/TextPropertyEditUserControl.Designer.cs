@@ -40,7 +40,8 @@ namespace PriemMetalClient
 			this.TextBox.Location = new System.Drawing.Point(0, 13);
 			this.TextBox.Multiline = true;
 			this.TextBox.Name = "TextBox";
-			this.TextBox.Size = new System.Drawing.Size(200, 29);
+			this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+			this.TextBox.Size = new System.Drawing.Size(200, 49);
 			this.TextBox.TabIndex = 0;
 			this.TextBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
 			// 
@@ -61,7 +62,7 @@ namespace PriemMetalClient
 			this.Controls.Add(this.TextBox);
 			this.Controls.Add(this.label);
 			this.Name = "TextPropertyEditUserControl";
-			this.Size = new System.Drawing.Size(200, 42);
+			this.Size = new System.Drawing.Size(200, 62);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -2,7 +2,7 @@
 
 namespace PriemMetalClient
 {
-	partial class BaseBookForm<RecordType> : Form where RecordType : BaseRecord
+	partial class BaseRecordBookForm<RecordType> : Form where RecordType : BaseRecord
 	{
 		/// <summary>
 		/// Required designer variable.

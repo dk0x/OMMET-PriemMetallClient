@@ -111,7 +111,7 @@ namespace PriemMetalClient
 			docForm.Show();
 		}
 
-		BaseBookForm<BuyPriceMetall> buyPriceMetallBookForm = null;
+		BaseRecordBookForm<MetallPrice> buyPriceMetallBookForm = null;
 		private void закупочныеЦеныНаМеталлоломToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (buyPriceMetallBookForm != null)
@@ -119,7 +119,7 @@ namespace PriemMetalClient
 				buyPriceMetallBookForm.Focus();
 				return;
 			}
-			buyPriceMetallBookForm = new BaseBookForm<BuyPriceMetall>();
+			buyPriceMetallBookForm = new BaseRecordBookForm<MetallPrice>();
 			buyPriceMetallBookForm.FormClosed += BuyPriceMetallBookForm_FormClosed;
 			buyPriceMetallBookForm.ShowNormal(this);
 		}
@@ -142,8 +142,8 @@ namespace PriemMetalClient
 			//testbook.SetDefaultColumns();
 			//testbook.ShowNormal(this);
 
-			BaseRecordEditUserControl<BuyPriceMetall> f = new BaseRecordEditUserControl<BuyPriceMetall>();
-			f.SetRecord(new BuyPriceMetall { Price = 100.25m, Category = "1212" });
+			BaseRecordEditUserControl<MetallPrice> f = new BaseRecordEditUserControl<MetallPrice>();
+			f.SetRecord(new MetallPrice { Price = 100.25m, Category = "1212" });
 			f.Parent = tabPage2;
 			f.SelectBtnVisible = true;
 		}

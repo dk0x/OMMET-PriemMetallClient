@@ -34,12 +34,13 @@ namespace PriemMetalClient
 
 		public virtual void SetValue(object value)
 		{
-			Property.SetValue(Record, value, null);
+			if (Record != null)	Property?.SetValue(Record, value, null);
 		}
 
 		public virtual object GetValue()
 		{
-			return Property.GetValue(Record, null);
+			if (Record == null) return null;
+			return Property?.GetValue(Record, null);
 		}
 	}
 }

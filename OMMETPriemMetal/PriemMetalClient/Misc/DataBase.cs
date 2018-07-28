@@ -19,6 +19,6 @@ namespace PriemMetalClient
 			return _DB;
 		}
 
-		public static LiteCollection<BuyPriceMetall> BuyPriceMetallTable { get => DB.GetCollection<BuyPriceMetall>(); }
+		public static LiteCollection<MetallPrice> BuyPriceMetallTable { get => DB.GetCollection<MetallPrice>(); }
 	}
 }

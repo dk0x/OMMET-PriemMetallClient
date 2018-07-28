@@ -78,9 +78,10 @@ namespace PriemMetalClient
 			caption.Dock = DockStyle.Top;
 			h += caption.Height;
 			this.Height = h;
+			this.Width = 200;
 		}
 
-		private BaseBookForm<RecordType> selectForm = null;
+		private BaseRecordBookForm<RecordType> selectForm = null;
 		private void SelectBtn_Click(object sender, EventArgs e)
 		{
 			if (selectForm != null)
@@ -88,7 +89,7 @@ namespace PriemMetalClient
 				selectForm.Focus();
 				return;
 			}
-			selectForm = new BaseBookForm<RecordType>();
+			selectForm = new BaseRecordBookForm<RecordType>();
 			selectForm.FormClosed += SelectForm_FormClosed;
 			selectForm.FormClosedSelect += SelectForm_FormClosedSelect;
 			selectForm.ShowSelect(this.ParentForm);

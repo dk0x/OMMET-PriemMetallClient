@@ -64,17 +64,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelView\Base\BaseBookForm.cs">
+    <Compile Include="ModelView\Base\BaseRecordBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModelView\Base\BaseBookForm.Designer.cs">
-      <DependentUpon>BaseBookForm.cs</DependentUpon>
+    <Compile Include="ModelView\Base\BaseRecordBookForm.Designer.cs">
+      <DependentUpon>BaseRecordBookForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelView\Base\BaseEditForm.cs">
+    <Compile Include="ModelView\Base\BaseRecordEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModelView\Base\BaseEditForm.Designer.cs">
-      <DependentUpon>BaseEditForm.cs</DependentUpon>
+    <Compile Include="ModelView\Base\BaseRecordEditForm.Designer.cs">
+      <DependentUpon>BaseRecordEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelView\Base\BaseRecordEditUserControl.cs">
       <SubType>UserControl</SubType>
@@ -126,11 +126,11 @@
     <Compile Include="ModelView\Filters\NumericFilterUserControl.Designer.cs">
       <DependentUpon>NumericFilterUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelView\Filters\TextFilterUserControl.cs">
+    <Compile Include="ModelView\Filters\TextPropertyFilterUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ModelView\Filters\TextFilterUserControl.Designer.cs">
-      <DependentUpon>TextFilterUserControl.cs</DependentUpon>
+    <Compile Include="ModelView\Filters\TextPropertyFilterUserControl.Designer.cs">
+      <DependentUpon>TextPropertyFilterUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,11 +142,11 @@
     <Compile Include="test.Designer.cs">
       <DependentUpon>test.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ModelView\Base\BaseBookForm.resx">
-      <DependentUpon>BaseBookForm.cs</DependentUpon>
+    <EmbeddedResource Include="ModelView\Base\BaseRecordBookForm.resx">
+      <DependentUpon>BaseRecordBookForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModelView\Base\BaseEditForm.resx">
-      <DependentUpon>BaseEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="ModelView\Base\BaseRecordEditForm.resx">
+      <DependentUpon>BaseRecordEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Misc\ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
@@ -166,8 +166,8 @@
     <EmbeddedResource Include="ModelView\Filters\NumericFilterUserControl.resx">
       <DependentUpon>NumericFilterUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModelView\Filters\TextFilterUserControl.resx">
-      <DependentUpon>TextFilterUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="ModelView\Filters\TextPropertyFilterUserControl.resx">
+      <DependentUpon>TextPropertyFilterUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

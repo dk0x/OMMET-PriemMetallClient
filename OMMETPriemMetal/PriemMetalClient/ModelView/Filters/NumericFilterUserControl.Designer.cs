@@ -28,29 +28,16 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.GroupBox = new System.Windows.Forms.GroupBox();
 			this.value = new System.Windows.Forms.NumericUpDown();
 			this.comboBox = new System.Windows.Forms.ComboBox();
-			this.GroupBox.SuspendLayout();
+			this.label = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.value)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// GroupBox
-			// 
-			this.GroupBox.Controls.Add(this.value);
-			this.GroupBox.Controls.Add(this.comboBox);
-			this.GroupBox.Dock = System.Windows.Forms.DockStyle.Top;
-			this.GroupBox.Location = new System.Drawing.Point(0, 0);
-			this.GroupBox.Name = "GroupBox";
-			this.GroupBox.Size = new System.Drawing.Size(200, 44);
-			this.GroupBox.TabIndex = 1;
-			this.GroupBox.TabStop = false;
-			this.GroupBox.Text = "Text";
 			// 
 			// value
 			// 
 			this.value.Dock = System.Windows.Forms.DockStyle.Left;
-			this.value.Location = new System.Drawing.Point(93, 16);
+			this.value.Location = new System.Drawing.Point(100, 20);
 			this.value.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -62,8 +49,10 @@
             0,
             -2147483648});
 			this.value.Name = "value";
-			this.value.Size = new System.Drawing.Size(94, 20);
-			this.value.TabIndex = 0;
+			this.value.Size = new System.Drawing.Size(100, 20);
+			this.value.TabIndex = 2;
+			this.value.ValueChanged += new System.EventHandler(this.value_ValueChanged);
+			this.value.KeyUp += new System.Windows.Forms.KeyEventHandler(this.value_KeyUp);
 			// 
 			// comboBox
 			// 
@@ -74,19 +63,32 @@
             "Больше чем",
             "Равно",
             "Меньше чем"});
-			this.comboBox.Location = new System.Drawing.Point(3, 16);
+			this.comboBox.Location = new System.Drawing.Point(0, 20);
 			this.comboBox.Name = "comboBox";
-			this.comboBox.Size = new System.Drawing.Size(90, 21);
-			this.comboBox.TabIndex = 1;
+			this.comboBox.Size = new System.Drawing.Size(100, 21);
+			this.comboBox.TabIndex = 3;
+			this.comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+			// 
+			// label
+			// 
+			this.label.Dock = System.Windows.Forms.DockStyle.Top;
+			this.label.Location = new System.Drawing.Point(0, 0);
+			this.label.Name = "label";
+			this.label.Size = new System.Drawing.Size(200, 20);
+			this.label.TabIndex = 5;
+			this.label.Text = "text";
+			this.label.UseVisualStyleBackColor = true;
+			this.label.CheckedChanged += new System.EventHandler(this.label_CheckedChanged);
 			// 
 			// NumericFilterUserControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.GroupBox);
+			this.Controls.Add(this.value);
+			this.Controls.Add(this.comboBox);
+			this.Controls.Add(this.label);
 			this.Name = "NumericFilterUserControl";
-			this.Size = new System.Drawing.Size(200, 44);
-			this.GroupBox.ResumeLayout(false);
+			this.Size = new System.Drawing.Size(200, 42);
 			((System.ComponentModel.ISupportInitialize)(this.value)).EndInit();
 			this.ResumeLayout(false);
 
@@ -94,8 +96,8 @@
 
 		#endregion
 
-		private System.Windows.Forms.GroupBox GroupBox;
 		private System.Windows.Forms.NumericUpDown value;
 		private System.Windows.Forms.ComboBox comboBox;
+		private System.Windows.Forms.CheckBox label;
 	}
 }

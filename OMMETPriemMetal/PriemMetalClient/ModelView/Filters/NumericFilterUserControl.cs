@@ -23,20 +23,48 @@ namespace PriemMetalClient
 		public override bool SetProperty(PropertyInfo prop)
 		{
 			if (base.SetProperty(prop) == false) return false;
-			GroupBox.Text = TextAttribute.GetPropertyTextAttribute(prop);
+			label.Text = TextAttribute.GetPropertyTextAttribute(prop);
 			return true;
+		}
+
+		public override void Reset()
+		{
+			base.Reset();
+			value.Value = 0;
+			comboBox.SelectedIndex = 0;
+			label.Checked = false;
 		}
 
 		public override Query GetQueryFilter()
 		{
+			if (!label.Checked) return null;
 			switch (comboBox.SelectedIndex)
 			{
 				case 0: return Query.GTE(Property.Name, value.Value);
 				case 1: return Query.EQ(Property.Name, value.Value);
 				case 2: return Query.LTE(Property.Name, value.Value);
 			}
-			return Query.All();
+			return base.GetQueryFilter();
 		}
 
+		private void value_ValueChanged(object sender, EventArgs e)
+		{
+			label.Checked = true;
+		}
+
+		private void value_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter) ApplyFilterEvent(this);
+		}
+
+		private void label_CheckedChanged(object sender, EventArgs e)
+		{
+			ApplyFilterEvent(this);
+		}
+
+		private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (label.Checked) ApplyFilterEvent(this);
+		}
 	}
 }

@@ -10,6 +10,9 @@ namespace PriemMetalClient
 {
 	public class BasePropertyFilterUserControl : UserControl
 	{
+		public delegate void EnterKeyPressHandler(object sender);
+		public event EnterKeyPressHandler EnterKeyPress;
+		public void ApplyFilterEvent(object sender) => EnterKeyPress?.Invoke(sender);
 		public PropertyInfo Property { get; private set; } = null;
 		public List<Type> SupportTypes = new List<Type>();
 
@@ -19,6 +22,11 @@ namespace PriemMetalClient
 			if (!(SupportTypes.Contains(prop.PropertyType))) return false;
 			Property = prop;
 			return true;
+		}
+
+		public virtual void Reset()
+		{
+			
 		}
 
 		public virtual Query GetQueryFilter()

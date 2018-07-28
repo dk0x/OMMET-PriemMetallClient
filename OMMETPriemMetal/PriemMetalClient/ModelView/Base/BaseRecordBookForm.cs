@@ -11,19 +11,20 @@ using System.Windows.Forms;
 
 namespace PriemMetalClient
 {
-	public partial class BaseBookForm<RecordType> : Form where RecordType : BaseRecord
+	public partial class BaseRecordBookForm<RecordType> : Form where RecordType : BaseRecord
 	{
 		public delegate void FormClosedSelectHandler(object sender, RecordType record);
 		public event FormClosedSelectHandler FormClosedSelect;
 		public List<string> Columns = new List<string>();
 		//public List<BaseFilterUserControl> Filters = new List<BaseFilterUserControl>();
 
-		private BaseEditForm<RecordType> editForm_edit = null;
-		private BaseEditForm<RecordType> editForm_new = null;
+		private BaseRecordEditForm<RecordType> editForm_edit = null;
+		private BaseRecordEditForm<RecordType> editForm_new = null;
 
-		public BaseBookForm()
+		public BaseRecordBookForm()
 		{
 			InitializeComponent();
+			this.Text = $"Справочник: {TextAttribute.GetClassTextAttribute<RecordType>()}";
 			SetDefaultColumns();
 			RefreshList();
 			List_SelectedIndexChanged(List, new EventArgs());
@@ -43,18 +44,31 @@ namespace PriemMetalClient
 					Type t = p.PropertyType;
 					if (t == typeof(string))
 					{
-						TextFilterUserControl<RecordType> f = new TextFilterUserControl<RecordType>();
-						if (f.SetProperty(p)) f.Parent = FilterFlowPanel;
+						TextPropertyFilterUserControl<RecordType> f = new TextPropertyFilterUserControl<RecordType>();
+						if (f.SetProperty(p))
+						{
+							f.Parent = FilterFlowPanel;
+							f.EnterKeyPress += F_EnterKeyPress;
+						}
 					}
 					else
 					if (new[] { typeof(int), typeof(decimal), typeof(float), typeof(double) }.Contains(t))
 					{
 						NumericFilterUserControl<RecordType> f = new NumericFilterUserControl<RecordType>();
-						if (f.SetProperty(p)) f.Parent = FilterFlowPanel;
+						if (f.SetProperty(p))
+						{
+							f.Parent = FilterFlowPanel;
+							f.EnterKeyPress += F_EnterKeyPress;
+						}
 					}
 				}
 			}
 			FilterGroupBox.Visible = FilterFlowPanel.HasChildren;
+		}
+
+		private void F_EnterKeyPress(object sender)
+		{
+			RefreshList(true);
 		}
 
 		public void ShowSelect(Form owner)
@@ -116,10 +130,18 @@ namespace PriemMetalClient
 			IEnumerable<RecordType> col = null;
 			if (filter)
 			{
-				List<Query> q = new List<Query>();
+				List<Query> qq = new List<Query>();
 				foreach (BasePropertyFilterUserControl f in FilterFlowPanel.Controls)
-					q.Add(f.GetQueryFilter());
-				col = DataBase.DB.GetCollection<RecordType>().Find(Query.And(q.ToArray()));
+				{
+					Query q = f.GetQueryFilter();
+					if (q != null) qq.Add(q);
+				}
+				if (qq.Count == 0)
+					col = DataBase.DB.GetCollection<RecordType>().FindAll();
+				if (qq.Count == 1)
+					col = DataBase.DB.GetCollection<RecordType>().Find(qq[0]);
+				if (qq.Count >= 2)
+					col = DataBase.DB.GetCollection<RecordType>().Find(Query.And(qq.ToArray()));
 			}
 			else
 			{
@@ -191,7 +213,7 @@ namespace PriemMetalClient
 						editForm_edit.SetRecord(selected);
 						return;
 					}
-					editForm_edit = new BaseEditForm<RecordType>(); //CreateEditForm(selected);
+					editForm_edit = new BaseRecordEditForm<RecordType>(); //CreateEditForm(selected);
 					if (editForm_edit != null)
 					{
 						editForm_edit.Owner = this;
@@ -223,7 +245,7 @@ namespace PriemMetalClient
 				editForm_new.Focus();
 				return;
 			}
-			editForm_new = new BaseEditForm<RecordType>();// CreateNewForm();
+			editForm_new = new BaseRecordEditForm<RecordType>();// CreateNewForm();
 			if (editForm_new != null)
 			{
 				editForm_new.SetRecord(Activator.CreateInstance<RecordType>());
@@ -246,6 +268,8 @@ namespace PriemMetalClient
 
 		private void button3_Click(object sender, EventArgs e)
 		{
+			foreach (BasePropertyFilterUserControl f in FilterFlowPanel.Controls)
+				f.Reset();
 			RefreshList(false);
 		}
 	}

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace PriemMetalClient
 {
-	public partial class test : BaseEditForm<BuyPriceMetall>
+	public partial class test : BaseRecordEditForm<MetallPrice>
 	{
 		public test()
 		{
