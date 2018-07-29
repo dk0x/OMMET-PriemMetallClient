@@ -18,10 +18,13 @@ namespace PriemMetalClient
 		public BaseRecordEditForm()
 		{
 			InitializeComponent();
-			this.Text = $"Редактирование записи: {TextAttribute.GetClassTextAttribute<RecordType>()}";
-			EditUserControl = new BaseRecordEditUserControl<RecordType>();
-			EditUserControl.Parent = this;
-			EditUserControl.Dock = DockStyle.Fill;
+			this.Text = $"Редактирование записи: {RecordInfoAttribute.GetClassRecordInfo<RecordType>().Text ?? ""}";
+			EditUserControl = new BaseRecordEditUserControl<RecordType>
+			{
+				Parent = this,
+				Dock = DockStyle.Top
+			};
+			AutoSize = true;
 		}
 
 		public void SetRecord(RecordType r)

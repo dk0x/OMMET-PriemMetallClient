@@ -40,16 +40,16 @@
 			this.flowLayoutPanel2.AutoSize = true;
 			this.flowLayoutPanel2.Controls.Add(this.SaveBtn);
 			this.flowLayoutPanel2.Controls.Add(this.CancelBtn);
-			this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-			this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 244);
+			this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
 			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-			this.flowLayoutPanel2.Size = new System.Drawing.Size(412, 29);
+			this.flowLayoutPanel2.Size = new System.Drawing.Size(349, 29);
 			this.flowLayoutPanel2.TabIndex = 1;
 			// 
 			// SaveBtn
 			// 
-			this.SaveBtn.Location = new System.Drawing.Point(334, 3);
+			this.SaveBtn.Location = new System.Drawing.Point(271, 3);
 			this.SaveBtn.Name = "SaveBtn";
 			this.SaveBtn.Size = new System.Drawing.Size(75, 23);
 			this.SaveBtn.TabIndex = 0;
@@ -59,7 +59,7 @@
 			// 
 			// CancelBtn
 			// 
-			this.CancelBtn.Location = new System.Drawing.Point(253, 3);
+			this.CancelBtn.Location = new System.Drawing.Point(190, 3);
 			this.CancelBtn.Name = "CancelBtn";
 			this.CancelBtn.Size = new System.Drawing.Size(75, 23);
 			this.CancelBtn.TabIndex = 1;
@@ -69,9 +69,9 @@
 			// 
 			// statusStrip1
 			// 
-			this.statusStrip1.Location = new System.Drawing.Point(0, 273);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 105);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(412, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(349, 22);
 			this.statusStrip1.TabIndex = 2;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -79,7 +79,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(412, 295);
+			this.ClientSize = new System.Drawing.Size(349, 127);
 			this.Controls.Add(this.flowLayoutPanel2);
 			this.Controls.Add(this.statusStrip1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;

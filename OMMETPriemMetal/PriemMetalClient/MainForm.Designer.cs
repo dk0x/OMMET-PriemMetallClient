@@ -50,6 +50,8 @@
 			this.окнаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.закупочныеЦеныНаМеталлоломToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.контрагентыФизическиеЛицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.контрагентыЮридическиеЛицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.listView1 = new System.Windows.Forms.ListView();
@@ -60,8 +62,10 @@
 			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
 			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.button1 = new System.Windows.Forms.Button();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
 			this.toolStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -101,7 +105,7 @@
 			this.toolStripButton1.Name = "toolStripButton1";
 			this.toolStripButton1.Size = new System.Drawing.Size(120, 22);
 			this.toolStripButton1.Text = "Перезагрузка порта";
-			this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+			this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
 			// 
 			// VesCountText
 			// 
@@ -190,7 +194,7 @@
 			this.новыйДокументToolStripMenuItem.Name = "новыйДокументToolStripMenuItem";
 			this.новыйДокументToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
 			this.новыйДокументToolStripMenuItem.Text = "Новый документ...";
-			this.новыйДокументToolStripMenuItem.Click += new System.EventHandler(this.новыйДокументToolStripMenuItem_Click);
+			this.новыйДокументToolStripMenuItem.Click += new System.EventHandler(this.НовыйДокументToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem2
 			// 
@@ -202,7 +206,7 @@
 			this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
 			this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
 			this.параметрыToolStripMenuItem.Text = "Параметры...";
-			this.параметрыToolStripMenuItem.Click += new System.EventHandler(this.параметрыToolStripMenuItem_Click);
+			this.параметрыToolStripMenuItem.Click += new System.EventHandler(this.ПараметрыToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem1
 			// 
@@ -214,7 +218,7 @@
 			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
 			this.выходToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
 			this.выходToolStripMenuItem.Text = "Выход";
-			this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
+			this.выходToolStripMenuItem.Click += new System.EventHandler(this.ВыходToolStripMenuItem_Click);
 			// 
 			// окнаToolStripMenuItem
 			// 
@@ -225,7 +229,9 @@
 			// справочникиToolStripMenuItem
 			// 
 			this.справочникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.закупочныеЦеныНаМеталлоломToolStripMenuItem});
+            this.закупочныеЦеныНаМеталлоломToolStripMenuItem,
+            this.контрагентыФизическиеЛицаToolStripMenuItem,
+            this.контрагентыЮридическиеЛицаToolStripMenuItem});
 			this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
 			this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
 			this.справочникиToolStripMenuItem.Text = "Справочники";
@@ -235,7 +241,21 @@
 			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Name = "закупочныеЦеныНаМеталлоломToolStripMenuItem";
 			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
 			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Text = "Закупочные цены на металлолом";
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Click += new System.EventHandler(this.закупочныеЦеныНаМеталлоломToolStripMenuItem_Click);
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Click += new System.EventHandler(this.ЗакупочныеЦеныНаМеталлоломToolStripMenuItem_Click);
+			// 
+			// контрагентыФизическиеЛицаToolStripMenuItem
+			// 
+			this.контрагентыФизическиеЛицаToolStripMenuItem.Name = "контрагентыФизическиеЛицаToolStripMenuItem";
+			this.контрагентыФизическиеЛицаToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+			this.контрагентыФизическиеЛицаToolStripMenuItem.Text = "Контрагенты: Физические лица";
+			this.контрагентыФизическиеЛицаToolStripMenuItem.Click += new System.EventHandler(this.КонтрагентыФизическиеЛицаToolStripMenuItem_Click);
+			// 
+			// контрагентыЮридическиеЛицаToolStripMenuItem
+			// 
+			this.контрагентыЮридическиеЛицаToolStripMenuItem.Name = "контрагентыЮридическиеЛицаToolStripMenuItem";
+			this.контрагентыЮридическиеЛицаToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+			this.контрагентыЮридическиеЛицаToolStripMenuItem.Text = "Контрагенты: Юридические лица";
+			this.контрагентыЮридическиеЛицаToolStripMenuItem.Click += new System.EventHandler(this.КонтрагентыЮридическиеЛицаToolStripMenuItem_Click);
 			// 
 			// tabControl1
 			// 
@@ -323,6 +343,7 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.dateTimePicker1);
 			this.tabPage2.Controls.Add(this.button1);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
@@ -332,6 +353,14 @@
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
+			// dateTimePicker1
+			// 
+			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.dateTimePicker1.Location = new System.Drawing.Point(202, 331);
+			this.dateTimePicker1.Name = "dateTimePicker1";
+			this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+			this.dateTimePicker1.TabIndex = 2;
+			// 
 			// button1
 			// 
 			this.button1.Location = new System.Drawing.Point(431, 328);
@@ -340,13 +369,23 @@
 			this.button1.TabIndex = 1;
 			this.button1.Text = "button1";
 			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click_1);
+			this.button1.Click += new System.EventHandler(this.Button1_Click_1);
 			// 
 			// imageList1
 			// 
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "new-file.png");
+			// 
+			// printPreviewDialog1
+			// 
+			this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+			this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+			this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+			this.printPreviewDialog1.Enabled = true;
+			this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+			this.printPreviewDialog1.Name = "printPreviewDialog1";
+			this.printPreviewDialog1.Visible = false;
 			// 
 			// MainForm
 			// 
@@ -412,6 +451,10 @@
 		private System.Windows.Forms.ToolStripMenuItem справочникиToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem закупочныеЦеныНаМеталлоломToolStripMenuItem;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.ToolStripMenuItem контрагентыФизическиеЛицаToolStripMenuItem;
+		private System.Windows.Forms.DateTimePicker dateTimePicker1;
+		private System.Windows.Forms.ToolStripMenuItem контрагентыЮридическиеЛицаToolStripMenuItem;
+		private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
 	}
 }
 

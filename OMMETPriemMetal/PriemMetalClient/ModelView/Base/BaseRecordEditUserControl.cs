@@ -35,47 +35,62 @@ namespace PriemMetalClient
 			Controls.Clear();
 			//this.AutoSize = true;
 			int h = 0;
-			SelectBtn = new Button();
-			SelectBtn.Text = "Выбрать...";
-			SelectBtn.Parent = this;
-			SelectBtn.Dock = DockStyle.Bottom;
-			SelectBtn.Visible = SelectBtnVisible;
+			SelectBtn = new Button
+			{
+				Text = "Выбрать...",
+				Parent = this,
+				Dock = DockStyle.Bottom,
+				Visible = SelectBtnVisible
+			};
 			SelectBtn.Click += SelectBtn_Click;
 			h += SelectBtn.Height;
 
-			/*GroupBox gb = new GroupBox();
-			gb.Parent = this;
-			gb.AutoSize = true;
-			gb.Dock = DockStyle.Top;
-			gb.Text = TextAttribute.GetClassTextAttribute<RecordType>();*/
 			var props = Tools.GetProperties<RecordType>().Reverse();
 			foreach(var p in props)
 			{
 				if (p.PropertyType == typeof(string))
 				{
-					TextPropertyEditUserControl f = new TextPropertyEditUserControl();
-					f.Dock = DockStyle.Top;
-					//f.AutoSize = true;
+					TextPropertyEditUserControl f = new TextPropertyEditUserControl
+					{
+						Dock = DockStyle.Top,
+						Parent = this,
+						//AutoSize = true
+					};
 					f.Set(record, p);
-					f.Parent = this;
 					h += f.Height;
 				}
 				else
 				if (p.PropertyType == typeof(decimal))
 				{
-					DecimalPropertyEditUserControl f = new DecimalPropertyEditUserControl();
-					f.Dock = DockStyle.Top;
-					//f.AutoSize = true;
+					DecimalPropertyEditUserControl f = new DecimalPropertyEditUserControl
+					{
+						Dock = DockStyle.Top,
+						Parent = this,
+						//AutoSize = true
+					};
 					f.Set(record, p);
-					f.Parent = this;
+					h += f.Height;
+				}
+				else
+				if (p.PropertyType == typeof(DateTime))
+				{
+					DateTimePropertyEditUserControl f = new DateTimePropertyEditUserControl
+					{
+						Dock = DockStyle.Top,
+						Parent = this,
+						//AutoSize = true
+					};
+					f.Set(record, p);
 					h += f.Height;
 				}
 			}
-			Label caption = new Label();
-			caption.Text = $"-- {TextAttribute.GetClassTextAttribute<RecordType>()} --";
-			caption.Parent = this;
-			caption.AutoSize = false;
-			caption.Dock = DockStyle.Top;
+			Label caption = new Label
+			{
+				Text = $"-- {RecordInfoAttribute.GetClassRecordInfo<RecordType>().Text ?? ""} --",
+				Parent = this,
+				AutoSize = false,
+				Dock = DockStyle.Top
+			};
 			h += caption.Height;
 			this.Height = h;
 			this.Width = 200;

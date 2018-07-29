@@ -52,10 +52,12 @@ namespace PriemMetalClient
 
 		private void AddMdiFormToPanel(Form form)
 		{
-			Label l = new Label();
-			l.TextAlign = ContentAlignment.MiddleCenter;
-			l.Dock = DockStyle.Top;
-			l.Text = form.Text;
+			Label l = new Label
+			{
+				TextAlign = ContentAlignment.MiddleCenter,
+				Dock = DockStyle.Top,
+				Text = form.Text
+			};
 		}
 
 		private void MainForm_MdiChildActivate(object sender, EventArgs e)
@@ -64,12 +66,12 @@ namespace PriemMetalClient
 		}
 
 
-		private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+		private void ВыходToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Close();
 		}
 
-		private void параметрыToolStripMenuItem_Click(object sender, EventArgs e)
+		private void ПараметрыToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (ConfigForm != null)
 			{
@@ -92,48 +94,49 @@ namespace PriemMetalClient
 		private void MainForm_Load(object sender, EventArgs e)
 		{
 
+			
 		}
 
-        private void button1_Click(object sender, EventArgs e)
+		private void Button1_Click(object sender, EventArgs e)
         {
-			//menuStrip1.MdiWindowListItem
+			
 		}
 
-		private void toolStripButton1_Click(object sender, EventArgs e)
+		private void ToolStripButton1_Click(object sender, EventArgs e)
 		{
 			VesManager.SetWorkMethod(ConfigManager.Parameters.VesWorkMethod, true);
 		}
 
-		private void новыйДокументToolStripMenuItem_Click(object sender, EventArgs e)
+		private void НовыйДокументToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			DocumentForm docForm = new DocumentForm();
-			//docForm.MdiParent = this;
+			
 			docForm.Show();
 		}
 
-		BaseRecordBookForm<MetallPrice> buyPriceMetallBookForm = null;
-		private void закупочныеЦеныНаМеталлоломToolStripMenuItem_Click(object sender, EventArgs e)
+		BaseRecordBookForm<MetallPrice> metallPriceBookForm = null;
+		private void ЗакупочныеЦеныНаМеталлоломToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (buyPriceMetallBookForm != null)
+			if (metallPriceBookForm != null)
 			{
-				buyPriceMetallBookForm.Focus();
+				metallPriceBookForm.Focus();
 				return;
 			}
-			buyPriceMetallBookForm = new BaseRecordBookForm<MetallPrice>();
-			buyPriceMetallBookForm.FormClosed += BuyPriceMetallBookForm_FormClosed;
-			buyPriceMetallBookForm.ShowNormal(this);
+			metallPriceBookForm = new BaseRecordBookForm<MetallPrice>();
+			metallPriceBookForm.FormClosed += BuyPriceMetallBookForm_FormClosed;
+			metallPriceBookForm.ShowNormal(this);
 		}
 
 		private void BuyPriceMetallBookForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			buyPriceMetallBookForm = null;
+			metallPriceBookForm = null;
 		}
 
-		private void buyPriceMetallViewControl1_Load(object sender, EventArgs e)
+		private void BuyPriceMetallViewControl1_Load(object sender, EventArgs e)
 		{
 
 		}
-		private void button1_Click_1(object sender, EventArgs e)
+		private void Button1_Click_1(object sender, EventArgs e)
 		{
 			//BuyPriceMetallBookForm f = new BuyPriceMetallBookForm();
 			//f.ShowNormal(this);
@@ -148,9 +151,47 @@ namespace PriemMetalClient
 			f.SelectBtnVisible = true;
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void Button2_Click(object sender, EventArgs e)
 		{
 			
+		}
+
+		BaseRecordBookForm<ContragentFizLico> contragentFizLicoBookForm = null;
+		private void КонтрагентыФизическиеЛицаToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (contragentFizLicoBookForm != null)
+			{
+				contragentFizLicoBookForm.Focus();
+				return;
+			}
+			contragentFizLicoBookForm = new BaseRecordBookForm<ContragentFizLico>();
+			contragentFizLicoBookForm.FormClosed += ContragentFizLicoBookForm_FormClosed;
+			contragentFizLicoBookForm.ShowNormal(this);
+
+		}
+
+		private void ContragentFizLicoBookForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			contragentFizLicoBookForm = null;
+		}
+
+		BaseRecordBookForm<ContragentUrLico> contragentUrLicoBookForm = null;
+		private void КонтрагентыЮридическиеЛицаToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (contragentUrLicoBookForm != null)
+			{
+				contragentUrLicoBookForm.Focus();
+				return;
+			}
+			contragentUrLicoBookForm = new BaseRecordBookForm<ContragentUrLico>();
+			contragentUrLicoBookForm.FormClosed += ContragentUrLicoBookForm_FormClosed;
+			contragentUrLicoBookForm.ShowNormal(this);
+
+		}
+
+		private void ContragentUrLicoBookForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			contragentUrLicoBookForm = null;
 		}
 	}
 }

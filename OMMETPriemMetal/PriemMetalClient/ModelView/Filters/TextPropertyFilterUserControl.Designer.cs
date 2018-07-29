@@ -56,7 +56,7 @@
 			this.label.TabIndex = 4;
 			this.label.Text = "text";
 			this.label.UseVisualStyleBackColor = true;
-			this.label.CheckedChanged += new System.EventHandler(this.label_CheckedChanged);
+			this.label.CheckedChanged += new System.EventHandler(this.Label_CheckedChanged);
 			// 
 			// TextPropertyFilterUserControl
 			// 

@@ -24,7 +24,7 @@ namespace PriemMetalClient
 		public BaseRecordBookForm()
 		{
 			InitializeComponent();
-			this.Text = $"Справочник: {TextAttribute.GetClassTextAttribute<RecordType>()}";
+			this.Text = $"Справочник: {RecordInfoAttribute.GetClassRecordInfo<RecordType>().Text ?? ""}";
 			SetDefaultColumns();
 			RefreshList();
 			List_SelectedIndexChanged(List, new EventArgs());
@@ -38,28 +38,28 @@ namespace PriemMetalClient
 			var props = typeof(RecordType).GetProperties();
 			foreach (var p in props)
 			{
-				if (p.Name != "Id" && p.Name != "Guid")
+				var propInfo = RecordInfoAttribute.GetPropertyRecordInfo(p);
+				if (propInfo == null) continue;
+				if (propInfo.TableNoFilter) continue; // Flags.HasFlag(RecordInfoFlags.NOFILTER)) continue;
+				//string text = RecordInfoAttribute.GetPropertyRecordInfo(p);
+				Type t = p.PropertyType;
+				if (t == typeof(string))
 				{
-					string text = TextAttribute.GetPropertyTextAttribute(p);
-					Type t = p.PropertyType;
-					if (t == typeof(string))
+					TextPropertyFilterUserControl<RecordType> f = new TextPropertyFilterUserControl<RecordType>();
+					if (f.SetProperty(p))
 					{
-						TextPropertyFilterUserControl<RecordType> f = new TextPropertyFilterUserControl<RecordType>();
-						if (f.SetProperty(p))
-						{
-							f.Parent = FilterFlowPanel;
-							f.EnterKeyPress += F_EnterKeyPress;
-						}
+						f.Parent = FilterFlowPanel;
+						f.EnterKeyPress += F_EnterKeyPress;
 					}
-					else
-					if (new[] { typeof(int), typeof(decimal), typeof(float), typeof(double) }.Contains(t))
+				}
+				else
+				if (new[] { typeof(int), typeof(decimal), typeof(float), typeof(double) }.Contains(t))
+				{
+					NumericFilterUserControl<RecordType> f = new NumericFilterUserControl<RecordType>();
+					if (f.SetProperty(p))
 					{
-						NumericFilterUserControl<RecordType> f = new NumericFilterUserControl<RecordType>();
-						if (f.SetProperty(p))
-						{
-							f.Parent = FilterFlowPanel;
-							f.EnterKeyPress += F_EnterKeyPress;
-						}
+						f.Parent = FilterFlowPanel;
+						f.EnterKeyPress += F_EnterKeyPress;
 					}
 				}
 			}
@@ -89,8 +89,12 @@ namespace PriemMetalClient
 			List<string> NewColumns = new List<string>();
 			var props = typeof(RecordType).GetProperties();
 			foreach (var p in props)
-				if (p.Name != "Id" && p.Name != "Guid")
-					NewColumns.Add(p.Name);
+			{
+				var propInfo = RecordInfoAttribute.GetPropertyRecordInfo(p);
+				if (propInfo == null) continue;
+				if (propInfo.TableNoColumn) continue; // Flags.HasFlag(RecordInfoFlags.NOTABLECOLUMN)) continue;
+				NewColumns.Add(p.Name);
+			}
 			SetColumns(NewColumns);
 		}
 
@@ -104,24 +108,14 @@ namespace PriemMetalClient
 
 			foreach (var propName in newColumns)
 			{
-				Columns.Add(propName);
 				var prop = props.FirstOrDefault(x => x.Name == propName);
-				if (prop != null) List.Columns.Add(TextAttribute.GetPropertyTextAttribute(prop));
+				if (prop == null) continue;
+				var propInfo = RecordInfoAttribute.GetPropertyRecordInfo(prop);
+				if (propInfo == null) continue;
+				if (propInfo.TableNoColumn) continue; // Flags.HasFlag(RecordInfoFlags.NOTABLECOLUMN)) continue;
+				Columns.Add(propName);
+				List.Columns.Add(propInfo.Text);
 			}
-		}
-
-		public RecordType AddLine(RecordType record)
-		{
-			ListViewItem<RecordType> item = new ListViewItem<RecordType>();
-			var props = typeof(RecordType).GetProperties();
-			foreach (var c in Columns)
-			{
-				var prop = props.FirstOrDefault(x => x.Name == c);
-				if (prop != null) item.SubItems.Add(prop.GetValue(record, null).ToString());
-			}
-			item.Record = record;
-			List.Items.Add(item);
-			return record;
 		}
 
 		public void RefreshList(bool filter = false)
@@ -149,6 +143,29 @@ namespace PriemMetalClient
 			}
 			foreach (var el in col)
 				AddLine(el);
+		}
+
+		public RecordType AddLine(RecordType record)
+		{
+			ListViewItem<RecordType> item = new ListViewItem<RecordType>();
+			var props = typeof(RecordType).GetProperties();
+			foreach (var c in Columns)
+			{
+				var prop = props.FirstOrDefault(x => x.Name == c);
+				if (prop == null) continue;
+				var value = prop.GetValue(record, null);
+				string text = prop.GetValue(record, null).ToString();
+				if (prop.PropertyType == typeof(DateTime))
+				{
+					var propInfo = RecordInfoAttribute.GetPropertyRecordInfo(prop);
+					if (propInfo.DatetimeDateOnly) /*Flags.HasFlag(RecordInfoFlags.DATEONLY))*/ text = ((DateTime)value).ToShortDateString();
+					if (propInfo.DatetimeTimeOnly) /*Flags.HasFlag(RecordInfoFlags.TIMEONLY))*/ text = ((DateTime)value).ToShortTimeString();
+				}
+				item.SubItems.Add(text);
+			}
+			item.Record = record;
+			List.Items.Add(item);
+			return record;
 		}
 
 		private void List_SelectedIndexChanged(object sender, EventArgs e)
@@ -261,12 +278,12 @@ namespace PriemMetalClient
 			editForm_new = null;
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void Button1_Click(object sender, EventArgs e)
 		{
 			RefreshList(true);
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void Button3_Click(object sender, EventArgs e)
 		{
 			foreach (BasePropertyFilterUserControl f in FilterFlowPanel.Controls)
 				f.Reset();

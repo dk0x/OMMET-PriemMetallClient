@@ -22,7 +22,7 @@ namespace PriemMetalClient
 		public override bool SetProperty(PropertyInfo prop)
 		{
 			if (base.SetProperty(prop) == false) return false;
-			label.Text = TextAttribute.GetPropertyTextAttribute(prop);
+			label.Text = RecordInfoAttribute.GetPropertyRecordInfo(prop)?.Text ?? "";
 			LoadStrings(prop);
 			return true;
 		}
@@ -69,7 +69,7 @@ namespace PriemMetalClient
 
 		}
 
-		private void label_CheckedChanged(object sender, EventArgs e)
+		private void Label_CheckedChanged(object sender, EventArgs e)
 		{
 			ApplyFilterEvent(this);
 		}

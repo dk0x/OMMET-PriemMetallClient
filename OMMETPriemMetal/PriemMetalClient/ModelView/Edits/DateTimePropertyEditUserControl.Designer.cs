@@ -1,6 +1,6 @@
 ﻿namespace PriemMetalClient
 {
-	partial class DecimalPropertyEditUserControl : BasePropertyEditUserControl
+	partial class DateTimePropertyEditUserControl
 	{
 		/// <summary> 
 		/// Обязательная переменная конструктора.
@@ -28,31 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.numericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.label = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
+			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.SuspendLayout();
-			// 
-			// numericUpDown
-			// 
-			this.numericUpDown.DecimalPlaces = 2;
-			this.numericUpDown.Dock = System.Windows.Forms.DockStyle.Top;
-			this.numericUpDown.Location = new System.Drawing.Point(0, 13);
-			this.numericUpDown.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-			this.numericUpDown.Minimum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            -2147483648});
-			this.numericUpDown.Name = "numericUpDown";
-			this.numericUpDown.Size = new System.Drawing.Size(200, 20);
-			this.numericUpDown.TabIndex = 0;
-			this.numericUpDown.ThousandsSeparator = true;
-			this.numericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown_ValueChanged);
 			// 
 			// label
 			// 
@@ -61,25 +39,34 @@
 			this.label.Location = new System.Drawing.Point(0, 0);
 			this.label.Name = "label";
 			this.label.Size = new System.Drawing.Size(200, 13);
-			this.label.TabIndex = 1;
+			this.label.TabIndex = 3;
 			this.label.Text = "label1";
 			// 
-			// DecimalPropertyEditUserControl
+			// dateTimePicker
+			// 
+			this.dateTimePicker.Dock = System.Windows.Forms.DockStyle.Top;
+			this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.dateTimePicker.Location = new System.Drawing.Point(0, 13);
+			this.dateTimePicker.Name = "dateTimePicker";
+			this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
+			this.dateTimePicker.TabIndex = 4;
+			this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
+			// 
+			// DateTimePropertyEditUserControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.numericUpDown);
+			this.Controls.Add(this.dateTimePicker);
 			this.Controls.Add(this.label);
-			this.Name = "DecimalPropertyEditUserControl";
+			this.Name = "DateTimePropertyEditUserControl";
 			this.Size = new System.Drawing.Size(200, 42);
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.NumericUpDown numericUpDown;
 		private System.Windows.Forms.Label label;
+		private System.Windows.Forms.DateTimePicker dateTimePicker;
 	}
 }

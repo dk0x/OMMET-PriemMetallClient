@@ -23,7 +23,7 @@ namespace PriemMetalClient
 		public override bool SetProperty(PropertyInfo prop)
 		{
 			if (base.SetProperty(prop) == false) return false;
-			label.Text = TextAttribute.GetPropertyTextAttribute(prop);
+			label.Text = RecordInfoAttribute.GetPropertyRecordInfo(prop)?.Text ?? "";
 			return true;
 		}
 
@@ -47,22 +47,22 @@ namespace PriemMetalClient
 			return base.GetQueryFilter();
 		}
 
-		private void value_ValueChanged(object sender, EventArgs e)
+		private void Value_ValueChanged(object sender, EventArgs e)
 		{
 			label.Checked = true;
 		}
 
-		private void value_KeyUp(object sender, KeyEventArgs e)
+		private void Value_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter) ApplyFilterEvent(this);
 		}
 
-		private void label_CheckedChanged(object sender, EventArgs e)
+		private void Label_CheckedChanged(object sender, EventArgs e)
 		{
 			ApplyFilterEvent(this);
 		}
 
-		private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+		private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (label.Checked) ApplyFilterEvent(this);
 		}

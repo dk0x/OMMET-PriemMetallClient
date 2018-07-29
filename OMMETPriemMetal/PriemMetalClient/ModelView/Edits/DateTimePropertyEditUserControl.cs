@@ -10,17 +10,15 @@ using System.Reflection;
 
 namespace PriemMetalClient
 {
-	public partial class DecimalPropertyEditUserControl : BasePropertyEditUserControl
+	public partial class DateTimePropertyEditUserControl : BasePropertyEditUserControl
 	{
-		public DecimalPropertyEditUserControl()
+		public DateTimePropertyEditUserControl()
 		{
 			InitializeComponent();
 		}
-
 		public override void SetRecord(BaseRecord record)
 		{
 			base.SetRecord(record);
-
 		}
 
 		public override void SetProperty(PropertyInfo prop)
@@ -32,13 +30,12 @@ namespace PriemMetalClient
 		public override void SetValue(object value)
 		{
 			base.SetValue(value);
-			numericUpDown.Value = (decimal)value;
+			dateTimePicker.Value = (DateTime)value;
 		}
-		//public override object GetValue() => numericUpDown.Value;
 
-		private void NumericUpDown_ValueChanged(object sender, EventArgs e)
+		private void dateTimePicker_ValueChanged(object sender, EventArgs e)
 		{
-			base.SetValue(numericUpDown.Value);
+			base.SetValue(dateTimePicker.Value);
 		}
 	}
 }

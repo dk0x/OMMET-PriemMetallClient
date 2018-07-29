@@ -51,8 +51,8 @@
 			this.value.Name = "value";
 			this.value.Size = new System.Drawing.Size(100, 20);
 			this.value.TabIndex = 2;
-			this.value.ValueChanged += new System.EventHandler(this.value_ValueChanged);
-			this.value.KeyUp += new System.Windows.Forms.KeyEventHandler(this.value_KeyUp);
+			this.value.ValueChanged += new System.EventHandler(this.Value_ValueChanged);
+			this.value.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Value_KeyUp);
 			// 
 			// comboBox
 			// 
@@ -67,7 +67,7 @@
 			this.comboBox.Name = "comboBox";
 			this.comboBox.Size = new System.Drawing.Size(100, 21);
 			this.comboBox.TabIndex = 3;
-			this.comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+			this.comboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SelectedIndexChanged);
 			// 
 			// label
 			// 
@@ -78,7 +78,7 @@
 			this.label.TabIndex = 5;
 			this.label.Text = "text";
 			this.label.UseVisualStyleBackColor = true;
-			this.label.CheckedChanged += new System.EventHandler(this.label_CheckedChanged);
+			this.label.CheckedChanged += new System.EventHandler(this.Label_CheckedChanged);
 			// 
 			// NumericFilterUserControl
 			// 

@@ -6,37 +6,12 @@ using System.Text;
 
 namespace PriemMetalClient
 {
-	[AttributeUsage(AttributeTargets.Property | AttributeTargets.Class)]
-	public class TextAttribute : System.Attribute
-	{
-		public string Text { get; }
-		public TextAttribute(string text)
-		{
-			Text = text;
-		}
-		public static string GetPropertyTextAttribute(PropertyInfo propInfo)
-		{
-			object[] attrs = propInfo.GetCustomAttributes(false);
-			TextAttribute ta = (TextAttribute)attrs.FirstOrDefault(x => x.GetType() == typeof(TextAttribute));
-			if (ta != null)
-				return ta.Text;
-			return propInfo.Name;
-		}
-		public static string GetClassTextAttribute<T>()
-		{
-			object[] attrs = typeof(T).GetCustomAttributes(false);
-			TextAttribute ta = (TextAttribute)attrs.FirstOrDefault(x => x.GetType() == typeof(TextAttribute));
-			if (ta != null)
-				return ta.Text;
-			return typeof(T).Name;
-		}
 
-	}
 	public class BaseRecord
 	{
-		[Text("Номер записи")]
+		//[Text("Номер записи")]
 		public int Id { get; set; } = 0;
-		[Text("Уникальный идентификатор")]
+		//[Text("Уникальный идентификатор")]
 		public Guid Guid { get; set; } = Guid.NewGuid();
 	}
 }

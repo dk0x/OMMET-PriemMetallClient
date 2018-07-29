@@ -25,7 +25,13 @@ namespace PriemMetalClient
 		public override void SetProperty(PropertyInfo prop)
 		{
 			base.SetProperty(prop);
-			label.Text = TextAttribute.GetPropertyTextAttribute(prop);
+			var propInfo = RecordInfoAttribute.GetPropertyRecordInfo(prop);
+			if (propInfo != null)
+			{
+				label.Text = propInfo.Text ?? "";
+				TextBox.Multiline = propInfo.TextMultilane;
+			}
+			Height = label.Height + TextBox.Height;
 		}
 
 		public override void SetValue(object value)
