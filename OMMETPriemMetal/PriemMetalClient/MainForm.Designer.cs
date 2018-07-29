@@ -44,14 +44,13 @@
 			this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.новыйДокументToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-			this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
 			this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.окнаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.закупочныеЦеныНаМеталлоломToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.контрагентыФизическиеЛицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.контрагентыЮридическиеЛицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.сервисToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.listView1 = new System.Windows.Forms.ListView();
@@ -168,10 +167,9 @@
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
-            this.окнаToolStripMenuItem,
-            this.справочникиToolStripMenuItem});
+            this.справочникиToolStripMenuItem,
+            this.сервисToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip1.MdiWindowListItem = this.окнаToolStripMenuItem;
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(1036, 24);
 			this.menuStrip1.TabIndex = 4;
@@ -182,8 +180,6 @@
 			this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.новыйДокументToolStripMenuItem,
             this.toolStripMenuItem2,
-            this.параметрыToolStripMenuItem,
-            this.toolStripMenuItem1,
             this.выходToolStripMenuItem});
 			this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
 			this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
@@ -201,30 +197,12 @@
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
 			this.toolStripMenuItem2.Size = new System.Drawing.Size(173, 6);
 			// 
-			// параметрыToolStripMenuItem
-			// 
-			this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
-			this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-			this.параметрыToolStripMenuItem.Text = "Параметры...";
-			this.параметрыToolStripMenuItem.Click += new System.EventHandler(this.ПараметрыToolStripMenuItem_Click);
-			// 
-			// toolStripMenuItem1
-			// 
-			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(173, 6);
-			// 
 			// выходToolStripMenuItem
 			// 
 			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
 			this.выходToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
 			this.выходToolStripMenuItem.Text = "Выход";
 			this.выходToolStripMenuItem.Click += new System.EventHandler(this.ВыходToolStripMenuItem_Click);
-			// 
-			// окнаToolStripMenuItem
-			// 
-			this.окнаToolStripMenuItem.Name = "окнаToolStripMenuItem";
-			this.окнаToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-			this.окнаToolStripMenuItem.Text = "Окна";
 			// 
 			// справочникиToolStripMenuItem
 			// 
@@ -257,6 +235,21 @@
 			this.контрагентыЮридическиеЛицаToolStripMenuItem.Text = "Контрагенты: Юридические лица";
 			this.контрагентыЮридическиеЛицаToolStripMenuItem.Click += new System.EventHandler(this.КонтрагентыЮридическиеЛицаToolStripMenuItem_Click);
 			// 
+			// сервисToolStripMenuItem
+			// 
+			this.сервисToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.параметрыToolStripMenuItem});
+			this.сервисToolStripMenuItem.Name = "сервисToolStripMenuItem";
+			this.сервисToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+			this.сервисToolStripMenuItem.Text = "Сервис";
+			// 
+			// параметрыToolStripMenuItem
+			// 
+			this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
+			this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.параметрыToolStripMenuItem.Text = "Параметры...";
+			this.параметрыToolStripMenuItem.Click += new System.EventHandler(this.ПараметрыToolStripMenuItem_Click);
+			// 
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tabPage1);
@@ -288,6 +281,7 @@
             this.datetime,
             this.docno});
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.listView1.FullRowSelect = true;
 			this.listView1.GridLines = true;
 			this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -426,15 +420,12 @@
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem параметрыToolStripMenuItem;
 		private System.Windows.Forms.ToolStripTextBox VesCountText;
 		private System.Windows.Forms.ToolStripLabel toolStripLabel3;
 		private System.Windows.Forms.ToolStripTextBox VesDeviationText;
 		private System.Windows.Forms.ToolStripLabel toolStripLabel2;
 		private System.Windows.Forms.ToolStripButton toolStripButton1;
-		private System.Windows.Forms.ToolStripMenuItem окнаToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem новыйДокументToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
 		private System.Windows.Forms.TabControl tabControl1;
@@ -455,6 +446,8 @@
 		private System.Windows.Forms.DateTimePicker dateTimePicker1;
 		private System.Windows.Forms.ToolStripMenuItem контрагентыЮридическиеЛицаToolStripMenuItem;
 		private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+		private System.Windows.Forms.ToolStripMenuItem сервисToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem параметрыToolStripMenuItem;
 	}
 }
 

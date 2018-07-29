@@ -13,12 +13,12 @@ namespace PriemMetalClient
 	}*/
 	public class ListViewItem<T> : ListViewItem where T : BaseRecord
 	{
-		public Guid Guid { get => Record.Guid; set { Record.Guid = value; } }
-		public int Id { get => Record.Id; set { Record.Id = value; } }
+		/*public Guid Guid { get => Record.Guid; set { Record.Guid = value; } }
+		public int Id { get => Record.Id; set { Record.Id = value; } }*/
 		public T Record = default(T);
 	}
-	public class ListViewItemBaseRecord : ListViewItem
+	/*public class ListViewItemBaseRecord : ListViewItem
 	{
 		public BaseRecord Record = default(BaseRecord);
-	}
+	}*/
 }

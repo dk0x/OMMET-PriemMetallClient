@@ -132,10 +132,6 @@ namespace PriemMetalClient
 			metallPriceBookForm = null;
 		}
 
-		private void BuyPriceMetallViewControl1_Load(object sender, EventArgs e)
-		{
-
-		}
 		private void Button1_Click_1(object sender, EventArgs e)
 		{
 			//BuyPriceMetallBookForm f = new BuyPriceMetallBookForm();
