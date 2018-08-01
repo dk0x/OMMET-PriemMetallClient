@@ -201,7 +201,7 @@ namespace PriemMetalClient
 			if (List.SelectedItems.Count > 0)
 			{
 				var item = (ListViewItem<RecordType>)List.SelectedItems[0];
-				DataBase.DB.GetCollection<RecordType>().Delete(item.Record.Id);
+				DataBase.DB.GetCollection<RecordType>().Delete(item.Record.Guid);
 				List.Items.Remove(item);
 			}
 		}

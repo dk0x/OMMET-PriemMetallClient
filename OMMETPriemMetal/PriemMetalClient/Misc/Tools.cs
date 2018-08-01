@@ -34,6 +34,10 @@ namespace PriemMetalClient
 		{
 			return typeof(T).GetProperties();
 		}
+		public static PropertyInfo[] GetProperties(object obj)
+		{
+			return obj.GetType().GetProperties();
+		}
 		public static PropertyInfo GetProperty<T>(string propName)
 		{
 			var props = GetProperties<T>();

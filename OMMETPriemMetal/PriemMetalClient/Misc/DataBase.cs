@@ -15,10 +15,12 @@ namespace PriemMetalClient
 		private static LiteDatabase GetDB()
 		{
 			if (_DB == null)
+			{
 				_DB = new LiteDatabase(Tools.Path(ConfigManager.Parameters.DataBasePath));
+				//BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.PSADocumentMetalls, "PSADocumentMetall");
+			}
 			return _DB;
 		}
 
-		public static LiteCollection<MetallPrice> BuyPriceMetallTable { get => DB.GetCollection<MetallPrice>(); }
 	}
 }

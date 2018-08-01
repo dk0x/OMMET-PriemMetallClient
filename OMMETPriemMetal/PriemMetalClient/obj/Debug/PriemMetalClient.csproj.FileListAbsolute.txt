@@ -32,3 +32,5 @@ D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\bin\Debug\Lit
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\bin\Debug\LiteDB.xml
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.exe
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.pdb
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.BaseRecordSelectUserControl.resources
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.PSADocumentForm.resources

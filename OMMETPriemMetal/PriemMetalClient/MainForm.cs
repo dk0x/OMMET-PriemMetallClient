@@ -141,10 +141,28 @@ namespace PriemMetalClient
 			//testbook.SetDefaultColumns();
 			//testbook.ShowNormal(this);
 
-			BaseRecordEditUserControl<MetallPrice> f = new BaseRecordEditUserControl<MetallPrice>();
+			/*BaseRecordEditUserControl<MetallPrice> f = new BaseRecordEditUserControl<MetallPrice>();
 			f.SetRecord(new MetallPrice { Price = 100.25m, Category = "1212" });
 			f.Parent = tabPage2;
-			f.SelectBtnVisible = true;
+			f.SelectBtnVisible = true;*/
+
+			//DataBase.DB.GetCollection<PSADocument>().Delete(Query.All());
+
+			PSADocument doc = new PSADocument()
+			{
+				Nomer = 77,
+				OpisanieLoma = "asdasd",
+				Date = DateTime.Now,
+				ContragentType = ContragentType.FizLico,
+				ContragentFizLico = DataBase.DB.GetCollection<ContragentFizLico>().FindOne(Query.All())
+			};
+			DataBase.DB.GetCollection<PSADocumentMetall>().Upsert(new PSADocumentMetall() { Category = "111" });
+			doc.PSADocumentMetall.Add(DataBase.DB.GetCollection<PSADocumentMetall>().FindOne(Query.All()));
+			var b = DataBase.DB.GetCollection<PSADocument>().Upsert(doc);
+			
+			var r = DataBase.DB.GetCollection<PSADocument>()/*.Include(x => x.ContragentFizLico).Include(x => x.PSADocumentMetall)*/.
+				FindOne(x=>x.Nomer == 77);
+
 		}
 
 		private void Button2_Click(object sender, EventArgs e)
