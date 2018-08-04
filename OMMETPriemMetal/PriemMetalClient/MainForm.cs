@@ -158,9 +158,10 @@ namespace PriemMetalClient
 			};
 			DataBase.DB.GetCollection<PSADocumentMetall>().Upsert(new PSADocumentMetall() { Category = "111" });
 			doc.PSADocumentMetall.Add(DataBase.DB.GetCollection<PSADocumentMetall>().FindOne(Query.All()));
+			doc.PSADocumentMetall.Add(new PSADocumentMetall());
 			var b = DataBase.DB.GetCollection<PSADocument>().Upsert(doc);
 			
-			var r = DataBase.DB.GetCollection<PSADocument>()/*.Include(x => x.ContragentFizLico).Include(x => x.PSADocumentMetall)*/.
+			var r = DataBase.DB.GetCollection<PSADocument>().Include(x => x.ContragentFizLico).Include(x => x.PSADocumentMetall).
 				FindOne(x=>x.Nomer == 77);
 
 		}
@@ -206,6 +207,12 @@ namespace PriemMetalClient
 		private void ContragentUrLicoBookForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			contragentUrLicoBookForm = null;
+		}
+
+		private void ToolStripButton2_Click(object sender, EventArgs e)
+		{
+			PSADocumentForm f = new PSADocumentForm();
+			f.Show();
 		}
 	}
 }

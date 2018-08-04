@@ -7,6 +7,7 @@ namespace PriemMetalClient
 {
 	public class PSADocumentMetall : BaseRecord
 	{
+		public Guid PSADocumentGuid { get; set; } = Guid.Empty;
 		[RecordInfo("Категория металла")]
 		public string Category { get; set; } = null;
 		[RecordInfo("Номенклатура")]
@@ -17,6 +18,8 @@ namespace PriemMetalClient
 		public decimal Tara { get; set; } = 0;
 		[RecordInfo("Нетто")]
 		public decimal Netto { get; set; } = 0;
+		[RecordInfo("Засор")]
+		public decimal Zasor { get; set; } = 0;
 		[RecordInfo("Цена за 1 тонну, руб. (без НДС)")]
 		public decimal Price { get; set; } = 0;
 		[RecordInfo("Сумма")]

@@ -334,6 +334,7 @@
 			this.toolStripButton2.Text = "Новый документ";
 			this.toolStripButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton2_Click);
 			// 
 			// tabPage2
 			// 

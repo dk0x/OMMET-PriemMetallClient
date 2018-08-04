@@ -177,7 +177,6 @@ namespace PriemMetalClient
 
 		private void CloseBtn_Click(object sender, EventArgs e)
 		{
-			FormClosedSelect?.Invoke(this, default(RecordType));
 			Close();
 		}
 

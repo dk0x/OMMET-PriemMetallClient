@@ -42,9 +42,12 @@ namespace PriemMetalClient
 		public string OpisanieLoma { get; set; } = string.Empty;
 
 		[RecordInfo("Список принятого металла")]
-		[LiteDB.BsonRef("PSADocumentMetall")]
-		public List<PSADocumentMetall> PSADocumentMetall { get; set; } = new List<PSADocumentMetall>();
-
+		[LiteDB.BsonIgnore]
+		public List<PSADocumentMetall> PSADocumentMetall
+		{
+			get => DataBase.DB.GetCollection<PSADocumentMetall>().Find(x => x.PSADocumentGuid == Guid).ToList();
+		}
 	}
-	
+
 }
+	

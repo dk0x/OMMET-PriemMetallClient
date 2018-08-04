@@ -13,6 +13,7 @@ namespace PriemMetalClient
 		//[Text("Уникальный идентификатор")]
 		[LiteDB.BsonId]
 		public Guid Guid { get; set; } = Guid.NewGuid();
+		public DateTime _Created { get; set; } = DateTime.Now;
 
 		public override string ToString()
 		{

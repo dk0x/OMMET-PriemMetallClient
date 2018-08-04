@@ -11,8 +11,27 @@ namespace PriemMetalClient
 {
 	public partial class BaseRecordSelectUserControl<TRecord> : UserControl where TRecord : BaseRecord
 	{
+		public delegate void CheckBoxCheckedChangedEventHandler(object sender);
+		public event CheckBoxCheckedChangedEventHandler CheckBoxCheckedChanged;
 		public TRecord Record { get; private set; } = null;
 		public string Format { get; private set; } = string.Empty;
+		public bool Multilane
+		{
+			get => textBox.Multiline;
+			set => textBox.Multiline = value;
+		}
+
+		public bool CheckBox
+		{
+			get => checkBox1.Visible;
+			set => checkBox1.Visible = value;
+		}
+
+		public bool Checked
+		{
+			get => checkBox1.Checked;
+			set => checkBox1.Checked = value;
+		}
 
 		public BaseRecordSelectUserControl()
 		{
@@ -34,7 +53,7 @@ namespace PriemMetalClient
 
 		public void UpdateText()
 		{
-			textBox.Text = Record.ToString();
+			textBox.Text = Record?.ToString() ?? "";
 		}
 
 		BaseRecordBookForm<TRecord> recordBookForm = null;
@@ -59,6 +78,11 @@ namespace PriemMetalClient
 		private void RecordBookForm_FormClosedSelect(object sender, TRecord record)
 		{
 			SetRecord(record);
+		}
+
+		private void checkBox1_CheckedChanged(object sender, EventArgs e)
+		{
+			CheckBoxCheckedChanged?.Invoke(this);
 		}
 	}
 }

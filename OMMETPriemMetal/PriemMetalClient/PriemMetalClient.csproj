@@ -157,10 +157,19 @@
     <Compile Include="ModelView\Models\Otdelenie.cs" />
     <Compile Include="ModelView\Models\PSADocumentMetall.cs" />
     <Compile Include="ModelView\Models\Transport.cs" />
+    <Compile Include="ModelView\Selects\ContragentFizLicoRecordSelectUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelView\Selects\ContragentUrLicoRecordSelectUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ModelView\Selects\MetallPriceRecordSelectUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ModelView\Selects\OtdelenieRecordSelectUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelView\Selects\TransportRecordSelectUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -251,6 +260,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ModelView\Documetns\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\169097-web-navigation-color\png\book.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
