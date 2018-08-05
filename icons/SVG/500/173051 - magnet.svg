@@ -1,0 +1,7 @@
+<?xml version="1.0" ?><svg clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><defs><style type="text/css"><![CDATA[
+    .str0 {stroke:#434242;stroke-width:10}
+    .str1 {stroke:#434242;stroke-width:10;stroke-linejoin:round}
+    .fil1 {fill:#434242}
+    .fil2 {fill:url(#id0)}
+    .fil0 {fill:url(#id1)}
+   ]]></style><linearGradient gradientUnits="userSpaceOnUse" id="id0" x1="392.057" x2="322.663" y1="419.999" y2="419.999"><stop offset="0" stop-color="#008BFF"/><stop offset="1" stop-color="#0af"/></linearGradient><linearGradient gradientUnits="userSpaceOnUse" id="id1" x1="249.998" x2="249.998" y1="72.001" y2="337.999"><stop offset="0" stop-color="#DDDEDE"/><stop offset="1" stop-color="#fff"/></linearGradient></defs><g id="Layer_x0020_1"><path class="fil0 str0" d="M250 30c-88 0-167 69-160 154l18 196h63l-14-170c-6-65 36-105 93-105s99 40 93 105l-14 170h63l18-196c7-85-72-154-160-154z"/><polygon class="fil1 str1" points="108,380 115,460 177,460 171,380"/><polygon class="fil2 str1" points="323,460 385,460 392,380 329,380"/></g></svg>

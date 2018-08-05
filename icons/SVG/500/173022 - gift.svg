@@ -1,0 +1,10 @@
+<?xml version="1.0" ?><svg clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css"><![CDATA[
+    .str0 {stroke:#434242;stroke-width:10}
+    .str2 {stroke:#434242;stroke-width:10;stroke-linejoin:round}
+    .str1 {stroke:#434242;stroke-width:15}
+    .fil2 {fill:url(#id0)}
+    .fil4 {fill:url(#id1)}
+    .fil3 {fill:url(#id2)}
+    .fil0 {fill:url(#id3)}
+    .fil1 {fill:url(#id4)}
+   ]]></style><linearGradient gradientUnits="userSpaceOnUse" id="id0" x1="251.282" x2="99.998" y1="77.448" y2="77.448"><stop offset="0" stop-color="#008BFF"/><stop offset="1" stop-color="#0af"/></linearGradient><linearGradient gradientUnits="userSpaceOnUse" id="id1" x1="279.998" x2="219.998" y1="292.5" y2="292.5"/><linearGradient gradientUnits="userSpaceOnUse" id="id2" x1="399.998" x2="248.714" y1="77.448" y2="77.448"/><linearGradient gradientUnits="userSpaceOnUse" id="id3" x1="451.599" x2="48.399" y1="192.499" y2="192.499"/><linearGradient gradientUnits="userSpaceOnUse" id="id4" x1="249.999" x2="249.999" y1="266.4" y2="433.6"><stop offset="0" stop-color="#FCFCFD"/><stop offset="1" stop-color="#fff"/></linearGradient></defs><g id="Layer_x0020_1"><path class="fil0 str0" d="M55 145h390c8 0 15 7 15 15v80h-420v-80c0-8 7-15 15-15z"/><path class="fil1 str1" d="M50 240h400v200c0 11-9 20-20 20h-360c-11 0-20-9-20-20v-200z"/><path class="fil2 str0" d="M200 115c10 5 5 15-10 10-40-10-90-30-90-60s20-40 40-40c50 0 80 40 100 70 11 12 0 25-10 10s-22-25-35-35c-25-20-50 5-35 25 15 15 30 15 40 20z"/><path class="fil3 str0" d="M300 115c-10 5-5 15 10 10 40-10 90-30 90-60s-20-40-40-40c-50 0-80 40-100 70-11 12 0 25 10 10s22-25 35-35c25-20 50 5 35 25-15 15-30 15-40 20z"/><path class="fil4 str2" d="M220 140c15-15 45-15 60 0v320h-60v-320z"/></g></svg>

@@ -1,0 +1,9 @@
+<?xml version="1.0" ?><svg clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 5000 5000" xmlns="http://www.w3.org/2000/svg"><defs><style type="text/css"><![CDATA[
+    .str2 {stroke:#434242;stroke-width:50}
+    .str1 {stroke:#434242;stroke-width:100}
+    .str0 {stroke:#434242;stroke-width:200}
+    .fil0 {fill:none}
+    .fil3 {fill:#FFFFFF}
+    .fil2 {fill:url(#id0)}
+    .fil1 {fill:url(#id1)}
+   ]]></style><linearGradient gradientUnits="userSpaceOnUse" id="id0" x1="4599.99" x2="399.99" y1="2203.1" y2="2203.1"><stop offset="0" stop-color="#008BFF"/><stop offset="1" stop-color="#0af"/></linearGradient><linearGradient gradientUnits="userSpaceOnUse" id="id1" x1="2499.99" x2="2499.99" y1="2527.99" y2="3971.97"><stop offset="0" stop-color="#616161"/><stop offset="1" stop-color="#434242"/></linearGradient></defs><g id="Layer_x0020_1"><rect class="fil0 str0" height="600" rx="100" ry="100" width="1200" x="1900" y="800"/><path class="fil1 str1" d="M4600 2300v1600c0 165-135 300-300 300h-3600c-165 0-300-135-300-300v-1600c1396 806 2804 806 4200 0z"/><path class="fil2 str1" d="M700 1300h3600c165 0 300 135 300 300v700c-1396 806-2804 806-4200 0v-700c0-165 135-300 300-300z"/><rect class="fil3 str2" height="700" rx="100" ry="100" width="400" x="2300" y="2500"/></g></svg>
