@@ -11,8 +11,8 @@ namespace PriemMetalClient
 {
 	public partial class BaseRecordSelectUserControl<TRecord> : UserControl where TRecord : BaseRecord
 	{
-		public delegate void CheckBoxCheckedChangedEventHandler(object sender);
-		public event CheckBoxCheckedChangedEventHandler CheckBoxCheckedChanged;
+		//public delegate void CheckBoxCheckedChangedEventHandler(object sender);
+		//public event CheckBoxCheckedChangedEventHandler CheckBoxCheckedChanged;
 		public TRecord Record { get; private set; } = null;
 		public string Format { get; private set; } = string.Empty;
 		public bool Multilane
@@ -21,7 +21,7 @@ namespace PriemMetalClient
 			set => textBox.Multiline = value;
 		}
 
-		public bool CheckBox
+		/*public bool CheckBox
 		{
 			get => checkBox1.Visible;
 			set => checkBox1.Visible = value;
@@ -31,7 +31,7 @@ namespace PriemMetalClient
 		{
 			get => checkBox1.Checked;
 			set => checkBox1.Checked = value;
-		}
+		}*/
 
 		public BaseRecordSelectUserControl()
 		{
@@ -80,9 +80,9 @@ namespace PriemMetalClient
 			SetRecord(record);
 		}
 
-		private void checkBox1_CheckedChanged(object sender, EventArgs e)
+		/*private void checkBox1_CheckedChanged(object sender, EventArgs e)
 		{
 			CheckBoxCheckedChanged?.Invoke(this);
-		}
+		}*/
 	}
 }

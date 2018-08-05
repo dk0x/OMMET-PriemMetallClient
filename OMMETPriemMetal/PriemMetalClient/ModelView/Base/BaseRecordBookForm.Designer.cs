@@ -38,16 +38,16 @@ namespace PriemMetalClient
 			this.NewBtn = new System.Windows.Forms.Button();
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
 			this.FilterGroupBox = new System.Windows.Forms.GroupBox();
-			this.List = new System.Windows.Forms.ListView();
-			this.FilterFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-			this.button1 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
 			this.FilterButtonsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this.button1 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
+			this.FilterFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this.button2 = new System.Windows.Forms.Button();
+			this.List = new System.Windows.Forms.ListView();
 			this.BotButtonsPanel.SuspendLayout();
 			this.FilterGroupBox.SuspendLayout();
-			this.FilterFlowPanel.SuspendLayout();
 			this.FilterButtonsFlowPanel.SuspendLayout();
+			this.FilterFlowPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// BotButtonsPanel
@@ -142,6 +142,58 @@ namespace PriemMetalClient
 			this.FilterGroupBox.TabStop = false;
 			this.FilterGroupBox.Text = "Фильтры";
 			// 
+			// FilterButtonsFlowPanel
+			// 
+			this.FilterButtonsFlowPanel.AutoSize = true;
+			this.FilterButtonsFlowPanel.Controls.Add(this.button1);
+			this.FilterButtonsFlowPanel.Controls.Add(this.button3);
+			this.FilterButtonsFlowPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.FilterButtonsFlowPanel.Location = new System.Drawing.Point(3, 45);
+			this.FilterButtonsFlowPanel.Name = "FilterButtonsFlowPanel";
+			this.FilterButtonsFlowPanel.Size = new System.Drawing.Size(767, 29);
+			this.FilterButtonsFlowPanel.TabIndex = 1;
+			// 
+			// button1
+			// 
+			this.button1.AutoSize = true;
+			this.button1.Location = new System.Drawing.Point(3, 3);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(112, 23);
+			this.button1.TabIndex = 0;
+			this.button1.Text = "Привенить фильтр";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.Button1_Click);
+			// 
+			// button3
+			// 
+			this.button3.AutoSize = true;
+			this.button3.Location = new System.Drawing.Point(121, 3);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(112, 23);
+			this.button3.TabIndex = 1;
+			this.button3.Text = "Сбросить фильтр";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.Button3_Click);
+			// 
+			// FilterFlowPanel
+			// 
+			this.FilterFlowPanel.AutoSize = true;
+			this.FilterFlowPanel.Controls.Add(this.button2);
+			this.FilterFlowPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.FilterFlowPanel.Location = new System.Drawing.Point(3, 16);
+			this.FilterFlowPanel.Name = "FilterFlowPanel";
+			this.FilterFlowPanel.Size = new System.Drawing.Size(767, 29);
+			this.FilterFlowPanel.TabIndex = 0;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(3, 3);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.TabIndex = 1;
+			this.button2.Text = "button2";
+			this.button2.UseVisualStyleBackColor = true;
+			// 
 			// List
 			// 
 			this.List.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -157,59 +209,7 @@ namespace PriemMetalClient
 			this.List.View = System.Windows.Forms.View.Details;
 			this.List.SelectedIndexChanged += new System.EventHandler(this.List_SelectedIndexChanged);
 			// 
-			// FilterFlowPanel
-			// 
-			this.FilterFlowPanel.AutoSize = true;
-			this.FilterFlowPanel.Controls.Add(this.button2);
-			this.FilterFlowPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.FilterFlowPanel.Location = new System.Drawing.Point(3, 16);
-			this.FilterFlowPanel.Name = "FilterFlowPanel";
-			this.FilterFlowPanel.Size = new System.Drawing.Size(767, 29);
-			this.FilterFlowPanel.TabIndex = 0;
-			// 
-			// button1
-			// 
-			this.button1.AutoSize = true;
-			this.button1.Location = new System.Drawing.Point(3, 3);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(112, 23);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "Привенить фильтр";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.Button1_Click);
-			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(3, 3);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 1;
-			this.button2.Text = "button2";
-			this.button2.UseVisualStyleBackColor = true;
-			// 
-			// FilterButtonsFlowPanel
-			// 
-			this.FilterButtonsFlowPanel.AutoSize = true;
-			this.FilterButtonsFlowPanel.Controls.Add(this.button1);
-			this.FilterButtonsFlowPanel.Controls.Add(this.button3);
-			this.FilterButtonsFlowPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.FilterButtonsFlowPanel.Location = new System.Drawing.Point(3, 45);
-			this.FilterButtonsFlowPanel.Name = "FilterButtonsFlowPanel";
-			this.FilterButtonsFlowPanel.Size = new System.Drawing.Size(767, 29);
-			this.FilterButtonsFlowPanel.TabIndex = 1;
-			// 
-			// button3
-			// 
-			this.button3.AutoSize = true;
-			this.button3.Location = new System.Drawing.Point(121, 3);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(112, 23);
-			this.button3.TabIndex = 1;
-			this.button3.Text = "Сбросить фильтр";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.Button3_Click);
-			// 
-			// BaseBookForm
+			// BaseRecordBookForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -219,16 +219,16 @@ namespace PriemMetalClient
 			this.Controls.Add(this.BotButtonsPanel);
 			this.Controls.Add(this.StatusStrip);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-			this.Name = "BaseBookForm";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Name = "BaseRecordBookForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "BaseBook";
 			this.BotButtonsPanel.ResumeLayout(false);
 			this.BotButtonsPanel.PerformLayout();
 			this.FilterGroupBox.ResumeLayout(false);
 			this.FilterGroupBox.PerformLayout();
-			this.FilterFlowPanel.ResumeLayout(false);
 			this.FilterButtonsFlowPanel.ResumeLayout(false);
 			this.FilterButtonsFlowPanel.PerformLayout();
+			this.FilterFlowPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

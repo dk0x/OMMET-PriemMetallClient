@@ -113,6 +113,7 @@ namespace PriemMetalClient
 				var propInfo = RecordInfoAttribute.GetPropertyRecordInfo(prop);
 				if (propInfo == null) continue;
 				if (propInfo.TableNoColumn) continue; // Flags.HasFlag(RecordInfoFlags.NOTABLECOLUMN)) continue;
+				if (string.IsNullOrWhiteSpace(propInfo.Text)) continue;
 				Columns.Add(propName);
 				List.Columns.Add(propInfo.Text);
 			}
@@ -143,6 +144,8 @@ namespace PriemMetalClient
 			}
 			foreach (var el in col)
 				AddLine(el);
+			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+			List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 		}
 
 		public RecordType AddLine(RecordType record)

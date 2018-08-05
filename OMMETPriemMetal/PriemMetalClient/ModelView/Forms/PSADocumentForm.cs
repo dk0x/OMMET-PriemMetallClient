@@ -14,8 +14,7 @@ namespace PriemMetalClient
 		public PSADocumentForm()
 		{
 			InitializeComponent();
-			FizLiceSelect.Checked = true;
-			contragentFizLicoRecordSelectUserControl1.Checked = true;
+			//FizLiceSelect.Checked = true;
 		}
 
 		private void LizoSelect_CheckedChanged(object sender, EventArgs e)
@@ -32,14 +31,6 @@ namespace PriemMetalClient
 			}
 		}
 
-		private void contragentFizLicoRecordSelectUserControl1_CheckBoxCheckedChanged(object sender)
-		{
 
-		}
-
-		private void contragentUrLicoRecordSelectUserControl1_CheckBoxCheckedChanged(object sender)
-		{
-
-		}
 	}
 }
