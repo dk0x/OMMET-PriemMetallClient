@@ -39,5 +39,6 @@ namespace PriemMetalClient
 			return s;
 		}
 
+		public virtual string ToShortString() => ToString();
 	}
 }

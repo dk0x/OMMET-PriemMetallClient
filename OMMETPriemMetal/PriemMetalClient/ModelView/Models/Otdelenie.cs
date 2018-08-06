@@ -14,6 +14,8 @@ namespace PriemMetalClient
 		public string Adres { get; set; } = "";
 		[RecordInfo("Телефон")]
 		public string Telefon { get; set; } = "";
+
+		public override string ToString() => $"{Nazvanie}";
 	}
 
 }

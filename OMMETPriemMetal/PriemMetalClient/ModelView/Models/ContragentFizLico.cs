@@ -24,5 +24,7 @@ namespace PriemMetalClient
 		[RecordInfo("Адрес регистрации", TextMultilane = true)] //, RecordInfoFlags.TEXTMULTILANE)]
 		public string AdresRegistraciiPasport { get; set; } = "";
 
+		public override string ToShortString() => $"{Familiya} {Imja} {Otchestvo}";
+
 	}
 }

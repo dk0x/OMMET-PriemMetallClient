@@ -53,7 +53,7 @@ namespace PriemMetalClient
 
 		public void UpdateText()
 		{
-			textBox.Text = Record?.ToString() ?? "";
+			textBox.Text = Record?.ToShortString() ?? "";
 		}
 
 		BaseRecordBookForm<TRecord> recordBookForm = null;

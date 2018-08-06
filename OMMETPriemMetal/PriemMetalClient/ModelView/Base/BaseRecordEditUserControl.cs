@@ -27,10 +27,10 @@ namespace PriemMetalClient
 		public void SetRecord(RecordType record)
 		{
 			Record = record;
-			Render(record);
+			RenderUI(record);
 		}
 
-		public void Render(RecordType record)
+		public void RenderUI(RecordType record)
 		{
 			Controls.Clear();
 			//this.AutoSize = true;
@@ -48,6 +48,9 @@ namespace PriemMetalClient
 			var props = Tools.GetProperties<RecordType>().Reverse();
 			foreach(var p in props)
 			{
+				var ri = RecordInfoAttribute.GetPropertyRecordInfo(p);
+				if (ri == null) continue;
+				if (string.IsNullOrWhiteSpace(ri.Text)) continue;
 				if (p.PropertyType == typeof(string))
 				{
 					TextPropertyEditUserControl f = new TextPropertyEditUserControl

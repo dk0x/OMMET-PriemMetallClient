@@ -19,6 +19,6 @@ namespace PriemMetalClient
 		public decimal Price { get; set; } = 0;
 
 		public override string ToString() => $"Категория лома: '{Category}', Цена за тонну: {Price.ToString("N")} руб.";
-		
+		public override string ToShortString() => $"{Nomenklatura}";
 	}
 }
