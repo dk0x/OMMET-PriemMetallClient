@@ -26,6 +26,7 @@ namespace PriemMetalClient
 
 		public void SetRecord(RecordType record)
 		{
+			if (Record == record || record == null) return;
 			Record = record;
 			RenderUI(record);
 		}
@@ -69,6 +70,7 @@ namespace PriemMetalClient
 					{
 						Dock = DockStyle.Top,
 						Parent = this,
+						
 						//AutoSize = true
 					};
 					f.Set(record, p);
@@ -99,7 +101,7 @@ namespace PriemMetalClient
 			this.Width = 200;
 		}
 
-		private BaseRecordBookForm<RecordType> selectForm = null;
+		/*private BaseRecordBookForm<RecordType> selectForm = null;
 		private void SelectBtn_Click(object sender, EventArgs e)
 		{
 			if (selectForm != null)
@@ -114,15 +116,23 @@ namespace PriemMetalClient
 
 		}
 
-		private void SelectForm_FormClosedSelect(object sender, RecordType record)
-		{
-			SetRecord(record);
-			selectForm = null;
-		}
-
 		private void SelectForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			selectForm = null;
+		}*/
+		private void SelectBtn_Click(object sender, EventArgs e)
+		{
+			using (var selectForm = new BaseRecordBookForm<RecordType>())
+			{
+				//selectForm.FormClosedSelect += SelectForm_FormClosedSelect;
+				SetRecord(selectForm.ShowDialogSelect(this.ParentForm));
+			}
 		}
+
+		private void SelectForm_FormClosedSelect(object sender, RecordType record)
+		{
+			SetRecord(record);
+		}
+
 	}
 }

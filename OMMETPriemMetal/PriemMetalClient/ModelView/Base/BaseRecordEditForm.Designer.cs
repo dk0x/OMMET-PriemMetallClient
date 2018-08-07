@@ -1,6 +1,6 @@
 ﻿namespace PriemMetalClient
 {
-	partial class BaseRecordEditForm<RecordType>
+	partial class BaseRecordEditForm<TRecord>
 	{
 		/// <summary>
 		/// Required designer variable.

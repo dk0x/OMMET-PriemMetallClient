@@ -14,8 +14,6 @@ namespace PriemMetalClient
 {
 	public partial class MainForm : Form
 	{
-		private ConfigForm ConfigForm = null;
-		private List<Form> mdiForms = new List<Form>();
 		public MainForm()
 		{
 			InitializeComponent();
@@ -31,8 +29,8 @@ namespace PriemMetalClient
 			var r = VesManager.Report;
 			if (r != null)
 			{
-				VesMainText.Text = r.AverageValue.ToString();
-				VesDeviationText.Text = r.Deviation.ToString();
+				VesMainText.Text = r.AverageValue.ToString("N3");
+				VesDeviationText.Text = r.Deviation.ToString("N3");
 				VesCountText.Text = r.ReadoutCount.ToString();
 			}
 		}
@@ -40,31 +38,8 @@ namespace PriemMetalClient
 		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			ConfigManager.Save();
-
+			DataBase.DB.Dispose();
 		}
-
-		public Form GetMdiFormByCaption(string text)
-		{
-			foreach(Form f in this.MdiChildren)
-				if (text == f.Text) return f;
-			return null;
-		}
-
-		private void AddMdiFormToPanel(Form form)
-		{
-			Label l = new Label
-			{
-				TextAlign = ContentAlignment.MiddleCenter,
-				Dock = DockStyle.Top,
-				Text = form.Text
-			};
-		}
-
-		private void MainForm_MdiChildActivate(object sender, EventArgs e)
-		{
-
-		}
-
 
 		private void ВыходToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -73,22 +48,8 @@ namespace PriemMetalClient
 
 		private void ПараметрыToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (ConfigForm != null)
-			{
-				if (ConfigForm.WindowState == FormWindowState.Minimized)
-					ConfigForm.WindowState = FormWindowState.Normal;
-				ConfigForm.Focus();
-				return;
-			}
-			ConfigForm = new ConfigForm();
-			ConfigForm.FormClosed += ConfigForm_FormClosed;
-			ConfigForm.Owner = this;
-			ConfigForm.Show();
-		}
-
-		private void ConfigForm_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			ConfigForm = null;
+			using (var f = new ConfigForm())
+				f.ShowDialog(this);
 		}
 
 		private void MainForm_Load(object sender, EventArgs e)
@@ -109,27 +70,14 @@ namespace PriemMetalClient
 
 		private void НовыйДокументToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			DocumentForm docForm = new DocumentForm();
-			
-			docForm.Show();
+			using (var f = new DocumentForm())
+				f.ShowDialog();
 		}
 
-		BaseRecordBookForm<MetallPrice> metallPriceBookForm = null;
 		private void ЗакупочныеЦеныНаМеталлоломToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (metallPriceBookForm != null)
-			{
-				metallPriceBookForm.Focus();
-				return;
-			}
-			metallPriceBookForm = new BaseRecordBookForm<MetallPrice>();
-			metallPriceBookForm.FormClosed += BuyPriceMetallBookForm_FormClosed;
-			metallPriceBookForm.ShowNormal(this);
-		}
-
-		private void BuyPriceMetallBookForm_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			metallPriceBookForm = null;
+			using (var f = new BaseRecordBookForm<MetallPrice>())
+				f.ShowDialogNormal(this);
 		}
 
 		private void Button1_Click_1(object sender, EventArgs e)
@@ -154,15 +102,27 @@ namespace PriemMetalClient
 				OpisanieLoma = "asdasd",
 				Date = DateTime.Now,
 				ContragentType = ContragentType.FizLico,
-				ContragentFizLico = DataBase.DB.GetCollection<ContragentFizLico>().FindOne(Query.All())
+				ContragentFizLico = DataBase.DB.GetCollection<ContragentFizLico>().FindOne(Query.All()),
+				Metalls = new List<PSADocumentMetall>()
 			};
-			DataBase.DB.GetCollection<PSADocumentMetall>().Upsert(new PSADocumentMetall() { Category = "111" });
-			doc.PSADocumentMetall.Add(DataBase.DB.GetCollection<PSADocumentMetall>().FindOne(Query.All()));
-			doc.PSADocumentMetall.Add(new PSADocumentMetall());
-			var b = DataBase.DB.GetCollection<PSADocument>().Upsert(doc);
+			//DataBase.DB.GetCollection<PSADocumentMetall>().Upsert(new PSADocumentMetall() { Category = "111" });
+			//doc.Metalls.Add(DataBase.DB.GetCollection<PSADocumentMetall>().FindOne(Query.All()));
+			doc.Metalls.Add(new PSADocumentMetall() {
+				Brutto = 1000,
+				Category = "Category",
+				Netto = 2000,
+				Nomenklatura = "Nomenklatura",
+				Price = 100,
+				PSADocumentGuid = doc.Guid,
+				Summa = 1111,
+				Tara = 3000,
+				Zasor = 5
+			});
+			var b = DataBase.DB.GetCollection<PSADocument>().
+				Include(x => x.Metalls).Upsert(doc);
 			
-			var r = DataBase.DB.GetCollection<PSADocument>().Include(x => x.ContragentFizLico).Include(x => x.PSADocumentMetall).
-				FindOne(x=>x.Nomer == 77);
+			//var r = DataBase.DB.GetCollection<PSADocument>().Include(x => x.ContragentFizLico).Include(x => x.Metalls).
+			//	FindOne(x=>x.Nomer == 77);
 
 		}
 
@@ -171,48 +131,22 @@ namespace PriemMetalClient
 			
 		}
 
-		BaseRecordBookForm<ContragentFizLico> contragentFizLicoBookForm = null;
 		private void КонтрагентыФизическиеЛицаToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (contragentFizLicoBookForm != null)
-			{
-				contragentFizLicoBookForm.Focus();
-				return;
-			}
-			contragentFizLicoBookForm = new BaseRecordBookForm<ContragentFizLico>();
-			contragentFizLicoBookForm.FormClosed += ContragentFizLicoBookForm_FormClosed;
-			contragentFizLicoBookForm.ShowNormal(this);
-
+			using (var f = new BaseRecordBookForm<ContragentFizLico>())
+				f.ShowDialogNormal(this);
 		}
 
-		private void ContragentFizLicoBookForm_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			contragentFizLicoBookForm = null;
-		}
-
-		BaseRecordBookForm<ContragentUrLico> contragentUrLicoBookForm = null;
 		private void КонтрагентыЮридическиеЛицаToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (contragentUrLicoBookForm != null)
-			{
-				contragentUrLicoBookForm.Focus();
-				return;
-			}
-			contragentUrLicoBookForm = new BaseRecordBookForm<ContragentUrLico>();
-			contragentUrLicoBookForm.FormClosed += ContragentUrLicoBookForm_FormClosed;
-			contragentUrLicoBookForm.ShowNormal(this);
-
-		}
-
-		private void ContragentUrLicoBookForm_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			contragentUrLicoBookForm = null;
+			using (var f = new BaseRecordBookForm<ContragentUrLico>())
+				f.ShowDialogNormal(this);
 		}
 
 		private void ToolStripButton2_Click(object sender, EventArgs e)
 		{
-			PSADocumentForm f = new PSADocumentForm();
-			f.Show();
+			using (var f = new PSADocumentForm())
+				f.ShowDialog(this);
 		}
 	}
 }

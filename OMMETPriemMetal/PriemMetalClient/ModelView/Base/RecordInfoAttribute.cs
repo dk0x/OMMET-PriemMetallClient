@@ -25,6 +25,9 @@ namespace PriemMetalClient
 		public bool TextMultilane { get; set; } = false;
 		public bool DatetimeDateOnly { get; set; } = false;
 		public bool DatetimeTimeOnly { get; set; } = false;
+		public string StringFormat { get; set; } = null;
+		public bool VesValueInsertButton { get; set; } = false;
+		public int DecimalDigits { get; set; } = 0;
 		//public RecordInfoFlags Flags { get; }
 		public RecordInfoAttribute(string text) //, RecordInfoFlags flags = RecordInfoFlags.NONE)
 		{

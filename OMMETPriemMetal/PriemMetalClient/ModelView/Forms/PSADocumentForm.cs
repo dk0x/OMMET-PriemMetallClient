@@ -15,6 +15,7 @@ namespace PriemMetalClient
 		{
 			InitializeComponent();
 			//FizLiceSelect.Checked = true;
+			BaseRecord.SetListViewDefaultColumns<PSADocumentMetall>(List);
 		}
 
 		private void LizoSelect_CheckedChanged(object sender, EventArgs e)
@@ -31,6 +32,20 @@ namespace PriemMetalClient
 			}
 		}
 
+		
 
+		private void ToolStripButton1_Click(object sender, EventArgs e)
+		{
+			
+		}
+
+		private void NewBtn_Click(object sender, EventArgs e)
+		{
+			using (var f = new BaseRecordEditForm<PSADocumentMetall>())
+			{
+				f.SetRecord(new PSADocumentMetall());
+				f.ShowDialog(this);
+			}
+		}
 	}
 }

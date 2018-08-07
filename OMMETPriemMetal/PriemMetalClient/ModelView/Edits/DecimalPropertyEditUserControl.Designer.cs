@@ -30,6 +30,7 @@
 		{
 			this.numericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.label = new System.Windows.Forms.Label();
+			this.vesButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -49,7 +50,7 @@
             0,
             -2147483648});
 			this.numericUpDown.Name = "numericUpDown";
-			this.numericUpDown.Size = new System.Drawing.Size(200, 20);
+			this.numericUpDown.Size = new System.Drawing.Size(133, 20);
 			this.numericUpDown.TabIndex = 0;
 			this.numericUpDown.ThousandsSeparator = true;
 			this.numericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown_ValueChanged);
@@ -64,22 +65,35 @@
 			this.label.TabIndex = 1;
 			this.label.Text = "label1";
 			// 
+			// vesButton
+			// 
+			this.vesButton.Dock = System.Windows.Forms.DockStyle.Right;
+			this.vesButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.vesButton.Location = new System.Drawing.Point(133, 13);
+			this.vesButton.Name = "vesButton";
+			this.vesButton.Size = new System.Drawing.Size(67, 21);
+			this.vesButton.TabIndex = 2;
+			this.vesButton.Text = "С весов...";
+			this.vesButton.UseVisualStyleBackColor = true;
+			this.vesButton.Click += new System.EventHandler(this.VesButton_Click);
+			// 
 			// DecimalPropertyEditUserControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.numericUpDown);
+			this.Controls.Add(this.vesButton);
 			this.Controls.Add(this.label);
 			this.Name = "DecimalPropertyEditUserControl";
-			this.Size = new System.Drawing.Size(200, 42);
+			this.Size = new System.Drawing.Size(200, 34);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.NumericUpDown numericUpDown;
 		private System.Windows.Forms.Label label;
+		public System.Windows.Forms.NumericUpDown numericUpDown;
+		private System.Windows.Forms.Button vesButton;
 	}
 }

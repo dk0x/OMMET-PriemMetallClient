@@ -15,10 +15,10 @@ namespace PriemMetalClient
 		[RecordInfo("Условия поставки", TextMultilane = true, TableNoColumn = true, TableNoFilter = true)]
 			//, RecordInfoFlags.TEXTMULTILANE | RecordInfoFlags.NOTABLECOLUMN | RecordInfoFlags.NOFILTER)]
 		public string Description { get; set; } = "";
-		[RecordInfo("Цена за 1 тонну, руб. (без НДС)")]
+		[RecordInfo("Цена за 1 тонну, руб. (без НДС)", StringFormat = "C", DecimalDigits = 2)]
 		public decimal Price { get; set; } = 0;
 
-		public override string ToString() => $"Категория лома: '{Category}', Цена за тонну: {Price.ToString("N")} руб.";
+		public override string ToString() => $"Категория лома: '{Category}', Цена за тонну: {Price.ToString("C")}";
 		public override string ToShortString() => $"{Nomenklatura}";
 	}
 }

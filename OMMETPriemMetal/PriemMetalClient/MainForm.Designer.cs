@@ -82,13 +82,13 @@
 			// 
 			this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.VesCountText,
-            this.toolStripLabel3,
-            this.VesDeviationText,
-            this.toolStripLabel2,
-            this.VesMainText,
-            this.toolStripLabel1});
+			this.toolStripButton1,
+			this.VesCountText,
+			this.toolStripLabel3,
+			this.VesDeviationText,
+			this.toolStripLabel2,
+			this.VesMainText,
+			this.toolStripLabel1});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 445);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(1036, 25);
@@ -166,9 +166,9 @@
 			// menuStrip1
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.справочникиToolStripMenuItem,
-            this.сервисToolStripMenuItem});
+			this.файлToolStripMenuItem,
+			this.справочникиToolStripMenuItem,
+			this.сервисToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(1036, 24);
@@ -178,9 +178,9 @@
 			// файлToolStripMenuItem
 			// 
 			this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.новыйДокументToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.выходToolStripMenuItem});
+			this.новыйДокументToolStripMenuItem,
+			this.toolStripMenuItem2,
+			this.выходToolStripMenuItem});
 			this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
 			this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
 			this.файлToolStripMenuItem.Text = "Файл";
@@ -207,9 +207,9 @@
 			// справочникиToolStripMenuItem
 			// 
 			this.справочникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.закупочныеЦеныНаМеталлоломToolStripMenuItem,
-            this.контрагентыФизическиеЛицаToolStripMenuItem,
-            this.контрагентыЮридическиеЛицаToolStripMenuItem});
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem,
+			this.контрагентыФизическиеЛицаToolStripMenuItem,
+			this.контрагентыЮридическиеЛицаToolStripMenuItem});
 			this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
 			this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
 			this.справочникиToolStripMenuItem.Text = "Справочники";
@@ -238,7 +238,7 @@
 			// сервисToolStripMenuItem
 			// 
 			this.сервисToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.параметрыToolStripMenuItem});
+			this.параметрыToolStripMenuItem});
 			this.сервисToolStripMenuItem.Name = "сервисToolStripMenuItem";
 			this.сервисToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
 			this.сервисToolStripMenuItem.Text = "Сервис";
@@ -276,10 +276,10 @@
 			// listView1
 			// 
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.icon,
-            this.complete,
-            this.datetime,
-            this.docno});
+			this.icon,
+			this.complete,
+			this.datetime,
+			this.docno});
 			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.listView1.FullRowSelect = true;
@@ -318,7 +318,7 @@
 			// 
 			this.toolStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
 			this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2});
+			this.toolStripButton2});
 			this.toolStrip2.Location = new System.Drawing.Point(3, 3);
 			this.toolStrip2.Name = "toolStrip2";
 			this.toolStrip2.Size = new System.Drawing.Size(1022, 54);
@@ -397,7 +397,6 @@
 			this.Text = "Form1";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
 			this.Load += new System.EventHandler(this.MainForm_Load);
-			this.MdiChildActivate += new System.EventHandler(this.MainForm_MdiChildActivate);
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			this.menuStrip1.ResumeLayout(false);
@@ -451,4 +450,3 @@
 		private System.Windows.Forms.ToolStripMenuItem параметрыToolStripMenuItem;
 	}
 }
-

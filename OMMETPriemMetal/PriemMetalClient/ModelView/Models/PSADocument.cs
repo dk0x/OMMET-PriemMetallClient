@@ -19,12 +19,12 @@ namespace PriemMetalClient
 		[RecordInfo("От")]
 		public DateTime Date { get; set; } = DateTime.Now;
 
-		[RecordInfo("Тип контрагента")]
-		public ContragentType ContragentType { get; set; } = ContragentType.FizLico;
-
 		[RecordInfo("Отделение приема")]
 		[LiteDB.BsonRef("Otdelenie")]
 		public Otdelenie Otdelenie { get; set; } = null;
+
+		[RecordInfo("Тип контрагента")]
+		public ContragentType ContragentType { get; set; } = ContragentType.FizLico;
 
 		[RecordInfo("Контрагент: Физ. лицо")]
 		[LiteDB.BsonRef("ContragentFizLico")]
@@ -41,12 +41,27 @@ namespace PriemMetalClient
 		[RecordInfo("Описание лома")]
 		public string OpisanieLoma { get; set; } = string.Empty;
 
+		[RecordInfo("Основание")]
+		public string Osnovanie { get; set; } = string.Empty;
+
+		[RecordInfo("Нетто", StringFormat = "N3")]
+		public decimal Netto { get; set; } = 0;
+
+		[RecordInfo("Сумма", StringFormat = "C")]
+		public decimal Summa { get; set; } = 0;
+
+		[RecordInfo("Цена без НДС")]
+		public bool Nds { get; set; } = false;
+
+
+
 		[RecordInfo("Список принятого металла")]
-		[LiteDB.BsonIgnore]
-		public List<PSADocumentMetall> PSADocumentMetall
-		{
+		//[LiteDB.BsonIgnore]
+		[LiteDB.BsonRef("PSADocumentMetall")]
+		public List<PSADocumentMetall> Metalls { get; set; }
+		/*{
 			get => DataBase.DB.GetCollection<PSADocumentMetall>().Find(x => x.PSADocumentGuid == Guid).ToList();
-		}
+		}*/
 	}
 
 }

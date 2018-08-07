@@ -26,7 +26,14 @@ namespace PriemMetalClient
 		public override void SetProperty(PropertyInfo prop)
 		{
 			base.SetProperty(prop);
-			label.Text = RecordInfoAttribute.GetPropertyRecordInfo(prop)?.Text ?? "";
+			var ri = RecordInfoAttribute.GetPropertyRecordInfo(prop);
+			if (ri != null)
+			{
+				label.Text = ri.Text ?? "";
+				numericUpDown.DecimalPlaces = ri.DecimalDigits;
+				vesButton.Visible = ri.VesValueInsertButton;
+			}
+
 		}
 
 		public override void SetValue(object value)
@@ -39,6 +46,11 @@ namespace PriemMetalClient
 		private void NumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
 			base.SetValue(numericUpDown.Value);
+		}
+
+		private void VesButton_Click(object sender, EventArgs e)
+		{
+			numericUpDown.Value = VesManager.Report.AverageValue;
 		}
 	}
 }

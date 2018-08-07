@@ -117,4 +117,68 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="_173002___edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173002 - edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173013___filter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173013 - filter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173013___nofilter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173013 - nofilter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173017___folder_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173017 - folder open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173049___login" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173049 - login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173050___logout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173050 - logout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173055___minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173055 - minus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173061___ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173061 - ok.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173063___ok_sign" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173063 - ok sign.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173077___plus1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173077 - plus1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173078___plus_sign" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173078 - plus sign.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173079___print" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173079 - print.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173082___remove_sign" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173082 - remove sign.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173083___repeat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173083 - repeat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173088___retweet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173088 - retweet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173091___save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173091 - save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173095___search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173095 - search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173120___trash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173120 - trash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173140___antenna" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173140 - antenna.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173163___book" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173163 - book.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_173184___cog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32\173184 - cog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -16,15 +16,15 @@ namespace PriemMetalClient
 	}
 	public class VesData
 	{
-		public double Value = -1;
+		public decimal Value = -1;
 		public DateTime Timestamp = DateTime.MinValue;
 	}
 	public class VesDataReport
 	{
-		public double AverageValue = -1;
+		public decimal AverageValue = -1;
 		public int ReadoutCount = 0;
 		public TimeSpan TimeRange = TimeSpan.Zero;
-		public double Deviation = 0;
+		public decimal Deviation = 0;
 		public override string ToString() => "[V:" + AverageValue.ToString() + ",D:" + Deviation.ToString() + ",C:" + ReadoutCount.ToString() + "]";
 	}
 	public class VesDataManager
@@ -51,13 +51,15 @@ namespace PriemMetalClient
 		}
 		public VesDataReport Report(TimeSpan TimeRange)
 		{
-			VesDataReport report = new VesDataReport();
-			report.TimeRange = TimeRange;
+			VesDataReport report = new VesDataReport
+			{
+				TimeRange = TimeRange
+			};
 			DateTime now = DateTime.Now;
-			double sumAll = 0;
+			decimal sumAll = 0;
 			int count = 0;
-			double maxValue = double.MinValue;
-			double minValue = double.MaxValue;
+			decimal maxValue = decimal.MinValue;
+			decimal minValue = decimal.MaxValue;
 			LockThread = true;
 			Queue<VesData> fifo_backup = new Queue<VesData>(DataFIFO);
 			LockThread = false;
@@ -73,9 +75,12 @@ namespace PriemMetalClient
 					minValue = Math.Min(minValue, data.Value);
 				}
 			}
-			if (count > 0) report.AverageValue = sumAll / count;
-			report.Deviation = (maxValue - minValue) / 2;
-			report.ReadoutCount = count;
+			if (count > 0)
+			{
+				report.AverageValue = sumAll / count;
+				report.Deviation = (maxValue - minValue) / 2;
+				report.ReadoutCount = count;
+			}
 			return report;
 		}
 	}
@@ -315,10 +320,11 @@ namespace PriemMetalClient
 					byte[] brutto = { arr[i], arr[i + 1] };
 					Array.Reverse(brutto);
 					int brutto_int = BitConverter.ToInt16(brutto, 0);
-					VesData v = new VesData();
-					v.Timestamp = DateTime.Now;
-					v.Value = (double)brutto_int / 100;
-					v.Value = Math.Round(v.Value, 2);
+					VesData v = new VesData
+					{
+						Timestamp = DateTime.Now,
+						Value = Math.Round(Convert.ToDecimal(brutto_int) / 100m, 2)
+					};
 					VesDataManager.AddData(v);
 					//i += 2;
 					// [0x3F,] [0x03]
@@ -338,10 +344,15 @@ namespace PriemMetalClient
 					try
 					{
 						VesData data = new VesData();
-						double ves = 0;
-						byte ErrState, Flags0, Flags1, DFlags, DState;
-						DevNet.GetWeight(1, 0, out ves, out ErrState, out Flags0, out Flags1, out DFlags, out DState);
-						data.Value = ves;
+						DevNet.GetWeight(1, 0, 
+							out double ves, 
+							out byte ErrState, 
+							out byte Flags0, 
+							out byte Flags1, 
+							out byte DFlags, 
+							out byte DState
+							);
+						data.Value = Convert.ToDecimal(ves);
 						data.Timestamp = DateTime.Now;
 						VesDataManager.AddData(data);
 					}
