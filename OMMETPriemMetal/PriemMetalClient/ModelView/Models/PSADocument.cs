@@ -58,7 +58,7 @@ namespace PriemMetalClient
 		[RecordInfo("Список принятого металла")]
 		//[LiteDB.BsonIgnore]
 		[LiteDB.BsonRef("PSADocumentMetall")]
-		public List<PSADocumentMetall> Metalls { get; set; }
+		public List<PSADocumentMetall> Metalls { get; set; } = new List<PSADocumentMetall>();
 		/*{
 			get => DataBase.DB.GetCollection<PSADocumentMetall>().Find(x => x.PSADocumentGuid == Guid).ToList();
 		}*/

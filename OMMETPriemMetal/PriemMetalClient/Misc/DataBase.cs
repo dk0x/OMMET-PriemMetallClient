@@ -11,6 +11,14 @@ namespace PriemMetalClient
 
 		private static LiteDatabase _DB = null;
 		public static LiteDatabase DB { get => GetDB(); }
+		public static LiteCollection<PSADocument> PSADocumentCollection {
+			get => DataBase.DB.GetCollection<PSADocument>().
+				Include(x => x.ContragentFizLico).
+				Include(x => x.ContragentUrLico).
+				Include(x => x.Otdelenie).
+				Include(x => x.Transport).
+				Include(x => x.Metalls);
+			}
 
 		private static LiteDatabase GetDB()
 		{

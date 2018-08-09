@@ -24,6 +24,13 @@ namespace PriemMetalClient
 		private int counter = 0;
 		private void VesUpdateTimer_Tick(object sender, EventArgs e)
 		{
+			Random rnd = new Random();
+			VesManager.VesDataManager.AddData(new VesData
+			{
+				Timestamp = DateTime.Now,
+				Value = Convert.ToDecimal(rnd.Next(2000, 2500) / 1000m)
+			});
+
 			counter++;
 			this.Text = counter.ToString();
 			VesMainText.Text = "Нет данных";
@@ -107,10 +114,10 @@ namespace PriemMetalClient
 			PSAList.Items.Clear();
 			IEnumerable<PSADocument> col = null;
 
-			col = DataBase.DB.GetCollection<PSADocument>().FindAll();
+			col = DataBase.PSADocumentCollection.FindAll();
 
 			foreach (var el in col)
-				BaseRecord.AddLine<PSADocument>(PSAList, el);
+				BaseRecord.UpsertListViewItem<PSADocument>(PSAList, el);
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 			if (PSAList.Columns.Count > 0) PSAList.Columns[0].Width = 0;
@@ -120,9 +127,16 @@ namespace PriemMetalClient
 		{
 			using (var f = new PSADocumentForm())
 			{
-				if (f.ShowDialog(new PSADocument(), this))
+				var doc = new PSADocument();
+				DataBase.DB.GetCollection<PSADocument>().Upsert(doc);
+				if (f.ShowDialog(doc, this))
 				{
 					RefreshPSAList();
+				} else
+				{
+					foreach (var el in doc.Metalls)
+						DataBase.DB.GetCollection<PSADocumentMetall>().Delete(el.Guid);
+					DataBase.DB.GetCollection<PSADocument>().Delete(doc.Guid);
 				}
 			}
 		}

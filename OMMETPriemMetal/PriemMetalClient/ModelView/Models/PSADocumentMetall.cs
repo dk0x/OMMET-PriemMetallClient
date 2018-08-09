@@ -21,7 +21,7 @@ namespace PriemMetalClient
 		public decimal Netto { get; set; } = 0;
 		[RecordInfo("% засора")]
 		public decimal Zasor { get; set; } = 0;
-		[RecordInfo("Цена за 1 тонну, руб. (без НДС)", StringFormat = "C", DecimalDigits = 2)]
+		[RecordInfo("Цена за 1 тонну, руб.(без НДС)", StringFormat = "C", DecimalDigits = 2)]
 		public decimal Price { get; set; } = 0;
 		[RecordInfo("Сумма", StringFormat = "C", DecimalDigits = 2)]
 		public decimal Summa { get; set; } = 0;

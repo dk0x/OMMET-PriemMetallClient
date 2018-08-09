@@ -93,8 +93,14 @@ namespace PriemMetalClient
 				Width = -2
 			});
 		}
-		public static void AddLine<TRecord>(ListView listView, TRecord record) where TRecord : BaseRecord
+		public static void UpsertListViewItem<TRecord>(ListView listView, TRecord record) where TRecord : BaseRecord
 		{
+			foreach (ListViewItem<TRecord> el in listView.Items)
+				if (el.Record.Guid == record.Guid)
+				{
+					el.Record = record;
+					return;
+				}
 			ListViewItem<TRecord> item = new ListViewItem<TRecord>();
 			foreach (DBColumnHeader c in listView.Columns)
 			{

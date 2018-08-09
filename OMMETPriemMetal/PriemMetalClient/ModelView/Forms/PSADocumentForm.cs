@@ -12,6 +12,7 @@ namespace PriemMetalClient
 	public partial class PSADocumentForm : Form
 	{
 		public PSADocument PSADocument { get; private set; } = null;
+		public bool NewMode { get; private set; } = false;
 		public PSADocumentForm()
 		{
 			InitializeComponent();
@@ -19,20 +20,19 @@ namespace PriemMetalClient
 			BaseRecord.SetListViewDefaultColumns<PSADocumentMetall>(List);
 		}
 
-		public bool ShowDialog(PSADocument doc, Form owner = null)
+		public PSADocument ShowNewDialog(IWin32Window owner = null)
 		{
-			if (doc == null)
-			{
-				Close();
-				throw new Exception("PSADocument Record is Null");
-			}
-			SetRecord(doc);
+			PSADocument = new PSADocument();
+			PSADocument.Nomer = DataBase.PSADocumentCollection.Max(x => x.Nomer) + 1;
+			DataBase.PSADocumentCollection.Upsert(PSADocument);
+			NewMode = true;
+			SetRecord(PSADocument);
 			if (this.ShowDialog(owner) == DialogResult.OK)
 			{
 				SaveRecord();
-				return true;
+				return PSADocument;
 			}
-			return false;
+			return null;
 		}
 
 		public void SetRecord(PSADocument doc)
@@ -58,26 +58,29 @@ namespace PriemMetalClient
 			opisanieLoma.Text = doc.OpisanieLoma;
 			osnovanie.Text = doc.Osnovanie;
 			nds.Checked = doc.Nds;
+			List.Items.Clear();
+			foreach (var el in doc.Metalls)
+				BaseRecord.UpsertListViewItem<PSADocumentMetall>(List, el);
 		}
 
 		public PSADocument SaveRecord()
 		{
-			PSADocument doc = new PSADocument
+			PSADocument.ContragentFizLico = contragentFizLicoRecordSelectUserControl1.Record;
+			PSADocument.ContragentType = FizLicoSelect.Checked ? ContragentType.FizLico :
+				UrLizoSelect.Checked ? ContragentType.UrLico : ContragentType.UrLico;
+			PSADocument.ContragentUrLico = contragentUrLicoRecordSelectUserControl1.Record;
+			PSADocument.Nds = nds.Checked;
+			PSADocument.Netto = netto.Value;
+			PSADocument.OpisanieLoma = opisanieLoma.Text;
+			PSADocument.Osnovanie = osnovanie.Text;
+			PSADocument.Otdelenie = otdelenieRecordSelectUserControl1.Record;
+			PSADocument.Summa = summa.Value;
+			PSADocument.Transport = transportRecordSelectUserControl1.Record;
+			foreach(ListViewItem<PSADocumentMetall> el in List.Items)
 			{
-				ContragentFizLico = contragentFizLicoRecordSelectUserControl1.Record,
-				ContragentType = FizLicoSelect.Checked ? ContragentType.FizLico :
-					UrLizoSelect.Checked ? ContragentType.UrLico : ContragentType.UrLico,
-				ContragentUrLico = contragentUrLicoRecordSelectUserControl1.Record,
-				Nds = nds.Checked,
-				Netto = netto.Value,
-				OpisanieLoma = opisanieLoma.Text,
-				Osnovanie = osnovanie.Text,
-				Otdelenie = otdelenieRecordSelectUserControl1.Record,
-				Summa = summa.Value,
-				Transport = transportRecordSelectUserControl1.Record
-			};
-			DataBase.DB.GetCollection<PSADocument>().Upsert(doc);
-			return doc;
+				DataBase.DB.GetCollection<PSADocumentMetall>().Upsert(el.Record);
+			}
+			return PSADocument;
 		}
 
 		private void LizoSelect_CheckedChanged(object sender, EventArgs e)
@@ -101,10 +104,28 @@ namespace PriemMetalClient
 
 		private void NewBtn_Click(object sender, EventArgs e)
 		{
-			using (var f = new BaseRecordEditForm<PSADocumentMetall>())
+			using (var f = new PSADocumentMetallForm())
 			{
-				f.SetRecord(new PSADocumentMetall());
-				f.ShowDialog(this);
+				if (NewMode)
+				{
+					var m = new PSADocumentMetall()
+					{
+						PSADocumentGuid = PSADocument.Guid
+					};
+					DataBase.DB.GetCollection<PSADocumentMetall>().Upsert(m);
+					PSADocument.Metalls.Add(m);
+					BaseRecord.UpsertListViewItem<PSADocumentMetall>(List, m);
+					SaveRecord();
+					f.SetRecord(m);
+					var rec = f.ShowDialog(this);
+					if (rec != null)
+					{
+						rec.PSADocumentGuid = PSADocument.Guid;
+						BaseRecord.UpsertListViewItem<PSADocumentMetall>(List, rec);
+						PSADocument.Metalls.Add(rec);
+						//DataBase.DB.GetCollection<PSADocumentMetall>().Upsert(rec);
+					}
+				}
 			}
 		}
 
@@ -118,6 +139,18 @@ namespace PriemMetalClient
 		{
 			this.DialogResult = DialogResult.OK;
 			Close();
+		}
+
+		private void DeleteBtn_Click(object sender, EventArgs e)
+		{
+			if (List.SelectedIndices.Count > 0)
+			{
+				PSADocumentMetall metall = (List.SelectedItems[0] as ListViewItem<PSADocumentMetall>).Record;
+
+				PSADocument.Metalls.Remove(metall);
+				//DataBase.DB.GetCollection<PSADocumentMetall>().Upsert(rec);
+
+			}
 		}
 	}
 }

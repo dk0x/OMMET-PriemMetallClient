@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PriemMetalClient
 {
-	[RecordInfo("Закупочные цены на металлолом")]
+	[RecordInfo("Категория металла, цена")]
 	public class MetallPrice : BaseRecord
 	{
 		[RecordInfo("Категория лома")]

@@ -128,7 +128,7 @@ namespace PriemMetalClient
 				col = DataBase.DB.GetCollection<TRecord>().Find(Query.And(qq.ToArray()));
 
 			foreach (var el in col)
-				BaseRecord.AddLine<TRecord>(List, el);
+				BaseRecord.UpsertListViewItem<TRecord>(List, el);
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 			if (List.Columns.Count > 0) List.Columns[0].Width = 0;

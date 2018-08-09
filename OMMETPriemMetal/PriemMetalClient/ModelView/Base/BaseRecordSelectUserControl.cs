@@ -11,6 +11,8 @@ namespace PriemMetalClient
 {
 	public partial class BaseRecordSelectUserControl<TRecord> : UserControl where TRecord : BaseRecord
 	{
+		public delegate void RecordSelectHandler(object sender, TRecord record);
+		public event RecordSelectHandler RecordSelect;
 		public TRecord Record { get; private set; } = null;
 		public string Format { get; private set; } = string.Empty;
 		public bool Multilane
@@ -27,9 +29,10 @@ namespace PriemMetalClient
 
 		public void SetRecord(TRecord r)
 		{
-			if (r == null || r == Record) return;
+			if (r == null) return;
 			Record = r;
 			UpdateText();
+			RecordSelect?.Invoke(this, r);
 		}
 
 		public void SetFormat(string s)
