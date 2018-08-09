@@ -53,7 +53,7 @@
 			this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.listView1 = new System.Windows.Forms.ListView();
+			this.PSAList = new System.Windows.Forms.ListView();
 			this.icon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.complete = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.datetime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -82,13 +82,13 @@
 			// 
 			this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.toolStripButton1,
-			this.VesCountText,
-			this.toolStripLabel3,
-			this.VesDeviationText,
-			this.toolStripLabel2,
-			this.VesMainText,
-			this.toolStripLabel1});
+            this.toolStripButton1,
+            this.VesCountText,
+            this.toolStripLabel3,
+            this.VesDeviationText,
+            this.toolStripLabel2,
+            this.VesMainText,
+            this.toolStripLabel1});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 445);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(1036, 25);
@@ -166,9 +166,9 @@
 			// menuStrip1
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.файлToolStripMenuItem,
-			this.справочникиToolStripMenuItem,
-			this.сервисToolStripMenuItem});
+            this.файлToolStripMenuItem,
+            this.справочникиToolStripMenuItem,
+            this.сервисToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(1036, 24);
@@ -178,15 +178,16 @@
 			// файлToolStripMenuItem
 			// 
 			this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.новыйДокументToolStripMenuItem,
-			this.toolStripMenuItem2,
-			this.выходToolStripMenuItem});
+            this.новыйДокументToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.выходToolStripMenuItem});
 			this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
 			this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
 			this.файлToolStripMenuItem.Text = "Файл";
 			// 
 			// новыйДокументToolStripMenuItem
 			// 
+			this.новыйДокументToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173002___edit;
 			this.новыйДокументToolStripMenuItem.Name = "новыйДокументToolStripMenuItem";
 			this.новыйДокументToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
 			this.новыйДокументToolStripMenuItem.Text = "Новый документ...";
@@ -199,6 +200,7 @@
 			// 
 			// выходToolStripMenuItem
 			// 
+			this.выходToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173050___logout;
 			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
 			this.выходToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
 			this.выходToolStripMenuItem.Text = "Выход";
@@ -207,15 +209,16 @@
 			// справочникиToolStripMenuItem
 			// 
 			this.справочникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem,
-			this.контрагентыФизическиеЛицаToolStripMenuItem,
-			this.контрагентыЮридическиеЛицаToolStripMenuItem});
+            this.закупочныеЦеныНаМеталлоломToolStripMenuItem,
+            this.контрагентыФизическиеЛицаToolStripMenuItem,
+            this.контрагентыЮридическиеЛицаToolStripMenuItem});
 			this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
 			this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
 			this.справочникиToolStripMenuItem.Text = "Справочники";
 			// 
 			// закупочныеЦеныНаМеталлоломToolStripMenuItem
 			// 
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173163___book;
 			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Name = "закупочныеЦеныНаМеталлоломToolStripMenuItem";
 			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
 			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Text = "Закупочные цены на металлолом";
@@ -223,6 +226,7 @@
 			// 
 			// контрагентыФизическиеЛицаToolStripMenuItem
 			// 
+			this.контрагентыФизическиеЛицаToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173163___book;
 			this.контрагентыФизическиеЛицаToolStripMenuItem.Name = "контрагентыФизическиеЛицаToolStripMenuItem";
 			this.контрагентыФизическиеЛицаToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
 			this.контрагентыФизическиеЛицаToolStripMenuItem.Text = "Контрагенты: Физические лица";
@@ -230,6 +234,7 @@
 			// 
 			// контрагентыЮридическиеЛицаToolStripMenuItem
 			// 
+			this.контрагентыЮридическиеЛицаToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173163___book;
 			this.контрагентыЮридическиеЛицаToolStripMenuItem.Name = "контрагентыЮридическиеЛицаToolStripMenuItem";
 			this.контрагентыЮридическиеЛицаToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
 			this.контрагентыЮридическиеЛицаToolStripMenuItem.Text = "Контрагенты: Юридические лица";
@@ -238,13 +243,14 @@
 			// сервисToolStripMenuItem
 			// 
 			this.сервисToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.параметрыToolStripMenuItem});
+            this.параметрыToolStripMenuItem});
 			this.сервисToolStripMenuItem.Name = "сервисToolStripMenuItem";
 			this.сервисToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
 			this.сервисToolStripMenuItem.Text = "Сервис";
 			// 
 			// параметрыToolStripMenuItem
 			// 
+			this.параметрыToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173184___cog;
 			this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
 			this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
 			this.параметрыToolStripMenuItem.Text = "Параметры...";
@@ -263,7 +269,7 @@
 			// 
 			// tabPage1
 			// 
-			this.tabPage1.Controls.Add(this.listView1);
+			this.tabPage1.Controls.Add(this.PSAList);
 			this.tabPage1.Controls.Add(this.toolStrip2);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
@@ -273,25 +279,25 @@
 			this.tabPage1.Text = "Список документов";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
-			// listView1
+			// PSAList
 			// 
-			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-			this.icon,
-			this.complete,
-			this.datetime,
-			this.docno});
-			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.listView1.FullRowSelect = true;
-			this.listView1.GridLines = true;
-			this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-			this.listView1.Location = new System.Drawing.Point(3, 57);
-			this.listView1.MultiSelect = false;
-			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(1022, 335);
-			this.listView1.TabIndex = 1;
-			this.listView1.UseCompatibleStateImageBehavior = false;
-			this.listView1.View = System.Windows.Forms.View.Details;
+			this.PSAList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.icon,
+            this.complete,
+            this.datetime,
+            this.docno});
+			this.PSAList.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.PSAList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.PSAList.FullRowSelect = true;
+			this.PSAList.GridLines = true;
+			this.PSAList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.PSAList.Location = new System.Drawing.Point(3, 57);
+			this.PSAList.MultiSelect = false;
+			this.PSAList.Name = "PSAList";
+			this.PSAList.Size = new System.Drawing.Size(1022, 335);
+			this.PSAList.TabIndex = 1;
+			this.PSAList.UseCompatibleStateImageBehavior = false;
+			this.PSAList.View = System.Windows.Forms.View.Details;
 			// 
 			// icon
 			// 
@@ -318,7 +324,7 @@
 			// 
 			this.toolStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
 			this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.toolStripButton2});
+            this.toolStripButton2});
 			this.toolStrip2.Location = new System.Drawing.Point(3, 3);
 			this.toolStrip2.Name = "toolStrip2";
 			this.toolStrip2.Size = new System.Drawing.Size(1022, 54);
@@ -431,7 +437,7 @@
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
-		private System.Windows.Forms.ListView listView1;
+		private System.Windows.Forms.ListView PSAList;
 		private System.Windows.Forms.ColumnHeader icon;
 		private System.Windows.Forms.ColumnHeader complete;
 		private System.Windows.Forms.ColumnHeader datetime;

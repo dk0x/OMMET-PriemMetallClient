@@ -182,7 +182,6 @@
 			this.Controls.Add(this.flowLayoutPanel1);
 			this.Controls.Add(this.SaveBtn);
 			this.Controls.Add(this.CancelBtn);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Name = "ConfigForm";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;

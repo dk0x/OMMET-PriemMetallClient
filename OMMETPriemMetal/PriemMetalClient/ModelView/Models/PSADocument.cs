@@ -23,7 +23,7 @@ namespace PriemMetalClient
 		[LiteDB.BsonRef("Otdelenie")]
 		public Otdelenie Otdelenie { get; set; } = null;
 
-		[RecordInfo("Тип контрагента")]
+		[RecordInfo("Тип контрагента", TableNoColumn = true)]
 		public ContragentType ContragentType { get; set; } = ContragentType.FizLico;
 
 		[RecordInfo("Контрагент: Физ. лицо")]
@@ -38,10 +38,10 @@ namespace PriemMetalClient
 		[LiteDB.BsonRef("Transport")]
 		public Transport Transport { get; set; } = null;
 
-		[RecordInfo("Описание лома")]
+		[RecordInfo("Описание лома", TableNoColumn = true)]
 		public string OpisanieLoma { get; set; } = string.Empty;
 
-		[RecordInfo("Основание")]
+		[RecordInfo("Основание", TableNoColumn = true)]
 		public string Osnovanie { get; set; } = string.Empty;
 
 		[RecordInfo("Нетто", StringFormat = "N3")]

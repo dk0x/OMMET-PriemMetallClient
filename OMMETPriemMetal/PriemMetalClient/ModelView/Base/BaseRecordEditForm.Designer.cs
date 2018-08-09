@@ -28,75 +28,64 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-			this.SaveBtn = new System.Windows.Forms.Button();
-			this.CancelBtn = new System.Windows.Forms.Button();
-			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-			this.flowLayoutPanel2.SuspendLayout();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.CloseBtn = new System.Windows.Forms.ToolStripButton();
+			this.SaveBtn = new System.Windows.Forms.ToolStripButton();
+			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// flowLayoutPanel2
+			// toolStrip1
 			// 
-			this.flowLayoutPanel2.AutoSize = true;
-			this.flowLayoutPanel2.Controls.Add(this.SaveBtn);
-			this.flowLayoutPanel2.Controls.Add(this.CancelBtn);
-			this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-			this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-			this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-			this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-			this.flowLayoutPanel2.Size = new System.Drawing.Size(349, 29);
-			this.flowLayoutPanel2.TabIndex = 1;
+			this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CloseBtn,
+            this.SaveBtn});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 109);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+			this.toolStrip1.Size = new System.Drawing.Size(347, 25);
+			this.toolStrip1.TabIndex = 25;
+			// 
+			// CloseBtn
+			// 
+			this.CloseBtn.Image = global::PriemMetalClient.Properties.Resources._173050___logout;
+			this.CloseBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.CloseBtn.Name = "CloseBtn";
+			this.CloseBtn.Size = new System.Drawing.Size(73, 22);
+			this.CloseBtn.Text = "Закрыть";
+			this.CloseBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+			this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
 			// 
 			// SaveBtn
 			// 
-			this.SaveBtn.Location = new System.Drawing.Point(271, 3);
+			this.SaveBtn.Image = global::PriemMetalClient.Properties.Resources._173091___save;
+			this.SaveBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.SaveBtn.Name = "SaveBtn";
-			this.SaveBtn.Size = new System.Drawing.Size(75, 23);
-			this.SaveBtn.TabIndex = 0;
+			this.SaveBtn.Size = new System.Drawing.Size(85, 22);
 			this.SaveBtn.Text = "Сохранить";
-			this.SaveBtn.UseVisualStyleBackColor = true;
+			this.SaveBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
 			this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
-			// 
-			// CancelBtn
-			// 
-			this.CancelBtn.Location = new System.Drawing.Point(190, 3);
-			this.CancelBtn.Name = "CancelBtn";
-			this.CancelBtn.Size = new System.Drawing.Size(75, 23);
-			this.CancelBtn.TabIndex = 1;
-			this.CancelBtn.Text = "Отмена";
-			this.CancelBtn.UseVisualStyleBackColor = true;
-			this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
-			// 
-			// statusStrip1
-			// 
-			this.statusStrip1.Location = new System.Drawing.Point(0, 105);
-			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(349, 22);
-			this.statusStrip1.TabIndex = 2;
-			this.statusStrip1.Text = "statusStrip1";
 			// 
 			// BaseRecordEditForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(349, 127);
-			this.Controls.Add(this.flowLayoutPanel2);
-			this.Controls.Add(this.statusStrip1);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+			this.ClientSize = new System.Drawing.Size(347, 134);
+			this.Controls.Add(this.toolStrip1);
 			this.Name = "BaseRecordEditForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "BaseEditForm";
-			this.flowLayoutPanel2.ResumeLayout(false);
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-		private System.Windows.Forms.Button SaveBtn;
-		private System.Windows.Forms.Button CancelBtn;
-		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripButton CloseBtn;
+		private System.Windows.Forms.ToolStripButton SaveBtn;
 	}
 }

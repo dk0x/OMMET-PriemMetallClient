@@ -118,7 +118,7 @@ namespace PriemMetalClient
 					if (propInfo.DatetimeTimeOnly) text = ((DateTime)value).ToShortTimeString();
 				}
 				else
-					text = value.ToString();
+					text = value?.ToString() ?? "";
 				item.SubItems.Add(text);
 				c.Width = -2;
 			}

@@ -19,6 +19,7 @@ namespace PriemMetalClient
 			InitializeComponent();
 			ConfigManager.Load();
 			VesManager.SetWorkMethod(ConfigManager.Parameters.VesWorkMethod, true);
+			BaseRecord.SetListViewDefaultColumns<PSADocument>(PSAList);
 		}
 		private int counter = 0;
 		private void VesUpdateTimer_Tick(object sender, EventArgs e)
@@ -82,48 +83,6 @@ namespace PriemMetalClient
 
 		private void Button1_Click_1(object sender, EventArgs e)
 		{
-			//BuyPriceMetallBookForm f = new BuyPriceMetallBookForm();
-			//f.ShowNormal(this);
-			//BaseBookForm<BuyPriceMetall> testbook = new BaseBookForm<BuyPriceMetall>();
-			//test testbook = new test();
-			//testbook.SetDefaultColumns();
-			//testbook.ShowNormal(this);
-
-			/*BaseRecordEditUserControl<MetallPrice> f = new BaseRecordEditUserControl<MetallPrice>();
-			f.SetRecord(new MetallPrice { Price = 100.25m, Category = "1212" });
-			f.Parent = tabPage2;
-			f.SelectBtnVisible = true;*/
-
-			//DataBase.DB.GetCollection<PSADocument>().Delete(Query.All());
-
-			PSADocument doc = new PSADocument()
-			{
-				Nomer = 77,
-				OpisanieLoma = "asdasd",
-				Date = DateTime.Now,
-				ContragentType = ContragentType.FizLico,
-				ContragentFizLico = DataBase.DB.GetCollection<ContragentFizLico>().FindOne(Query.All()),
-				Metalls = new List<PSADocumentMetall>()
-			};
-			//DataBase.DB.GetCollection<PSADocumentMetall>().Upsert(new PSADocumentMetall() { Category = "111" });
-			//doc.Metalls.Add(DataBase.DB.GetCollection<PSADocumentMetall>().FindOne(Query.All()));
-			doc.Metalls.Add(new PSADocumentMetall() {
-				Brutto = 1000,
-				Category = "Category",
-				Netto = 2000,
-				Nomenklatura = "Nomenklatura",
-				Price = 100,
-				PSADocumentGuid = doc.Guid,
-				Summa = 1111,
-				Tara = 3000,
-				Zasor = 5
-			});
-			var b = DataBase.DB.GetCollection<PSADocument>().
-				Include(x => x.Metalls).Upsert(doc);
-			
-			//var r = DataBase.DB.GetCollection<PSADocument>().Include(x => x.ContragentFizLico).Include(x => x.Metalls).
-			//	FindOne(x=>x.Nomer == 77);
-
 		}
 
 		private void Button2_Click(object sender, EventArgs e)
@@ -143,10 +102,29 @@ namespace PriemMetalClient
 				f.ShowDialogNormal(this);
 		}
 
+		public void RefreshPSAList()
+		{
+			PSAList.Items.Clear();
+			IEnumerable<PSADocument> col = null;
+
+			col = DataBase.DB.GetCollection<PSADocument>().FindAll();
+
+			foreach (var el in col)
+				BaseRecord.AddLine<PSADocument>(PSAList, el);
+			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+			if (PSAList.Columns.Count > 0) PSAList.Columns[0].Width = 0;
+		}
+
 		private void ToolStripButton2_Click(object sender, EventArgs e)
 		{
 			using (var f = new PSADocumentForm())
-				f.ShowDialog(this);
+			{
+				if (f.ShowDialog(new PSADocument(), this))
+				{
+					RefreshPSAList();
+				}
+			}
 		}
 	}
 }

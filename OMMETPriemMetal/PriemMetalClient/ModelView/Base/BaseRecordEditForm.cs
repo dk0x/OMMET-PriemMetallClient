@@ -12,35 +12,47 @@ namespace PriemMetalClient
 	public partial class BaseRecordEditForm<TRecord> : Form where TRecord : BaseRecord
 	{
 		public BaseRecordEditUserControl<TRecord> EditUserControl = null;
-		public delegate void FormClosedSaveHandler(object sender);
-		public event FormClosedSaveHandler FormClosedSave;
 		public TRecord Record { get => EditUserControl?.Record; set => SetRecord(value); }
 		public BaseRecordEditForm()
 		{
 			InitializeComponent();
 			this.Text = $"Редактирование записи: {RecordInfoAttribute.GetClassRecordInfo<TRecord>().Text ?? ""}";
-			EditUserControl = new BaseRecordEditUserControl<TRecord>
-			{
-				Parent = this,
-				Dock = DockStyle.Top
-			};
-			AutoSize = true;
+		}
+
+		public DialogResult ShowDialog(TRecord r, IWin32Window owner)
+		{
+			SetRecord(r);
+			return ShowDialog(owner);
 		}
 
 		public void SetRecord(TRecord r)
 		{
+			if (EditUserControl != null)
+			{
+				this.Controls.Remove(EditUserControl);
+				EditUserControl.Dispose();
+				EditUserControl = null;
+			}
+			EditUserControl = new BaseRecordEditUserControl<TRecord>
+			{
+				Parent = this,
+				Width = this.ClientSize.Width,
+				Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right
+			};
+
 			EditUserControl.SetRecord(r);
+			EditUserControl.Dock = DockStyle.Top;
+			AutoSize = true;
 		}
 
 		private void SaveBtn_Click(object sender, EventArgs e)
 		{
 			DataBase.DB.GetCollection<TRecord>().Upsert(Record);
-			FormClosedSave?.Invoke(this);
 			this.DialogResult = DialogResult.OK;
 			Close();
 		}
 
-		private void CancelBtn_Click(object sender, EventArgs e)
+		private void CloseBtn_Click(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.Cancel;
 			Close();

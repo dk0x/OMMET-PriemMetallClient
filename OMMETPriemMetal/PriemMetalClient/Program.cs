@@ -13,8 +13,8 @@ namespace PriemMetalClient
 		[STAThread]
 		static void Main()
 		{
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
+			//Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(true);
 			Application.Run(new MainForm());
 		}
 	}

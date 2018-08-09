@@ -71,7 +71,6 @@ namespace PriemMetalClient
 
 		public TRecord ShowDialogSelect(Form owner)
 		{
-			SelectBtn.Visible = true;
 			if (ShowDialog(owner) == DialogResult.OK)
 				return List.SelectedItems.Count > 0 ? (List.SelectedItems[0] as ListViewItem<TRecord>)?.Record : null;
 			return null;
@@ -79,13 +78,15 @@ namespace PriemMetalClient
 
 		public void ShowNormal(Form owner)
 		{
-			SelectBtn.Visible = false;
+			BottomButtons.Items.Remove(SelectBtn);
+			//SelectBtn.Visible = false;
 			Show(owner);
 		}
 
 		public DialogResult ShowDialogNormal(Form owner)
 		{
-			SelectBtn.Visible = false;
+			BottomButtons.Items.Remove(SelectBtn);
+			//SelectBtn.Visible = false;
 			return ShowDialog(owner);
 		}
 
