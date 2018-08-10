@@ -76,24 +76,28 @@ namespace PriemMetalClient
 		{
 			var v = VesManager.Report.AverageValue;
 			brutto.Value = v >= 0m ? v : 0m;
+			SaveRecord();
 		}
 
 		private void button2_Click(object sender, EventArgs e)
 		{
 			var v = VesManager.Report.AverageValue;
 			tara.Value = v >= 0m ? v : 0m;
+			SaveRecord();
 		}
 
 		private void brutto_ValueChanged(object sender, EventArgs e)
 		{
 			var val = brutto.Value - tara.Value;
 			netto.Value = val >= 0m ? val : 0m;
+			SaveRecord();
 		}
 
 		private void netto_ValueChanged(object sender, EventArgs e)
 		{
 			var val = netto.Value * cena.Value * ((100m - zasor.Value) / 100m);
 			summa.Value = val;
+			SaveRecord();
 		}
 
 		private void CloseBtn_Click(object sender, EventArgs e)
@@ -119,6 +123,7 @@ namespace PriemMetalClient
 					uslovija.Text = m.Description;
 					nomenklatura.Text = m.Nomenklatura;
 					cena.Value = m.Price;
+					SaveRecord();
 				}
 			}
 		}

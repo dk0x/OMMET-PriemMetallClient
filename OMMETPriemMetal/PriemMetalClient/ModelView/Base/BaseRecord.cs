@@ -16,31 +16,39 @@ namespace PriemMetalClient
 		public Guid Guid { get; set; } = Guid.NewGuid();
 		public DateTime _Created { get; set; } = DateTime.Now;
 
-		public override string ToString()
+		public virtual string ToString(bool full)
 		{
-			string s = "";
-			var props = this.GetType().GetProperties();
-			foreach(var p in props)
+			if (full)
 			{
-				var pinfo = RecordInfoAttribute.GetPropertyRecordInfo(p);
-				if (pinfo?.Text != null)
+				string s = "";
+				var props = this.GetType().GetProperties();
+				foreach (var p in props)
 				{
-					s = s + pinfo.Text + ": ";
-					if (p.PropertyType == typeof(DateTime))
+					s = s + RecordInfoAttribute.ToStringBasedOnRecordInfo(p.GetValue(this, null), p) + "; ";
+					/*var pinfo = RecordInfoAttribute.GetPropertyRecordInfo(p);
+					if (pinfo?.Text != null)
 					{
-						if (pinfo.DatetimeDateOnly) s = s + ((DateTime)p.GetValue(this, null)).ToShortDateString();
-						if (pinfo.DatetimeTimeOnly) s = s + ((DateTime)p.GetValue(this, null)).ToShortTimeString();
-					} else
-					{
-						s = s + p.GetValue(this, null).ToString();
-					}
-					s = s + "; ";
+						s = s + pinfo.Text + ": ";
+						if (p.PropertyType == typeof(DateTime))
+						{
+							if (pinfo.DatetimeDateOnly) s = s + ((DateTime)p.GetValue(this, null)).ToShortDateString();
+							if (pinfo.DatetimeTimeOnly) s = s + ((DateTime)p.GetValue(this, null)).ToShortTimeString();
+						}
+						else
+						{
+							s = s + p.GetValue(this, null).ToString();
+						}
+						s = s + "; ";
+					}*/
 				}
+				return s;
+			} else
+			{
+				return this.GetType().Name;
 			}
-			return s;
 		}
 
-		public virtual string ToShortString() => ToString();
+		public override string ToString() => ToString(false);
 
 		public static void SetListViewDefaultColumns<TRecord>(ListView listView) where TRecord : BaseRecord
 		{
@@ -50,7 +58,7 @@ namespace PriemMetalClient
 			{
 				var propInfo = RecordInfoAttribute.GetPropertyRecordInfo(p);
 				if (propInfo == null) continue;
-				if (propInfo.TableNoColumn) continue; // Flags.HasFlag(RecordInfoFlags.NOTABLECOLUMN)) continue;
+				if (propInfo.TableNoColumn) continue;
 				NewColumns.Add(p.Name);
 			}
 			SetListViewColumns<TRecord>(listView, NewColumns);
@@ -101,7 +109,6 @@ namespace PriemMetalClient
 			foreach (ListViewItem<TRecord> el in listView.Items)
 				if (el.Record.Guid == record.Guid)
 				{
-					//el.Record = record;
 					// found, break search
 					item = el; 
 					break;
@@ -121,11 +128,11 @@ namespace PriemMetalClient
 			{
 				var prop = c.PropertyInfo;
 				if (prop == null) continue;
-				var propInfo = RecordInfoAttribute.GetPropertyRecordInfo(prop);
-				if (propInfo == null) continue;
-				var value = prop.GetValue(record, null);
-				string text = "";
-				if (prop.PropertyType == typeof(decimal))
+				//var propInfo = RecordInfoAttribute.GetPropertyRecordInfo(prop);
+				//if (propInfo == null) continue;
+				//var value = prop.GetValue(record, null);
+				string text = RecordInfoAttribute.ToStringBasedOnRecordInfo(prop.GetValue(record, null), prop);
+				/*if (prop.PropertyType == typeof(decimal))
 				{
 					if (!string.IsNullOrWhiteSpace(propInfo.StringFormat))
 						text = ((decimal)value).ToString(propInfo.StringFormat);
@@ -141,7 +148,7 @@ namespace PriemMetalClient
 					if (!propInfo.DatetimeDateOnly && !propInfo.DatetimeTimeOnly) text = value.ToString();
 				}
 				else
-					text = value?.ToString() ?? "";
+					text = value?.ToString() ?? "";*/
 				item.SubItems.Add(text);
 				c.Width = -2;
 			}

@@ -17,7 +17,6 @@ namespace PriemMetalClient
 		[RecordInfo("Цена за 1 тонну, руб. (без НДС)", StringFormat = "C", DecimalDigits = 2)]
 		public decimal Price { get; set; } = 0;
 
-		public override string ToString() => $"Категория лома: '{Category}', Цена за тонну: {Price.ToString("C")}";
-		public override string ToShortString() => $"{Nomenklatura}";
+		public override string ToString() => $"{Category} Цена: {Price.ToString("C")}";
 	}
 }

@@ -17,14 +17,14 @@ namespace PriemMetalClient
 
 		[RecordInfo("Серия, номер паспорта")]
 		public string SerijaNomerPasport { get; set; } = "";
-		[RecordInfo("Дата выдачи", DatetimeDateOnly = true)] //, RecordInfoFlags.DATEONLY)]
+		[RecordInfo("Дата выдачи", DateTimeFormat = DateTimeFormat.ShortDate)] 
 		public DateTime DataVidachiPasport { get; set; } = DateTime.Now;
-		[RecordInfo("Место выдачи", TextMultilane = true)] //, RecordInfoFlags.TEXTMULTILANE)]
+		[RecordInfo("Место выдачи", TextMultilane = true)] 
 		public string MestoVidachiPasport { get; set; } = "";
-		[RecordInfo("Адрес регистрации", TextMultilane = true)] //, RecordInfoFlags.TEXTMULTILANE)]
+		[RecordInfo("Адрес регистрации", TextMultilane = true)] 
 		public string AdresRegistraciiPasport { get; set; } = "";
 
-		public override string ToShortString() => $"{Familiya} {Imja} {Otchestvo}";
+		public override string ToString() => $"{Familiya} {Imja} {Otchestvo}";
 
 	}
 }

@@ -19,10 +19,10 @@ namespace PriemMetalClient
 
 		[RecordInfo("Номер договора")]
 		public string NomerDogovora { get; set; } = "";
-		[RecordInfo("Дата договора", DatetimeDateOnly = true)] 
+		[RecordInfo("Дата договора", DateTimeFormat = DateTimeFormat.ShortDate)] 
 		public DateTime DataDogovora { get; set; } = DateTime.Now;
 
-		public override string ToShortString() => $"{Naimenovanie}";
+		public override string ToString() => $"{Naimenovanie}";
 	}
 
 }

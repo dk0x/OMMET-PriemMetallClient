@@ -15,6 +15,6 @@ namespace PriemMetalClient
 		[RecordInfo("Модель")]
 		public string Model { get; set; } = string.Empty;
 
-		public override string ToShortString() => $"{Marka} {Model} {GosNomer}";
+		public override string ToString() => $"{Marka} {Model} {GosNomer}";
 	}
 }

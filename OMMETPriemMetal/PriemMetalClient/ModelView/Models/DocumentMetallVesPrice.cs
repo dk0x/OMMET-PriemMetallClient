@@ -28,6 +28,6 @@ namespace PriemMetalClient
 		[RecordInfo("Сумма", StringFormat = "C", DecimalDigits = 2)]
 		public decimal Summa { get; set; } = 0;
 
-
+		public override string ToString() => $"{Category} Вес:{Netto.ToString("N3")} т. Стоимость: {Summa.ToString("C")}";
 	}
 }

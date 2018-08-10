@@ -44,7 +44,7 @@ namespace PriemMetalClient
 
 		public void UpdateText()
 		{
-			textBox.Text = Record?.ToShortString() ?? "";
+			textBox.Text = Record?.ToString() ?? "";
 		}
 
 		private void SelectBtn_Click(object sender, EventArgs e)

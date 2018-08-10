@@ -13,10 +13,10 @@ namespace PriemMetalClient
 	}
 	public class PSADocument : BaseRecord
 	{
-		[RecordInfo("Номер документа")]
+		[RecordInfo("Номер документа", StringFormat = "D8")]
 		public int Nomer { get; set; } = 0;
 
-		[RecordInfo("От", DatetimeDateOnly = true)]
+		[RecordInfo("От", DateTimeFormat = DateTimeFormat.ShortDate)]
 		public DateTime Date { get; set; } = DateTime.Now;
 
 		[RecordInfo("Отделение приема")]
@@ -53,6 +53,7 @@ namespace PriemMetalClient
 		[RecordInfo("Цена без НДС")]
 		public bool Nds { get; set; } = false;
 
+		public override string ToString() => $"ПСА-{Nomer} От {Date.ToShortDateString()} Сумма {Summa.ToString("C")}";
 
 
 		//[RecordInfo("Список принятого металла")]
