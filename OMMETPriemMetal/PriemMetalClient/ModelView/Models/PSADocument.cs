@@ -16,7 +16,7 @@ namespace PriemMetalClient
 		[RecordInfo("Номер документа")]
 		public int Nomer { get; set; } = 0;
 
-		[RecordInfo("От")]
+		[RecordInfo("От", DatetimeDateOnly = true)]
 		public DateTime Date { get; set; } = DateTime.Now;
 
 		[RecordInfo("Отделение приема")]
@@ -55,13 +55,12 @@ namespace PriemMetalClient
 
 
 
-		[RecordInfo("Список принятого металла")]
-		//[LiteDB.BsonIgnore]
-		[LiteDB.BsonRef("PSADocumentMetall")]
-		public List<PSADocumentMetall> Metalls { get; set; } = new List<PSADocumentMetall>();
-		/*{
-			get => DataBase.DB.GetCollection<PSADocumentMetall>().Find(x => x.PSADocumentGuid == Guid).ToList();
-		}*/
+		//[RecordInfo("Список принятого металла")]
+		[LiteDB.BsonIgnore]
+		//[LiteDB.BsonRef("PSADocumentMetall")]
+		public List<DocumentMetallVesPrice> MetallVesPriceItems {
+			get => DataBase.DB.GetCollection<DocumentMetallVesPrice>().Find(x => x.OwnerDocumentGuid == Guid).ToList();
+		}
 	}
 
 }

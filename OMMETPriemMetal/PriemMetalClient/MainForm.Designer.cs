@@ -54,17 +54,15 @@
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.PSAList = new System.Windows.Forms.ListView();
-			this.icon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.complete = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.datetime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.docno = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+			this.NewPSADocumentBtn = new System.Windows.Forms.ToolStripButton();
+			this.EditPSADocumentBtn = new System.Windows.Forms.ToolStripButton();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.button1 = new System.Windows.Forms.Button();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+			this.DeletePSADocumentBtn = new System.Windows.Forms.ToolStripButton();
 			this.toolStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -281,11 +279,6 @@
 			// 
 			// PSAList
 			// 
-			this.PSAList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.icon,
-            this.complete,
-            this.datetime,
-            this.docno});
 			this.PSAList.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PSAList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.PSAList.FullRowSelect = true;
@@ -299,48 +292,40 @@
 			this.PSAList.UseCompatibleStateImageBehavior = false;
 			this.PSAList.View = System.Windows.Forms.View.Details;
 			// 
-			// icon
-			// 
-			this.icon.Text = "";
-			this.icon.Width = 30;
-			// 
-			// complete
-			// 
-			this.complete.Text = "Г";
-			this.complete.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.complete.Width = 30;
-			// 
-			// datetime
-			// 
-			this.datetime.Text = "Дата, время";
-			this.datetime.Width = 120;
-			// 
-			// docno
-			// 
-			this.docno.Text = "Номер";
-			this.docno.Width = 100;
-			// 
 			// toolStrip2
 			// 
 			this.toolStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
 			this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2});
+            this.NewPSADocumentBtn,
+            this.EditPSADocumentBtn,
+            this.DeletePSADocumentBtn});
 			this.toolStrip2.Location = new System.Drawing.Point(3, 3);
 			this.toolStrip2.Name = "toolStrip2";
 			this.toolStrip2.Size = new System.Drawing.Size(1022, 54);
 			this.toolStrip2.TabIndex = 0;
 			this.toolStrip2.Text = "toolStrip2";
 			// 
-			// toolStripButton2
+			// NewPSADocumentBtn
 			// 
-			this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripButton2.Name = "toolStripButton2";
-			this.toolStripButton2.Size = new System.Drawing.Size(104, 51);
-			this.toolStripButton2.Text = "Новый документ";
-			this.toolStripButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton2_Click);
+			this.NewPSADocumentBtn.Image = global::PriemMetalClient.Properties.Resources._173077___plus1;
+			this.NewPSADocumentBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.NewPSADocumentBtn.Name = "NewPSADocumentBtn";
+			this.NewPSADocumentBtn.Size = new System.Drawing.Size(104, 51);
+			this.NewPSADocumentBtn.Text = "Новый документ";
+			this.NewPSADocumentBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.NewPSADocumentBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.NewPSADocumentBtn.Click += new System.EventHandler(this.NewPSADocumentBtn_Click);
+			// 
+			// EditPSADocumentBtn
+			// 
+			this.EditPSADocumentBtn.Image = global::PriemMetalClient.Properties.Resources._173002___edit;
+			this.EditPSADocumentBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.EditPSADocumentBtn.Name = "EditPSADocumentBtn";
+			this.EditPSADocumentBtn.Size = new System.Drawing.Size(91, 51);
+			this.EditPSADocumentBtn.Text = "Редактировать";
+			this.EditPSADocumentBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.EditPSADocumentBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.EditPSADocumentBtn.Click += new System.EventHandler(this.EditPSADocumentBtn_Click);
 			// 
 			// tabPage2
 			// 
@@ -387,6 +372,17 @@
 			this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
 			this.printPreviewDialog1.Name = "printPreviewDialog1";
 			this.printPreviewDialog1.Visible = false;
+			// 
+			// DeletePSADocumentBtn
+			// 
+			this.DeletePSADocumentBtn.Image = global::PriemMetalClient.Properties.Resources._173055___minus;
+			this.DeletePSADocumentBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.DeletePSADocumentBtn.Name = "DeletePSADocumentBtn";
+			this.DeletePSADocumentBtn.Size = new System.Drawing.Size(55, 51);
+			this.DeletePSADocumentBtn.Text = "Удалить";
+			this.DeletePSADocumentBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.DeletePSADocumentBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.DeletePSADocumentBtn.Click += new System.EventHandler(this.DeletePSADocumentBtn_Click);
 			// 
 			// MainForm
 			// 
@@ -438,12 +434,8 @@
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.ListView PSAList;
-		private System.Windows.Forms.ColumnHeader icon;
-		private System.Windows.Forms.ColumnHeader complete;
-		private System.Windows.Forms.ColumnHeader datetime;
-		private System.Windows.Forms.ColumnHeader docno;
 		private System.Windows.Forms.ToolStrip toolStrip2;
-		private System.Windows.Forms.ToolStripButton toolStripButton2;
+		private System.Windows.Forms.ToolStripButton NewPSADocumentBtn;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.ToolStripMenuItem справочникиToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem закупочныеЦеныНаМеталлоломToolStripMenuItem;
@@ -454,5 +446,7 @@
 		private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
 		private System.Windows.Forms.ToolStripMenuItem сервисToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem параметрыToolStripMenuItem;
+		private System.Windows.Forms.ToolStripButton EditPSADocumentBtn;
+		private System.Windows.Forms.ToolStripButton DeletePSADocumentBtn;
 	}
 }

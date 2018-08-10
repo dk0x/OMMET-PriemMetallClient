@@ -13,7 +13,6 @@ namespace PriemMetalClient
 		[RecordInfo("Номенклатура")]
 		public string Nomenklatura { get; set; } = "";
 		[RecordInfo("Условия поставки", TextMultilane = true, TableNoColumn = true, TableNoFilter = true)]
-			//, RecordInfoFlags.TEXTMULTILANE | RecordInfoFlags.NOTABLECOLUMN | RecordInfoFlags.NOFILTER)]
 		public string Description { get; set; } = "";
 		[RecordInfo("Цена за 1 тонну, руб. (без НДС)", StringFormat = "C", DecimalDigits = 2)]
 		public decimal Price { get; set; } = 0;

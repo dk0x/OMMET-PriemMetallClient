@@ -16,8 +16,7 @@ namespace PriemMetalClient
 				Include(x => x.ContragentFizLico).
 				Include(x => x.ContragentUrLico).
 				Include(x => x.Otdelenie).
-				Include(x => x.Transport).
-				Include(x => x.Metalls);
+				Include(x => x.Transport);
 			}
 
 		private static LiteDatabase GetDB()
@@ -38,11 +37,12 @@ namespace PriemMetalClient
 			DB.DropCollection(typeof(MetallPrice).Name);
 			DB.DropCollection(typeof(Otdelenie).Name);
 			DB.DropCollection(typeof(PSADocument).Name);
-			DB.DropCollection(typeof(PSADocumentMetall).Name);
+			DB.DropCollection(typeof(DocumentMetallVesPrice).Name);
 			DB.DropCollection(typeof(Transport).Name);
+			Otdelenie otdelenie;
 			{
 				var con = DB.GetCollection<Otdelenie>();
-				con.Upsert(new Otdelenie()
+				con.Upsert(otdelenie = new Otdelenie()
 				{
 					Adres = "г. Омскб, ул. 22 Партсъезда, 105",
 					Nazvanie = "ОП ВМР-Амурское",
@@ -80,9 +80,10 @@ namespace PriemMetalClient
 					Price = 6000
 				});
 			}
+			Transport transport;
 			{
 				var con = DB.GetCollection<Transport>();
-				con.Upsert(new Transport()
+				con.Upsert(transport = new Transport()
 				{
 					GosNomer = "К357РМ 55",
 					Marka = "ГАЗ",
@@ -101,9 +102,10 @@ namespace PriemMetalClient
 					Model = "БУХАНКА"
 				});
 			}
+			ContragentFizLico contragentFizLico;
 			{
 				var con = DB.GetCollection<ContragentFizLico>();
-				con.Upsert(new ContragentFizLico()
+				con.Upsert(contragentFizLico = new ContragentFizLico()
 				{
 					Familiya = "Иванов",
 					Imja = "Иван",
@@ -112,6 +114,17 @@ namespace PriemMetalClient
 					DataVidachiPasport = new DateTime(2008, 5, 8),
 					AdresRegistraciiPasport = "ул. Пушкина, д. 5",
 					MestoVidachiPasport = "УВД в ЦАО г. Омска"
+				});
+			}
+			{
+				var con = DB.GetCollection<PSADocument>();
+				con.Upsert(new PSADocument
+				{
+					ContragentFizLico = contragentFizLico,
+					ContragentType = ContragentType.FizLico,
+					Nomer = 564,
+					Otdelenie = otdelenie,
+					Transport = transport
 				});
 			}
 		}

@@ -95,13 +95,28 @@ namespace PriemMetalClient
 		}
 		public static void UpsertListViewItem<TRecord>(ListView listView, TRecord record) where TRecord : BaseRecord
 		{
+			if (listView == null || record == null) return;
+			ListViewItem<TRecord> item = null;
+			// search exist item in list
 			foreach (ListViewItem<TRecord> el in listView.Items)
 				if (el.Record.Guid == record.Guid)
 				{
-					el.Record = record;
-					return;
+					//el.Record = record;
+					// found, break search
+					item = el; 
+					break;
 				}
-			ListViewItem<TRecord> item = new ListViewItem<TRecord>();
+			if (item != null) // if item exist clear subitems 
+			{
+				item.SubItems.Clear();
+			}
+			else // if not exist create and add to listview
+			{
+				item = new ListViewItem<TRecord>();
+				listView.Items.Add(item);
+				item.Record = record;
+			}
+			// fill substrings
 			foreach (DBColumnHeader c in listView.Columns)
 			{
 				var prop = c.PropertyInfo;
@@ -120,16 +135,16 @@ namespace PriemMetalClient
 				else
 				if (prop.PropertyType == typeof(DateTime))
 				{
+					
 					if (propInfo.DatetimeDateOnly) text = ((DateTime)value).ToShortDateString();
 					if (propInfo.DatetimeTimeOnly) text = ((DateTime)value).ToShortTimeString();
+					if (!propInfo.DatetimeDateOnly && !propInfo.DatetimeTimeOnly) text = value.ToString();
 				}
 				else
 					text = value?.ToString() ?? "";
 				item.SubItems.Add(text);
 				c.Width = -2;
 			}
-			item.Record = record;
-			listView.Items.Add(item);
 		}
 
 	}

@@ -20,6 +20,7 @@ namespace PriemMetalClient
 			ConfigManager.Load();
 			VesManager.SetWorkMethod(ConfigManager.Parameters.VesWorkMethod, true);
 			BaseRecord.SetListViewDefaultColumns<PSADocument>(PSAList);
+			RefreshPSAList();
 		}
 		private int counter = 0;
 		private void VesUpdateTimer_Tick(object sender, EventArgs e)
@@ -123,21 +124,35 @@ namespace PriemMetalClient
 			if (PSAList.Columns.Count > 0) PSAList.Columns[0].Width = 0;
 		}
 
-		private void ToolStripButton2_Click(object sender, EventArgs e)
+		private void NewPSADocumentBtn_Click(object sender, EventArgs e)
 		{
-			using (var f = new PSADocumentForm())
+			using (var f = new PSADocumentForm()) // создадим форму
 			{
-				var doc = new PSADocument();
-				DataBase.DB.GetCollection<PSADocument>().Upsert(doc);
-				if (f.ShowDialog(doc, this))
+				f.ShowDialogWithCreateNewDocument(this); // откровем форму с автосозданием документа
+				RefreshPSAList(); // обновим список
+			}
+		}
+
+		private void EditPSADocumentBtn_Click(object sender, EventArgs e)
+		{
+			if (PSAList.SelectedItems.Count > 0)
+			{
+				//ListViewItem<PSADocument> item = PSAList.SelectedItems[0];
+				using (var f = new PSADocumentForm()) // создадим форму
 				{
-					RefreshPSAList();
-				} else
-				{
-					foreach (var el in doc.Metalls)
-						DataBase.DB.GetCollection<PSADocumentMetall>().Delete(el.Guid);
-					DataBase.DB.GetCollection<PSADocument>().Delete(doc.Guid);
+					f.ShowDialogForEditDocument((PSAList.SelectedItems[0] as ListViewItem<PSADocument>)?.Record, this); // откровем форму с автосозданием документа
+					RefreshPSAList(); // обновим список
 				}
+			}
+		}
+
+		private void DeletePSADocumentBtn_Click(object sender, EventArgs e)
+		{
+			if (PSAList.SelectedItems.Count > 0)
+			{
+				var item = PSAList.SelectedItems[0];
+				DataBase.DB.GetCollection<PSADocument>().Delete((item as ListViewItem<PSADocument>).Record.Guid);
+				PSAList.Items.Remove(item);
 			}
 		}
 	}

@@ -105,11 +105,11 @@
     <Compile Include="ModelView\Forms\PSADocumentForm.Designer.cs">
       <DependentUpon>PSADocumentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelView\Forms\PSADocumentMetallForm.cs">
+    <Compile Include="ModelView\Forms\DocumentMetallVesPriceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModelView\Forms\PSADocumentMetallForm.Designer.cs">
-      <DependentUpon>PSADocumentMetallForm.cs</DependentUpon>
+    <Compile Include="ModelView\Forms\DocumentMetallVesPriceForm.Designer.cs">
+      <DependentUpon>DocumentMetallVesPriceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelView\Models\PSADocument.cs" />
     <Compile Include="ModelView\Models\ContragentFizLico.cs" />
@@ -163,7 +163,7 @@
       <DependentUpon>TextPropertyFilterUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelView\Models\Otdelenie.cs" />
-    <Compile Include="ModelView\Models\PSADocumentMetall.cs" />
+    <Compile Include="ModelView\Models\DocumentMetallVesPrice.cs" />
     <Compile Include="ModelView\Models\Transport.cs" />
     <Compile Include="ModelView\Selects\ContragentFizLicoRecordSelectUserControl.cs">
       <SubType>UserControl</SubType>
@@ -226,8 +226,8 @@
     <EmbeddedResource Include="ModelView\Forms\PSADocumentForm.resx">
       <DependentUpon>PSADocumentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModelView\Forms\PSADocumentMetallForm.resx">
-      <DependentUpon>PSADocumentMetallForm.cs</DependentUpon>
+    <EmbeddedResource Include="ModelView\Forms\DocumentMetallVesPriceForm.resx">
+      <DependentUpon>DocumentMetallVesPriceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

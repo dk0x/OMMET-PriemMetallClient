@@ -6,13 +6,15 @@ using System.Text;
 namespace PriemMetalClient
 {
 	[RecordInfo("Прием партии металлолома")]
-	public class PSADocumentMetall : BaseRecord
+	public class DocumentMetallVesPrice : BaseRecord
 	{
-		public Guid PSADocumentGuid { get; set; } = Guid.Empty;
-		[RecordInfo("Категория металла")]
-		public string Category { get; set; } = null;
+		public Guid OwnerDocumentGuid { get; set; } = Guid.Empty;
+		[RecordInfo("Категория лома")]
+		public string Category { get; set; } = "";
 		[RecordInfo("Номенклатура")]
 		public string Nomenklatura { get; set; } = "";
+		[RecordInfo("Условия поставки", TextMultilane = true, TableNoColumn = true, TableNoFilter = true)]
+		public string Description { get; set; } = "";
 		[RecordInfo("Брутто", StringFormat = "N3", DecimalDigits = 3, VesValueInsertButton = true)]
 		public decimal Brutto { get; set; } = 0;
 		[RecordInfo("Тара", StringFormat = "N3", DecimalDigits = 3, VesValueInsertButton = true)]
