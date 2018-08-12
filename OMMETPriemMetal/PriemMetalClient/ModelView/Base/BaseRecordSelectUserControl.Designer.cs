@@ -62,7 +62,7 @@
 			// 
 			// SelectBtn
 			// 
-			this.SelectBtn.BackgroundImage = global::PriemMetalClient.Properties.Resources._173017___folder_open;
+			this.SelectBtn.BackgroundImage = global::PriemMetalClient.Properties.Resources._173095___search;
 			this.SelectBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.SelectBtn.Dock = System.Windows.Forms.DockStyle.Right;
 			this.SelectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -73,6 +73,7 @@
 			this.SelectBtn.Name = "SelectBtn";
 			this.SelectBtn.Size = new System.Drawing.Size(20, 20);
 			this.SelectBtn.TabIndex = 11;
+			this.SelectBtn.Text = "...";
 			this.SelectBtn.UseVisualStyleBackColor = false;
 			this.SelectBtn.Click += new System.EventHandler(this.SelectBtn_Click);
 			// 

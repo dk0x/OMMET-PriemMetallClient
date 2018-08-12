@@ -73,6 +73,8 @@ namespace PriemMetalClient
 						
 						//AutoSize = true
 					};
+					f.numericUpDown.Maximum = ri.MaxValue;
+					f.numericUpDown.Minimum = ri.MinValue;
 					f.Set(record, p);
 					h += f.Height;
 				}

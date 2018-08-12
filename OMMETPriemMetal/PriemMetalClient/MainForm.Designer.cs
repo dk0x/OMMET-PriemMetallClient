@@ -57,12 +57,13 @@
 			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
 			this.NewPSADocumentBtn = new System.Windows.Forms.ToolStripButton();
 			this.EditPSADocumentBtn = new System.Windows.Forms.ToolStripButton();
+			this.DeletePSADocumentBtn = new System.Windows.Forms.ToolStripButton();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.button1 = new System.Windows.Forms.Button();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-			this.DeletePSADocumentBtn = new System.Windows.Forms.ToolStripButton();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.toolStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -258,6 +259,7 @@
 			// 
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl1.Location = new System.Drawing.Point(0, 24);
 			this.tabControl1.Name = "tabControl1";
@@ -327,6 +329,17 @@
 			this.EditPSADocumentBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
 			this.EditPSADocumentBtn.Click += new System.EventHandler(this.EditPSADocumentBtn_Click);
 			// 
+			// DeletePSADocumentBtn
+			// 
+			this.DeletePSADocumentBtn.Image = global::PriemMetalClient.Properties.Resources._173055___minus;
+			this.DeletePSADocumentBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.DeletePSADocumentBtn.Name = "DeletePSADocumentBtn";
+			this.DeletePSADocumentBtn.Size = new System.Drawing.Size(55, 51);
+			this.DeletePSADocumentBtn.Text = "Удалить";
+			this.DeletePSADocumentBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.DeletePSADocumentBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.DeletePSADocumentBtn.Click += new System.EventHandler(this.DeletePSADocumentBtn_Click);
+			// 
 			// tabPage2
 			// 
 			this.tabPage2.Controls.Add(this.dateTimePicker1);
@@ -373,16 +386,15 @@
 			this.printPreviewDialog1.Name = "printPreviewDialog1";
 			this.printPreviewDialog1.Visible = false;
 			// 
-			// DeletePSADocumentBtn
+			// tabPage3
 			// 
-			this.DeletePSADocumentBtn.Image = global::PriemMetalClient.Properties.Resources._173055___minus;
-			this.DeletePSADocumentBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.DeletePSADocumentBtn.Name = "DeletePSADocumentBtn";
-			this.DeletePSADocumentBtn.Size = new System.Drawing.Size(55, 51);
-			this.DeletePSADocumentBtn.Text = "Удалить";
-			this.DeletePSADocumentBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.DeletePSADocumentBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			this.DeletePSADocumentBtn.Click += new System.EventHandler(this.DeletePSADocumentBtn_Click);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(1028, 395);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "tabPage3";
+			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
@@ -448,5 +460,6 @@
 		private System.Windows.Forms.ToolStripMenuItem параметрыToolStripMenuItem;
 		private System.Windows.Forms.ToolStripButton EditPSADocumentBtn;
 		private System.Windows.Forms.ToolStripButton DeletePSADocumentBtn;
+		private System.Windows.Forms.TabPage tabPage3;
 	}
 }

@@ -9,11 +9,11 @@ namespace PriemMetalClient
 	public class MetallPrice : BaseRecord
 	{
 		[RecordInfo("Категория лома")]
-		public string Category { get; set; } = "";
+		public string Category { get; set; } = string.Empty;
 		[RecordInfo("Номенклатура")]
-		public string Nomenklatura { get; set; } = "";
+		public string Nomenklatura { get; set; } = string.Empty;
 		[RecordInfo("Условия поставки", TextMultilane = true, TableNoColumn = true, TableNoFilter = true)]
-		public string Description { get; set; } = "";
+		public string Description { get; set; } = string.Empty;
 		[RecordInfo("Цена за 1 тонну, руб. (без НДС)", StringFormat = "C", DecimalDigits = 2)]
 		public decimal Price { get; set; } = 0;
 

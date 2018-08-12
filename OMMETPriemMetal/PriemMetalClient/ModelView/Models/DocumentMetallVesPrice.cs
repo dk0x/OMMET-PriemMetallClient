@@ -10,11 +10,11 @@ namespace PriemMetalClient
 	{
 		public Guid OwnerDocumentGuid { get; set; } = Guid.Empty;
 		[RecordInfo("Категория лома")]
-		public string Category { get; set; } = "";
+		public string Category { get; set; } = string.Empty;
 		[RecordInfo("Номенклатура")]
-		public string Nomenklatura { get; set; } = "";
+		public string Nomenklatura { get; set; } = string.Empty;
 		[RecordInfo("Условия поставки", TextMultilane = true, TableNoColumn = true, TableNoFilter = true)]
-		public string Description { get; set; } = "";
+		public string Description { get; set; } = string.Empty;
 		[RecordInfo("Брутто", StringFormat = "N3", DecimalDigits = 3, VesValueInsertButton = true)]
 		public decimal Brutto { get; set; } = 0;
 		[RecordInfo("Тара", StringFormat = "N3", DecimalDigits = 3, VesValueInsertButton = true)]

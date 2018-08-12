@@ -8,7 +8,7 @@ namespace PriemMetalClient
 {
 	public enum StringCase
 	{
-		None, UpperCase, LowerCase
+		Normal, UpperCase, LowerCase
 	}
 	public enum DateTimeFormat
 	{
@@ -28,7 +28,7 @@ namespace PriemMetalClient
 
 		public DateTimeFormat DateTimeFormat { get; set; } = DateTimeFormat.Full;
 		public string StringFormat { get; set; } = null;
-		public StringCase StringCase { get; set; } = StringCase.None;
+		public StringCase StringCase { get; set; } = StringCase.Normal;
 		public RecordInfoAttribute(string text)
 		{
 			Text = text;
@@ -52,19 +52,26 @@ namespace PriemMetalClient
 		public static string ToStringBasedOnRecordInfo(object value, PropertyInfo propertyInfo)
 		{
 			if (value == null) return "";
+			
 			RecordInfoAttribute infoAttribute = RecordInfoAttribute.GetPropertyRecordInfo(propertyInfo);
-			string result = value.ToString();
-			if (propertyInfo.PropertyType == typeof(decimal))
+			string result = "";
+			if (value.GetType() == typeof(string))
+			{
+				result = value as string;
+			}
+			else
+			if (value.GetType() == typeof(decimal))
 			{
 				decimal v = Convert.ToDecimal(value);
 				result = string.IsNullOrWhiteSpace(infoAttribute.StringFormat) ? v.ToString() : v.ToString(infoAttribute.StringFormat);
 			}
 			else
-			if (propertyInfo.PropertyType == typeof(DateTime))
+			if (value.GetType() == typeof(DateTime))
 			{
 				DateTime v = Convert.ToDateTime(value);
 				switch (infoAttribute.DateTimeFormat)
 				{
+					case DateTimeFormat.Full: result = v.ToString(); break;
 					case DateTimeFormat.FullDate: result = v.ToLongDateString(); break;
 					case DateTimeFormat.FullTime: result = v.ToLongTimeString(); break;
 					case DateTimeFormat.ShortDate: result = v.ToShortDateString(); break;
@@ -75,10 +82,14 @@ namespace PriemMetalClient
 				}
 			}
 			else
-			if (propertyInfo.PropertyType == typeof(bool))
+			if (value.GetType() == typeof(bool))
 			{
 				bool v = Convert.ToBoolean(value);
 				result = v ? "Да" : "Нет";
+			}
+			else
+			{
+				result = value.ToString();
 			}
 
 			switch (infoAttribute.StringCase)

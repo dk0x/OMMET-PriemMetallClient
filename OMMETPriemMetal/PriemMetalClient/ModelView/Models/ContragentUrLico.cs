@@ -9,16 +9,16 @@ namespace PriemMetalClient
 	public class ContragentUrLico : BaseRecord
 	{
 		[RecordInfo("Наименование юридического лица")]
-		public string Naimenovanie { get; set; } = "";
+		public string Naimenovanie { get; set; } = string.Empty;
 		[RecordInfo("ИНН")]
-		public string Inn { get; set; } = "";
+		public string Inn { get; set; } = string.Empty;
 		[RecordInfo("КПП")]
-		public string Kpp { get; set; } = "";
+		public string Kpp { get; set; } = string.Empty;
 		[RecordInfo("Адрес юридического лица", TextMultilane = true)] 
-		public string Adress { get; set; } = "";
+		public string Adress { get; set; } = string.Empty;
 
 		[RecordInfo("Номер договора")]
-		public string NomerDogovora { get; set; } = "";
+		public string NomerDogovora { get; set; } = string.Empty;
 		[RecordInfo("Дата договора", DateTimeFormat = DateTimeFormat.ShortDate)] 
 		public DateTime DataDogovora { get; set; } = DateTime.Now;
 

@@ -9,11 +9,11 @@ namespace PriemMetalClient
 	public class Otdelenie: BaseRecord
 	{
 		[RecordInfo("Название")]
-		public string Nazvanie { get; set; } = "";
+		public string Nazvanie { get; set; } = string.Empty;
 		[RecordInfo("Адрес")]
-		public string Adres { get; set; } = "";
+		public string Adres { get; set; } = string.Empty;
 		[RecordInfo("Телефон")]
-		public string Telefon { get; set; } = "";
+		public string Telefon { get; set; } = string.Empty;
 
 		public override string ToString() => $"{Nazvanie}";
 	}

@@ -91,6 +91,9 @@ namespace PriemMetalClient
 
 		private void Button1_Click_1(object sender, EventArgs e)
 		{
+
+			//Tools.OpenLink(Tools.Path("\\1.html"));
+			//Tools.OpenLink("https:\\google.ru");
 		}
 
 		private void Button2_Click(object sender, EventArgs e)
