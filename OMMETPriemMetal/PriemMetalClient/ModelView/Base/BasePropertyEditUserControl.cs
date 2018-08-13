@@ -14,6 +14,7 @@ namespace PriemMetalClient
 	{
 		public BaseRecord Record { get; set; } = default(BaseRecord);
 		public PropertyInfo Property { get; private set; } = null;
+		public RecordInfoAttribute PropertyRecordInfo { get; private set; } = null;
 		public object Value { get => GetValue(); set => SetValue(value); }
 		public virtual void Set(BaseRecord record, PropertyInfo prop)
 		{
@@ -30,6 +31,7 @@ namespace PriemMetalClient
 		public virtual void SetProperty(PropertyInfo prop)
 		{
 			Property = prop;
+			PropertyRecordInfo = RecordInfoAttribute.GetPropertyRecordInfo(prop);
 		}
 
 		public virtual void SetValue(object value)

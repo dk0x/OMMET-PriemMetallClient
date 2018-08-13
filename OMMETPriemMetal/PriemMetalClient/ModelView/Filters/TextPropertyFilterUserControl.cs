@@ -16,7 +16,7 @@ namespace PriemMetalClient
 		public TextPropertyFilterUserControl()
 		{
 			InitializeComponent();
-			SupportTypes.AddRange(new[] { typeof(string) });
+			//SupportTypes.AddRange(new[] { typeof(string) });
 		}
 
 		public override bool SetProperty(PropertyInfo prop)

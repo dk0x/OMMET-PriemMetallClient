@@ -10,9 +10,9 @@ using System.Reflection;
 
 namespace PriemMetalClient
 {
-	public partial class DecimalPropertyEditUserControl : BasePropertyEditUserControl
+	public partial class NumericPropertyEditUserControl : BasePropertyEditUserControl
 	{
-		public DecimalPropertyEditUserControl()
+		public NumericPropertyEditUserControl()
 		{
 			InitializeComponent();
 		}

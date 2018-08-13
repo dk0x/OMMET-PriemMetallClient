@@ -14,12 +14,12 @@ namespace PriemMetalClient
 		public event EnterKeyPressHandler EnterKeyPress;
 		public void ApplyFilterEvent(object sender) => EnterKeyPress?.Invoke(sender);
 		public PropertyInfo Property { get; private set; } = null;
-		public List<Type> SupportTypes = new List<Type>();
+		//public List<Type> SupportTypes = new List<Type>();
 
 		public virtual bool SetProperty(PropertyInfo prop)
 		{
 			if (prop == null) return false;
-			if (!(SupportTypes.Contains(prop.PropertyType))) return false;
+			//if (!(SupportTypes.Contains(prop.PropertyType))) return false;
 			Property = prop;
 			return true;
 		}

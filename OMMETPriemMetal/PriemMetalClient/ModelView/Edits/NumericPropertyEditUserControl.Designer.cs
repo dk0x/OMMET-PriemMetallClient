@@ -1,6 +1,6 @@
 ﻿namespace PriemMetalClient
 {
-	partial class DecimalPropertyEditUserControl : BasePropertyEditUserControl
+	partial class NumericPropertyEditUserControl : BasePropertyEditUserControl
 	{
 		/// <summary> 
 		/// Обязательная переменная конструктора.
@@ -40,15 +40,15 @@
 			this.numericUpDown.Dock = System.Windows.Forms.DockStyle.Top;
 			this.numericUpDown.Location = new System.Drawing.Point(0, 13);
 			this.numericUpDown.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
+			999999999,
+			0,
+			0,
+			0});
 			this.numericUpDown.Minimum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            -2147483648});
+			999999999,
+			0,
+			0,
+			-2147483648});
 			this.numericUpDown.Name = "numericUpDown";
 			this.numericUpDown.Size = new System.Drawing.Size(133, 20);
 			this.numericUpDown.TabIndex = 0;

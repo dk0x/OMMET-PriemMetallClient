@@ -23,7 +23,6 @@ D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\Pri
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.MainForm.resources
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.BaseRecordSelectUserControl.resources
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.DateTimePropertyEditUserControl.resources
-D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.DecimalPropertyEditUserControl.resources
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.TextPropertyEditUserControl.resources
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.NumericFilterUserControl.resources
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.TextPropertyFilterUserControl.resources
@@ -33,5 +32,6 @@ D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\Pri
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.csproj.CoreCompileInputs.cache
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.exe
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.pdb
-D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.csprojResolveAssemblyReference.cache
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.DocumentMetallVesPriceForm.resources
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.NumericPropertyEditUserControl.resources
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.csprojResolveAssemblyReference.cache

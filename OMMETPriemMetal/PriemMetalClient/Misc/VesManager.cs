@@ -66,7 +66,6 @@ namespace PriemMetalClient
 			var rnd = new Random();
 			foreach (VesData data in fifo_backup)
 			{
-				//data.Value = rnd.Next(1000, 1100) / 10;
 				if ((now - data.Timestamp) <= TimeRange)
 				{
 					sumAll += data.Value;

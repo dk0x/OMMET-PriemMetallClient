@@ -17,7 +17,7 @@ namespace PriemMetalClient
 		{
 			InitializeComponent();
 			comboBox.SelectedIndex = 0;
-			SupportTypes.AddRange(new[]{ typeof(int), typeof(decimal), typeof(float), typeof(double) });
+			//SupportTypes.AddRange(new[]{ typeof(int), typeof(decimal), typeof(float), typeof(double) });
 		}
 
 		public override bool SetProperty(PropertyInfo prop)

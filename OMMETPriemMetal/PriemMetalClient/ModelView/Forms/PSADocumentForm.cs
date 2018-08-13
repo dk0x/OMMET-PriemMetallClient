@@ -63,7 +63,7 @@ namespace PriemMetalClient
 			}
 			opisanieLoma.Text = doc.OpisanieLoma;
 			osnovanie.Text = doc.Osnovanie;
-			nds.Checked = doc.Nds;
+			nds.Checked = doc.BezNds;
 			RefreshList();
 			UpdatePriceVes();
 		}
@@ -81,14 +81,14 @@ namespace PriemMetalClient
 			PSADocument.ContragentType = FizLicoSelect.Checked ? ContragentType.FizLico :
 				UrLizoSelect.Checked ? ContragentType.UrLico : ContragentType.UrLico;
 			PSADocument.ContragentUrLico = contragentUrLicoRecordSelectUserControl1.Record;
-			PSADocument.Nds = nds.Checked;
+			PSADocument.BezNds = nds.Checked;
 			PSADocument.Netto = netto.Value;
 			PSADocument.OpisanieLoma = opisanieLoma.Text;
 			PSADocument.Osnovanie = osnovanie.Text;
 			PSADocument.Otdelenie = otdelenieRecordSelectUserControl1.Record;
 			PSADocument.Summa = summa.Value;
 			PSADocument.Transport = transportRecordSelectUserControl1.Record;
-			foreach(ListViewItem<DocumentMetallVesPrice> el in List.Items)
+			foreach(DBListViewItem<DocumentMetallVesPrice> el in List.Items)
 			{
 				DataBase.DB.GetCollection<DocumentMetallVesPrice>().Upsert(el.Record);
 			}
@@ -118,7 +118,7 @@ namespace PriemMetalClient
 		{
 			netto.Value = 0;
 			summa.Value = 0;
-			foreach(ListViewItem<DocumentMetallVesPrice> item in List.Items)
+			foreach(DBListViewItem<DocumentMetallVesPrice> item in List.Items)
 			{
 				netto.Value += item.Record.Netto;
 				summa.Value += item.Record.Summa;
@@ -148,16 +148,12 @@ namespace PriemMetalClient
 			Close();
 		}
 
-		private void SaveBtn_Click(object sender, EventArgs e)
-		{
-		}
-
 		private void DeleteMetallVesPriceBtn_Click(object sender, EventArgs e)
 		{
 			if (List.SelectedIndices.Count > 0)
 			{
 				var listViewItem = List.SelectedItems[0];
-				DocumentMetallVesPrice metall = (listViewItem as ListViewItem<DocumentMetallVesPrice>)?.Record;
+				DocumentMetallVesPrice metall = (listViewItem as DBListViewItem<DocumentMetallVesPrice>)?.Record;
 				if (metall != null) DataBase.DB.GetCollection<DocumentMetallVesPrice>().Delete(metall.Guid);
 				UpdatePriceVes();
 			}
@@ -170,11 +166,16 @@ namespace PriemMetalClient
 				var listViewItem = List.SelectedItems[0];
 				using (var f = new DocumentMetallVesPriceForm())
 				{
-					f.ShowDialogForEditMetalVesPrice((listViewItem as ListViewItem<DocumentMetallVesPrice>)?.Record, this);
+					f.ShowDialogForEditMetalVesPrice((listViewItem as DBListViewItem<DocumentMetallVesPrice>)?.Record, this);
 					RefreshList();
 					UpdatePriceVes();
 				}
 			}
+
+		}
+
+		private void SignBtn_Click(object sender, EventArgs e)
+		{
 
 		}
 	}

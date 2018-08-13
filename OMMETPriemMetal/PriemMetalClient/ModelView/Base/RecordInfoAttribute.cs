@@ -22,9 +22,10 @@ namespace PriemMetalClient
 		public bool TableNoColumn { get; set; } = false;
 		public bool TextMultilane { get; set; } = false;
 		public bool VesValueInsertButton { get; set; } = false;
-		public decimal MinValue { get; set; } = decimal.MinValue;
-		public decimal MaxValue { get; set; } = decimal.MaxValue;
+		public int MinVal { get; set; } = int.MinValue;
+		public int MaxVal { get; set; } = int.MaxValue;
 		public int DecimalDigits { get; set; } = 0;
+		//public int UIValueDivide { get; set; } = 1;
 
 		public DateTimeFormat DateTimeFormat { get; set; } = DateTimeFormat.Full;
 		public string StringFormat { get; set; } = null;
@@ -58,6 +59,12 @@ namespace PriemMetalClient
 			if (value.GetType() == typeof(string))
 			{
 				result = value as string;
+			}
+			else
+			if (value.GetType() == typeof(int))
+			{
+				int v = Convert.ToInt32(value);
+				result = string.IsNullOrWhiteSpace(infoAttribute.StringFormat) ? v.ToString() : v.ToString(infoAttribute.StringFormat);
 			}
 			else
 			if (value.GetType() == typeof(decimal))

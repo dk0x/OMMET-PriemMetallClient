@@ -29,7 +29,7 @@ namespace PriemMetalClient
 			VesManager.VesDataManager.AddData(new VesData
 			{
 				Timestamp = DateTime.Now,
-				Value = Convert.ToDecimal(rnd.Next(2000, 2500) / 1000m)
+				Value = rnd.Next(2000, 2500) / 1000m
 			});
 
 			counter++;
@@ -143,7 +143,7 @@ namespace PriemMetalClient
 				//ListViewItem<PSADocument> item = PSAList.SelectedItems[0];
 				using (var f = new PSADocumentForm()) // создадим форму
 				{
-					f.ShowDialogForEditDocument((PSAList.SelectedItems[0] as ListViewItem<PSADocument>)?.Record, this); // откровем форму с автосозданием документа
+					f.ShowDialogForEditDocument((PSAList.SelectedItems[0] as DBListViewItem<PSADocument>)?.Record, this); // откровем форму с автосозданием документа
 					RefreshPSAList(); // обновим список
 				}
 			}
@@ -154,7 +154,7 @@ namespace PriemMetalClient
 			if (PSAList.SelectedItems.Count > 0)
 			{
 				var item = PSAList.SelectedItems[0];
-				DataBase.DB.GetCollection<PSADocument>().Delete((item as ListViewItem<PSADocument>).Record.Guid);
+				DataBase.DB.GetCollection<PSADocument>().Delete((item as DBListViewItem<PSADocument>).Record.Guid);
 				PSAList.Items.Remove(item);
 			}
 		}

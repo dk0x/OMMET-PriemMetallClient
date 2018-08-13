@@ -111,6 +111,7 @@
     <Compile Include="ModelView\Forms\DocumentMetallVesPriceForm.Designer.cs">
       <DependentUpon>DocumentMetallVesPriceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelView\Models\Kassa.cs" />
     <Compile Include="ModelView\Models\PSADocument.cs" />
     <Compile Include="ModelView\Models\ContragentFizLico.cs" />
     <Compile Include="ModelView\Models\ContragentUrLico.cs" />
@@ -138,11 +139,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelView\Edits\DecimalPropertyEditUserControl.cs">
+    <Compile Include="ModelView\Edits\NumericPropertyEditUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ModelView\Edits\DecimalPropertyEditUserControl.Designer.cs">
-      <DependentUpon>DecimalPropertyEditUserControl.cs</DependentUpon>
+    <Compile Include="ModelView\Edits\NumericPropertyEditUserControl.Designer.cs">
+      <DependentUpon>NumericPropertyEditUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelView\Edits\TextPropertyEditUserControl.cs">
       <SubType>UserControl</SubType>
@@ -211,8 +212,8 @@
     <EmbeddedResource Include="ModelView\Edits\DateTimePropertyEditUserControl.resx">
       <DependentUpon>DateTimePropertyEditUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModelView\Edits\DecimalPropertyEditUserControl.resx">
-      <DependentUpon>DecimalPropertyEditUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="ModelView\Edits\NumericPropertyEditUserControl.resx">
+      <DependentUpon>NumericPropertyEditUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelView\Edits\TextPropertyEditUserControl.resx">
       <DependentUpon>TextPropertyEditUserControl.cs</DependentUpon>

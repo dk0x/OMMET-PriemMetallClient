@@ -66,15 +66,30 @@ namespace PriemMetalClient
 				else
 				if (p.PropertyType == typeof(decimal))
 				{
-					DecimalPropertyEditUserControl f = new DecimalPropertyEditUserControl
+					NumericPropertyEditUserControl f = new NumericPropertyEditUserControl
 					{
 						Dock = DockStyle.Top,
 						Parent = this,
-						
+
 						//AutoSize = true
 					};
-					f.numericUpDown.Maximum = ri.MaxValue;
-					f.numericUpDown.Minimum = ri.MinValue;
+					f.numericUpDown.Maximum = ri.MaxVal;
+					f.numericUpDown.Minimum = ri.MinVal;
+					f.Set(record, p);
+					h += f.Height;
+				}
+				else
+				if (p.PropertyType == typeof(int))
+				{
+					NumericPropertyEditUserControl f = new NumericPropertyEditUserControl
+					{
+						Dock = DockStyle.Top,
+						Parent = this,
+
+						//AutoSize = true
+					};
+					f.numericUpDown.Maximum = ri.MaxVal;
+					f.numericUpDown.Minimum = ri.MinVal;
 					f.Set(record, p);
 					h += f.Height;
 				}

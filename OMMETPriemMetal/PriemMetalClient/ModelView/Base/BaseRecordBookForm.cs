@@ -72,7 +72,7 @@ namespace PriemMetalClient
 		public TRecord ShowDialogSelect(Form owner)
 		{
 			if (ShowDialog(owner) == DialogResult.OK)
-				return List.SelectedItems.Count > 0 ? (List.SelectedItems[0] as ListViewItem<TRecord>)?.Record : null;
+				return List.SelectedItems.Count > 0 ? (List.SelectedItems[0] as DBListViewItem<TRecord>)?.Record : null;
 			return null;
 		}
 
@@ -160,7 +160,7 @@ namespace PriemMetalClient
 		{
 			if (List.SelectedItems.Count > 0)
 			{
-				ListViewItem<TRecord> item = (ListViewItem<TRecord>)List.SelectedItems[0];
+				DBListViewItem<TRecord> item = (DBListViewItem<TRecord>)List.SelectedItems[0];
 				var selected = DataBase.DB.GetCollection<TRecord>().FindById(item.Record.Guid);
 				if (selected != null)
 				{
@@ -205,7 +205,7 @@ namespace PriemMetalClient
 		{
 			if (List.SelectedItems.Count > 0)
 			{
-				var item = (ListViewItem<TRecord>)List.SelectedItems[0];
+				var item = (DBListViewItem<TRecord>)List.SelectedItems[0];
 				DataBase.DB.GetCollection<TRecord>().Delete(item.Record.Guid);
 				List.Items.Remove(item);
 			}
