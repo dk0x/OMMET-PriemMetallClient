@@ -88,9 +88,9 @@ namespace PriemMetalClient
 			PSADocument.Otdelenie = otdelenieRecordSelectUserControl1.Record;
 			PSADocument.Summa = summa.Value;
 			PSADocument.Transport = transportRecordSelectUserControl1.Record;
-			foreach(DBListViewItem<DocumentMetallVesPrice> el in List.Items)
+			foreach(DBListViewItem el in List.Items)
 			{
-				DataBase.DB.GetCollection<DocumentMetallVesPrice>().Upsert(el.Record);
+				DataBase.DB.GetCollection<DocumentMetallVesPrice>().Upsert(el.Record as DocumentMetallVesPrice);
 			}
 			DataBase.PSADocumentCollection.Upsert(PSADocument);
 		}
@@ -118,10 +118,11 @@ namespace PriemMetalClient
 		{
 			netto.Value = 0;
 			summa.Value = 0;
-			foreach(DBListViewItem<DocumentMetallVesPrice> item in List.Items)
+			foreach(DBListViewItem item in List.Items)
 			{
-				netto.Value += item.Record.Netto;
-				summa.Value += item.Record.Summa;
+				var r = item.Record as DocumentMetallVesPrice;
+				netto.Value += r.Netto;
+				summa.Value += r.Summa;
 			}
 		}
 
@@ -153,7 +154,7 @@ namespace PriemMetalClient
 			if (List.SelectedIndices.Count > 0)
 			{
 				var listViewItem = List.SelectedItems[0];
-				DocumentMetallVesPrice metall = (listViewItem as DBListViewItem<DocumentMetallVesPrice>)?.Record;
+				DocumentMetallVesPrice metall = (listViewItem as DBListViewItem)?.Record as DocumentMetallVesPrice;
 				if (metall != null) DataBase.DB.GetCollection<DocumentMetallVesPrice>().Delete(metall.Guid);
 				UpdatePriceVes();
 			}
@@ -166,7 +167,7 @@ namespace PriemMetalClient
 				var listViewItem = List.SelectedItems[0];
 				using (var f = new DocumentMetallVesPriceForm())
 				{
-					f.ShowDialogForEditMetalVesPrice((listViewItem as DBListViewItem<DocumentMetallVesPrice>)?.Record, this);
+					f.ShowDialogForEditMetalVesPrice((listViewItem as DBListViewItem)?.Record as DocumentMetallVesPrice, this);
 					RefreshList();
 					UpdatePriceVes();
 				}

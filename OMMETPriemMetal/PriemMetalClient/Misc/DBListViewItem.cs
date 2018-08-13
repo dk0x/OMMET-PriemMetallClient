@@ -16,9 +16,9 @@ namespace PriemMetalClient
 	{
 		public PropertyInfo PropertyInfo { get; set; }
 	}
-	public class DBListViewItem<T> : ListViewItem where T : BaseRecord
+	public class DBListViewItem : ListViewItem
 	{
-		public T Record = default(T);
+		public BaseRecord Record = default(BaseRecord);
 	}
 	/*public class ListViewItemBaseRecord : ListViewItem
 	{

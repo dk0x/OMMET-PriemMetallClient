@@ -104,9 +104,9 @@ namespace PriemMetalClient
 		public static void UpsertListViewItem<TRecord>(ListView listView, TRecord record) where TRecord : BaseRecord
 		{
 			if (listView == null || record == null) return;
-			DBListViewItem<TRecord> item = null;
+			DBListViewItem item = null;
 			// search exist item in list
-			foreach (DBListViewItem<TRecord> el in listView.Items)
+			foreach (DBListViewItem el in listView.Items)
 				if (el.Record.Guid == record.Guid)
 				{
 					// found, break search
@@ -119,7 +119,7 @@ namespace PriemMetalClient
 			}
 			else // if not exist create and add to listview
 			{
-				item = new DBListViewItem<TRecord>();
+				item = new DBListViewItem();
 				listView.Items.Add(item);
 				item.Record = record;
 			}
