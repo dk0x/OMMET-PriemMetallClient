@@ -72,7 +72,7 @@ namespace PriemMetalClient
 		{
 			List.Items.Clear();
 			foreach (var el in PSADocument.MetallVesPriceItems)
-				BaseRecord.UpsertListViewItem<DocumentMetallVesPrice>(List, el);
+				el.UpsertListViewItem(List);
 		}
 
 		public void SaveDocument()
@@ -135,9 +135,9 @@ namespace PriemMetalClient
 					OwnerDocumentGuid = PSADocument.Guid
 				};
 				DataBase.DB.GetCollection<DocumentMetallVesPrice>().Upsert(m);
-				BaseRecord.UpsertListViewItem<DocumentMetallVesPrice>(List, m);
+				m.UpsertListViewItem(List);
 				f.ShowDialogForEditMetalVesPrice(m, this);
-				BaseRecord.UpsertListViewItem<DocumentMetallVesPrice>(List, m);
+				m.UpsertListViewItem(List);
 				SaveDocument();
 				UpdatePriceVes();
 			}

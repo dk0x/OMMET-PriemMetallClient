@@ -101,13 +101,13 @@ namespace PriemMetalClient
 				Width = -2
 			});
 		}
-		public static void UpsertListViewItem<TRecord>(ListView listView, TRecord record) where TRecord : BaseRecord
+		public void UpsertListViewItem(ListView listView)
 		{
-			if (listView == null || record == null) return;
+			if (listView == null) return;
 			DBListViewItem item = null;
 			// search exist item in list
 			foreach (DBListViewItem el in listView.Items)
-				if (el.Record.Guid == record.Guid)
+				if (el.Record.Guid == Guid)
 				{
 					// found, break search
 					item = el; 
@@ -121,7 +121,7 @@ namespace PriemMetalClient
 			{
 				item = new DBListViewItem();
 				listView.Items.Add(item);
-				item.Record = record;
+				item.Record = this;
 			}
 			// fill substrings
 			foreach (DBColumnHeader c in listView.Columns)
@@ -131,7 +131,7 @@ namespace PriemMetalClient
 				//var propInfo = RecordInfoAttribute.GetPropertyRecordInfo(prop);
 				//if (propInfo == null) continue;
 				//var value = prop.GetValue(record, null);
-				string text = RecordInfoAttribute.ToStringBasedOnRecordInfo(prop.GetValue(record, null), prop);
+				string text = RecordInfoAttribute.ToStringBasedOnRecordInfo(prop.GetValue(this, null), prop);
 				/*if (prop.PropertyType == typeof(decimal))
 				{
 					if (!string.IsNullOrWhiteSpace(propInfo.StringFormat))

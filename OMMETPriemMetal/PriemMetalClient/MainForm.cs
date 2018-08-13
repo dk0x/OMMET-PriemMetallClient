@@ -121,7 +121,7 @@ namespace PriemMetalClient
 			col = DataBase.PSADocumentCollection.FindAll();
 
 			foreach (var el in col)
-				BaseRecord.UpsertListViewItem<PSADocument>(PSAList, el);
+				el.UpsertListViewItem(PSAList);
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 			if (PSAList.Columns.Count > 0) PSAList.Columns[0].Width = 0;
