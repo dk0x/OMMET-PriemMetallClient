@@ -106,12 +106,6 @@ namespace PriemMetalClient
 			List.Items.Clear();
 			IEnumerable<TRecord> col = null;
 			List<Query> qq = new List<Query>();
-			/*if (OrderColumn != null)
-			{
-				qq.Add(Query.All(OrderColumn.PropertyInfo.Name, OrderAsc ? Query.Ascending : Query.Descending));
-			}
-			else
-				qq.Add(Query.All());*/
 			if (filter)
 			{
 				foreach (BasePropertyFilterUserControl f in FilterFlowPanel.Controls)
@@ -120,15 +114,19 @@ namespace PriemMetalClient
 					if (q != null) qq.Add(q);
 				}
 			}
-			if (qq.Count == 0)
-				col = DataBase.DB.GetCollection<TRecord>().FindAll();
-			if (qq.Count == 1)
-				col = DataBase.DB.GetCollection<TRecord>().Find(qq[0]);
-			if (qq.Count >= 2)
-				col = DataBase.DB.GetCollection<TRecord>().Find(Query.And(qq.ToArray()));
+			if (qq.Count == 0) col = DataBase.DB.GetCollection<TRecord>().FindAll();
+			if (qq.Count == 1) col = DataBase.DB.GetCollection<TRecord>().Find(qq[0]);
+			if (qq.Count >= 2) col = DataBase.DB.GetCollection<TRecord>().Find(Query.And(qq.ToArray()));
 
-			foreach (var el in col)
-				el.UpsertListViewItem(List);
+			if (OrderColumn != null)
+			{
+				col = col.OrderBy(x => OrderColumn.PropertyInfo.GetValue(x, null));
+			}
+			else
+			{
+				col = col.OrderBy(x => x._Created);
+			}
+			foreach (var el in col)	el.UpsertListViewItem(List);
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 			if (List.Columns.Count > 0) List.Columns[0].Width = 0;
@@ -206,7 +204,8 @@ namespace PriemMetalClient
 			if (List.SelectedItems.Count > 0)
 			{
 				var item = (DBListViewItem)List.SelectedItems[0];
-				DataBase.DB.GetCollection<TRecord>().Delete(item.Record.Guid);
+				item.Record.DBDelete();
+				//DataBase.DB.GetCollection<TRecord>().Delete(item.Record.Guid);
 				List.Items.Remove(item);
 			}
 		}
@@ -221,6 +220,28 @@ namespace PriemMetalClient
 			foreach (BasePropertyFilterUserControl f in FilterFlowPanel.Controls)
 				f.Reset();
 			RefreshList(false);
+		}
+
+		public DBColumnHeader OrderColumn = null;
+
+		private void List_ColumnClick(object sender, ColumnClickEventArgs e)
+		{
+			if (e.Column >= 0)
+			{
+				if (OrderColumn == List.Columns[e.Column])
+				{
+					OrderColumn.Text = OrderColumn.InfoAttribute.Text;
+					OrderColumn = null;
+				}
+				else
+				{
+					if (OrderColumn != null) OrderColumn.Text = OrderColumn.InfoAttribute.Text;
+					OrderColumn = List.Columns[e.Column] as DBColumnHeader;
+					OrderColumn.Text = $"* {OrderColumn.InfoAttribute.Text}";
+				}
+				RefreshList();
+			}
+			
 		}
 	}
 }

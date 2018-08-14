@@ -47,7 +47,8 @@ namespace PriemMetalClient
 
 		private void SaveBtn_Click(object sender, EventArgs e)
 		{
-			DataBase.DB.GetCollection<TRecord>().Upsert(Record);
+			Record.DBUpsert();
+			//DataBase.DB.GetCollection<TRecord>().Upsert(Record);
 			this.DialogResult = DialogResult.OK;
 			Close();
 		}

@@ -15,6 +15,10 @@ namespace PriemMetalClient
 		public DocumentMetallVesPriceForm()
 		{
 			InitializeComponent();
+			priceType.Items.Add(PriceType.PRICELIST.ToFriendlyString());
+			priceType.Items.Add(PriceType.DOGOVOR.ToFriendlyString());
+			priceType.Items.Add(PriceType.PERSONAL.ToFriendlyString());
+			priceType.SelectedIndex = 0;
 		}
 
 		public DocumentMetallVesPrice ShowDialogForEditMetalVesPrice(DocumentMetallVesPrice record, IWin32Window owner)
@@ -39,21 +43,24 @@ namespace PriemMetalClient
 
 		public void SetRecord(DocumentMetallVesPrice rec)
 		{
-			Record = rec;
-
-			zasor.Value = Record.Zasor;
-			cena.Value = Record.Price;
-			brutto.Value = Record.Brutto;
-			tara.Value = Record.Tara;
+			zasor.Value = rec.Zasor;
+			cena.Value = rec.Price;
+			brutto.Value = rec.Brutto;
+			tara.Value = rec.Tara;
 			//netto.Value = Record.Netto;
 			//summa.Value = Record.Summa;
-			categorija.Text = Record.Category;
-			uslovija.Text = Record.Description;
-			nomenklatura.Text = Record.Nomenklatura;
+			categorija.Text = rec.Category;
+			uslovija.Text = rec.Description;
+			nomenklatura.Text = rec.Nomenklatura;
+			priceType.SelectedIndex = (int)rec.PriceType;
+			
+
+			Record = rec;
 		}
 
 		public void SaveRecord()
 		{
+			if (Record == null) return;
 			Record.Brutto = brutto.Value;
 			Record.Description = uslovija.Text;
 			Record.Category = categorija.Text;
@@ -63,7 +70,10 @@ namespace PriemMetalClient
 			Record.Summa = summa.Value;
 			Record.Tara = tara.Value;
 			Record.Zasor = zasor.Value;
-			DataBase.DB.GetCollection<DocumentMetallVesPrice>().Upsert(Record);
+			Record.PriceType = (PriceType)priceType.SelectedIndex;
+
+			//DataBase.DB.GetCollection<DocumentMetallVesPrice>().Upsert(Record);
+			Record.DBUpsert();
 		}
 
 		private void Timer1_Tick(object sender, EventArgs e)

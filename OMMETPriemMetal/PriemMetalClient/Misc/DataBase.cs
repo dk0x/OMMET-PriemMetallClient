@@ -39,12 +39,13 @@ namespace PriemMetalClient
 			DB.DropCollection(typeof(PSADocument).Name);
 			DB.DropCollection(typeof(DocumentMetallVesPrice).Name);
 			DB.DropCollection(typeof(Transport).Name);
+			DB.DropCollection(typeof(KassaTransaction).Name);
 			Otdelenie otdelenie;
 			{
 				var con = DB.GetCollection<Otdelenie>();
 				con.Upsert(otdelenie = new Otdelenie()
 				{
-					Adres = "г. Омскб, ул. 22 Партсъезда, 105",
+					Adres = "г. Омск, ул. 22 Партсъезда, 105",
 					Nazvanie = "ОП ВМР-Амурское",
 					Telefon = "8-913-617-24-45"
 				});

@@ -22,7 +22,7 @@ namespace PriemMetalClient
 			return "";
 		}
 	}
-	public class Kassa: BaseRecord
+	public class KassaTransaction: BaseRecord
 	{
 		[RecordInfo("Основание")]
 		public Osnovanie Osnovanie { get; set; } = Osnovanie.NONE;

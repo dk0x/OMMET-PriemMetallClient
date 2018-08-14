@@ -35,14 +35,10 @@
 			this.label9 = new System.Windows.Forms.Label();
 			this.MetallSelect = new System.Windows.Forms.Button();
 			this.categorija = new System.Windows.Forms.TextBox();
-			this.summa = new System.Windows.Forms.NumericUpDown();
-			this.label7 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.cena = new System.Windows.Forms.NumericUpDown();
 			this.zasor = new System.Windows.Forms.NumericUpDown();
 			this.netto = new System.Windows.Forms.NumericUpDown();
 			this.tara = new System.Windows.Forms.NumericUpDown();
@@ -53,18 +49,24 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
 			this.nomenklatura = new System.Windows.Forms.TextBox();
+			this.summa = new System.Windows.Forms.NumericUpDown();
+			this.cena = new System.Windows.Forms.NumericUpDown();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.priceType = new System.Windows.Forms.ComboBox();
+			this.label11 = new System.Windows.Forms.Label();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.CloseBtn = new System.Windows.Forms.ToolStripButton();
 			this.SaveBtn = new System.Windows.Forms.ToolStripButton();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.VesValue)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.summa)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.cena)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.zasor)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.netto)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tara)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.brutto)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.summa)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cena)).BeginInit();
 			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -74,20 +76,16 @@
 			this.tableLayoutPanel1.ColumnCount = 3;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
 			this.tableLayoutPanel1.Controls.Add(this.label8, 0, 1);
 			this.tableLayoutPanel1.Controls.Add(this.VesValue, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.label9, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.MetallSelect, 2, 1);
 			this.tableLayoutPanel1.Controls.Add(this.categorija, 1, 1);
-			this.tableLayoutPanel1.Controls.Add(this.summa, 1, 9);
-			this.tableLayoutPanel1.Controls.Add(this.label7, 0, 9);
-			this.tableLayoutPanel1.Controls.Add(this.label6, 0, 8);
 			this.tableLayoutPanel1.Controls.Add(this.label5, 0, 7);
 			this.tableLayoutPanel1.Controls.Add(this.label4, 0, 6);
 			this.tableLayoutPanel1.Controls.Add(this.label3, 0, 5);
 			this.tableLayoutPanel1.Controls.Add(this.label2, 0, 4);
-			this.tableLayoutPanel1.Controls.Add(this.cena, 1, 8);
 			this.tableLayoutPanel1.Controls.Add(this.zasor, 1, 7);
 			this.tableLayoutPanel1.Controls.Add(this.netto, 1, 6);
 			this.tableLayoutPanel1.Controls.Add(this.tara, 1, 5);
@@ -98,10 +96,16 @@
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 3);
 			this.tableLayoutPanel1.Controls.Add(this.label10, 0, 2);
 			this.tableLayoutPanel1.Controls.Add(this.nomenklatura, 1, 2);
+			this.tableLayoutPanel1.Controls.Add(this.summa, 1, 10);
+			this.tableLayoutPanel1.Controls.Add(this.cena, 1, 9);
+			this.tableLayoutPanel1.Controls.Add(this.label7, 0, 10);
+			this.tableLayoutPanel1.Controls.Add(this.label6, 0, 9);
+			this.tableLayoutPanel1.Controls.Add(this.priceType, 1, 8);
+			this.tableLayoutPanel1.Controls.Add(this.label11, 0, 8);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 11;
+			this.tableLayoutPanel1.RowCount = 12;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -112,8 +116,9 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(534, 326);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(543, 349);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// label8
@@ -165,7 +170,7 @@
 			this.MetallSelect.Location = new System.Drawing.Point(373, 27);
 			this.MetallSelect.Margin = new System.Windows.Forms.Padding(0);
 			this.MetallSelect.Name = "MetallSelect";
-			this.MetallSelect.Size = new System.Drawing.Size(162, 25);
+			this.MetallSelect.Size = new System.Drawing.Size(169, 25);
 			this.MetallSelect.TabIndex = 19;
 			this.MetallSelect.Text = "Выбрать...";
 			this.MetallSelect.UseVisualStyleBackColor = true;
@@ -180,45 +185,6 @@
 			this.categorija.ReadOnly = true;
 			this.categorija.Size = new System.Drawing.Size(194, 20);
 			this.categorija.TabIndex = 20;
-			// 
-			// summa
-			// 
-			this.summa.BackColor = System.Drawing.SystemColors.Window;
-			this.summa.DecimalPlaces = 2;
-			this.summa.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.summa.Location = new System.Drawing.Point(175, 273);
-			this.summa.Maximum = new decimal(new int[] {
-            1410065407,
-            2,
-            0,
-            0});
-			this.summa.Name = "summa";
-			this.summa.ReadOnly = true;
-			this.summa.Size = new System.Drawing.Size(194, 20);
-			this.summa.TabIndex = 13;
-			this.summa.ThousandsSeparator = true;
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label7.Location = new System.Drawing.Point(4, 270);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(164, 25);
-			this.label7.TabIndex = 11;
-			this.label7.Text = "Сумма (Нетто*Цена) руб.";
-			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label6.Location = new System.Drawing.Point(4, 244);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(164, 25);
-			this.label6.TabIndex = 10;
-			this.label6.Text = "Цена за 1 т., руб.(без НДС)";
-			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label5
 			// 
@@ -264,31 +230,13 @@
 			this.label2.Text = "Брутто, т.";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// cena
-			// 
-			this.cena.BackColor = System.Drawing.SystemColors.Window;
-			this.cena.DecimalPlaces = 2;
-			this.cena.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.cena.Location = new System.Drawing.Point(175, 247);
-			this.cena.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-			this.cena.Name = "cena";
-			this.cena.ReadOnly = true;
-			this.cena.Size = new System.Drawing.Size(194, 20);
-			this.cena.TabIndex = 12;
-			this.cena.ThousandsSeparator = true;
-			this.cena.ValueChanged += new System.EventHandler(this.netto_ValueChanged);
-			// 
 			// zasor
 			// 
 			this.zasor.BackColor = System.Drawing.SystemColors.Window;
+			this.zasor.DecimalPlaces = 2;
 			this.zasor.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.zasor.Location = new System.Drawing.Point(175, 221);
 			this.zasor.Name = "zasor";
-			this.zasor.ReadOnly = true;
 			this.zasor.Size = new System.Drawing.Size(194, 20);
 			this.zasor.TabIndex = 9;
 			this.zasor.ValueChanged += new System.EventHandler(this.netto_ValueChanged);
@@ -365,7 +313,7 @@
 			this.button2.Location = new System.Drawing.Point(373, 166);
 			this.button2.Margin = new System.Windows.Forms.Padding(0);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(162, 25);
+			this.button2.Size = new System.Drawing.Size(169, 25);
 			this.button2.TabIndex = 15;
 			this.button2.Text = "< Взять с весов";
 			this.button2.UseVisualStyleBackColor = true;
@@ -377,7 +325,7 @@
 			this.button1.Location = new System.Drawing.Point(373, 140);
 			this.button1.Margin = new System.Windows.Forms.Padding(0);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(162, 25);
+			this.button1.Size = new System.Drawing.Size(169, 25);
 			this.button1.TabIndex = 14;
 			this.button1.Text = "< Взять с весов";
 			this.button1.UseVisualStyleBackColor = true;
@@ -419,11 +367,91 @@
 			// 
 			// nomenklatura
 			// 
+			this.nomenklatura.BackColor = System.Drawing.SystemColors.Window;
 			this.nomenklatura.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.nomenklatura.Location = new System.Drawing.Point(175, 56);
 			this.nomenklatura.Name = "nomenklatura";
+			this.nomenklatura.ReadOnly = true;
 			this.nomenklatura.Size = new System.Drawing.Size(194, 20);
 			this.nomenklatura.TabIndex = 22;
+			// 
+			// summa
+			// 
+			this.summa.BackColor = System.Drawing.SystemColors.Window;
+			this.summa.DecimalPlaces = 2;
+			this.summa.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.summa.Location = new System.Drawing.Point(175, 299);
+			this.summa.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+			this.summa.Name = "summa";
+			this.summa.ReadOnly = true;
+			this.summa.Size = new System.Drawing.Size(194, 20);
+			this.summa.TabIndex = 13;
+			this.summa.ThousandsSeparator = true;
+			// 
+			// cena
+			// 
+			this.cena.BackColor = System.Drawing.SystemColors.Window;
+			this.cena.DecimalPlaces = 2;
+			this.cena.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.cena.Location = new System.Drawing.Point(175, 273);
+			this.cena.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+			this.cena.Name = "cena";
+			this.cena.ReadOnly = true;
+			this.cena.Size = new System.Drawing.Size(194, 20);
+			this.cena.TabIndex = 12;
+			this.cena.ThousandsSeparator = true;
+			this.cena.ValueChanged += new System.EventHandler(this.netto_ValueChanged);
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label7.Location = new System.Drawing.Point(4, 296);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(164, 25);
+			this.label7.TabIndex = 11;
+			this.label7.Text = "Сумма (Нетто*Цена) руб.";
+			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label6.Location = new System.Drawing.Point(4, 270);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(164, 25);
+			this.label6.TabIndex = 10;
+			this.label6.Text = "Цена за 1 т., руб.(без НДС)";
+			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// priceType
+			// 
+			this.priceType.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.priceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.priceType.FormattingEnabled = true;
+			this.priceType.Location = new System.Drawing.Point(175, 247);
+			this.priceType.Name = "priceType";
+			this.priceType.Size = new System.Drawing.Size(194, 21);
+			this.priceType.TabIndex = 23;
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label11.Location = new System.Drawing.Point(4, 244);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(164, 25);
+			this.label11.TabIndex = 24;
+			this.label11.Text = "Тип цены";
+			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// timer1
 			// 
@@ -437,10 +465,10 @@
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CloseBtn,
             this.SaveBtn});
-			this.toolStrip1.Location = new System.Drawing.Point(0, 330);
+			this.toolStrip1.Location = new System.Drawing.Point(0, 399);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-			this.toolStrip1.Size = new System.Drawing.Size(534, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(543, 25);
 			this.toolStrip1.TabIndex = 25;
 			// 
 			// CloseBtn
@@ -468,7 +496,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
-			this.ClientSize = new System.Drawing.Size(534, 355);
+			this.ClientSize = new System.Drawing.Size(543, 424);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Name = "DocumentMetallVesPriceForm";
@@ -477,12 +505,12 @@
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.VesValue)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.summa)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cena)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.zasor)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.netto)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tara)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.brutto)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.summa)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cena)).EndInit();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -520,5 +548,7 @@
 		private System.Windows.Forms.TextBox categorija;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.TextBox nomenklatura;
+		private System.Windows.Forms.ComboBox priceType;
+		private System.Windows.Forms.Label label11;
 	}
 }

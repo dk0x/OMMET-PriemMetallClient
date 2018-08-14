@@ -14,7 +14,8 @@ namespace PriemMetalClient
 	}*/
 	public class DBColumnHeader : ColumnHeader
 	{
-		public PropertyInfo PropertyInfo { get; set; }
+		public PropertyInfo PropertyInfo { get; set; } = null;
+		public RecordInfoAttribute InfoAttribute { get; set; } = null;
 	}
 	public class DBListViewItem : ListViewItem
 	{

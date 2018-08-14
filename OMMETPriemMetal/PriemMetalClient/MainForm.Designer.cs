@@ -59,11 +59,11 @@
 			this.EditPSADocumentBtn = new System.Windows.Forms.ToolStripButton();
 			this.DeletePSADocumentBtn = new System.Windows.Forms.ToolStripButton();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.button1 = new System.Windows.Forms.Button();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.PSAViewBtn = new System.Windows.Forms.ToolStripButton();
 			this.toolStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -299,6 +299,7 @@
 			this.toolStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
 			this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewPSADocumentBtn,
+            this.PSAViewBtn,
             this.EditPSADocumentBtn,
             this.DeletePSADocumentBtn});
 			this.toolStrip2.Location = new System.Drawing.Point(3, 3);
@@ -342,7 +343,6 @@
 			// 
 			// tabPage2
 			// 
-			this.tabPage2.Controls.Add(this.dateTimePicker1);
 			this.tabPage2.Controls.Add(this.button1);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
@@ -351,14 +351,6 @@
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// dateTimePicker1
-			// 
-			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dateTimePicker1.Location = new System.Drawing.Point(202, 331);
-			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-			this.dateTimePicker1.TabIndex = 2;
 			// 
 			// button1
 			// 
@@ -369,6 +361,16 @@
 			this.button1.Text = "button1";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.Button1_Click_1);
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(1028, 395);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "tabPage3";
+			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
 			// imageList1
 			// 
@@ -386,15 +388,15 @@
 			this.printPreviewDialog1.Name = "printPreviewDialog1";
 			this.printPreviewDialog1.Visible = false;
 			// 
-			// tabPage3
+			// PSAViewBtn
 			// 
-			this.tabPage3.Location = new System.Drawing.Point(4, 22);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(1028, 395);
-			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "tabPage3";
-			this.tabPage3.UseVisualStyleBackColor = true;
+			this.PSAViewBtn.Image = global::PriemMetalClient.Properties.Resources._173163___book;
+			this.PSAViewBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.PSAViewBtn.Name = "PSAViewBtn";
+			this.PSAViewBtn.Size = new System.Drawing.Size(68, 51);
+			this.PSAViewBtn.Text = "Просмотр";
+			this.PSAViewBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.PSAViewBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
 			// 
 			// MainForm
 			// 
@@ -453,7 +455,6 @@
 		private System.Windows.Forms.ToolStripMenuItem закупочныеЦеныНаМеталлоломToolStripMenuItem;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.ToolStripMenuItem контрагентыФизическиеЛицаToolStripMenuItem;
-		private System.Windows.Forms.DateTimePicker dateTimePicker1;
 		private System.Windows.Forms.ToolStripMenuItem контрагентыЮридическиеЛицаToolStripMenuItem;
 		private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
 		private System.Windows.Forms.ToolStripMenuItem сервисToolStripMenuItem;
@@ -461,5 +462,6 @@
 		private System.Windows.Forms.ToolStripButton EditPSADocumentBtn;
 		private System.Windows.Forms.ToolStripButton DeletePSADocumentBtn;
 		private System.Windows.Forms.TabPage tabPage3;
+		private System.Windows.Forms.ToolStripButton PSAViewBtn;
 	}
 }

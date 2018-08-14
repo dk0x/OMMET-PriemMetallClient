@@ -25,6 +25,7 @@ namespace PriemMetalClient
 		public int MinVal { get; set; } = int.MinValue;
 		public int MaxVal { get; set; } = int.MaxValue;
 		public int DecimalDigits { get; set; } = 0;
+		//public string TextMask { get; set; } = string.Empty;
 		//public int UIValueDivide { get; set; } = 1;
 
 		public DateTimeFormat DateTimeFormat { get; set; } = DateTimeFormat.Full;

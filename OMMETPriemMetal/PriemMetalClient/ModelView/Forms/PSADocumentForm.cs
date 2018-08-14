@@ -28,7 +28,8 @@ namespace PriemMetalClient
 			{
 				Nomer = i + 1
 			};
-			DataBase.PSADocumentCollection.Upsert(doc);
+			doc.DBUpsert();
+			//DataBase.PSADocumentCollection.Upsert(doc);
 			return ShowDialogForEditDocument(doc, owner); // откровем форму как диалог для редактирования
 		}
 
@@ -66,17 +67,34 @@ namespace PriemMetalClient
 			nds.Checked = doc.BezNds;
 			RefreshList();
 			UpdatePriceVes();
+			SetProveden(doc.Proveden);
+		}
+
+		public void SetProveden(bool Proveden)
+		{
+			TopPanel.Enabled = !Proveden;
+			ListBtnPanel.Enabled = !Proveden;
+			List.Enabled = !Proveden;
+			SignBtn.Visible = !Proveden;
+			EditBtn.Visible = Proveden;
+
 		}
 
 		public void RefreshList()
 		{
 			List.Items.Clear();
-			foreach (var el in PSADocument.MetallVesPriceItems)
+			foreach (var el in PSADocument.MetallVesPriceItems.OrderBy(x => x._Created))
 				el.UpsertListViewItem(List);
 		}
 
 		public void SaveDocument()
 		{
+			if (PSADocument.Proveden)
+			{
+				//MessageBox.Show("Документ уже проведен. Войдите в режим редактирования.");
+				return;
+			}
+			PSADocument.Nomer = Convert.ToInt32(docno.Text);
 			PSADocument.ContragentFizLico = contragentFizLicoRecordSelectUserControl1.Record;
 			PSADocument.ContragentType = FizLicoSelect.Checked ? ContragentType.FizLico :
 				UrLizoSelect.Checked ? ContragentType.UrLico : ContragentType.UrLico;
@@ -90,9 +108,24 @@ namespace PriemMetalClient
 			PSADocument.Transport = transportRecordSelectUserControl1.Record;
 			foreach(DBListViewItem el in List.Items)
 			{
-				DataBase.DB.GetCollection<DocumentMetallVesPrice>().Upsert(el.Record as DocumentMetallVesPrice);
+				el.Record.DBUpsert();
 			}
-			DataBase.PSADocumentCollection.Upsert(PSADocument);
+			PSADocument.DBUpsert();
+		}
+
+		private void SignBtn_Click(object sender, EventArgs e)
+		{
+			SaveDocument();
+			KassaTransaction kassa = new KassaTransaction
+			{
+				Osnovanie = Osnovanie.PSADocument,
+				PSADocument = PSADocument,
+				Debet = PSADocument.Summa
+			};
+			kassa.DBUpsert();
+			PSADocument.Proveden = true;
+			PSADocument.DBUpsert();
+			SetProveden(true);
 		}
 
 		private void LizoSelect_CheckedChanged(object sender, EventArgs e)
@@ -134,7 +167,8 @@ namespace PriemMetalClient
 				{
 					OwnerDocumentGuid = PSADocument.Guid
 				};
-				DataBase.DB.GetCollection<DocumentMetallVesPrice>().Upsert(m);
+				//DataBase.DB.GetCollection<DocumentMetallVesPrice>().Upsert(m);
+				m.DBUpsert();
 				m.UpsertListViewItem(List);
 				f.ShowDialogForEditMetalVesPrice(m, this);
 				m.UpsertListViewItem(List);
@@ -155,7 +189,7 @@ namespace PriemMetalClient
 			{
 				var listViewItem = List.SelectedItems[0];
 				DocumentMetallVesPrice metall = (listViewItem as DBListViewItem)?.Record as DocumentMetallVesPrice;
-				if (metall != null) DataBase.DB.GetCollection<DocumentMetallVesPrice>().Delete(metall.Guid);
+				if (metall != null) metall.DBDelete(); //DataBase.DB.GetCollection<DocumentMetallVesPrice>().Delete(metall.Guid);
 				UpdatePriceVes();
 			}
 		}
@@ -175,7 +209,7 @@ namespace PriemMetalClient
 
 		}
 
-		private void SignBtn_Click(object sender, EventArgs e)
+		private void EditBtn_Click(object sender, EventArgs e)
 		{
 
 		}

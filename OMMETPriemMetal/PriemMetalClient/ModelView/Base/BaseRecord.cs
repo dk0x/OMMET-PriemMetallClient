@@ -23,24 +23,7 @@ namespace PriemMetalClient
 				string s = "";
 				var props = this.GetType().GetProperties();
 				foreach (var p in props)
-				{
 					s = s + RecordInfoAttribute.ToStringBasedOnRecordInfo(p.GetValue(this, null), p) + "; ";
-					/*var pinfo = RecordInfoAttribute.GetPropertyRecordInfo(p);
-					if (pinfo?.Text != null)
-					{
-						s = s + pinfo.Text + ": ";
-						if (p.PropertyType == typeof(DateTime))
-						{
-							if (pinfo.DatetimeDateOnly) s = s + ((DateTime)p.GetValue(this, null)).ToShortDateString();
-							if (pinfo.DatetimeTimeOnly) s = s + ((DateTime)p.GetValue(this, null)).ToShortTimeString();
-						}
-						else
-						{
-							s = s + p.GetValue(this, null).ToString();
-						}
-						s = s + "; ";
-					}*/
-				}
 				return s;
 			} else
 			{
@@ -49,6 +32,9 @@ namespace PriemMetalClient
 		}
 
 		public override string ToString() => ToString(false);
+
+		public void DBUpsert() => DataBase.DB.GetCollection(this.GetType().Name).Upsert(BsonMapper.Global.ToDocument(this.GetType(), this));
+		public void DBDelete() => DataBase.DB.GetCollection(this.GetType().Name).Delete(Guid);
 
 		public static void SetListViewDefaultColumns<TRecord>(ListView listView) where TRecord : BaseRecord
 		{
@@ -88,6 +74,7 @@ namespace PriemMetalClient
 				{
 					Text = propInfo.Text,
 					PropertyInfo = prop,
+					InfoAttribute = propInfo,
 					Width = -2
 				};
 				if (prop.PropertyType == typeof(decimal)) header.TextAlign = HorizontalAlignment.Right;
@@ -128,27 +115,7 @@ namespace PriemMetalClient
 			{
 				var prop = c.PropertyInfo;
 				if (prop == null) continue;
-				//var propInfo = RecordInfoAttribute.GetPropertyRecordInfo(prop);
-				//if (propInfo == null) continue;
-				//var value = prop.GetValue(record, null);
 				string text = RecordInfoAttribute.ToStringBasedOnRecordInfo(prop.GetValue(this, null), prop);
-				/*if (prop.PropertyType == typeof(decimal))
-				{
-					if (!string.IsNullOrWhiteSpace(propInfo.StringFormat))
-						text = ((decimal)value).ToString(propInfo.StringFormat);
-					else
-						text = value.ToString();
-				}
-				else
-				if (prop.PropertyType == typeof(DateTime))
-				{
-					
-					if (propInfo.DatetimeDateOnly) text = ((DateTime)value).ToShortDateString();
-					if (propInfo.DatetimeTimeOnly) text = ((DateTime)value).ToShortTimeString();
-					if (!propInfo.DatetimeDateOnly && !propInfo.DatetimeTimeOnly) text = value.ToString();
-				}
-				else
-					text = value?.ToString() ?? "";*/
 				item.SubItems.Add(text);
 				c.Width = -2;
 			}

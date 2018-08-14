@@ -198,6 +198,7 @@ namespace PriemMetalClient
 			this.List.TabIndex = 23;
 			this.List.UseCompatibleStateImageBehavior = false;
 			this.List.View = System.Windows.Forms.View.Details;
+			this.List.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.List_ColumnClick);
 			this.List.SelectedIndexChanged += new System.EventHandler(this.List_SelectedIndexChanged);
 			this.List.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.List_MouseDoubleClick);
 			// 

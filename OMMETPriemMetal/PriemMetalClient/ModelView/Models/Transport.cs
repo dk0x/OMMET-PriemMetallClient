@@ -8,7 +8,7 @@ namespace PriemMetalClient
 	[RecordInfo("Транспорт")]
 	public class Transport : BaseRecord
 	{
-		[RecordInfo("Гос. номер")]
+		[RecordInfo("Гос. номер", StringCase = StringCase.UpperCase)]
 		public string GosNomer { get; set; } = string.Empty;
 		[RecordInfo("Марка")]
 		public string Marka { get; set; } = string.Empty;

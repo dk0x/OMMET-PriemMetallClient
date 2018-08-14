@@ -119,7 +119,7 @@ namespace PriemMetalClient
 			IEnumerable<PSADocument> col = null;
 
 			col = DataBase.PSADocumentCollection.FindAll();
-
+			col = col.OrderBy(x => x._Created);
 			foreach (var el in col)
 				el.UpsertListViewItem(PSAList);
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
@@ -143,7 +143,7 @@ namespace PriemMetalClient
 				//ListViewItem<PSADocument> item = PSAList.SelectedItems[0];
 				using (var f = new PSADocumentForm()) // создадим форму
 				{
-					f.ShowDialogForEditDocument((PSAList.SelectedItems[0] as DBListViewItem)?.Record as PSADocument, this); // откровем форму с автосозданием документа
+					f.ShowDialogForEditDocument((PSAList.SelectedItems[0] as DBListViewItem)?.Record as PSADocument, this);
 					RefreshPSAList(); // обновим список
 				}
 			}
@@ -154,7 +154,8 @@ namespace PriemMetalClient
 			if (PSAList.SelectedItems.Count > 0)
 			{
 				var item = PSAList.SelectedItems[0];
-				DataBase.DB.GetCollection<PSADocument>().Delete(((item as DBListViewItem).Record as PSADocument).Guid);
+				(item as DBListViewItem).Record.DBDelete();
+				//DataBase.DB.GetCollection<PSADocument>().Delete(((item as DBListViewItem).Record as PSADocument).Guid);
 				PSAList.Items.Remove(item);
 			}
 		}

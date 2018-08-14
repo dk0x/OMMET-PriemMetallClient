@@ -52,7 +52,7 @@ namespace PriemMetalClient
 		public decimal Summa { get; set; } = 0;
 
 		[RecordInfo("Цена без НДС")]
-		public bool BezNds { get; set; } = false;
+		public bool BezNds { get; set; } = true;
 
 		[RecordInfo("Проведен")]
 		public bool Proveden { get; set; } = false;
@@ -62,7 +62,6 @@ namespace PriemMetalClient
 
 		//[RecordInfo("Список принятого металла")]
 		[LiteDB.BsonIgnore]
-		//[LiteDB.BsonRef()]
 		public List<DocumentMetallVesPrice> MetallVesPriceItems {
 			get => DataBase.DB.GetCollection<DocumentMetallVesPrice>().Find(x => x.OwnerDocumentGuid == Guid).ToList();
 		}

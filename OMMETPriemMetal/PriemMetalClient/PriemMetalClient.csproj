@@ -111,7 +111,7 @@
     <Compile Include="ModelView\Forms\DocumentMetallVesPriceForm.Designer.cs">
       <DependentUpon>DocumentMetallVesPriceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelView\Models\Kassa.cs" />
+    <Compile Include="ModelView\Models\KassaTransaction.cs" />
     <Compile Include="ModelView\Models\PSADocument.cs" />
     <Compile Include="ModelView\Models\ContragentFizLico.cs" />
     <Compile Include="ModelView\Models\ContragentUrLico.cs" />
