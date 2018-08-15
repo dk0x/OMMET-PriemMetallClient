@@ -194,7 +194,7 @@ namespace PriemMetalClient
 			this.List.Location = new System.Drawing.Point(0, 94);
 			this.List.MultiSelect = false;
 			this.List.Name = "List";
-			this.List.Size = new System.Drawing.Size(773, 329);
+			this.List.Size = new System.Drawing.Size(773, 304);
 			this.List.TabIndex = 23;
 			this.List.UseCompatibleStateImageBehavior = false;
 			this.List.View = System.Windows.Forms.View.Details;
@@ -239,8 +239,8 @@ namespace PriemMetalClient
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(773, 445);
-			this.Controls.Add(this.BottomButtons);
 			this.Controls.Add(this.List);
+			this.Controls.Add(this.BottomButtons);
 			this.Controls.Add(this.MainBtnPanel);
 			this.Controls.Add(this.FilterGroupBox);
 			this.Controls.Add(this.BotButtonsPanel);

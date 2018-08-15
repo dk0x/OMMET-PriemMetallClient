@@ -14,6 +14,7 @@ namespace PriemMetalClient
 		//[Text("Уникальный идентификатор")]
 		[LiteDB.BsonId]
 		public Guid Guid { get; set; } = Guid.NewGuid();
+		[RecordInfo("Создан", ReadOnly = true)]
 		public DateTime _Created { get; set; } = DateTime.Now;
 
 		public virtual string ToString(bool full)
@@ -35,6 +36,20 @@ namespace PriemMetalClient
 
 		public void DBUpsert() => DataBase.DB.GetCollection(this.GetType().Name).Upsert(BsonMapper.Global.ToDocument(this.GetType(), this));
 		public void DBDelete() => DataBase.DB.GetCollection(this.GetType().Name).Delete(Guid);
+
+		public void ListUpsert<T>(List<T> list) where T : BaseRecord
+		{
+			for (var i = 0; i < list.Count; i++)
+			{
+				T el = list[i];
+				if (el.Guid == this.Guid)
+				{
+					list[i] = this as T;
+					return;
+				}
+			}
+			list.Add(this as T);
+		}
 
 		public static void SetListViewDefaultColumns<TRecord>(ListView listView) where TRecord : BaseRecord
 		{

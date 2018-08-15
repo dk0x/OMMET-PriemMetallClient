@@ -16,6 +16,7 @@ namespace PriemMetalClient
 		{
 			InitializeComponent();
 			//FizLiceSelect.Checked = true;
+			this.DeleteMetallVesPriceBtn.Text = $"Пометить/снять{Environment.NewLine} на удаление";
 			BaseRecord.SetListViewDefaultColumns<DocumentMetallVesPrice>(List);
 		}
 
@@ -38,7 +39,7 @@ namespace PriemMetalClient
 			if (doc == null) return null;
 			SetDocument(doc); // заполним поля формы документом
 			this.ShowDialog(owner); // покажем форму как диалог
-			SaveDocument(); // сохраним документ
+			if (!PSADocument.Proveden) SaveDocument(); // сохраним документ
 			return doc;
 		}
 
@@ -66,6 +67,10 @@ namespace PriemMetalClient
 			osnovanie.Text = doc.Osnovanie;
 			nds.Checked = doc.BezNds;
 			RefreshList();
+			/*List.Items.Clear();
+			var metalls = PSADocument.MetallVesPriceItems.OrderBy(x => x._Created);
+			foreach (var el in metalls)
+				el.UpsertListViewItem(List);*/
 			UpdatePriceVes();
 			SetProveden(doc.Proveden);
 		}
@@ -76,6 +81,7 @@ namespace PriemMetalClient
 			ListBtnPanel.Enabled = !Proveden;
 			List.Enabled = !Proveden;
 			SignBtn.Visible = !Proveden;
+			SaveBtn.Visible = !Proveden;
 			EditBtn.Visible = Proveden;
 
 		}
@@ -106,11 +112,22 @@ namespace PriemMetalClient
 			PSADocument.Otdelenie = otdelenieRecordSelectUserControl1.Record;
 			PSADocument.Summa = summa.Value;
 			PSADocument.Transport = transportRecordSelectUserControl1.Record;
-			foreach(DBListViewItem el in List.Items)
+			PSADocument.MetallVesPriceItems.Clear();
+			foreach (DBListViewItem el in List.Items)
 			{
-				el.Record.DBUpsert();
+				if (!el.Font.Strikeout)
+				{
+					el.Record.DBUpsert();
+					el.Record.ListUpsert(PSADocument.MetallVesPriceItems);
+				}
+				else
+				{
+					el.Record.DBDelete();
+				}
 			}
 			PSADocument.DBUpsert();
+			RefreshList();
+			UpdatePriceVes();
 		}
 
 		private void SignBtn_Click(object sender, EventArgs e)
@@ -153,6 +170,7 @@ namespace PriemMetalClient
 			summa.Value = 0;
 			foreach(DBListViewItem item in List.Items)
 			{
+				if (item.Font.Strikeout) continue;
 				var r = item.Record as DocumentMetallVesPrice;
 				netto.Value += r.Netto;
 				summa.Value += r.Summa;
@@ -163,17 +181,13 @@ namespace PriemMetalClient
 		{
 			using (var f = new DocumentMetallVesPriceForm())
 			{
-				var m = new DocumentMetallVesPrice()
+				var m = f.ShowDialogForEditMetalVesPrice(new DocumentMetallVesPrice(), this);
+				if (m != null)
 				{
-					OwnerDocumentGuid = PSADocument.Guid
-				};
-				//DataBase.DB.GetCollection<DocumentMetallVesPrice>().Upsert(m);
-				m.DBUpsert();
-				m.UpsertListViewItem(List);
-				f.ShowDialogForEditMetalVesPrice(m, this);
-				m.UpsertListViewItem(List);
-				SaveDocument();
-				UpdatePriceVes();
+					m.UpsertListViewItem(List);
+					//SaveDocument();
+					UpdatePriceVes();
+				}
 			}
 		}
 
@@ -188,8 +202,13 @@ namespace PriemMetalClient
 			if (List.SelectedIndices.Count > 0)
 			{
 				var listViewItem = List.SelectedItems[0];
-				DocumentMetallVesPrice metall = (listViewItem as DBListViewItem)?.Record as DocumentMetallVesPrice;
-				if (metall != null) metall.DBDelete(); //DataBase.DB.GetCollection<DocumentMetallVesPrice>().Delete(metall.Guid);
+				DocumentMetallVesPrice m = (listViewItem as DBListViewItem)?.Record as DocumentMetallVesPrice;
+				//if (m != null) m.DBDelete(); //DataBase.DB.GetCollection<DocumentMetallVesPrice>().Delete(metall.Guid);
+				//List.Items.Remove(listViewItem);
+
+				listViewItem.Font = listViewItem.Font.Strikeout ? 
+					new Font(listViewItem.Font, FontStyle.Regular) : 
+					new Font(listViewItem.Font, FontStyle.Strikeout);
 				UpdatePriceVes();
 			}
 		}
@@ -199,19 +218,32 @@ namespace PriemMetalClient
 			if (List.SelectedItems.Count > 0)
 			{
 				var listViewItem = List.SelectedItems[0];
-				using (var f = new DocumentMetallVesPriceForm())
+				DocumentMetallVesPrice m = (listViewItem as DBListViewItem)?.Record as DocumentMetallVesPrice;
+				if (m != null)
 				{
-					f.ShowDialogForEditMetalVesPrice((listViewItem as DBListViewItem)?.Record as DocumentMetallVesPrice, this);
-					RefreshList();
-					UpdatePriceVes();
+					using (var f = new DocumentMetallVesPriceForm())
+					{
+						m = f.ShowDialogForEditMetalVesPrice(m, this);
+						if (m != null)
+						{
+							m.UpsertListViewItem(List);
+							//SaveDocument();
+							UpdatePriceVes();
+						}
+					}
+
 				}
 			}
-
 		}
 
 		private void EditBtn_Click(object sender, EventArgs e)
 		{
 
+		}
+
+		private void SaveBtn_Click(object sender, EventArgs e)
+		{
+			SaveDocument();
 		}
 	}
 }

@@ -128,6 +128,64 @@ namespace PriemMetalClient
 					Transport = transport
 				});
 			}
+			for (int i = 0; i < 100; i++)
+			{
+				Random rnd = new Random();
+				int r = rnd.Next(0, i);
+				(new Otdelenie
+				{
+					Adres = $"Adres {i}",
+					Nazvanie = $"Nazvanie {i}",
+					Telefon = $"Telefon {i}",
+				}).DBUpsert();
+				(new MetallPrice
+				{
+					Category = $"Category {i}",
+					Nomenklatura = $"Nomenklatura {i}",
+					Description = $"Description {i}",
+					Price = i*100m
+				}).DBUpsert();
+				(new Transport
+				{
+					GosNomer = $"GosNomer {i}",
+					Marka = $"Marka {i}",
+					Model = $"Model {i}",
+				}).DBUpsert();
+				(new ContragentFizLico
+				{
+					Familiya = $"Familiya {i}",
+					Imja = $"Imja {i}",
+					Otchestvo = $"Otchestvo {i}",
+					SerijaNomerPasport = $"SerijaNomerPasport {i}",
+					DataVidachiPasport = new DateTime(1000+r, 5, 8),
+					AdresRegistraciiPasport = $"AdresRegistraciiPasport {i}",
+					MestoVidachiPasport = $"MestoVidachiPasport {i}",
+				}).DBUpsert();
+				(new ContragentUrLico
+				{
+					Adress = $"Adress {i}",
+					Inn = $"Inn {i}",
+					Kpp = $"Kpp {i}",
+					Naimenovanie = $"Naimenovanie {i}",
+					NomerDogovora = $"NomerDogovora {i}",
+					DataDogovora = new DateTime(1000 + r, 5, 8),
+				}).DBUpsert();
+				var fiz = DB.GetCollection<ContragentFizLico>().FindAll().ToList();
+				var ur = DB.GetCollection<ContragentUrLico>().FindAll().ToList();
+				var otd = DB.GetCollection<Otdelenie>().FindAll().ToList();
+				var tr = DB.GetCollection<Transport>().FindAll().ToList();
+				ContragentType t = rnd.Next(1, 100) > 50 ? ContragentType.FizLico : ContragentType.UrLico;
+				(new PSADocument
+				{
+					ContragentFizLico = t == ContragentType.FizLico ? fiz[r] : null,
+					ContragentUrLico = t == ContragentType.UrLico ? ur[r] : null,
+					ContragentType = t,
+					Nomer = i,
+					Otdelenie = otd[r],
+					Transport = tr[r]
+				}).DBUpsert();
+			}
+
 		}
 	}
 }

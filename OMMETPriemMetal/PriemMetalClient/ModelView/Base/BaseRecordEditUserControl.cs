@@ -52,6 +52,7 @@ namespace PriemMetalClient
 				var ri = RecordInfoAttribute.GetPropertyRecordInfo(p);
 				if (ri == null) continue;
 				if (string.IsNullOrWhiteSpace(ri.Text)) continue;
+				if (ri.ReadOnly) continue;
 				if (p.PropertyType == typeof(string))
 				{
 					TextPropertyEditUserControl f = new TextPropertyEditUserControl

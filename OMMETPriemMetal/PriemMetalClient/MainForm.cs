@@ -120,8 +120,10 @@ namespace PriemMetalClient
 
 			col = DataBase.PSADocumentCollection.FindAll();
 			col = col.OrderBy(x => x._Created);
+			PSAList.BeginUpdate();
 			foreach (var el in col)
 				el.UpsertListViewItem(PSAList);
+			PSAList.EndUpdate();
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 			if (PSAList.Columns.Count > 0) PSAList.Columns[0].Width = 0;
@@ -131,8 +133,9 @@ namespace PriemMetalClient
 		{
 			using (var f = new PSADocumentForm()) // создадим форму
 			{
-				f.ShowDialogWithCreateNewDocument(this); // откровем форму с автосозданием документа
-				RefreshPSAList(); // обновим список
+				f.ShowDialogWithCreateNewDocument(this)?.UpsertListViewItem(PSAList); // откровем форму с автосозданием документа
+				PSAList.EnsureVisible(PSAList.Items.Count - 1);
+				//RefreshPSAList(); // обновим список
 			}
 		}
 
@@ -143,8 +146,8 @@ namespace PriemMetalClient
 				//ListViewItem<PSADocument> item = PSAList.SelectedItems[0];
 				using (var f = new PSADocumentForm()) // создадим форму
 				{
-					f.ShowDialogForEditDocument((PSAList.SelectedItems[0] as DBListViewItem)?.Record as PSADocument, this);
-					RefreshPSAList(); // обновим список
+					f.ShowDialogForEditDocument((PSAList.SelectedItems[0] as DBListViewItem)?.Record as PSADocument, this)?.UpsertListViewItem(PSAList);
+					//RefreshPSAList(); // обновим список
 				}
 			}
 		}

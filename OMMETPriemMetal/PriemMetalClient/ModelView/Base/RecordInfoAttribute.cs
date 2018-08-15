@@ -18,6 +18,7 @@ namespace PriemMetalClient
 	public class RecordInfoAttribute : System.Attribute
 	{
 		public string Text { get; set; } = null;
+		public bool ReadOnly { get; set; } = false;
 		public bool TableNoFilter { get; set; } = false;
 		public bool TableNoColumn { get; set; } = false;
 		public bool TextMultilane { get; set; } = false;

@@ -61,10 +61,7 @@ namespace PriemMetalClient
 
 
 		//[RecordInfo("Список принятого металла")]
-		[LiteDB.BsonIgnore]
-		public List<DocumentMetallVesPrice> MetallVesPriceItems {
-			get => DataBase.DB.GetCollection<DocumentMetallVesPrice>().Find(x => x.OwnerDocumentGuid == Guid).ToList();
-		}
+		public List<DocumentMetallVesPrice> MetallVesPriceItems { get; set; } = new List<DocumentMetallVesPrice>();
 	}
 
 }

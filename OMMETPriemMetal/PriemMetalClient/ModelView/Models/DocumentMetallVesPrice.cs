@@ -26,7 +26,7 @@ namespace PriemMetalClient
 	[RecordInfo("Прием партии металлолома")]
 	public class DocumentMetallVesPrice : BaseRecord
 	{
-		public Guid OwnerDocumentGuid { get; set; } = Guid.Empty;
+		//public Guid OwnerDocumentGuid { get; set; } = Guid.Empty;
 		[RecordInfo("Категория лома")]
 		public string Category { get; set; } = string.Empty;
 		[RecordInfo("Номенклатура")]
