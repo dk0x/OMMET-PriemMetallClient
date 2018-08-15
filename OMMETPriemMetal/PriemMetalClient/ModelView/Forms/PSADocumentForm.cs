@@ -1,11 +1,16 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace PriemMetalClient
 {
@@ -43,6 +48,17 @@ namespace PriemMetalClient
 			return doc;
 		}
 
+		public void ShowDialogForViewHistoryDocument(PSADocumentHistory doc, IWin32Window owner)
+		{
+			if (doc == null) return;
+			tabPage2.Parent = null;
+			bottomBtnPanel.Visible = false;
+			TopPanel.Enabled = false;
+			ListBtnPanel.Visible = false;
+			SetDocument(doc); // заполним поля формы документом
+			this.ShowDialog(owner); // покажем форму как диалог
+		}
+
 		public void SetDocument(PSADocument doc)
 		{
 			PSADocument = doc;
@@ -73,6 +89,8 @@ namespace PriemMetalClient
 				el.UpsertListViewItem(List);*/
 			UpdatePriceVes();
 			SetProveden(doc.Proveden);
+
+			RefreshHistoryList();
 		}
 
 		public void SetProveden(bool Proveden)
@@ -238,12 +256,47 @@ namespace PriemMetalClient
 
 		private void EditBtn_Click(object sender, EventArgs e)
 		{
+			using (InputDialogForm d = new InputDialogForm())
+				if (d.ShowDialog("Введите причину редактирования", this) == DialogResult.OK)
+				{
+					PSADocumentHistory h = PSADocument.Clone<PSADocumentHistory>();
+					h.Guid = Guid.NewGuid();
+					h._Created = DateTime.Now;
+					h.Prichina = d.ResultText;
+					h.PSADocumentGuid = PSADocument.Guid;
+					h.DataVremya = DateTime.Now;
+					h.DBUpsert();
+					DataBase.DB.GetCollection<KassaTransaction>().Delete(x => x.PSADocument.Guid == PSADocument.Guid);
+					PSADocument.Proveden = false;
+					PSADocument.DBUpsert();
+					SetProveden(false);
+					RefreshHistoryList();
+				}
+		}
 
+		public void RefreshHistoryList()
+		{
+			List<string> l = new List<string>();
+			var h = new PSADocumentHistory();
+			l.Add(nameof(h.DataVremya));
+			l.Add(nameof(h.Prichina));
+			BaseRecord.SetListViewColumns<PSADocumentHistory>(HistoryList, l);
+			var col = DataBase.PSADocumentHistoryCollection.Find(x => x.PSADocumentGuid == PSADocument.Guid).ToList().OrderBy(x => x.DataVremya);
+			foreach (var el in col) el.UpsertListViewItem(HistoryList);
 		}
 
 		private void SaveBtn_Click(object sender, EventArgs e)
 		{
 			SaveDocument();
+		}
+
+		private void toolStripButton1_Click_1(object sender, EventArgs e)
+		{
+			if (HistoryList.SelectedIndices.Count > 0)
+			{
+				var sel = HistoryList.SelectedItems[0] as DBListViewItem;
+				if (sel != null) new PSADocumentForm().ShowDialogForViewHistoryDocument(sel.Record as PSADocumentHistory, this);
+			}
 		}
 	}
 }

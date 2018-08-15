@@ -5,10 +5,12 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using LiteDB;
+using Newtonsoft.Json;
 
 namespace PriemMetalClient
 {
 
+	[Serializable]
 	public class BaseRecord
 	{
 		//[Text("Уникальный идентификатор")]
@@ -33,6 +35,13 @@ namespace PriemMetalClient
 		}
 
 		public override string ToString() => ToString(false);
+
+		public T Clone<T>()
+		{
+			var serialized = JsonConvert.SerializeObject(this);
+			return JsonConvert.DeserializeObject<T>(serialized);
+		}
+
 
 		public void DBUpsert() => DataBase.DB.GetCollection(this.GetType().Name).Upsert(BsonMapper.Global.ToDocument(this.GetType(), this));
 		public void DBDelete() => DataBase.DB.GetCollection(this.GetType().Name).Delete(Guid);

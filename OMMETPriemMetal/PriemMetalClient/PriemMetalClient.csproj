@@ -51,6 +51,9 @@
     <Reference Include="LiteDB, Version=4.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
       <HintPath>..\packages\LiteDB.4.1.4\lib\net40\LiteDB.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -64,6 +67,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Misc\InputDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\InputDialogForm.Designer.cs">
+      <DependentUpon>InputDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelView\Base\BaseRecordBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +174,7 @@
     </Compile>
     <Compile Include="ModelView\Models\Otdelenie.cs" />
     <Compile Include="ModelView\Models\DocumentMetallVesPrice.cs" />
+    <Compile Include="ModelView\Models\PSADocumentHistory.cs" />
     <Compile Include="ModelView\Models\Transport.cs" />
     <Compile Include="ModelView\Selects\ContragentFizLicoRecordSelectUserControl.cs">
       <SubType>UserControl</SubType>
@@ -191,6 +201,9 @@
     <Compile Include="test.Designer.cs">
       <DependentUpon>test.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Misc\InputDialogForm.resx">
+      <DependentUpon>InputDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModelView\Base\BaseRecordBookForm.resx">
       <DependentUpon>BaseRecordBookForm.cs</DependentUpon>
     </EmbeddedResource>

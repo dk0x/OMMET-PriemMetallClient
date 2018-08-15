@@ -35,3 +35,6 @@ D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\Pri
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.DocumentMetallVesPriceForm.resources
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.NumericPropertyEditUserControl.resources
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.csprojResolveAssemblyReference.cache
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\bin\Debug\Newtonsoft.Json.dll
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\bin\Debug\Newtonsoft.Json.xml
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.InputDialogForm.resources

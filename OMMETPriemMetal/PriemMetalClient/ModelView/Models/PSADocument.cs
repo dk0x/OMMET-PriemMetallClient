@@ -11,6 +11,7 @@ namespace PriemMetalClient
 		FizLico,
 		UrLico
 	}
+	[Serializable]
 	[RecordInfo("Приёмо-сдаточный акт")]
 	public class PSADocument : BaseRecord
 	{
@@ -21,22 +22,22 @@ namespace PriemMetalClient
 		public DateTime Date { get; set; } = DateTime.Now;
 
 		[RecordInfo("Отделение приема")]
-		[LiteDB.BsonRef()]
+		//[LiteDB.BsonRef()]
 		public Otdelenie Otdelenie { get; set; } = null;
 
 		[RecordInfo("Тип контрагента", TableNoColumn = true)]
 		public ContragentType ContragentType { get; set; } = ContragentType.FizLico;
 
 		[RecordInfo("Контрагент: Физ. лицо")]
-		[LiteDB.BsonRef()]
+		//[LiteDB.BsonRef()]
 		public ContragentFizLico ContragentFizLico { get; set; } = null;
 
 		[RecordInfo("Контрагент: Юр. лицо")]
-		[LiteDB.BsonRef()]
+		//[LiteDB.BsonRef()]
 		public ContragentUrLico ContragentUrLico { get; set; } = null;
 
 		[RecordInfo("Транспорт")]
-		[LiteDB.BsonRef()]
+		//[LiteDB.BsonRef()]
 		public Transport Transport { get; set; } = null;
 
 		[RecordInfo("Описание лома", TableNoColumn = true)]
@@ -61,6 +62,7 @@ namespace PriemMetalClient
 
 
 		//[RecordInfo("Список принятого металла")]
+		//[LiteDB.BsonRef]
 		public List<DocumentMetallVesPrice> MetallVesPriceItems { get; set; } = new List<DocumentMetallVesPrice>();
 	}
 

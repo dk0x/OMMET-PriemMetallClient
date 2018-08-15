@@ -121,8 +121,7 @@ namespace PriemMetalClient
 			col = DataBase.PSADocumentCollection.FindAll();
 			col = col.OrderBy(x => x._Created);
 			PSAList.BeginUpdate();
-			foreach (var el in col)
-				el.UpsertListViewItem(PSAList);
+			foreach (var el in col)	el.UpsertListViewItem(PSAList);
 			PSAList.EndUpdate();
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);

@@ -11,20 +11,35 @@ namespace PriemMetalClient
 
 		private static LiteDatabase _DB = null;
 		public static LiteDatabase DB { get => GetDB(); }
-		public static LiteCollection<PSADocument> PSADocumentCollection {
-			get => DataBase.DB.GetCollection<PSADocument>().
+		public static LiteCollection<PSADocument> PSADocumentCollection
+		{
+			get => DB.GetCollection<PSADocument>().
 				Include(x => x.ContragentFizLico).
 				Include(x => x.ContragentUrLico).
 				Include(x => x.Otdelenie).
-				Include(x => x.Transport);
-			}
+				Include(x => x.Transport).
+				Include(x => x.MetallVesPriceItems);
+		}
+	public static LiteCollection<PSADocumentHistory> PSADocumentHistoryCollection
+		{
+			get => DB.GetCollection<PSADocumentHistory>().
+				Include(x => x.ContragentFizLico).
+				Include(x => x.ContragentUrLico).
+				Include(x => x.Otdelenie).
+				Include(x => x.Transport).
+				Include(x => x.MetallVesPriceItems);
+		}
 
 		private static LiteDatabase GetDB()
 		{
 			if (_DB == null)
 			{
 				_DB = new LiteDatabase(Tools.Path(ConfigManager.Parameters.DataBasePath));
-				//BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.PSADocumentMetalls, "PSADocumentMetall");
+				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.Otdelenie);
+				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.Transport);
+				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.ContragentFizLico);
+				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.ContragentUrLico);
+				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.MetallVesPriceItems);
 				FillTestData();
 			}
 			return _DB;
@@ -40,6 +55,8 @@ namespace PriemMetalClient
 			DB.DropCollection(typeof(DocumentMetallVesPrice).Name);
 			DB.DropCollection(typeof(Transport).Name);
 			DB.DropCollection(typeof(KassaTransaction).Name);
+			DB.DropCollection(typeof(PSADocumentHistory).Name);
+			
 			Otdelenie otdelenie;
 			{
 				var con = DB.GetCollection<Otdelenie>();

@@ -63,7 +63,6 @@
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-			this.PSAViewBtn = new System.Windows.Forms.ToolStripButton();
 			this.toolStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -299,7 +298,6 @@
 			this.toolStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
 			this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewPSADocumentBtn,
-            this.PSAViewBtn,
             this.EditPSADocumentBtn,
             this.DeletePSADocumentBtn});
 			this.toolStrip2.Location = new System.Drawing.Point(3, 3);
@@ -388,16 +386,6 @@
 			this.printPreviewDialog1.Name = "printPreviewDialog1";
 			this.printPreviewDialog1.Visible = false;
 			// 
-			// PSAViewBtn
-			// 
-			this.PSAViewBtn.Image = global::PriemMetalClient.Properties.Resources._173163___book;
-			this.PSAViewBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.PSAViewBtn.Name = "PSAViewBtn";
-			this.PSAViewBtn.Size = new System.Drawing.Size(68, 51);
-			this.PSAViewBtn.Text = "Просмотр";
-			this.PSAViewBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.PSAViewBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -462,6 +450,5 @@
 		private System.Windows.Forms.ToolStripButton EditPSADocumentBtn;
 		private System.Windows.Forms.ToolStripButton DeletePSADocumentBtn;
 		private System.Windows.Forms.TabPage tabPage3;
-		private System.Windows.Forms.ToolStripButton PSAViewBtn;
 	}
 }

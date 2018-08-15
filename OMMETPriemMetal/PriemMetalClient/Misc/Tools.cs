@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -88,6 +89,12 @@ namespace PriemMetalClient
 		public static object GetValueByPropertyName(object obj, string propName)
 		{
 			return obj.GetType().GetProperty(propName).GetValue(obj, null);
+		}
+
+		public static T Clone<T, T2>(T2 source)
+		{
+			var serialized = JsonConvert.SerializeObject(source);
+			return JsonConvert.DeserializeObject<T>(serialized);
 		}
 	}
 }
