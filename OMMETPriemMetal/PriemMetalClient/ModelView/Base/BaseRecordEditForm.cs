@@ -16,7 +16,7 @@ namespace PriemMetalClient
 		public BaseRecordEditForm()
 		{
 			InitializeComponent();
-			this.Text = $"Редактирование записи: {RecordInfoAttribute.GetClassRecordInfo<TRecord>().Text ?? ""}";
+			this.Text = $"Редактирование записи: {RecordInfoAttribute.GetClassRecordInfo<TRecord>()?.Text ?? ""}";
 		}
 
 		public DialogResult ShowDialog(TRecord r, IWin32Window owner)

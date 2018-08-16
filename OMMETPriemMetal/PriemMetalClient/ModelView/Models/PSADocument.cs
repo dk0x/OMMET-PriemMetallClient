@@ -11,7 +11,6 @@ namespace PriemMetalClient
 		FizLico,
 		UrLico
 	}
-	[Serializable]
 	[RecordInfo("Приёмо-сдаточный акт")]
 	public class PSADocument : BaseRecord
 	{

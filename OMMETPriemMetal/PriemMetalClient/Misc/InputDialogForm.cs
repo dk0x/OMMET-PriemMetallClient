@@ -20,6 +20,8 @@ namespace PriemMetalClient
 		public DialogResult ShowDialog(string infoMsg, IWin32Window owner = null)
 		{
 			label.Text = infoMsg;
+			textBox.Focus();
+			OkBtn.Enabled = false;
 			return this.ShowDialog(owner);
 		}
 
@@ -33,6 +35,11 @@ namespace PriemMetalClient
 		{
 			DialogResult = DialogResult.Cancel;
 			Close();
+		}
+
+		private void textBox_TextChanged(object sender, EventArgs e)
+		{
+			OkBtn.Enabled = !String.IsNullOrWhiteSpace(textBox.Text);
 		}
 	}
 }

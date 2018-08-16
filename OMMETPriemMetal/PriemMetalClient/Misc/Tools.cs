@@ -13,7 +13,7 @@ namespace PriemMetalClient
 	public static class Tools
 	{
 		private static string _ExePath = "";
-		public static string ExePath => GetExePath();
+		public static string ExePath { get => GetExePath(); }
 		public static string GetExePath()
 		{
 			if (_ExePath == "")
@@ -21,10 +21,11 @@ namespace PriemMetalClient
 					GetName().CodeBase).Replace(@"file:\", "").Replace(@"file:", "");
 			return _ExePath;
 		}
+		public static bool IsLinux { get => Environment.OSVersion.Platform == PlatformID.Unix; }
 		public static string Path(string add)
 		{
 			add = ExePath + add;
-			if (Environment.OSVersion.Platform == PlatformID.Unix)
+			if (IsLinux)
 				add = add.Replace(@"\", @"/");
 			else
 				add = add.Replace(@"/", @"\");

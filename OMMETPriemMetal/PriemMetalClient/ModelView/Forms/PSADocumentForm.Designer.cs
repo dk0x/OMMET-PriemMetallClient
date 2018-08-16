@@ -145,7 +145,7 @@ namespace PriemMetalClient
 			this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
 			this.tableLayoutPanel2.ColumnCount = 2;
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 212F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
 			this.tableLayoutPanel2.Controls.Add(this.FizLicoSelect, 0, 1);
 			this.tableLayoutPanel2.Controls.Add(this.otdelenieRecordSelectUserControl1, 0, 0);
 			this.tableLayoutPanel2.Controls.Add(this.UrLizoSelect, 1, 1);
@@ -158,7 +158,7 @@ namespace PriemMetalClient
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(415, 120);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(421, 120);
 			this.tableLayoutPanel2.TabIndex = 7;
 			// 
 			// tableLayoutPanel1
@@ -167,7 +167,7 @@ namespace PriemMetalClient
 			this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
 			this.tableLayoutPanel1.ColumnCount = 2;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 226F));
 			this.tableLayoutPanel1.Controls.Add(this.osnovanie, 1, 1);
 			this.tableLayoutPanel1.Controls.Add(this.opisanieLoma, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.label7, 0, 0);
@@ -185,7 +185,7 @@ namespace PriemMetalClient
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(348, 133);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(354, 133);
 			this.tableLayoutPanel1.TabIndex = 8;
 			// 
 			// osnovanie
@@ -193,7 +193,7 @@ namespace PriemMetalClient
 			this.osnovanie.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.osnovanie.Location = new System.Drawing.Point(130, 31);
 			this.osnovanie.Name = "osnovanie";
-			this.osnovanie.Size = new System.Drawing.Size(214, 20);
+			this.osnovanie.Size = new System.Drawing.Size(220, 20);
 			this.osnovanie.TabIndex = 11;
 			// 
 			// opisanieLoma
@@ -201,7 +201,7 @@ namespace PriemMetalClient
 			this.opisanieLoma.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.opisanieLoma.Location = new System.Drawing.Point(130, 4);
 			this.opisanieLoma.Name = "opisanieLoma";
-			this.opisanieLoma.Size = new System.Drawing.Size(214, 20);
+			this.opisanieLoma.Size = new System.Drawing.Size(220, 20);
 			this.opisanieLoma.TabIndex = 10;
 			// 
 			// label7
@@ -285,7 +285,7 @@ namespace PriemMetalClient
             0});
 			this.summa.Name = "summa";
 			this.summa.ReadOnly = true;
-			this.summa.Size = new System.Drawing.Size(214, 20);
+			this.summa.Size = new System.Drawing.Size(220, 20);
 			this.summa.TabIndex = 12;
 			this.summa.ThousandsSeparator = true;
 			// 
@@ -307,7 +307,7 @@ namespace PriemMetalClient
             0});
 			this.netto.Name = "netto";
 			this.netto.ReadOnly = true;
-			this.netto.Size = new System.Drawing.Size(214, 20);
+			this.netto.Size = new System.Drawing.Size(220, 20);
 			this.netto.TabIndex = 11;
 			this.netto.ThousandsSeparator = true;
 			// 
@@ -588,6 +588,7 @@ namespace PriemMetalClient
 			this.Name = "PSADocumentForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "PSADocumentForm";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PSADocumentForm_FormClosing);
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();

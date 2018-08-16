@@ -92,8 +92,6 @@ namespace PriemMetalClient
 		private void Button1_Click_1(object sender, EventArgs e)
 		{
 
-			//Tools.OpenLink(Tools.Path("\\1.html"));
-			//Tools.OpenLink("https:\\google.ru");
 		}
 
 		private void Button2_Click(object sender, EventArgs e)
@@ -160,6 +158,12 @@ namespace PriemMetalClient
 				//DataBase.DB.GetCollection<PSADocument>().Delete(((item as DBListViewItem).Record as PSADocument).Guid);
 				PSAList.Items.Remove(item);
 			}
+		}
+
+		private void транзакцииToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var f = new BaseRecordBookForm<KassaTransaction>();
+			f.ShowDialogNormal(this);
 		}
 	}
 }

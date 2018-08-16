@@ -24,7 +24,7 @@ namespace PriemMetalClient
 		public BaseRecordBookForm()
 		{
 			InitializeComponent();
-			this.Text = $"Справочник: {RecordInfoAttribute.GetClassRecordInfo<TRecord>().Text ?? ""}";
+			this.Text = $"Справочник: {RecordInfoAttribute.GetClassRecordInfo<TRecord>()?.Text ?? ""}";
 			BaseRecord.SetListViewDefaultColumns<TRecord>(List);
 			RefreshList();
 			List_SelectedIndexChanged(List, new EventArgs());

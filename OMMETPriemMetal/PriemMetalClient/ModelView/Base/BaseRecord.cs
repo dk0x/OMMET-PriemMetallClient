@@ -9,8 +9,6 @@ using Newtonsoft.Json;
 
 namespace PriemMetalClient
 {
-
-	[Serializable]
 	public class BaseRecord
 	{
 		//[Text("Уникальный идентификатор")]

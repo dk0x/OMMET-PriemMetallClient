@@ -109,7 +109,7 @@ namespace PriemMetalClient
 			}
 			Label caption = new Label
 			{
-				Text = $"-- {RecordInfoAttribute.GetClassRecordInfo<RecordType>().Text ?? ""} --",
+				Text = $"-- {RecordInfoAttribute.GetClassRecordInfo<RecordType>()?.Text ?? ""} --",
 				Parent = this,
 				AutoSize = false,
 				Dock = DockStyle.Top

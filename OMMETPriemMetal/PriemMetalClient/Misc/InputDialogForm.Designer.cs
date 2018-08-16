@@ -64,6 +64,7 @@
 			this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBox.Size = new System.Drawing.Size(284, 20);
 			this.textBox.TabIndex = 3;
+			this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
 			// 
 			// label
 			// 

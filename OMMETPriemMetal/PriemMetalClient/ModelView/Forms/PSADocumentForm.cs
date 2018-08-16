@@ -44,7 +44,6 @@ namespace PriemMetalClient
 			if (doc == null) return null;
 			SetDocument(doc); // заполним поля формы документом
 			this.ShowDialog(owner); // покажем форму как диалог
-			if (!PSADocument.Proveden) SaveDocument(); // сохраним документ
 			return doc;
 		}
 
@@ -296,6 +295,16 @@ namespace PriemMetalClient
 			{
 				var sel = HistoryList.SelectedItems[0] as DBListViewItem;
 				if (sel != null) new PSADocumentForm().ShowDialogForViewHistoryDocument(sel.Record as PSADocumentHistory, this);
+			}
+		}
+
+		private void PSADocumentForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			if (!PSADocument.Proveden)
+			{
+				DialogResult dialogResult = MessageBox.Show(this, "Сохранить перед закрытием?", "", MessageBoxButtons.YesNoCancel);
+				if (dialogResult == DialogResult.Yes) SaveDocument();
+				if (dialogResult == DialogResult.Cancel) e.Cancel = true;
 			}
 		}
 	}
