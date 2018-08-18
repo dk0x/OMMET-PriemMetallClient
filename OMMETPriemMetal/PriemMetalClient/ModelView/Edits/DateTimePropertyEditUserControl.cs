@@ -15,12 +15,12 @@ namespace PriemMetalClient
 		public DateTimePropertyEditUserControl()
 		{
 			InitializeComponent();
-			dateTimePicker.MinDate = DateTime.MinValue;
-			dateTimePicker.MaxDate = DateTime.MaxValue;
 		}
 		public override void SetRecord(BaseRecord record)
 		{
 			base.SetRecord(record);
+			dateTimePicker.MinDate = DateTime.MinValue;
+			dateTimePicker.MaxDate = DateTime.MaxValue;
 		}
 
 		public override void SetProperty(PropertyInfo prop)

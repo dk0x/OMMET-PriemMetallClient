@@ -165,5 +165,19 @@ namespace PriemMetalClient
 			var f = new BaseRecordBookForm<KassaTransaction>();
 			f.ShowDialogNormal(this);
 		}
+
+		private void button1_Click_2(object sender, EventArgs e)
+		{
+			var col = DataBase.DB.GetCollection<ContragentFizLico>().FindAll().OrderBy(x => x.ToString()).ToList();
+			comboBox1.Items.AddRange(col.ToArray());
+		}
+
+		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (comboBox1.SelectedItem != null)
+			{
+				label1.Text = (comboBox1.SelectedItem as ContragentFizLico).Imja;
+			}
+		}
 	}
 }

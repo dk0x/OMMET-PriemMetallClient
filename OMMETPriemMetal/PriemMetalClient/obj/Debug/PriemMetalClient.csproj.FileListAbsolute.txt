@@ -38,3 +38,4 @@ D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\Pri
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\bin\Debug\Newtonsoft.Json.dll
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\bin\Debug\Newtonsoft.Json.xml
 D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.InputDialogForm.resources
+D:\GitHub\OMMET-PriemMetallClient\OMMETPriemMetal\PriemMetalClient\obj\Debug\PriemMetalClient.ModelView.Controls.PriemStep1.resources

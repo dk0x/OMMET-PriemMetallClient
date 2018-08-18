@@ -52,5 +52,11 @@ namespace PriemMetalClient
 			using (var f = new BaseRecordBookForm<TRecord>())
 				SetRecord(f.ShowDialogSelect(this.ParentForm));
 		}
+
+		private void SelectBtn_Resize(object sender, EventArgs e)
+		{
+			if (SelectBtn.Width != SelectBtn.Height)
+				SelectBtn.Width = SelectBtn.Height;
+		}
 	}
 }

@@ -20,7 +20,7 @@ namespace PriemMetalClient
 				Include(x => x.Transport).
 				Include(x => x.MetallVesPriceItems);
 		}
-	public static LiteCollection<PSADocumentHistory> PSADocumentHistoryCollection
+		public static LiteCollection<PSADocumentHistory> PSADocumentHistoryCollection
 		{
 			get => DB.GetCollection<PSADocumentHistory>().
 				Include(x => x.ContragentFizLico).
@@ -35,11 +35,11 @@ namespace PriemMetalClient
 			if (_DB == null)
 			{
 				_DB = new LiteDatabase(Tools.Path(ConfigManager.Parameters.DataBasePath));
-				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.Otdelenie);
+				/*BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.Otdelenie);
 				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.Transport);
 				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.ContragentFizLico);
 				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.ContragentUrLico);
-				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.MetallVesPriceItems);
+				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.MetallVesPriceItems);*/
 				FillTestData();
 			}
 			return _DB;
@@ -174,7 +174,7 @@ namespace PriemMetalClient
 					Imja = $"Imja {i}",
 					Otchestvo = $"Otchestvo {i}",
 					SerijaNomerPasport = $"SerijaNomerPasport {i}",
-					DataVidachiPasport = new DateTime(1000+r, 5, 8),
+					DataVidachiPasport = new DateTime(2000 + r, 5, 8),
 					AdresRegistraciiPasport = $"AdresRegistraciiPasport {i}",
 					MestoVidachiPasport = $"MestoVidachiPasport {i}",
 				}).DBUpsert();
@@ -185,7 +185,7 @@ namespace PriemMetalClient
 					Kpp = $"Kpp {i}",
 					Naimenovanie = $"Naimenovanie {i}",
 					NomerDogovora = $"NomerDogovora {i}",
-					DataDogovora = new DateTime(1000 + r, 5, 8),
+					DataDogovora = new DateTime(2000 + r, 5, 8),
 				}).DBUpsert();
 				var fiz = DB.GetCollection<ContragentFizLico>().FindAll().ToList();
 				var ur = DB.GetCollection<ContragentUrLico>().FindAll().ToList();

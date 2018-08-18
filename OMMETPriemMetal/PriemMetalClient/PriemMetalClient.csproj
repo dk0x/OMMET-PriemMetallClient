@@ -102,6 +102,12 @@
       <DependentUpon>BaseRecordSelectUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelView\Base\RecordInfoAttribute.cs" />
+    <Compile Include="ModelView\Controls\PriemStep1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelView\Controls\PriemStep1.Designer.cs">
+      <DependentUpon>PriemStep1.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelView\Edits\DateTimePropertyEditUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModelView\Base\BaseRecordSelectUserControl.resx">
       <DependentUpon>BaseRecordSelectUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelView\Controls\PriemStep1.resx">
+      <DependentUpon>PriemStep1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelView\Edits\DateTimePropertyEditUserControl.resx">
       <DependentUpon>DateTimePropertyEditUserControl.cs</DependentUpon>
