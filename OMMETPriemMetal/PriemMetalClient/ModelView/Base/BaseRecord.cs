@@ -59,6 +59,22 @@ namespace PriemMetalClient
 			list.Add(this as T);
 		}
 
+		public T ComboboxListUpsert<T>(ComboBox combo) where T : BaseRecord
+		{
+			T obj = this as T;
+			for (var i = 0; i < combo.Items.Count; i++)
+			{
+				T el = combo.Items[i] as T;
+				if (el.Guid == this.Guid)
+				{
+					combo.Items[i] = obj;
+					return obj;
+				}
+			}
+			combo.Items.Add(obj);
+			return obj;
+		}
+
 		public static void SetListViewDefaultColumns<TRecord>(ListView listView) where TRecord : BaseRecord
 		{
 			List<string> NewColumns = new List<string>();

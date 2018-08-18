@@ -181,6 +181,7 @@
     <Compile Include="ModelView\Models\Otdelenie.cs" />
     <Compile Include="ModelView\Models\DocumentMetallVesPrice.cs" />
     <Compile Include="ModelView\Models\PSADocumentHistory.cs" />
+    <Compile Include="ModelView\Models\PSADocumentStep.cs" />
     <Compile Include="ModelView\Models\Transport.cs" />
     <Compile Include="ModelView\Selects\ContragentFizLicoRecordSelectUserControl.cs">
       <SubType>UserControl</SubType>

@@ -36,6 +36,10 @@ namespace PriemMetalClient
 			this.FizLicoSelect = new System.Windows.Forms.RadioButton();
 			this.UrLizoSelect = new System.Windows.Forms.RadioButton();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.otdelenieRecordSelectUserControl1 = new PriemMetalClient.OtdelenieRecordSelectUserControl();
+			this.transportRecordSelectUserControl1 = new PriemMetalClient.TransportRecordSelectUserControl();
+			this.contragentFizLicoRecordSelectUserControl1 = new PriemMetalClient.ContragentFizLicoRecordSelectUserControl();
+			this.contragentUrLicoRecordSelectUserControl1 = new PriemMetalClient.ContragentUrLicoRecordSelectUserControl();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.osnovanie = new System.Windows.Forms.TextBox();
 			this.opisanieLoma = new System.Windows.Forms.TextBox();
@@ -63,14 +67,10 @@ namespace PriemMetalClient
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.HistoryList = new System.Windows.Forms.ListView();
 			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-			this.HistoryList = new System.Windows.Forms.ListView();
-			this.otdelenieRecordSelectUserControl1 = new PriemMetalClient.OtdelenieRecordSelectUserControl();
-			this.transportRecordSelectUserControl1 = new PriemMetalClient.TransportRecordSelectUserControl();
-			this.contragentFizLicoRecordSelectUserControl1 = new PriemMetalClient.ContragentFizLicoRecordSelectUserControl();
-			this.contragentUrLicoRecordSelectUserControl1 = new PriemMetalClient.ContragentUrLicoRecordSelectUserControl();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.summa)).BeginInit();
@@ -145,7 +145,7 @@ namespace PriemMetalClient
 			this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
 			this.tableLayoutPanel2.ColumnCount = 2;
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 219F));
 			this.tableLayoutPanel2.Controls.Add(this.FizLicoSelect, 0, 1);
 			this.tableLayoutPanel2.Controls.Add(this.otdelenieRecordSelectUserControl1, 0, 0);
 			this.tableLayoutPanel2.Controls.Add(this.UrLizoSelect, 1, 1);
@@ -158,8 +158,42 @@ namespace PriemMetalClient
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(421, 120);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(422, 120);
 			this.tableLayoutPanel2.TabIndex = 7;
+			// 
+			// otdelenieRecordSelectUserControl1
+			// 
+			this.otdelenieRecordSelectUserControl1.Location = new System.Drawing.Point(4, 4);
+			this.otdelenieRecordSelectUserControl1.MinimumSize = new System.Drawing.Size(100, 40);
+			this.otdelenieRecordSelectUserControl1.Name = "otdelenieRecordSelectUserControl1";
+			this.otdelenieRecordSelectUserControl1.Size = new System.Drawing.Size(194, 40);
+			this.otdelenieRecordSelectUserControl1.TabIndex = 0;
+			// 
+			// transportRecordSelectUserControl1
+			// 
+			this.transportRecordSelectUserControl1.Location = new System.Drawing.Point(205, 4);
+			this.transportRecordSelectUserControl1.MinimumSize = new System.Drawing.Size(100, 40);
+			this.transportRecordSelectUserControl1.Name = "transportRecordSelectUserControl1";
+			this.transportRecordSelectUserControl1.Size = new System.Drawing.Size(197, 40);
+			this.transportRecordSelectUserControl1.TabIndex = 1;
+			// 
+			// contragentFizLicoRecordSelectUserControl1
+			// 
+			this.contragentFizLicoRecordSelectUserControl1.Enabled = false;
+			this.contragentFizLicoRecordSelectUserControl1.Location = new System.Drawing.Point(4, 76);
+			this.contragentFizLicoRecordSelectUserControl1.MinimumSize = new System.Drawing.Size(100, 40);
+			this.contragentFizLicoRecordSelectUserControl1.Name = "contragentFizLicoRecordSelectUserControl1";
+			this.contragentFizLicoRecordSelectUserControl1.Size = new System.Drawing.Size(194, 40);
+			this.contragentFizLicoRecordSelectUserControl1.TabIndex = 0;
+			// 
+			// contragentUrLicoRecordSelectUserControl1
+			// 
+			this.contragentUrLicoRecordSelectUserControl1.Enabled = false;
+			this.contragentUrLicoRecordSelectUserControl1.Location = new System.Drawing.Point(205, 76);
+			this.contragentUrLicoRecordSelectUserControl1.MinimumSize = new System.Drawing.Size(100, 40);
+			this.contragentUrLicoRecordSelectUserControl1.Name = "contragentUrLicoRecordSelectUserControl1";
+			this.contragentUrLicoRecordSelectUserControl1.Size = new System.Drawing.Size(197, 40);
+			this.contragentUrLicoRecordSelectUserControl1.TabIndex = 4;
 			// 
 			// tableLayoutPanel1
 			// 
@@ -167,7 +201,7 @@ namespace PriemMetalClient
 			this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
 			this.tableLayoutPanel1.ColumnCount = 2;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 226F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 227F));
 			this.tableLayoutPanel1.Controls.Add(this.osnovanie, 1, 1);
 			this.tableLayoutPanel1.Controls.Add(this.opisanieLoma, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.label7, 0, 0);
@@ -185,7 +219,7 @@ namespace PriemMetalClient
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(354, 133);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(355, 133);
 			this.tableLayoutPanel1.TabIndex = 8;
 			// 
 			// osnovanie
@@ -193,7 +227,7 @@ namespace PriemMetalClient
 			this.osnovanie.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.osnovanie.Location = new System.Drawing.Point(130, 31);
 			this.osnovanie.Name = "osnovanie";
-			this.osnovanie.Size = new System.Drawing.Size(220, 20);
+			this.osnovanie.Size = new System.Drawing.Size(221, 20);
 			this.osnovanie.TabIndex = 11;
 			// 
 			// opisanieLoma
@@ -201,7 +235,7 @@ namespace PriemMetalClient
 			this.opisanieLoma.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.opisanieLoma.Location = new System.Drawing.Point(130, 4);
 			this.opisanieLoma.Name = "opisanieLoma";
-			this.opisanieLoma.Size = new System.Drawing.Size(220, 20);
+			this.opisanieLoma.Size = new System.Drawing.Size(221, 20);
 			this.opisanieLoma.TabIndex = 10;
 			// 
 			// label7
@@ -285,7 +319,7 @@ namespace PriemMetalClient
             0});
 			this.summa.Name = "summa";
 			this.summa.ReadOnly = true;
-			this.summa.Size = new System.Drawing.Size(220, 20);
+			this.summa.Size = new System.Drawing.Size(221, 20);
 			this.summa.TabIndex = 12;
 			this.summa.ThousandsSeparator = true;
 			// 
@@ -307,7 +341,7 @@ namespace PriemMetalClient
             0});
 			this.netto.Name = "netto";
 			this.netto.ReadOnly = true;
-			this.netto.Size = new System.Drawing.Size(220, 20);
+			this.netto.Size = new System.Drawing.Size(221, 20);
 			this.netto.TabIndex = 11;
 			this.netto.ThousandsSeparator = true;
 			// 
@@ -503,6 +537,20 @@ namespace PriemMetalClient
 			this.tabPage2.Text = "История изменений";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
+			// HistoryList
+			// 
+			this.HistoryList.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.HistoryList.FullRowSelect = true;
+			this.HistoryList.GridLines = true;
+			this.HistoryList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.HistoryList.Location = new System.Drawing.Point(3, 49);
+			this.HistoryList.MultiSelect = false;
+			this.HistoryList.Name = "HistoryList";
+			this.HistoryList.Size = new System.Drawing.Size(1124, 460);
+			this.HistoryList.TabIndex = 25;
+			this.HistoryList.UseCompatibleStateImageBehavior = false;
+			this.HistoryList.View = System.Windows.Forms.View.Details;
+			// 
 			// toolStrip2
 			// 
 			this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
@@ -529,54 +577,6 @@ namespace PriemMetalClient
 			this.toolStripButton1.Text = "Просмотр";
 			this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
 			this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
-			// 
-			// HistoryList
-			// 
-			this.HistoryList.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.HistoryList.FullRowSelect = true;
-			this.HistoryList.GridLines = true;
-			this.HistoryList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-			this.HistoryList.Location = new System.Drawing.Point(3, 49);
-			this.HistoryList.MultiSelect = false;
-			this.HistoryList.Name = "HistoryList";
-			this.HistoryList.Size = new System.Drawing.Size(1124, 460);
-			this.HistoryList.TabIndex = 25;
-			this.HistoryList.UseCompatibleStateImageBehavior = false;
-			this.HistoryList.View = System.Windows.Forms.View.Details;
-			// 
-			// otdelenieRecordSelectUserControl1
-			// 
-			this.otdelenieRecordSelectUserControl1.Location = new System.Drawing.Point(4, 4);
-			this.otdelenieRecordSelectUserControl1.Multilane = false;
-			this.otdelenieRecordSelectUserControl1.Name = "otdelenieRecordSelectUserControl1";
-			this.otdelenieRecordSelectUserControl1.Size = new System.Drawing.Size(194, 40);
-			this.otdelenieRecordSelectUserControl1.TabIndex = 0;
-			// 
-			// transportRecordSelectUserControl1
-			// 
-			this.transportRecordSelectUserControl1.Location = new System.Drawing.Point(205, 4);
-			this.transportRecordSelectUserControl1.Multilane = false;
-			this.transportRecordSelectUserControl1.Name = "transportRecordSelectUserControl1";
-			this.transportRecordSelectUserControl1.Size = new System.Drawing.Size(197, 40);
-			this.transportRecordSelectUserControl1.TabIndex = 1;
-			// 
-			// contragentFizLicoRecordSelectUserControl1
-			// 
-			this.contragentFizLicoRecordSelectUserControl1.Enabled = false;
-			this.contragentFizLicoRecordSelectUserControl1.Location = new System.Drawing.Point(4, 76);
-			this.contragentFizLicoRecordSelectUserControl1.Multilane = false;
-			this.contragentFizLicoRecordSelectUserControl1.Name = "contragentFizLicoRecordSelectUserControl1";
-			this.contragentFizLicoRecordSelectUserControl1.Size = new System.Drawing.Size(194, 40);
-			this.contragentFizLicoRecordSelectUserControl1.TabIndex = 0;
-			// 
-			// contragentUrLicoRecordSelectUserControl1
-			// 
-			this.contragentUrLicoRecordSelectUserControl1.Enabled = false;
-			this.contragentUrLicoRecordSelectUserControl1.Location = new System.Drawing.Point(205, 76);
-			this.contragentUrLicoRecordSelectUserControl1.Multilane = false;
-			this.contragentUrLicoRecordSelectUserControl1.Name = "contragentUrLicoRecordSelectUserControl1";
-			this.contragentUrLicoRecordSelectUserControl1.Size = new System.Drawing.Size(197, 40);
-			this.contragentUrLicoRecordSelectUserControl1.TabIndex = 4;
 			// 
 			// PSADocumentForm
 			// 

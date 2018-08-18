@@ -28,24 +28,12 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.textBox = new System.Windows.Forms.TextBox();
 			this.label = new System.Windows.Forms.Label();
 			this.SelectBtn = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.comboBox = new System.Windows.Forms.ComboBox();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// textBox
-			// 
-			this.textBox.BackColor = System.Drawing.SystemColors.Window;
-			this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.textBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox.Location = new System.Drawing.Point(0, 0);
-			this.textBox.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
-			this.textBox.Name = "textBox";
-			this.textBox.ReadOnly = true;
-			this.textBox.Size = new System.Drawing.Size(180, 20);
-			this.textBox.TabIndex = 10;
 			// 
 			// label
 			// 
@@ -68,10 +56,10 @@
 			this.SelectBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.SelectBtn.Dock = System.Windows.Forms.DockStyle.Right;
 			this.SelectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.SelectBtn.Location = new System.Drawing.Point(180, 0);
+			this.SelectBtn.Location = new System.Drawing.Point(178, 0);
 			this.SelectBtn.Margin = new System.Windows.Forms.Padding(0);
 			this.SelectBtn.Name = "SelectBtn";
-			this.SelectBtn.Size = new System.Drawing.Size(20, 20);
+			this.SelectBtn.Size = new System.Drawing.Size(22, 22);
 			this.SelectBtn.TabIndex = 11;
 			this.SelectBtn.Text = "...";
 			this.SelectBtn.UseVisualStyleBackColor = false;
@@ -80,13 +68,25 @@
 			// 
 			// panel1
 			// 
-			this.panel1.Controls.Add(this.textBox);
+			this.panel1.Controls.Add(this.comboBox);
 			this.panel1.Controls.Add(this.SelectBtn);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(0, 20);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(200, 20);
+			this.panel1.Size = new System.Drawing.Size(200, 22);
 			this.panel1.TabIndex = 12;
+			// 
+			// comboBox
+			// 
+			this.comboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+			this.comboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.comboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.comboBox.FormattingEnabled = true;
+			this.comboBox.Location = new System.Drawing.Point(0, 0);
+			this.comboBox.Name = "comboBox";
+			this.comboBox.Size = new System.Drawing.Size(178, 21);
+			this.comboBox.TabIndex = 12;
+			this.comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
 			// 
 			// BaseRecordSelectUserControl
 			// 
@@ -96,9 +96,8 @@
 			this.Controls.Add(this.label);
 			this.MinimumSize = new System.Drawing.Size(100, 40);
 			this.Name = "BaseRecordSelectUserControl";
-			this.Size = new System.Drawing.Size(200, 40);
+			this.Size = new System.Drawing.Size(200, 42);
 			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -106,8 +105,8 @@
 		#endregion
 
 		private System.Windows.Forms.Button SelectBtn;
-		private System.Windows.Forms.TextBox textBox;
 		private System.Windows.Forms.Label label;
 		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.ComboBox comboBox;
 	}
 }

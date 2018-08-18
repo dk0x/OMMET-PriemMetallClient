@@ -14,49 +14,51 @@ namespace PriemMetalClient
 		public delegate void RecordSelectHandler(object sender, TRecord record);
 		public event RecordSelectHandler RecordSelect;
 		public TRecord Record { get; private set; } = null;
-		public string Format { get; private set; } = string.Empty;
-		public bool Multilane
-		{
-			get => textBox.Multiline;
-			set => textBox.Multiline = value;
-		}
 
 		public BaseRecordSelectUserControl()
 		{
 			InitializeComponent();
 			label.Text = RecordInfoAttribute.GetClassRecordInfo<TRecord>()?.Text ?? typeof(TRecord).Name;
+			var col = DataBase.DB.GetCollection<TRecord>().FindAll().OrderBy(x => x.ToString()).ToList();
+			comboBox.Items.AddRange(col.ToArray());
 		}
 
 		public void SetRecord(TRecord r)
 		{
 			if (r == null) return;
 			Record = r;
-			UpdateText();
+			if (comboBox.SelectedItem != r) comboBox.SelectedItem = r.ComboboxListUpsert<TRecord>(comboBox);
 			RecordSelect?.Invoke(this, r);
-		}
-
-		public void SetFormat(string s)
-		{
-			if (string.Equals(s, Format)) return;
-			Format = s;
-			UpdateText();
-		}
-
-		public void UpdateText()
-		{
-			textBox.Text = Record?.ToString() ?? "";
 		}
 
 		private void SelectBtn_Click(object sender, EventArgs e)
 		{
 			using (var f = new BaseRecordBookForm<TRecord>())
-				SetRecord(f.ShowDialogSelect(this.ParentForm));
+			{
+				var r = f.ShowDialogSelect(this.ParentForm);
+				if (r != null)
+				{
+					Record = r;
+					comboBox.SelectedItem = r.ComboboxListUpsert<TRecord>(comboBox);
+					RecordSelect?.Invoke(this, r);
+				}
+			}
 		}
 
 		private void SelectBtn_Resize(object sender, EventArgs e)
 		{
 			if (SelectBtn.Width != SelectBtn.Height)
 				SelectBtn.Width = SelectBtn.Height;
+		}
+
+		private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			var r = comboBox.SelectedItem as TRecord;
+			if (r != null)
+			{
+				Record = r;
+				RecordSelect?.Invoke(this, r);
+			}
 		}
 	}
 }
