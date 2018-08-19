@@ -9,7 +9,12 @@ namespace PriemMetalClient
 	{
 		PRICELIST, DOGOVOR, PERSONAL
 	}
-	public static class PriceTypeExtensions
+	public enum VesInputMethod
+	{
+		HARDWARE, CUSTOM
+	}
+
+	public static partial class EnumExtensions
 	{
 		public static string ToFriendlyString(this PriceType me)
 		{
@@ -18,6 +23,15 @@ namespace PriemMetalClient
 				case PriceType.PRICELIST: return "По прайсу";
 				case PriceType.DOGOVOR: return "По договору";
 				case PriceType.PERSONAL: return "Персональная";
+			}
+			return "";
+		}
+		public static string ToFriendlyString(this VesInputMethod me)
+		{
+			switch (me)
+			{
+				case VesInputMethod.HARDWARE: return "С весов";
+				case VesInputMethod.CUSTOM: return "Вручную";
 			}
 			return "";
 		}
@@ -35,8 +49,10 @@ namespace PriemMetalClient
 		public string Description { get; set; } = string.Empty;
 		[RecordInfo("Брутто", StringFormat = "N3", DecimalDigits = 3, VesValueInsertButton = true)]
 		public decimal Brutto { get; set; } = 0;
+		public VesInputMethod BruttoInputMethod { get; set; } = VesInputMethod.HARDWARE;
 		[RecordInfo("Тара", StringFormat = "N3", DecimalDigits = 3, VesValueInsertButton = true)]
 		public decimal Tara { get; set; } = 0;
+		public VesInputMethod TaraInputMethod { get; set; } = VesInputMethod.HARDWARE;
 		[RecordInfo("Нетто", StringFormat = "N3", DecimalDigits = 3)]
 		public decimal Netto { get; set; } = 0;
 		[RecordInfo("% засора")]

@@ -61,7 +61,11 @@
 			this.EditPSADocumentBtn = new System.Windows.Forms.ToolStripButton();
 			this.DeletePSADocumentBtn = new System.Windows.Forms.ToolStripButton();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.PSAStepList = new System.Windows.Forms.ListView();
+			this.panel2 = new System.Windows.Forms.Panel();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.priemStep11 = new PriemMetalClient.ModelView.Controls.PriemStep1();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
 			this.listView1 = new System.Windows.Forms.ListView();
@@ -69,10 +73,6 @@
 			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-			this.PSAStepList = new System.Windows.Forms.ListView();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.priemStep11 = new PriemMetalClient.ModelView.Controls.PriemStep1();
 			this.toolStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -383,6 +383,37 @@
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
+			// panel1
+			// 
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel1.Location = new System.Drawing.Point(3, 220);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(1022, 172);
+			this.panel1.TabIndex = 3;
+			// 
+			// PSAStepList
+			// 
+			this.PSAStepList.Dock = System.Windows.Forms.DockStyle.Top;
+			this.PSAStepList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.PSAStepList.FullRowSelect = true;
+			this.PSAStepList.GridLines = true;
+			this.PSAStepList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.PSAStepList.Location = new System.Drawing.Point(3, 56);
+			this.PSAStepList.MultiSelect = false;
+			this.PSAStepList.Name = "PSAStepList";
+			this.PSAStepList.Size = new System.Drawing.Size(1022, 164);
+			this.PSAStepList.TabIndex = 2;
+			this.PSAStepList.UseCompatibleStateImageBehavior = false;
+			this.PSAStepList.View = System.Windows.Forms.View.Details;
+			// 
+			// panel2
+			// 
+			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel2.Location = new System.Drawing.Point(3, 3);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(1022, 53);
+			this.panel2.TabIndex = 4;
+			// 
 			// tabPage3
 			// 
 			this.tabPage3.Controls.Add(this.priemStep11);
@@ -393,6 +424,17 @@
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "tabPage3";
 			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// priemStep11
+			// 
+			this.priemStep11.AutoScroll = true;
+			this.priemStep11.Dock = System.Windows.Forms.DockStyle.Left;
+			this.priemStep11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.priemStep11.Location = new System.Drawing.Point(3, 3);
+			this.priemStep11.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+			this.priemStep11.Name = "priemStep11";
+			this.priemStep11.Size = new System.Drawing.Size(333, 389);
+			this.priemStep11.TabIndex = 0;
 			// 
 			// tabPage4
 			// 
@@ -467,45 +509,6 @@
 			this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
 			this.printPreviewDialog1.Name = "printPreviewDialog1";
 			this.printPreviewDialog1.Visible = false;
-			// 
-			// PSAStepList
-			// 
-			this.PSAStepList.Dock = System.Windows.Forms.DockStyle.Top;
-			this.PSAStepList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.PSAStepList.FullRowSelect = true;
-			this.PSAStepList.GridLines = true;
-			this.PSAStepList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-			this.PSAStepList.Location = new System.Drawing.Point(3, 56);
-			this.PSAStepList.MultiSelect = false;
-			this.PSAStepList.Name = "PSAStepList";
-			this.PSAStepList.Size = new System.Drawing.Size(1022, 164);
-			this.PSAStepList.TabIndex = 2;
-			this.PSAStepList.UseCompatibleStateImageBehavior = false;
-			this.PSAStepList.View = System.Windows.Forms.View.Details;
-			// 
-			// panel1
-			// 
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel1.Location = new System.Drawing.Point(3, 220);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1022, 172);
-			this.panel1.TabIndex = 3;
-			// 
-			// panel2
-			// 
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel2.Location = new System.Drawing.Point(3, 3);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1022, 53);
-			this.panel2.TabIndex = 4;
-			// 
-			// priemStep11
-			// 
-			this.priemStep11.Location = new System.Drawing.Point(294, 100);
-			this.priemStep11.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-			this.priemStep11.Name = "priemStep11";
-			this.priemStep11.Size = new System.Drawing.Size(333, 220);
-			this.priemStep11.TabIndex = 0;
 			// 
 			// MainForm
 			// 

@@ -21,10 +21,12 @@ namespace PriemMetalClient
 	}
 	public class VesDataReport
 	{
+		public decimal LastValue = -1;
 		public decimal AverageValue = -1;
 		public int ReadoutCount = 0;
 		public TimeSpan TimeRange = TimeSpan.Zero;
 		public decimal Deviation = 0;
+		public bool Stable = false;
 		public override string ToString() => "[V:" + AverageValue.ToString() + ",D:" + Deviation.ToString() + ",C:" + ReadoutCount.ToString() + "]";
 	}
 	public class VesDataManager
@@ -60,11 +62,12 @@ namespace PriemMetalClient
 			int count = 0;
 			decimal maxValue = decimal.MinValue;
 			decimal minValue = decimal.MaxValue;
+			decimal lastValue = -1;
 			LockThread = true;
-			Queue<VesData> fifo_backup = new Queue<VesData>(DataFIFO);
+			Queue<VesData> fifo_copy = new Queue<VesData>(DataFIFO);
 			LockThread = false;
 			var rnd = new Random();
-			foreach (VesData data in fifo_backup)
+			foreach (VesData data in fifo_copy)
 			{
 				if ((now - data.Timestamp) <= TimeRange)
 				{
@@ -72,13 +75,16 @@ namespace PriemMetalClient
 					count++;
 					maxValue = Math.Max(maxValue, data.Value);
 					minValue = Math.Min(minValue, data.Value);
+					lastValue = data.Value;
 				}
 			}
 			if (count > 0)
 			{
+				report.LastValue = lastValue;
 				report.AverageValue = sumAll / count;
 				report.Deviation = (maxValue - minValue) / 2;
 				report.ReadoutCount = count;
+				report.Stable = report.Deviation <= ConfigManager.Parameters.VesStableMaxDeviation;
 			}
 			return report;
 		}

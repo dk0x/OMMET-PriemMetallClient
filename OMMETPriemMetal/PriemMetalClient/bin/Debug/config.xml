@@ -3,5 +3,6 @@
   <ComPort>-</ComPort>
   <BaudRate>9600</BaudRate>
   <VesWorkMethod>COMPORT</VesWorkMethod>
+  <VesStableMaxDeviation>0.005</VesStableMaxDeviation>
   <DataBasePath>/Data/database.db</DataBasePath>
 </ConfigParameters>

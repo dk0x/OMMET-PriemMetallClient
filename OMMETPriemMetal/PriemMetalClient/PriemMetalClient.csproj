@@ -67,11 +67,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Misc\NumericInputDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\NumericInputDialogForm.Designer.cs">
+      <DependentUpon>NumericInputDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\InputDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Misc\InputDialogForm.Designer.cs">
       <DependentUpon>InputDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\VesDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\VesDialogForm.Designer.cs">
+      <DependentUpon>VesDialogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelView\Base\BaseRecordBookForm.cs">
       <SubType>Form</SubType>
@@ -126,7 +138,9 @@
     <Compile Include="ModelView\Forms\DocumentMetallVesPriceForm.Designer.cs">
       <DependentUpon>DocumentMetallVesPriceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelView\Models\DocumentMetallVesPrice2.cs" />
     <Compile Include="ModelView\Models\KassaTransaction.cs" />
+    <Compile Include="ModelView\Models\PSADocument2.cs" />
     <Compile Include="ModelView\Models\PSADocument.cs" />
     <Compile Include="ModelView\Models\ContragentFizLico.cs" />
     <Compile Include="ModelView\Models\ContragentUrLico.cs" />
@@ -208,8 +222,14 @@
     <Compile Include="test.Designer.cs">
       <DependentUpon>test.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Misc\NumericInputDialogForm.resx">
+      <DependentUpon>NumericInputDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Misc\InputDialogForm.resx">
       <DependentUpon>InputDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\VesDialogForm.resx">
+      <DependentUpon>VesDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelView\Base\BaseRecordBookForm.resx">
       <DependentUpon>BaseRecordBookForm.cs</DependentUpon>

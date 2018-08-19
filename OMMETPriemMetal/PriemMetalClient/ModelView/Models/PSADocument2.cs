@@ -6,14 +6,22 @@ using System.Text;
 
 namespace PriemMetalClient
 {
-	public enum ContragentType
+	public enum PSADocumentStepEnum
 	{
-		FizLico,
-		UrLico
+		CONTRAGENT,
+		TRANSPORT,
+		BRUTTO,
+		METALLCAT,
+		ZASOR,
+		TARA,
 	}
+
 	[RecordInfo("Приёмо-сдаточный акт")]
-	public class PSADocument : BaseRecord
+	public class PSADocument2 : BaseRecord
 	{
+		[RecordInfo("Стадия", ReadOnly = true)]
+		public PSADocumentStepEnum Step { get; set; } = PSADocumentStepEnum.CONTRAGENT;
+
 		[RecordInfo("Номер документа", StringFormat = "D8")]
 		public int Nomer { get; set; } = 0;
 
@@ -21,23 +29,22 @@ namespace PriemMetalClient
 		public DateTime Date { get; set; } = DateTime.Now;
 
 		[RecordInfo("Отделение приема")]
-		//[LiteDB.BsonRef()]
 		public Otdelenie Otdelenie { get; set; } = null;
 
 		[RecordInfo("Тип контрагента", TableNoColumn = true)]
 		public ContragentType ContragentType { get; set; } = ContragentType.FizLico;
 
 		[RecordInfo("Контрагент: Физ. лицо")]
-		//[LiteDB.BsonRef()]
 		public ContragentFizLico ContragentFizLico { get; set; } = null;
 
 		[RecordInfo("Контрагент: Юр. лицо")]
-		//[LiteDB.BsonRef()]
 		public ContragentUrLico ContragentUrLico { get; set; } = null;
 
 		[RecordInfo("Транспорт")]
-		//[LiteDB.BsonRef()]
 		public Transport Transport { get; set; } = null;
+
+		//[RecordInfo("Список принятого металла")]
+		public List<DocumentMetallVesPrice2> MetallVesPriceItems { get; set; } = new List<DocumentMetallVesPrice2>();
 
 		[RecordInfo("Описание лома", TableNoColumn = true)]
 		public string OpisanieLoma { get; set; } = string.Empty;
@@ -54,15 +61,7 @@ namespace PriemMetalClient
 		[RecordInfo("Цена без НДС")]
 		public bool BezNds { get; set; } = true;
 
-		[RecordInfo("Проведен")]
-		public bool Proveden { get; set; } = false;
-
 		public override string ToString() => $"ПСА №{Nomer.ToString("D8")} От {Date.ToShortDateString()} Сумма {Summa.ToString("C")}";
-
-
-		//[RecordInfo("Список принятого металла")]
-		//[LiteDB.BsonRef]
-		public List<DocumentMetallVesPrice> MetallVesPriceItems { get; set; } = new List<DocumentMetallVesPrice>();
 	}
 
 }

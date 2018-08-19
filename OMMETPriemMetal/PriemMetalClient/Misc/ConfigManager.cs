@@ -13,6 +13,7 @@ namespace PriemMetalClient
 		public string ComPort = "-";
 		public int BaudRate = 9600;
 		public VesWorkMethod VesWorkMethod = VesWorkMethod.COMPORT;
+		public decimal VesStableMaxDeviation = 0.005m;
 		public string DataBasePath = @"/Data/database.db";
 	}
 	public static class ConfigManager

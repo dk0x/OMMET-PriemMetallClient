@@ -11,106 +11,294 @@ namespace PriemMetalClient.ModelView.Controls
 {
 	public partial class PriemStep1 : UserControl
 	{
-		public PSADocumentStep DocumentStep { get; private set; } = new PSADocumentStep();
+		public PSADocument2 Document { get; private set; } = new PSADocument2();
 		public PriemStep1()
 		{
 			InitializeComponent();
-			DocumentStep = new PSADocumentStep();
-			DocumentStep.Document = new PSADocument();
-			UpdateActualControlValues();
+			Document = new PSADocument2();
+			RefreshViewValues();
+			ShowStep(Document.Step);
 		}
 
-		public void SetDocumentStep(PSADocumentStep docStep)
+		public void SetDocument(PSADocument2 doc)
 		{
-			DocumentStep = docStep;
-			UpdateActualControlValues();
+			Document = doc;
+			RefreshViewValues();
+			ShowStep(doc.Step);
 		}
 
 		public void DBUpsert()
 		{
-			if (DocumentStep == null) return;
-			DocumentStep.DBUpsert();
+			if (Document == null) return;
+			Document.DBUpsert();
 		}
 
-		public void UpdateActualControlValues()
+		public void RefreshViewValues()
 		{
-			var doc = DocumentStep?.Document;
-			if (doc == null) return;
-			docNoLabel.Text = $"Приемо сдаточный акт №{doc.Nomer} от {doc.Date.ToShortDateString()}";
-			switch (DocumentStep.Document.ContragentType)
+			if (Document == null) return;
+			docNoLabel.Text = $"Приемо-сдаточный акт №{Document.Nomer} от {Document.Date.ToShortDateString()}";
+			switch (Document.ContragentType)
 			{
 				case ContragentType.FizLico:
 					FizSelect.Checked = true;
-					contragentFizLicoRecordSelectUserControl1.SetRecord(DocumentStep.Document.ContragentFizLico);
+					contragentFizLico.SetRecord(Document.ContragentFizLico);
 					break;
 				case ContragentType.UrLico:
 					UrSelect.Checked = true;
-					contragentUrLicoRecordSelectUserControl1.SetRecord(DocumentStep.Document.ContragentUrLico);
+					contragentUrLico.SetRecord(Document.ContragentUrLico);
 					break;
 				default:
 					break;
 			}
-			transportRecordSelectUserControl1.SetRecord(DocumentStep.Document.Transport);
-			UpdateActualStep();
+			transport.SetRecord(Document.Transport);
+			var v = Document.MetallVesPriceItems.LastOrDefault();
+			if (v != null)
+			{
+				bruttoTextBox.Text = v.Brutto == 0 ? 
+					$"{v.Brutto.ToString("N3")} тонн ({v.BruttoInputMethod.ToFriendlyString()})" :
+					"Не указано";
+				metallCat.SetRecord(v.Category);
+				taraTextBox.Text = v.Tara == 0 ?
+					$"{v.Tara.ToString("N3")} тонн ({v.TaraInputMethod.ToFriendlyString()})" :
+					"Не указано";
+			}
+			else
+			{
+				bruttoTextBox.Text = "Не указано";
+				taraTextBox.Text = "Не указано";
+			}
+
 		}
 
-		public void UpdateActualStep()
+		public void SetStep(PSADocumentStepEnum step)
 		{
-			if (DocumentStep == null) return;
-			Step1ContragentPanel.Visible = DocumentStep.Step == PSADocumentStepEnum.CONTRAGENT;
-			Step2TransportPanel.Visible = DocumentStep.Step == PSADocumentStepEnum.TRANSPORT;
+			if (Document == null) return;
+			Document.Step = step;
+			ShowStep(step);
+		}
+
+		public void ShowStep(PSADocumentStepEnum step)
+		{
+			Step1ContragentPanel.Visible = step == PSADocumentStepEnum.CONTRAGENT;
+			Step2TransportPanel.Visible = step == PSADocumentStepEnum.TRANSPORT;
+			Step3VesBruttoPanel.Visible = step == PSADocumentStepEnum.BRUTTO;
+			Step4MetallCatPanel.Visible = step == PSADocumentStepEnum.METALLCAT;
+			Step5ZasorPanel.Visible = step == PSADocumentStepEnum.ZASOR;
+			Step6TaraPanel.Visible = step == PSADocumentStepEnum.TARA;
 		}
 
 		private void FizUrSelect_CheckedChanged(object sender, EventArgs e)
 		{
-			contragentFizLicoRecordSelectUserControl1.Visible = FizSelect.Checked;
-			contragentUrLicoRecordSelectUserControl1.Visible = UrSelect.Checked;
-			if (DocumentStep.Document == null) return;
-			DocumentStep.Document.ContragentType = FizSelect.Checked ? ContragentType.FizLico : ContragentType.UrLico;
+			contragentFizLico.Visible = FizSelect.Checked;
+			contragentUrLico.Visible = UrSelect.Checked;
+			if (Document == null) return;
+			Document.ContragentType = FizSelect.Checked ? ContragentType.FizLico : ContragentType.UrLico;
 			DBUpsert();
 		}
 
-		private void contragentFizLicoRecordSelectUserControl1_RecordSelect(object sender, ContragentFizLico record)
+		private void contragentFizLico_RecordSelect(object sender, ContragentFizLico record)
 		{
-			if (DocumentStep.Document == null) return;
-			DocumentStep.Document.ContragentFizLico = record;
-			DocumentStep.Document.ContragentUrLico = null;
+			if (Document == null) return;
+			Document.ContragentFizLico = record;
+			Document.ContragentUrLico = null;
 			DBUpsert();
 		}
 
-		private void contragentUrLicoRecordSelectUserControl1_RecordSelect(object sender, ContragentUrLico record)
+		private void contragentUrLico_RecordSelect(object sender, ContragentUrLico record)
 		{
-			if (DocumentStep.Document == null) return;
-			DocumentStep.Document.ContragentFizLico = null;
-			DocumentStep.Document.ContragentUrLico = record;
+			if (Document == null) return;
+			Document.ContragentFizLico = null;
+			Document.ContragentUrLico = record;
 			DBUpsert();
 		}
 
-		private void NextBtn_Click(object sender, EventArgs e)
+		private void Next1Btn_Click(object sender, EventArgs e)
 		{
+			if (Document == null) return;
 			bool good = false;
-			if (DocumentStep.Step == PSADocumentStepEnum.CONTRAGENT)
 			{
-				switch (DocumentStep.Document.ContragentType)
+				switch (Document.ContragentType)
 				{
 					case ContragentType.FizLico:
-						good = DocumentStep.Document.ContragentFizLico != null;
+						good = Document.ContragentFizLico != null;
 						break;
 					case ContragentType.UrLico:
-						good = DocumentStep.Document.ContragentUrLico != null;
+						good = Document.ContragentUrLico != null;
 						break;
 					default:
 						break;
 				}
 				if (!good)
 				{
-					alarmLabel.Text = "Контрагент не выбран!";
+					alarm1Label.Text = "Контрагент не выбран!";
 				} else
 				{
-					alarmLabel.Text = "";
-					DocumentStep.Step = PSADocumentStepEnum.TRANSPORT;
-					UpdateActualStep();
+					alarm1Label.Text = "";
+					Document.MetallVesPriceItems.Add(new DocumentMetallVesPrice2());
+					SetStep(PSADocumentStepEnum.TRANSPORT);
+					DBUpsert();
 				}
+			}
+		}
+
+		private void VesBruttoDialogBtn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			var f = new VesDialogForm();
+			if (f.ShowDialog(this) == DialogResult.OK)
+			{
+				var v = Document.MetallVesPriceItems.LastOrDefault();
+				if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
+				v.Brutto = f.Result.AverageValue;
+				v.BruttoInputMethod = VesInputMethod.HARDWARE;
+				RefreshViewValues();
+				DBUpsert();
+			}
+		}
+
+		private void VesBruttoCustomBtn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			var f = new NumericInputDialogForm();
+			if (f.ShowDialog("Введите вес вручную", 3, this) == DialogResult.OK)
+			{
+				var v = Document.MetallVesPriceItems.LastOrDefault();
+				if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
+				v.Brutto = f.Result;
+				v.BruttoInputMethod = VesInputMethod.CUSTOM;
+				RefreshViewValues();
+				DBUpsert();
+			}
+		}
+
+		private void Next2Btn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			bool good = false;
+			{
+				good = Document.Transport != null;
+
+				if (!good)
+				{
+					alarm2Label.Text = "Транспорт не выбран!";
+				}
+				else
+				{
+					alarm2Label.Text = "";
+					SetStep(PSADocumentStepEnum.BRUTTO);
+					DBUpsert();
+				}
+			}
+
+		}
+
+		private void transport_RecordSelect(object sender, Transport record)
+		{
+			if (Document == null) return;
+			Document.Transport = record;
+			DBUpsert();
+		}
+
+		private void Next3Btn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			bool good = false;
+			{
+				var v = Document.MetallVesPriceItems.LastOrDefault();
+				if (v != null)
+				{
+					good = v.Brutto > 0;
+
+					if (!good)
+					{
+						alarm3Label.Text = "Введите вес БРУТТО!";
+					}
+					else
+					{
+						alarm3Label.Text = "";
+						SetStep(PSADocumentStepEnum.METALLCAT);
+						DBUpsert();
+					}
+				}
+			}
+		}
+
+		private void metallCat_RecordSelect(object sender, MetallPrice record)
+		{
+			if (Document == null) return;
+			var v = Document.MetallVesPriceItems.LastOrDefault();
+			if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
+			v.Category = record;
+			DBUpsert();
+		}
+
+		private void Next4Btn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			bool good = false;
+			{
+				var v = Document.MetallVesPriceItems.LastOrDefault();
+				if (v != null)
+				{
+					good = v.Category != null;
+
+					if (!good)
+					{
+						alarm3Label.Text = "Категория металла не выбрана!";
+					}
+					else
+					{
+						alarm3Label.Text = "";
+						SetStep(PSADocumentStepEnum.ZASOR);
+						DBUpsert();
+					}
+				}
+			}
+		}
+
+		private void zasor_ValueChanged(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			var v = Document.MetallVesPriceItems.LastOrDefault();
+			if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
+			v.Zasor = zasor.Value;
+			DBUpsert();
+		}
+
+		private void Next5Btn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			SetStep(PSADocumentStepEnum.TARA);
+			DBUpsert();
+		}
+
+		private void VesTaraDialogBtn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			var f = new VesDialogForm();
+			if (f.ShowDialog(this) == DialogResult.OK)
+			{
+				var v = Document.MetallVesPriceItems.LastOrDefault();
+				if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
+				v.Tara = f.Result.AverageValue;
+				v.TaraInputMethod = VesInputMethod.HARDWARE;
+				RefreshViewValues();
+				DBUpsert();
+			}
+		}
+
+		private void VesTaraCustomBtn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			var f = new NumericInputDialogForm();
+			if (f.ShowDialog("Введите вес вручную", 3, this) == DialogResult.OK)
+			{
+				var v = Document.MetallVesPriceItems.LastOrDefault();
+				if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
+				v.Tara = f.Result;
+				v.TaraInputMethod = VesInputMethod.CUSTOM;
+				RefreshViewValues();
+				DBUpsert();
 			}
 		}
 	}
