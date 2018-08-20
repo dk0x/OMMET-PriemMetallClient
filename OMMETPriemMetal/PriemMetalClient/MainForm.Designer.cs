@@ -65,7 +65,6 @@
 			this.PSAStepList = new System.Windows.Forms.ListView();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.priemStep11 = new PriemMetalClient.ModelView.Controls.PriemStep1();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
 			this.listView1 = new System.Windows.Forms.ListView();
@@ -73,6 +72,7 @@
 			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+			this.priemStep11 = new PriemMetalClient.ModelView.Controls.PriemStep1();
 			this.toolStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
@@ -285,9 +285,9 @@
 			// 
 			// tabControl1
 			// 
+			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Controls.Add(this.tabPage4);
 			this.tabControl1.Controls.Add(this.tabPage5);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -425,17 +425,6 @@
 			this.tabPage3.Text = "tabPage3";
 			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
-			// priemStep11
-			// 
-			this.priemStep11.AutoScroll = true;
-			this.priemStep11.Dock = System.Windows.Forms.DockStyle.Left;
-			this.priemStep11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.priemStep11.Location = new System.Drawing.Point(3, 3);
-			this.priemStep11.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-			this.priemStep11.Name = "priemStep11";
-			this.priemStep11.Size = new System.Drawing.Size(333, 389);
-			this.priemStep11.TabIndex = 0;
-			// 
 			// tabPage4
 			// 
 			this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -509,6 +498,17 @@
 			this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
 			this.printPreviewDialog1.Name = "printPreviewDialog1";
 			this.printPreviewDialog1.Visible = false;
+			// 
+			// priemStep11
+			// 
+			this.priemStep11.AutoScroll = true;
+			this.priemStep11.Dock = System.Windows.Forms.DockStyle.Left;
+			this.priemStep11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.priemStep11.Location = new System.Drawing.Point(3, 3);
+			this.priemStep11.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+			this.priemStep11.Name = "priemStep11";
+			this.priemStep11.Size = new System.Drawing.Size(289, 389);
+			this.priemStep11.TabIndex = 0;
 			// 
 			// MainForm
 			// 

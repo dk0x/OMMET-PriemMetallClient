@@ -54,11 +54,11 @@ namespace PriemMetalClient.ModelView.Controls
 			var v = Document.MetallVesPriceItems.LastOrDefault();
 			if (v != null)
 			{
-				bruttoTextBox.Text = v.Brutto == 0 ? 
+				bruttoTextBox.Text = v.Brutto != 0 ? 
 					$"{v.Brutto.ToString("N3")} тонн ({v.BruttoInputMethod.ToFriendlyString()})" :
 					"Не указано";
 				metallCat.SetRecord(v.Category);
-				taraTextBox.Text = v.Tara == 0 ?
+				taraTextBox.Text = v.Tara != 0 ?
 					$"{v.Tara.ToString("N3")} тонн ({v.TaraInputMethod.ToFriendlyString()})" :
 					"Не указано";
 			}
