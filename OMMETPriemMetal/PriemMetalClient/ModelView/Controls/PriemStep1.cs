@@ -15,16 +15,14 @@ namespace PriemMetalClient.ModelView.Controls
 		public PriemStep1()
 		{
 			InitializeComponent();
-			Document = new PSADocument2();
-			RefreshViewValues();
-			ShowStep(Document.Step);
+			SetDocument(new PSADocument2());
 		}
 
 		public void SetDocument(PSADocument2 doc)
 		{
 			Document = doc;
-			RefreshViewValues();
-			ShowStep(doc.Step);
+			RefreshTitle();
+			SetStep(doc.Step);
 		}
 
 		public void DBUpsert()
@@ -33,62 +31,139 @@ namespace PriemMetalClient.ModelView.Controls
 			Document.DBUpsert();
 		}
 
-		public void RefreshViewValues()
+		public void RefreshTitle()
 		{
 			if (Document == null) return;
 			docNoLabel.Text = $"Приемо-сдаточный акт №{Document.Nomer} от {Document.Date.ToShortDateString()}";
-			switch (Document.ContragentType)
-			{
-				case ContragentType.FizLico:
-					FizSelect.Checked = true;
-					contragentFizLico.SetRecord(Document.ContragentFizLico);
-					break;
-				case ContragentType.UrLico:
-					UrSelect.Checked = true;
-					contragentUrLico.SetRecord(Document.ContragentUrLico);
-					break;
-				default:
-					break;
-			}
-			transport.SetRecord(Document.Transport);
-			var v = Document.MetallVesPriceItems.LastOrDefault();
-			if (v != null)
-			{
-				bruttoTextBox.Text = v.Brutto != 0 ? 
-					$"{v.Brutto.ToString("N3")} тонн ({v.BruttoInputMethod.ToFriendlyString()})" :
-					"Не указано";
-				metallCat.SetRecord(v.Category);
-				taraTextBox.Text = v.Tara != 0 ?
-					$"{v.Tara.ToString("N3")} тонн ({v.TaraInputMethod.ToFriendlyString()})" :
-					"Не указано";
-			}
-			else
-			{
-				bruttoTextBox.Text = "Не указано";
-				taraTextBox.Text = "Не указано";
-			}
-
 		}
 
 		public void SetStep(PSADocumentStepEnum step)
 		{
 			if (Document == null) return;
+			NomerDataStepPanel.Visible = false;
+			ContragentStepPanel.Visible = false;
+			TransportStepPanel.Visible = false;
+			VesListStepPanel.Visible = false;
+			VesBruttoStepPanel.Visible = false;
+			MetallCatStepPanel.Visible = false;
+			ZasorStepPanel.Visible = false;
+			VesTaraStepPanel.Visible = false;
+			switch (step)
+			{
+				case PSADocumentStepEnum.NOMERDATA:
+					{
+						nomer.Text = Document.Nomer.ToString("D8");
+						data.Value = Document.Date;
+						NomerDataStepPanel.Visible = true;
+					}
+					break;
+				case PSADocumentStepEnum.CONTRAGENT:
+					{
+						ContragentStepPanel.Visible = true;
+						switch (Document.ContragentType)
+						{
+							case ContragentType.FizLico:
+								FizSelect.Checked = true;
+								contragentFizLico.SetRecord(Document.ContragentFizLico);
+								break;
+							case ContragentType.UrLico:
+								UrSelect.Checked = true;
+								contragentUrLico.SetRecord(Document.ContragentUrLico);
+								break;
+							default:
+								break;
+						}
+					}
+					break;
+				case PSADocumentStepEnum.TRANSPORT:
+					{
+						TransportStepPanel.Visible = true;
+						transport.SetRecord(Document.Transport);
+					}
+					break;
+				case PSADocumentStepEnum.VESLIST:
+					{
+						VesList.Items.Clear();
+						VesList.Items.AddRange(Document.MetallVesPriceItems.ToArray());
+						VesListStepPanel.Visible = true;
+					}
+					break;
+				case PSADocumentStepEnum.BRUTTO:
+					{
+						VesBruttoStepPanel.Visible = true;
+						var v = Document.MetallVesPriceItems.LastOrDefault();
+						if (v != null)
+						{
+							bruttoTextBox.Text = v.Brutto != 0 ?
+								$"{v.Brutto.ToString("N3")} тонн ({v.BruttoInputMethod.ToFriendlyString()})" :
+								"Не указано";
+						}
+						else
+						{
+							bruttoTextBox.Text = "Не указано";
+						}
+					}
+					break;
+				case PSADocumentStepEnum.METALLCAT:
+					{
+						MetallCatStepPanel.Visible = true;
+						var v = Document.MetallVesPriceItems.LastOrDefault();
+						if (v != null)
+						{
+							metallCat.SetRecord(v.Category);
+						}
+						else
+						{
+							metallCat.SetRecord(null);
+						}
+					}
+					break;
+				case PSADocumentStepEnum.ZASOR:
+					{
+						ZasorStepPanel.Visible = true;
+						var v = Document.MetallVesPriceItems.LastOrDefault();
+						if (v != null)
+						{
+							zasor.Value = v.Zasor;
+						}
+						else
+						{
+							zasor.Value = 0;
+						}
+					}
+					break;
+				case PSADocumentStepEnum.TARA:
+					{
+						VesTaraStepPanel.Visible = true;
+						var v = Document.MetallVesPriceItems.LastOrDefault();
+						if (v != null)
+						{
+							taraTextBox.Text = v.Tara != 0 ?
+								$"{v.Tara.ToString("N3")} тонн ({v.TaraInputMethod.ToFriendlyString()})" :
+								"Не указано";
+						}
+						else
+						{
+							taraTextBox.Text = "Не указано";
+						}
+					}
+					break;
+				default:
+					break;
+			}
 			Document.Step = step;
-			ShowStep(step);
 		}
 
-		public void ShowStep(PSADocumentStepEnum step)
+		public void RefreshStep()
 		{
-			Step1ContragentPanel.Visible = step == PSADocumentStepEnum.CONTRAGENT;
-			Step2TransportPanel.Visible = step == PSADocumentStepEnum.TRANSPORT;
-			Step3VesBruttoPanel.Visible = step == PSADocumentStepEnum.BRUTTO;
-			Step4MetallCatPanel.Visible = step == PSADocumentStepEnum.METALLCAT;
-			Step5ZasorPanel.Visible = step == PSADocumentStepEnum.ZASOR;
-			Step6TaraPanel.Visible = step == PSADocumentStepEnum.TARA;
+			if (Document == null) return;
+			SetStep(Document.Step);
 		}
 
 		private void FizUrSelect_CheckedChanged(object sender, EventArgs e)
 		{
+			contragentFizLico.Visible = false;
+			contragentUrLico.Visible = false;
 			contragentFizLico.Visible = FizSelect.Checked;
 			contragentUrLico.Visible = UrSelect.Checked;
 			if (Document == null) return;
@@ -112,7 +187,7 @@ namespace PriemMetalClient.ModelView.Controls
 			DBUpsert();
 		}
 
-		private void Next1Btn_Click(object sender, EventArgs e)
+		private void ContragentStepBtn_Click(object sender, EventArgs e)
 		{
 			if (Document == null) return;
 			bool good = false;
@@ -130,11 +205,10 @@ namespace PriemMetalClient.ModelView.Controls
 				}
 				if (!good)
 				{
-					alarm1Label.Text = "Контрагент не выбран!";
+					ContragentStepAlarmLabel.Text = "Контрагент не выбран!";
 				} else
 				{
-					alarm1Label.Text = "";
-					Document.MetallVesPriceItems.Add(new DocumentMetallVesPrice2());
+					ContragentStepAlarmLabel.Text = "";
 					SetStep(PSADocumentStepEnum.TRANSPORT);
 					DBUpsert();
 				}
@@ -151,7 +225,7 @@ namespace PriemMetalClient.ModelView.Controls
 				if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
 				v.Brutto = f.Result.AverageValue;
 				v.BruttoInputMethod = VesInputMethod.HARDWARE;
-				RefreshViewValues();
+				RefreshStep();
 				DBUpsert();
 			}
 		}
@@ -166,12 +240,12 @@ namespace PriemMetalClient.ModelView.Controls
 				if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
 				v.Brutto = f.Result;
 				v.BruttoInputMethod = VesInputMethod.CUSTOM;
-				RefreshViewValues();
+				RefreshStep();
 				DBUpsert();
 			}
 		}
 
-		private void Next2Btn_Click(object sender, EventArgs e)
+		private void TransportStepNextBtn_Click(object sender, EventArgs e)
 		{
 			if (Document == null) return;
 			bool good = false;
@@ -180,12 +254,12 @@ namespace PriemMetalClient.ModelView.Controls
 
 				if (!good)
 				{
-					alarm2Label.Text = "Транспорт не выбран!";
+					TransportStepAlarmLabel.Text = "Транспорт не выбран!";
 				}
 				else
 				{
-					alarm2Label.Text = "";
-					SetStep(PSADocumentStepEnum.BRUTTO);
+					TransportStepAlarmLabel.Text = "";
+					SetStep(PSADocumentStepEnum.VESLIST);
 					DBUpsert();
 				}
 			}
@@ -199,26 +273,20 @@ namespace PriemMetalClient.ModelView.Controls
 			DBUpsert();
 		}
 
-		private void Next3Btn_Click(object sender, EventArgs e)
+		private void VesListStepNextBtn_Click(object sender, EventArgs e)
 		{
 			if (Document == null) return;
-			bool good = false;
 			{
 				var v = Document.MetallVesPriceItems.LastOrDefault();
 				if (v != null)
 				{
-					good = v.Brutto > 0;
-
-					if (!good)
-					{
-						alarm3Label.Text = "Введите вес БРУТТО!";
-					}
-					else
-					{
-						alarm3Label.Text = "";
-						SetStep(PSADocumentStepEnum.METALLCAT);
-						DBUpsert();
-					}
+					VesListStepAlarmLabel.Text = "Список пуст. Призведите взвешивание! ";
+				}
+				else
+				{
+					VesListStepAlarmLabel.Text = "";
+					SetStep(PSADocumentStepEnum.NOMERDATA);
+					DBUpsert();
 				}
 			}
 		}
@@ -232,7 +300,7 @@ namespace PriemMetalClient.ModelView.Controls
 			DBUpsert();
 		}
 
-		private void Next4Btn_Click(object sender, EventArgs e)
+		private void VesBruttoStepNextBtn_Click(object sender, EventArgs e)
 		{
 			if (Document == null) return;
 			bool good = false;
@@ -240,16 +308,16 @@ namespace PriemMetalClient.ModelView.Controls
 				var v = Document.MetallVesPriceItems.LastOrDefault();
 				if (v != null)
 				{
-					good = v.Category != null;
+					good = v.Brutto > 0;
 
 					if (!good)
 					{
-						alarm3Label.Text = "Категория металла не выбрана!";
+						VesBruttoStepAlarmLabel.Text = "Введите вес БРУТТО!";
 					}
 					else
 					{
-						alarm3Label.Text = "";
-						SetStep(PSADocumentStepEnum.ZASOR);
+						VesBruttoStepAlarmLabel.Text = "";
+						SetStep(PSADocumentStepEnum.METALLCAT);
 						DBUpsert();
 					}
 				}
@@ -265,7 +333,7 @@ namespace PriemMetalClient.ModelView.Controls
 			DBUpsert();
 		}
 
-		private void Next5Btn_Click(object sender, EventArgs e)
+		private void ZasorStepNextBtn_Click(object sender, EventArgs e)
 		{
 			if (Document == null) return;
 			SetStep(PSADocumentStepEnum.TARA);
@@ -282,7 +350,7 @@ namespace PriemMetalClient.ModelView.Controls
 				if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
 				v.Tara = f.Result.AverageValue;
 				v.TaraInputMethod = VesInputMethod.HARDWARE;
-				RefreshViewValues();
+				RefreshStep();
 				DBUpsert();
 			}
 		}
@@ -297,8 +365,90 @@ namespace PriemMetalClient.ModelView.Controls
 				if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
 				v.Tara = f.Result;
 				v.TaraInputMethod = VesInputMethod.CUSTOM;
-				RefreshViewValues();
+				RefreshStep();
 				DBUpsert();
+			}
+		}
+
+		private void NomerDataStepNextBtn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			DBUpsert();
+			SetStep(PSADocumentStepEnum.CONTRAGENT);
+		}
+
+		private void nomer_TextChanged(object sender, EventArgs e)
+		{
+			Document.Nomer = Convert.ToInt32(nomer.Text);
+			RefreshTitle();
+		}
+
+		private void data_ValueChanged(object sender, EventArgs e)
+		{
+			Document.Date = data.Value;
+			RefreshTitle();
+		}
+
+		private void VesTaraStepNextBtn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			bool good = false;
+			{
+				var v = Document.MetallVesPriceItems.LastOrDefault();
+				if (v != null)
+				{
+					good = v.Tara > 0;
+
+					if (!good)
+					{
+						VesTaraStepAlarmLabel.Text = "Введите вес ТАРЫ!";
+					}
+					else
+					{
+						v.Netto = v.Brutto - v.Tara;
+						v.Netto *= v.Zasor / 100m;
+						v.Summa = v.Netto * v.Category.Price;
+						VesTaraStepAlarmLabel.Text = "";
+						SetStep(PSADocumentStepEnum.VESLIST);
+						DBUpsert();
+					}
+				}
+			}
+		}
+
+		private void Next3Btn_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void VesListStepAddBtn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			Document.MetallVesPriceItems.Add(new DocumentMetallVesPrice2());
+			SetStep(PSADocumentStepEnum.BRUTTO);
+		}
+
+		private void MetallCatStepNextBtn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			bool good = false;
+			{
+				var v = Document.MetallVesPriceItems.LastOrDefault();
+				if (v != null)
+				{
+					good = v.Category != null;
+
+					if (!good)
+					{
+						MetallCatStepAlarmLabel.Text = "Категория металла не выбрана!";
+					}
+					else
+					{
+						MetallCatStepAlarmLabel.Text = "";
+						SetStep(PSADocumentStepEnum.ZASOR);
+						DBUpsert();
+					}
+				}
 			}
 		}
 	}

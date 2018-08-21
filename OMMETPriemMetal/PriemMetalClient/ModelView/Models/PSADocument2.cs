@@ -8,8 +8,10 @@ namespace PriemMetalClient
 {
 	public enum PSADocumentStepEnum
 	{
+		NOMERDATA,
 		CONTRAGENT,
 		TRANSPORT,
+		VESLIST,
 		BRUTTO,
 		METALLCAT,
 		ZASOR,
@@ -20,7 +22,7 @@ namespace PriemMetalClient
 	public class PSADocument2 : BaseRecord
 	{
 		[RecordInfo("Стадия", ReadOnly = true)]
-		public PSADocumentStepEnum Step { get; set; } = PSADocumentStepEnum.CONTRAGENT;
+		public PSADocumentStepEnum Step { get; set; } = PSADocumentStepEnum.NOMERDATA;
 
 		[RecordInfo("Номер документа", StringFormat = "D8")]
 		public int Nomer { get; set; } = 0;

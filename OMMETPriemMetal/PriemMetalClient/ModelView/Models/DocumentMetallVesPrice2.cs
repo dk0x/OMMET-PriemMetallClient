@@ -9,7 +9,7 @@ namespace PriemMetalClient
 	public class DocumentMetallVesPrice2 : BaseRecord
 	{
 		//public Guid OwnerDocumentGuid { get; set; } = Guid.Empty;
-		[RecordInfo("Категория лома")]
+		[RecordInfo("Категория")]
 		public MetallPrice Category { get; set; } = default(MetallPrice);
 		[RecordInfo("Брутто", StringFormat = "N3", DecimalDigits = 3, VesValueInsertButton = true)]
 		public decimal Brutto { get; set; } = 0;
@@ -26,6 +26,6 @@ namespace PriemMetalClient
 		[RecordInfo("Сумма", StringFormat = "C", DecimalDigits = 2)]
 		public decimal Summa { get; set; } = 0;
 
-		//public override string ToString() => $"{Category} Вес:{Netto.ToString("N3")} т. Стоимость: {Summa.ToString("C")}";
+		public override string ToString() => $"{Category?.Category??"-"} Вес:{Netto.ToString("N3")} т. Стоимость: {Summa.ToString("C")}";
 	}
 }
