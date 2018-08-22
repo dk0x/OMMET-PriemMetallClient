@@ -781,7 +781,7 @@
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(290, 23);
 			this.label7.TabIndex = 2;
-			this.label7.Text = "Масса ТАРЫ (после разгрузки транспорта)";
+			this.label7.Text = "Масса ТАРЫ (после разгрузки металла)";
 			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// VesListStepPanel
@@ -861,17 +861,20 @@
 			// 
 			this.VesListStepEditBtn.AutoSize = true;
 			this.VesListStepEditBtn.Dock = System.Windows.Forms.DockStyle.Left;
+			this.VesListStepEditBtn.Enabled = false;
 			this.VesListStepEditBtn.Location = new System.Drawing.Point(75, 0);
 			this.VesListStepEditBtn.Name = "VesListStepEditBtn";
 			this.VesListStepEditBtn.Size = new System.Drawing.Size(75, 32);
 			this.VesListStepEditBtn.TabIndex = 2;
 			this.VesListStepEditBtn.Text = "Исправить";
 			this.VesListStepEditBtn.UseVisualStyleBackColor = true;
+			this.VesListStepEditBtn.Click += new System.EventHandler(this.VesListStepEditBtn_Click);
 			// 
 			// VesListStepDeleteBtn
 			// 
 			this.VesListStepDeleteBtn.AutoSize = true;
 			this.VesListStepDeleteBtn.Dock = System.Windows.Forms.DockStyle.Left;
+			this.VesListStepDeleteBtn.Enabled = false;
 			this.VesListStepDeleteBtn.Location = new System.Drawing.Point(0, 0);
 			this.VesListStepDeleteBtn.Name = "VesListStepDeleteBtn";
 			this.VesListStepDeleteBtn.Size = new System.Drawing.Size(75, 32);
@@ -899,6 +902,7 @@
 			this.VesList.Name = "VesList";
 			this.VesList.Size = new System.Drawing.Size(290, 56);
 			this.VesList.TabIndex = 7;
+			this.VesList.SelectedIndexChanged += new System.EventHandler(this.VesList_SelectedIndexChanged);
 			// 
 			// label12
 			// 

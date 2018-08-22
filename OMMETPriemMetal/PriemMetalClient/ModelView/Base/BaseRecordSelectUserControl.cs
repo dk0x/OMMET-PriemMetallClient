@@ -25,10 +25,20 @@ namespace PriemMetalClient
 
 		public void SetRecord(TRecord r)
 		{
-			if (r == null) return;
+			if (r == null)
+			{
+				Clear();
+				return;
+			}
 			Record = r;
 			if (comboBox.SelectedItem != r) comboBox.SelectedItem = r.ComboboxListUpsert<TRecord>(comboBox);
 			RecordSelect?.Invoke(this, r);
+		}
+
+		public void Clear()
+		{
+			comboBox.Text = "";
+			comboBox.SelectedItem = null;
 		}
 
 		private void SelectBtn_Click(object sender, EventArgs e)

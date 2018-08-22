@@ -12,6 +12,12 @@ namespace PriemMetalClient.ModelView.Controls
 	public partial class PriemStep1 : UserControl
 	{
 		public PSADocument2 Document { get; private set; } = new PSADocument2();
+		private DocumentMetallVesPrice2 _CurrentMetal = null;
+		public DocumentMetallVesPrice2 CurrentMetal {
+			get => GetCurrentMetall();
+			private set => _CurrentMetal = value;
+		}
+
 		public PriemStep1()
 		{
 			InitializeComponent();
@@ -23,6 +29,18 @@ namespace PriemMetalClient.ModelView.Controls
 			Document = doc;
 			RefreshTitle();
 			SetStep(doc.Step);
+		}
+
+		public DocumentMetallVesPrice2 GetCurrentMetall()
+		{
+			if (Document == null) return null;
+			if (_CurrentMetal == null)
+			{
+				_CurrentMetal = Document.MetallVesPriceItems.LastOrDefault();
+				if (_CurrentMetal == null)
+					Document.MetallVesPriceItems.Add(_CurrentMetal = new DocumentMetallVesPrice2());
+			}
+			return _CurrentMetal;
 		}
 
 		public void DBUpsert()
@@ -91,61 +109,29 @@ namespace PriemMetalClient.ModelView.Controls
 				case PSADocumentStepEnum.BRUTTO:
 					{
 						VesBruttoStepPanel.Visible = true;
-						var v = Document.MetallVesPriceItems.LastOrDefault();
-						if (v != null)
-						{
-							bruttoTextBox.Text = v.Brutto != 0 ?
-								$"{v.Brutto.ToString("N3")} тонн ({v.BruttoInputMethod.ToFriendlyString()})" :
-								"Не указано";
-						}
-						else
-						{
-							bruttoTextBox.Text = "Не указано";
-						}
+						bruttoTextBox.Text = CurrentMetal.Brutto != 0 ?
+							$"{CurrentMetal.Brutto.ToString("N3")} тонн ({CurrentMetal.BruttoInputMethod.ToFriendlyString()})" :
+							"Не взвешано";
 					}
 					break;
 				case PSADocumentStepEnum.METALLCAT:
 					{
 						MetallCatStepPanel.Visible = true;
-						var v = Document.MetallVesPriceItems.LastOrDefault();
-						if (v != null)
-						{
-							metallCat.SetRecord(v.Category);
-						}
-						else
-						{
-							metallCat.SetRecord(null);
-						}
+						metallCat.SetRecord(CurrentMetal.Category);
 					}
 					break;
 				case PSADocumentStepEnum.ZASOR:
 					{
 						ZasorStepPanel.Visible = true;
-						var v = Document.MetallVesPriceItems.LastOrDefault();
-						if (v != null)
-						{
-							zasor.Value = v.Zasor;
-						}
-						else
-						{
-							zasor.Value = 0;
-						}
+						zasor.Value = CurrentMetal.Zasor;
 					}
 					break;
 				case PSADocumentStepEnum.TARA:
 					{
 						VesTaraStepPanel.Visible = true;
-						var v = Document.MetallVesPriceItems.LastOrDefault();
-						if (v != null)
-						{
-							taraTextBox.Text = v.Tara != 0 ?
-								$"{v.Tara.ToString("N3")} тонн ({v.TaraInputMethod.ToFriendlyString()})" :
-								"Не указано";
-						}
-						else
-						{
-							taraTextBox.Text = "Не указано";
-						}
+						taraTextBox.Text = CurrentMetal.Tara != 0 ?
+							$"{CurrentMetal.Tara.ToString("N3")} тонн ({CurrentMetal.TaraInputMethod.ToFriendlyString()})" :
+							"Не указано";
 					}
 					break;
 				default:
@@ -221,10 +207,8 @@ namespace PriemMetalClient.ModelView.Controls
 			var f = new VesDialogForm();
 			if (f.ShowDialog(this) == DialogResult.OK)
 			{
-				var v = Document.MetallVesPriceItems.LastOrDefault();
-				if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
-				v.Brutto = f.Result.AverageValue;
-				v.BruttoInputMethod = VesInputMethod.HARDWARE;
+				CurrentMetal.Brutto = f.Result.AverageValue;
+				CurrentMetal.BruttoInputMethod = VesInputMethod.HARDWARE;
 				RefreshStep();
 				DBUpsert();
 			}
@@ -236,10 +220,8 @@ namespace PriemMetalClient.ModelView.Controls
 			var f = new NumericInputDialogForm();
 			if (f.ShowDialog("Введите вес вручную", 3, this) == DialogResult.OK)
 			{
-				var v = Document.MetallVesPriceItems.LastOrDefault();
-				if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
-				v.Brutto = f.Result;
-				v.BruttoInputMethod = VesInputMethod.CUSTOM;
+				CurrentMetal.Brutto = f.Result;
+				CurrentMetal.BruttoInputMethod = VesInputMethod.CUSTOM;
 				RefreshStep();
 				DBUpsert();
 			}
@@ -277,8 +259,7 @@ namespace PriemMetalClient.ModelView.Controls
 		{
 			if (Document == null) return;
 			{
-				var v = Document.MetallVesPriceItems.LastOrDefault();
-				if (v != null)
+				if (Document.MetallVesPriceItems.Count == 0)
 				{
 					VesListStepAlarmLabel.Text = "Список пуст. Призведите взвешивание! ";
 				}
@@ -294,9 +275,7 @@ namespace PriemMetalClient.ModelView.Controls
 		private void metallCat_RecordSelect(object sender, MetallPrice record)
 		{
 			if (Document == null) return;
-			var v = Document.MetallVesPriceItems.LastOrDefault();
-			if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
-			v.Category = record;
+			CurrentMetal.Category = record;
 			DBUpsert();
 		}
 
@@ -305,21 +284,17 @@ namespace PriemMetalClient.ModelView.Controls
 			if (Document == null) return;
 			bool good = false;
 			{
-				var v = Document.MetallVesPriceItems.LastOrDefault();
-				if (v != null)
-				{
-					good = v.Brutto > 0;
+				good = CurrentMetal.Brutto > 0;
 
-					if (!good)
-					{
-						VesBruttoStepAlarmLabel.Text = "Введите вес БРУТТО!";
-					}
-					else
-					{
-						VesBruttoStepAlarmLabel.Text = "";
-						SetStep(PSADocumentStepEnum.METALLCAT);
-						DBUpsert();
-					}
+				if (!good)
+				{
+					VesBruttoStepAlarmLabel.Text = "Введите вес БРУТТО!";
+				}
+				else
+				{
+					VesBruttoStepAlarmLabel.Text = "";
+					SetStep(PSADocumentStepEnum.METALLCAT);
+					DBUpsert();
 				}
 			}
 		}
@@ -327,15 +302,14 @@ namespace PriemMetalClient.ModelView.Controls
 		private void zasor_ValueChanged(object sender, EventArgs e)
 		{
 			if (Document == null) return;
-			var v = Document.MetallVesPriceItems.LastOrDefault();
-			if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
-			v.Zasor = zasor.Value;
+			CurrentMetal.Zasor = zasor.Value;
 			DBUpsert();
 		}
 
 		private void ZasorStepNextBtn_Click(object sender, EventArgs e)
 		{
 			if (Document == null) return;
+			CurrentMetal.Zasor = zasor.Value;
 			SetStep(PSADocumentStepEnum.TARA);
 			DBUpsert();
 		}
@@ -346,10 +320,8 @@ namespace PriemMetalClient.ModelView.Controls
 			var f = new VesDialogForm();
 			if (f.ShowDialog(this) == DialogResult.OK)
 			{
-				var v = Document.MetallVesPriceItems.LastOrDefault();
-				if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
-				v.Tara = f.Result.AverageValue;
-				v.TaraInputMethod = VesInputMethod.HARDWARE;
+				CurrentMetal.Tara = f.Result.AverageValue;
+				CurrentMetal.TaraInputMethod = VesInputMethod.HARDWARE;
 				RefreshStep();
 				DBUpsert();
 			}
@@ -361,10 +333,8 @@ namespace PriemMetalClient.ModelView.Controls
 			var f = new NumericInputDialogForm();
 			if (f.ShowDialog("Введите вес вручную", 3, this) == DialogResult.OK)
 			{
-				var v = Document.MetallVesPriceItems.LastOrDefault();
-				if (v == null) Document.MetallVesPriceItems.Add(v = new DocumentMetallVesPrice2());
-				v.Tara = f.Result;
-				v.TaraInputMethod = VesInputMethod.CUSTOM;
+				CurrentMetal.Tara = f.Result;
+				CurrentMetal.TaraInputMethod = VesInputMethod.CUSTOM;
 				RefreshStep();
 				DBUpsert();
 			}
@@ -394,37 +364,28 @@ namespace PriemMetalClient.ModelView.Controls
 			if (Document == null) return;
 			bool good = false;
 			{
-				var v = Document.MetallVesPriceItems.LastOrDefault();
-				if (v != null)
-				{
-					good = v.Tara > 0;
+				good = CurrentMetal.Tara > 0;
 
-					if (!good)
-					{
-						VesTaraStepAlarmLabel.Text = "Введите вес ТАРЫ!";
-					}
-					else
-					{
-						v.Netto = v.Brutto - v.Tara;
-						v.Netto *= v.Zasor / 100m;
-						v.Summa = v.Netto * v.Category.Price;
-						VesTaraStepAlarmLabel.Text = "";
-						SetStep(PSADocumentStepEnum.VESLIST);
-						DBUpsert();
-					}
+				if (!good)
+				{
+					VesTaraStepAlarmLabel.Text = "Введите вес ТАРЫ!";
+				}
+				else
+				{
+					CurrentMetal.Netto = CurrentMetal.Brutto - CurrentMetal.Tara;
+					CurrentMetal.Netto *= (100m - CurrentMetal.Zasor) / 100m;
+					CurrentMetal.Summa = CurrentMetal.Netto * CurrentMetal.Category.Price;
+					VesTaraStepAlarmLabel.Text = "";
+					SetStep(PSADocumentStepEnum.VESLIST);
+					DBUpsert();
 				}
 			}
-		}
-
-		private void Next3Btn_Click(object sender, EventArgs e)
-		{
-
 		}
 
 		private void VesListStepAddBtn_Click(object sender, EventArgs e)
 		{
 			if (Document == null) return;
-			Document.MetallVesPriceItems.Add(new DocumentMetallVesPrice2());
+			Document.MetallVesPriceItems.Add(CurrentMetal = new DocumentMetallVesPrice2());
 			SetStep(PSADocumentStepEnum.BRUTTO);
 		}
 
@@ -433,23 +394,35 @@ namespace PriemMetalClient.ModelView.Controls
 			if (Document == null) return;
 			bool good = false;
 			{
-				var v = Document.MetallVesPriceItems.LastOrDefault();
-				if (v != null)
-				{
-					good = v.Category != null;
+				good = CurrentMetal.Category != null;
 
-					if (!good)
-					{
-						MetallCatStepAlarmLabel.Text = "Категория металла не выбрана!";
-					}
-					else
-					{
-						MetallCatStepAlarmLabel.Text = "";
-						SetStep(PSADocumentStepEnum.ZASOR);
-						DBUpsert();
-					}
+				if (!good)
+				{
+					MetallCatStepAlarmLabel.Text = "Категория металла не выбрана!";
+				}
+				else
+				{
+					MetallCatStepAlarmLabel.Text = "";
+					SetStep(PSADocumentStepEnum.ZASOR);
+					DBUpsert();
 				}
 			}
+		}
+
+		private void VesListStepEditBtn_Click(object sender, EventArgs e)
+		{
+			if (VesList.SelectedItem != null)
+			{
+				if (Document == null) return;
+				CurrentMetal = VesList.SelectedItem as DocumentMetallVesPrice2;
+				SetStep(PSADocumentStepEnum.BRUTTO);
+			}
+		}
+
+		private void VesList_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			VesListStepEditBtn.Enabled = VesList.SelectedIndex >= 0;
+			VesListStepDeleteBtn.Enabled = VesList.SelectedIndex >= 0;
 		}
 	}
 }
