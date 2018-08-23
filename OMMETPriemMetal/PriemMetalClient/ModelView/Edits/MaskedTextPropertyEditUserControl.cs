@@ -10,9 +10,9 @@ using System.Reflection;
 
 namespace PriemMetalClient
 {
-	partial class TextPropertyEditUserControl : BasePropertyEditUserControl
+	partial class MaskedTextPropertyEditUserControl : BasePropertyEditUserControl
 	{
-		public TextPropertyEditUserControl()
+		public MaskedTextPropertyEditUserControl()
 		{
 			InitializeComponent();
 		}
@@ -29,22 +29,21 @@ namespace PriemMetalClient
 			if (propInfo != null)
 			{
 				label.Text = propInfo.Text ?? "";
-				TextBox.Multiline = propInfo.TextMultilane;
-				if (TextBox.Multiline) TextBox.Height = 60;
+				maskedTextBox.Mask = propInfo.TextMask ?? "";
 			}
-			ClientSize = new Size(ClientSize.Width, label.Height + TextBox.Height);
+			ClientSize = new Size(ClientSize.Width, label.Height + maskedTextBox.Height);
 		}
 
 		public override void SetValue(object value)
 		{
 			base.SetValue(value);
-			TextBox.Text = (string)value;
+			maskedTextBox.Text = (string)value;
 		}
 		//public override object GetValue() => TextBox.Text;
 
-		private void TextBox_TextChanged(object sender, EventArgs e)
+		private void maskedTextBox_TextChanged(object sender, EventArgs e)
 		{
-			base.SetValue(TextBox.Text);
+			base.SetValue(maskedTextBox.Text);
 		}
 	}
 }

@@ -8,11 +8,11 @@ namespace PriemMetalClient
 	[RecordInfo("Юридическое лицо")]
 	public class ContragentUrLico : BaseRecord
 	{
+		[RecordInfo("ИНН", TextMask = "0000000000")]
+		public string Inn { get; set; } = string.Empty;
 		[RecordInfo("Наименование юридического лица")]
 		public string Naimenovanie { get; set; } = string.Empty;
-		[RecordInfo("ИНН")]
-		public string Inn { get; set; } = string.Empty;
-		[RecordInfo("КПП")]
+		[RecordInfo("КПП", TextMask = "000000000")]
 		public string Kpp { get; set; } = string.Empty;
 		[RecordInfo("Адрес юридического лица", TextMultilane = true)] 
 		public string Adress { get; set; } = string.Empty;
@@ -22,7 +22,7 @@ namespace PriemMetalClient
 		[RecordInfo("Дата договора", DateTimeFormat = DateTimeFormat.ShortDate)] 
 		public DateTime DataDogovora { get; set; } = DateTime.Now;
 
-		public override string ToString() => $"{Naimenovanie}";
+		public override string ToString() => $"{Inn} {Naimenovanie}";
 	}
 
 }

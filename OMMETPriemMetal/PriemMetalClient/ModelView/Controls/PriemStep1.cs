@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PriemMetalClient.ModelView.Controls
+namespace PriemMetalClient
 {
 	public partial class PriemStep1 : UserControl
 	{
@@ -21,7 +21,18 @@ namespace PriemMetalClient.ModelView.Controls
 		public PriemStep1()
 		{
 			InitializeComponent();
+			priceType.FormattingEnabled = true;
+			priceType.Format += PriceType_Format;
+			priceType.Items.Add(PriceType.PRICELIST);
+			priceType.Items.Add(PriceType.DOGOVOR);
+			priceType.Items.Add(PriceType.PERSONAL);
+
 			SetDocument(new PSADocument2());
+		}
+
+		private void PriceType_Format(object sender, ListControlConvertEventArgs e)
+		{
+			e.Value = ((PriceType)e.Value).ToFriendlyString();
 		}
 
 		public void SetDocument(PSADocument2 doc)
@@ -66,6 +77,7 @@ namespace PriemMetalClient.ModelView.Controls
 			MetallCatStepPanel.Visible = false;
 			ZasorStepPanel.Visible = false;
 			VesTaraStepPanel.Visible = false;
+			VesPriceTypeStepPanel.Visible = false;
 			switch (step)
 			{
 				case PSADocumentStepEnum.NOMERDATA:
@@ -132,6 +144,13 @@ namespace PriemMetalClient.ModelView.Controls
 						taraTextBox.Text = CurrentMetal.Tara != 0 ?
 							$"{CurrentMetal.Tara.ToString("N3")} тонн ({CurrentMetal.TaraInputMethod.ToFriendlyString()})" :
 							"Не указано";
+					}
+					break;
+				case PSADocumentStepEnum.PRICETYPE:
+					{
+						VesPriceTypeStepPanel.Visible = true;
+						cena.Value = CurrentMetal.Price;
+						priceType.SelectedItem = CurrentMetal.PriceType;
 					}
 					break;
 				default:
@@ -372,11 +391,8 @@ namespace PriemMetalClient.ModelView.Controls
 				}
 				else
 				{
-					CurrentMetal.Netto = CurrentMetal.Brutto - CurrentMetal.Tara;
-					CurrentMetal.Netto *= (100m - CurrentMetal.Zasor) / 100m;
-					CurrentMetal.Summa = CurrentMetal.Netto * CurrentMetal.Category.Price;
 					VesTaraStepAlarmLabel.Text = "";
-					SetStep(PSADocumentStepEnum.VESLIST);
+					SetStep(PSADocumentStepEnum.PRICETYPE);
 					DBUpsert();
 				}
 			}
@@ -423,6 +439,101 @@ namespace PriemMetalClient.ModelView.Controls
 		{
 			VesListStepEditBtn.Enabled = VesList.SelectedIndex >= 0;
 			VesListStepDeleteBtn.Enabled = VesList.SelectedIndex >= 0;
+		}
+
+		private void priceType_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			if (priceType.SelectedItem == null) return;
+			PriceType p = (PriceType)priceType.SelectedItem;
+			switch (p)
+			{
+				case PriceType.PRICELIST:
+					{
+						cena.Enabled = false;
+						cena.Value = CurrentMetal.Category?.Price ?? 0m;
+					}
+					break;
+				case PriceType.DOGOVOR:
+				case PriceType.PERSONAL:
+				default:
+					{
+						cena.Enabled = true;
+					}
+					break;
+			}
+			CurrentMetal.PriceType = p;
+			DBUpsert();
+		}
+
+		private void VesPriceTypeStepNextBtn_Click(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			CurrentMetal.Price = cena.Value;
+					CurrentMetal.Netto = CurrentMetal.Brutto - CurrentMetal.Tara;
+			CurrentMetal.Netto *= (100m - CurrentMetal.Zasor) / 100m;
+			CurrentMetal.Summa = CurrentMetal.Netto * CurrentMetal.Price;
+			DBUpsert();
+			SetStep(PSADocumentStepEnum.VESLIST);
+		}
+
+		private void cena_ValueChanged(object sender, EventArgs e)
+		{
+			if (Document == null) return;
+			CurrentMetal.Price = cena.Value;
+			DBUpsert();
+		}
+
+		private void ContragentStepBackBtn_Click(object sender, EventArgs e)
+		{
+			SetStep(PSADocumentStepEnum.NOMERDATA);
+		}
+
+		private void TransportStepBackBtn_Click(object sender, EventArgs e)
+		{
+			SetStep(PSADocumentStepEnum.CONTRAGENT);
+		}
+
+		private void VesListStepBackBtn_Click(object sender, EventArgs e)
+		{
+			SetStep(PSADocumentStepEnum.TRANSPORT);
+		}
+
+		private void VesBruttoStepBackBtn_Click(object sender, EventArgs e)
+		{
+			SetStep(PSADocumentStepEnum.VESLIST);
+		}
+
+		private void MetallCatStepBackBtn_Click(object sender, EventArgs e)
+		{
+			SetStep(PSADocumentStepEnum.BRUTTO);
+		}
+
+		private void ZasorStepBackBtn_Click(object sender, EventArgs e)
+		{
+			SetStep(PSADocumentStepEnum.METALLCAT);
+		}
+
+		private void VesTaraStepBackBtn_Click(object sender, EventArgs e)
+		{
+			SetStep(PSADocumentStepEnum.ZASOR);
+		}
+
+		private void VesPriceTypeStepBackBtn_Click(object sender, EventArgs e)
+		{
+			SetStep(PSADocumentStepEnum.TARA);
+		}
+
+		private void VesListStepDeleteBtn_Click(object sender, EventArgs e)
+		{
+			if (VesList.SelectedItem != null)
+			{
+				if (Document == null) return;
+				var m = VesList.SelectedItem as DocumentMetallVesPrice2;
+				Document.MetallVesPriceItems.Remove(m);
+				DBUpsert();
+				SetStep(PSADocumentStepEnum.VESLIST);
+			}
 		}
 	}
 }

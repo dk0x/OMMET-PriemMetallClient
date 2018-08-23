@@ -173,5 +173,94 @@ namespace PriemMetalClient
 		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
 		{
 		}
+
+		private void toolStripButton3_Click(object sender, EventArgs e)
+		{
+			var v = new PriemStep1();
+			v.Dock = DockStyle.Left;
+			v.Parent = panel3;
+		}
+
+		private void button1_Click_3(object sender, EventArgs e)
+		{
+		}
+
+
+		private void textBox1_TextChanged(object sender, EventArgs e)
+		{
+			FilterList(textBox1.Text);
+		}
+
+		ListBox lb = null;
+		public void ShowList(TextBox parent)
+		{
+			if (lb == null)
+			{
+				var f = parent.FindForm();
+				var p = f.PointToClient(parent.Parent.PointToScreen(parent.Location));
+				p.Y += parent.Height;
+				lb = new ListBox
+				{
+					Parent = f,
+					Location = p,
+					Width = parent.Width,
+					Height = 100,
+					ScrollAlwaysVisible = true
+				};
+				f.Controls.SetChildIndex(lb, 0);
+				lb.Visible = true;
+				lb.Click += lb_Click;
+			}
+			FilterList(textBox1.Text);
+		}
+
+		private void lb_Click(object sender, EventArgs e)
+		{
+			if (lb?.SelectedItem != null)
+			{
+				textBox1.Tag = lb.SelectedItem;
+				textBox1.Text = textBox1.Tag.ToString();
+				HideList();
+			}
+		}
+
+
+		public void FilterList(string text)
+		{
+			if (lb == null) return;
+			lb.DataSource = DataBase.DB.GetCollection<ContragentFizLico>().
+				Find(x => x.ToString().ToLowerInvariant().Contains(text.ToLowerInvariant())).
+				OrderBy(x => x.ToString()).ToList();
+
+		}
+
+		public void HideList()
+		{
+			if (lb != null)
+			{
+				//lb.Parent = null;
+				lb.Dispose();
+				lb = null;
+			}
+			if (textBox1.Tag != null)
+				textBox1.Text = textBox1.Tag.ToString();
+			else
+				textBox1.Text = "";
+		}
+
+		private void textBox1_MouseClick(object sender, MouseEventArgs e)
+		{
+			ShowList(textBox1);
+			textBox1.SelectAll();
+		}
+
+		private void textBox1_Enter(object sender, EventArgs e)
+		{
+		}
+
+		private void textBox1_Leave(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

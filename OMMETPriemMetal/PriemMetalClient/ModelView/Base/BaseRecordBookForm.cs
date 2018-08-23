@@ -126,9 +126,8 @@ namespace PriemMetalClient
 			{
 				col = col.OrderBy(x => x._Created);
 			}
-			List.BeginUpdate();
+			
 			foreach (var el in col)	el.UpsertListViewItem(List);
-			List.EndUpdate();
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 			//List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 			if (List.Columns.Count > 0) List.Columns[0].Width = 0;

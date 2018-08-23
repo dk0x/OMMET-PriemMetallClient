@@ -1,4 +1,4 @@
-﻿namespace PriemMetalClient.ModelView.Controls
+﻿namespace PriemMetalClient
 {
 	partial class PriemStep1
 	{
@@ -99,10 +99,18 @@
 			this.NomerDataStepNextBtn = new System.Windows.Forms.Button();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.label10 = new System.Windows.Forms.Label();
-			this.nomer = new System.Windows.Forms.MaskedTextBox();
-			this.label9 = new System.Windows.Forms.Label();
 			this.data = new System.Windows.Forms.DateTimePicker();
+			this.label9 = new System.Windows.Forms.Label();
+			this.nomer = new System.Windows.Forms.MaskedTextBox();
 			this.label8 = new System.Windows.Forms.Label();
+			this.VesPriceTypeStepPanel = new System.Windows.Forms.Panel();
+			this.panel12 = new System.Windows.Forms.Panel();
+			this.VesPriceTypeStepAlarmLabel = new System.Windows.Forms.Label();
+			this.VesPriceTypeStepBackBtn = new System.Windows.Forms.Button();
+			this.VesPriceTypeStepNextBtn = new System.Windows.Forms.Button();
+			this.cena = new System.Windows.Forms.NumericUpDown();
+			this.priceType = new System.Windows.Forms.ComboBox();
+			this.label11 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.ContragentStepPanel.SuspendLayout();
@@ -125,6 +133,9 @@
 			this.NomerDataStepPanel.SuspendLayout();
 			this.panel9.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
+			this.VesPriceTypeStepPanel.SuspendLayout();
+			this.panel12.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cena)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// docNoLabel
@@ -183,7 +194,6 @@
 			this.FizSelect.AutoSize = true;
 			this.FizSelect.Dock = System.Windows.Forms.DockStyle.Top;
 			this.FizSelect.Location = new System.Drawing.Point(0, 0);
-			this.FizSelect.Margin = new System.Windows.Forms.Padding(2);
 			this.FizSelect.Name = "FizSelect";
 			this.FizSelect.Size = new System.Drawing.Size(286, 17);
 			this.FizSelect.TabIndex = 0;
@@ -225,6 +235,7 @@
 			this.ContragentStepBackBtn.TabIndex = 1;
 			this.ContragentStepBackBtn.Text = "Назад";
 			this.ContragentStepBackBtn.UseVisualStyleBackColor = true;
+			this.ContragentStepBackBtn.Click += new System.EventHandler(this.ContragentStepBackBtn_Click);
 			// 
 			// ContragentStepNextBtn
 			// 
@@ -324,6 +335,7 @@
 			this.TransportStepBackBtn.TabIndex = 1;
 			this.TransportStepBackBtn.Text = "Назад";
 			this.TransportStepBackBtn.UseVisualStyleBackColor = true;
+			this.TransportStepBackBtn.Click += new System.EventHandler(this.TransportStepBackBtn_Click);
 			// 
 			// TransportStepNextBtn
 			// 
@@ -409,6 +421,7 @@
 			this.VesBruttoStepBackBtn.TabIndex = 1;
 			this.VesBruttoStepBackBtn.Text = "Назад";
 			this.VesBruttoStepBackBtn.UseVisualStyleBackColor = true;
+			this.VesBruttoStepBackBtn.Click += new System.EventHandler(this.VesBruttoStepBackBtn_Click);
 			// 
 			// VesBruttoStepNextBtn
 			// 
@@ -535,6 +548,7 @@
 			this.MetallCatStepBackBtn.TabIndex = 1;
 			this.MetallCatStepBackBtn.Text = "Назад";
 			this.MetallCatStepBackBtn.UseVisualStyleBackColor = true;
+			this.MetallCatStepBackBtn.Click += new System.EventHandler(this.MetallCatStepBackBtn_Click);
 			// 
 			// MetallCatStepNextBtn
 			// 
@@ -620,6 +634,7 @@
 			this.ZasorStepBackBtn.TabIndex = 1;
 			this.ZasorStepBackBtn.Text = "Назад";
 			this.ZasorStepBackBtn.UseVisualStyleBackColor = true;
+			this.ZasorStepBackBtn.Click += new System.EventHandler(this.ZasorStepBackBtn_Click);
 			// 
 			// ZasorStepNextBtn
 			// 
@@ -705,6 +720,7 @@
 			this.VesTaraStepBackBtn.TabIndex = 1;
 			this.VesTaraStepBackBtn.Text = "Назад";
 			this.VesTaraStepBackBtn.UseVisualStyleBackColor = true;
+			this.VesTaraStepBackBtn.Click += new System.EventHandler(this.VesTaraStepBackBtn_Click);
 			// 
 			// VesTaraStepNextBtn
 			// 
@@ -832,6 +848,7 @@
 			this.VesListStepBackBtn.TabIndex = 1;
 			this.VesListStepBackBtn.Text = "Назад";
 			this.VesListStepBackBtn.UseVisualStyleBackColor = true;
+			this.VesListStepBackBtn.Click += new System.EventHandler(this.VesListStepBackBtn_Click);
 			// 
 			// VesListStepNextBtn
 			// 
@@ -881,6 +898,7 @@
 			this.VesListStepDeleteBtn.TabIndex = 1;
 			this.VesListStepDeleteBtn.Text = "Удалить";
 			this.VesListStepDeleteBtn.UseVisualStyleBackColor = true;
+			this.VesListStepDeleteBtn.Click += new System.EventHandler(this.VesListStepDeleteBtn_Click);
 			// 
 			// VesListStepAddBtn
 			// 
@@ -984,9 +1002,9 @@
 			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
 			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel3.Controls.Add(this.label10, 0, 1);
-			this.tableLayoutPanel3.Controls.Add(this.nomer, 1, 0);
-			this.tableLayoutPanel3.Controls.Add(this.label9, 0, 0);
 			this.tableLayoutPanel3.Controls.Add(this.data, 1, 1);
+			this.tableLayoutPanel3.Controls.Add(this.label9, 0, 0);
+			this.tableLayoutPanel3.Controls.Add(this.nomer, 1, 0);
 			this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
 			this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 27);
 			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -1007,17 +1025,15 @@
 			this.label10.Text = "Дата:";
 			this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// nomer
+			// data
 			// 
-			this.nomer.Dock = System.Windows.Forms.DockStyle.Top;
-			this.nomer.Location = new System.Drawing.Point(83, 3);
-			this.nomer.Mask = "00000000";
-			this.nomer.Name = "nomer";
-			this.nomer.Size = new System.Drawing.Size(204, 20);
-			this.nomer.TabIndex = 29;
-			this.nomer.Text = "00000000";
-			this.nomer.ValidatingType = typeof(int);
-			this.nomer.TextChanged += new System.EventHandler(this.nomer_TextChanged);
+			this.data.Cursor = System.Windows.Forms.Cursors.Default;
+			this.data.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.data.Location = new System.Drawing.Point(83, 29);
+			this.data.Name = "data";
+			this.data.Size = new System.Drawing.Size(100, 20);
+			this.data.TabIndex = 31;
+			this.data.ValueChanged += new System.EventHandler(this.data_ValueChanged);
 			// 
 			// label9
 			// 
@@ -1030,16 +1046,16 @@
 			this.label9.Text = "ПСА №:";
 			this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// data
+			// nomer
 			// 
-			this.data.Cursor = System.Windows.Forms.Cursors.Default;
-			this.data.Dock = System.Windows.Forms.DockStyle.Top;
-			this.data.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.data.Location = new System.Drawing.Point(83, 29);
-			this.data.Name = "data";
-			this.data.Size = new System.Drawing.Size(204, 20);
-			this.data.TabIndex = 31;
-			this.data.ValueChanged += new System.EventHandler(this.data_ValueChanged);
+			this.nomer.Location = new System.Drawing.Point(83, 3);
+			this.nomer.Mask = "00000000";
+			this.nomer.Name = "nomer";
+			this.nomer.Size = new System.Drawing.Size(100, 20);
+			this.nomer.TabIndex = 29;
+			this.nomer.Text = "00000000";
+			this.nomer.ValidatingType = typeof(int);
+			this.nomer.TextChanged += new System.EventHandler(this.nomer_TextChanged);
 			// 
 			// label8
 			// 
@@ -1053,11 +1069,116 @@
 			this.label8.Text = "Номер документа и дата";
 			this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
+			// VesPriceTypeStepPanel
+			// 
+			this.VesPriceTypeStepPanel.AutoSize = true;
+			this.VesPriceTypeStepPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.VesPriceTypeStepPanel.Controls.Add(this.panel12);
+			this.VesPriceTypeStepPanel.Controls.Add(this.cena);
+			this.VesPriceTypeStepPanel.Controls.Add(this.priceType);
+			this.VesPriceTypeStepPanel.Controls.Add(this.label11);
+			this.VesPriceTypeStepPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.VesPriceTypeStepPanel.Location = new System.Drawing.Point(0, 998);
+			this.VesPriceTypeStepPanel.Name = "VesPriceTypeStepPanel";
+			this.VesPriceTypeStepPanel.Padding = new System.Windows.Forms.Padding(4);
+			this.VesPriceTypeStepPanel.Size = new System.Drawing.Size(300, 99);
+			this.VesPriceTypeStepPanel.TabIndex = 16;
+			// 
+			// panel12
+			// 
+			this.panel12.Controls.Add(this.VesPriceTypeStepAlarmLabel);
+			this.panel12.Controls.Add(this.VesPriceTypeStepBackBtn);
+			this.panel12.Controls.Add(this.VesPriceTypeStepNextBtn);
+			this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel12.Location = new System.Drawing.Point(4, 68);
+			this.panel12.Margin = new System.Windows.Forms.Padding(2);
+			this.panel12.Name = "panel12";
+			this.panel12.Size = new System.Drawing.Size(290, 25);
+			this.panel12.TabIndex = 6;
+			// 
+			// VesPriceTypeStepAlarmLabel
+			// 
+			this.VesPriceTypeStepAlarmLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.VesPriceTypeStepAlarmLabel.ForeColor = System.Drawing.Color.Red;
+			this.VesPriceTypeStepAlarmLabel.Location = new System.Drawing.Point(56, 0);
+			this.VesPriceTypeStepAlarmLabel.Name = "VesPriceTypeStepAlarmLabel";
+			this.VesPriceTypeStepAlarmLabel.Size = new System.Drawing.Size(181, 25);
+			this.VesPriceTypeStepAlarmLabel.TabIndex = 2;
+			this.VesPriceTypeStepAlarmLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// VesPriceTypeStepBackBtn
+			// 
+			this.VesPriceTypeStepBackBtn.AutoSize = true;
+			this.VesPriceTypeStepBackBtn.Dock = System.Windows.Forms.DockStyle.Left;
+			this.VesPriceTypeStepBackBtn.Location = new System.Drawing.Point(0, 0);
+			this.VesPriceTypeStepBackBtn.Margin = new System.Windows.Forms.Padding(2);
+			this.VesPriceTypeStepBackBtn.Name = "VesPriceTypeStepBackBtn";
+			this.VesPriceTypeStepBackBtn.Size = new System.Drawing.Size(56, 25);
+			this.VesPriceTypeStepBackBtn.TabIndex = 1;
+			this.VesPriceTypeStepBackBtn.Text = "Назад";
+			this.VesPriceTypeStepBackBtn.UseVisualStyleBackColor = true;
+			this.VesPriceTypeStepBackBtn.Click += new System.EventHandler(this.VesPriceTypeStepBackBtn_Click);
+			// 
+			// VesPriceTypeStepNextBtn
+			// 
+			this.VesPriceTypeStepNextBtn.AutoSize = true;
+			this.VesPriceTypeStepNextBtn.Dock = System.Windows.Forms.DockStyle.Right;
+			this.VesPriceTypeStepNextBtn.Location = new System.Drawing.Point(237, 0);
+			this.VesPriceTypeStepNextBtn.Margin = new System.Windows.Forms.Padding(2);
+			this.VesPriceTypeStepNextBtn.Name = "VesPriceTypeStepNextBtn";
+			this.VesPriceTypeStepNextBtn.Size = new System.Drawing.Size(53, 25);
+			this.VesPriceTypeStepNextBtn.TabIndex = 0;
+			this.VesPriceTypeStepNextBtn.Text = "Далее";
+			this.VesPriceTypeStepNextBtn.UseVisualStyleBackColor = true;
+			this.VesPriceTypeStepNextBtn.Click += new System.EventHandler(this.VesPriceTypeStepNextBtn_Click);
+			// 
+			// cena
+			// 
+			this.cena.BackColor = System.Drawing.SystemColors.Window;
+			this.cena.DecimalPlaces = 2;
+			this.cena.Dock = System.Windows.Forms.DockStyle.Top;
+			this.cena.Location = new System.Drawing.Point(4, 48);
+			this.cena.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+			this.cena.Name = "cena";
+			this.cena.ReadOnly = true;
+			this.cena.Size = new System.Drawing.Size(290, 20);
+			this.cena.TabIndex = 25;
+			this.cena.ThousandsSeparator = true;
+			this.cena.ValueChanged += new System.EventHandler(this.cena_ValueChanged);
+			// 
+			// priceType
+			// 
+			this.priceType.Dock = System.Windows.Forms.DockStyle.Top;
+			this.priceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.priceType.FormattingEnabled = true;
+			this.priceType.Location = new System.Drawing.Point(4, 27);
+			this.priceType.Name = "priceType";
+			this.priceType.Size = new System.Drawing.Size(290, 21);
+			this.priceType.TabIndex = 24;
+			this.priceType.SelectedIndexChanged += new System.EventHandler(this.priceType_SelectedIndexChanged);
+			// 
+			// label11
+			// 
+			this.label11.BackColor = System.Drawing.Color.PaleGreen;
+			this.label11.Dock = System.Windows.Forms.DockStyle.Top;
+			this.label11.Location = new System.Drawing.Point(4, 4);
+			this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(290, 23);
+			this.label11.TabIndex = 2;
+			this.label11.Text = "Укажите тип цены и цену на металл";
+			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
 			// PriemStep1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
+			this.Controls.Add(this.VesPriceTypeStepPanel);
 			this.Controls.Add(this.VesTaraStepPanel);
 			this.Controls.Add(this.ZasorStepPanel);
 			this.Controls.Add(this.MetallCatStepPanel);
@@ -1112,6 +1233,10 @@
 			this.panel9.PerformLayout();
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.tableLayoutPanel3.PerformLayout();
+			this.VesPriceTypeStepPanel.ResumeLayout(false);
+			this.panel12.ResumeLayout(false);
+			this.panel12.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cena)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1194,5 +1319,13 @@
 		private System.Windows.Forms.Button VesListStepEditBtn;
 		private System.Windows.Forms.Button VesListStepDeleteBtn;
 		private System.Windows.Forms.Button VesListStepAddBtn;
+		private System.Windows.Forms.Panel VesPriceTypeStepPanel;
+		private System.Windows.Forms.Panel panel12;
+		private System.Windows.Forms.Label VesPriceTypeStepAlarmLabel;
+		private System.Windows.Forms.Button VesPriceTypeStepBackBtn;
+		private System.Windows.Forms.Button VesPriceTypeStepNextBtn;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.ComboBox priceType;
+		private System.Windows.Forms.NumericUpDown cena;
 	}
 }

@@ -14,7 +14,7 @@ namespace PriemMetalClient
 		public string Nomenklatura { get; set; } = string.Empty;
 		[RecordInfo("Условия поставки", TextMultilane = true, TableNoColumn = true, TableNoFilter = true)]
 		public string Description { get; set; } = string.Empty;
-		[RecordInfo("Цена за 1 тонну, руб. (без НДС)", StringFormat = "C", DecimalDigits = 2)]
+		[RecordInfo("Цена за 1 тонну, руб. (без НДС)", ToStringFormat = "C", DecimalDigits = 2)]
 		public decimal Price { get; set; } = 0;
 
 		public override string ToString() => $"{Category} Цена: {Price.ToString("C")}";

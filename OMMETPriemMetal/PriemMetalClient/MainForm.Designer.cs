@@ -32,7 +32,6 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.VesUpdateTimer = new System.Windows.Forms.Timer(this.components);
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.VesCountText = new System.Windows.Forms.ToolStripTextBox();
 			this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
 			this.VesDeviationText = new System.Windows.Forms.ToolStripTextBox();
@@ -42,46 +41,53 @@
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.новыйДокументToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-			this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.контрагентыФизическиеЛицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.контрагентыЮридическиеЛицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.финансыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.транзакцииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.сервисToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.toolStrip4 = new System.Windows.Forms.ToolStrip();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.PSAList = new System.Windows.Forms.ListView();
 			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-			this.NewPSADocumentBtn = new System.Windows.Forms.ToolStripButton();
-			this.EditPSADocumentBtn = new System.Windows.Forms.ToolStripButton();
-			this.DeletePSADocumentBtn = new System.Windows.Forms.ToolStripButton();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.PSAStepList = new System.Windows.Forms.ListView();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-			this.priemStep11 = new PriemMetalClient.ModelView.Controls.PriemStep1();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.button1 = new System.Windows.Forms.Button();
+			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+			this.NewPSADocumentBtn = new System.Windows.Forms.ToolStripButton();
+			this.EditPSADocumentBtn = new System.Windows.Forms.ToolStripButton();
+			this.DeletePSADocumentBtn = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+			this.новыйДокументToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.контрагентыФизическиеЛицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.контрагентыЮридическиеЛицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
+			this.tabPage3.SuspendLayout();
+			this.toolStrip4.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.toolStrip2.SuspendLayout();
 			this.tabPage2.SuspendLayout();
-			this.tabPage3.SuspendLayout();
 			this.tabPage5.SuspendLayout();
 			this.toolStrip3.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// VesUpdateTimer
@@ -105,17 +111,6 @@
 			this.toolStrip1.Size = new System.Drawing.Size(1036, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
-			// 
-			// toolStripButton1
-			// 
-			this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-			this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripButton1.Name = "toolStripButton1";
-			this.toolStripButton1.Size = new System.Drawing.Size(120, 22);
-			this.toolStripButton1.Text = "Перезагрузка порта";
-			this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
 			// 
 			// VesCountText
 			// 
@@ -197,26 +192,10 @@
 			this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
 			this.файлToolStripMenuItem.Text = "Файл";
 			// 
-			// новыйДокументToolStripMenuItem
-			// 
-			this.новыйДокументToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173002___edit;
-			this.новыйДокументToolStripMenuItem.Name = "новыйДокументToolStripMenuItem";
-			this.новыйДокументToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-			this.новыйДокументToolStripMenuItem.Text = "Новый документ...";
-			this.новыйДокументToolStripMenuItem.Click += new System.EventHandler(this.НовыйДокументToolStripMenuItem_Click);
-			// 
 			// toolStripMenuItem2
 			// 
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
 			this.toolStripMenuItem2.Size = new System.Drawing.Size(173, 6);
-			// 
-			// выходToolStripMenuItem
-			// 
-			this.выходToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173050___logout;
-			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-			this.выходToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-			this.выходToolStripMenuItem.Text = "Выход";
-			this.выходToolStripMenuItem.Click += new System.EventHandler(this.ВыходToolStripMenuItem_Click);
 			// 
 			// справочникиToolStripMenuItem
 			// 
@@ -227,30 +206,6 @@
 			this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
 			this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
 			this.справочникиToolStripMenuItem.Text = "Справочники";
-			// 
-			// закупочныеЦеныНаМеталлоломToolStripMenuItem
-			// 
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173163___book;
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Name = "закупочныеЦеныНаМеталлоломToolStripMenuItem";
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Text = "Закупочные цены на металлолом";
-			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Click += new System.EventHandler(this.ЗакупочныеЦеныНаМеталлоломToolStripMenuItem_Click);
-			// 
-			// контрагентыФизическиеЛицаToolStripMenuItem
-			// 
-			this.контрагентыФизическиеЛицаToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173163___book;
-			this.контрагентыФизическиеЛицаToolStripMenuItem.Name = "контрагентыФизическиеЛицаToolStripMenuItem";
-			this.контрагентыФизическиеЛицаToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-			this.контрагентыФизическиеЛицаToolStripMenuItem.Text = "Контрагенты: Физические лица";
-			this.контрагентыФизическиеЛицаToolStripMenuItem.Click += new System.EventHandler(this.КонтрагентыФизическиеЛицаToolStripMenuItem_Click);
-			// 
-			// контрагентыЮридическиеЛицаToolStripMenuItem
-			// 
-			this.контрагентыЮридическиеЛицаToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173163___book;
-			this.контрагентыЮридическиеЛицаToolStripMenuItem.Name = "контрагентыЮридическиеЛицаToolStripMenuItem";
-			this.контрагентыЮридическиеЛицаToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-			this.контрагентыЮридическиеЛицаToolStripMenuItem.Text = "Контрагенты: Юридические лица";
-			this.контрагентыЮридическиеЛицаToolStripMenuItem.Click += new System.EventHandler(this.КонтрагентыЮридическиеЛицаToolStripMenuItem_Click);
 			// 
 			// финансыToolStripMenuItem
 			// 
@@ -275,14 +230,6 @@
 			this.сервисToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
 			this.сервисToolStripMenuItem.Text = "Сервис";
 			// 
-			// параметрыToolStripMenuItem
-			// 
-			this.параметрыToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173184___cog;
-			this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
-			this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-			this.параметрыToolStripMenuItem.Text = "Параметры...";
-			this.параметрыToolStripMenuItem.Click += new System.EventHandler(this.ПараметрыToolStripMenuItem_Click);
-			// 
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tabPage3);
@@ -296,6 +243,40 @@
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(1036, 421);
 			this.tabControl1.TabIndex = 10;
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.panel3);
+			this.tabPage3.Controls.Add(this.toolStrip4);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(1028, 395);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "tabPage3";
+			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// panel3
+			// 
+			this.panel3.AutoScroll = true;
+			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel3.Location = new System.Drawing.Point(3, 57);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(1022, 335);
+			this.panel3.TabIndex = 2;
+			// 
+			// toolStrip4
+			// 
+			this.toolStrip4.ImageScalingSize = new System.Drawing.Size(32, 32);
+			this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton3,
+            this.toolStripButton4,
+            this.toolStripButton5});
+			this.toolStrip4.Location = new System.Drawing.Point(3, 3);
+			this.toolStrip4.Name = "toolStrip4";
+			this.toolStrip4.Size = new System.Drawing.Size(1022, 54);
+			this.toolStrip4.TabIndex = 1;
+			this.toolStrip4.Text = "toolStrip4";
 			// 
 			// tabPage1
 			// 
@@ -337,44 +318,10 @@
 			this.toolStrip2.TabIndex = 0;
 			this.toolStrip2.Text = "toolStrip2";
 			// 
-			// NewPSADocumentBtn
-			// 
-			this.NewPSADocumentBtn.Image = global::PriemMetalClient.Properties.Resources._173077___plus1;
-			this.NewPSADocumentBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.NewPSADocumentBtn.Name = "NewPSADocumentBtn";
-			this.NewPSADocumentBtn.Size = new System.Drawing.Size(104, 51);
-			this.NewPSADocumentBtn.Text = "Новый документ";
-			this.NewPSADocumentBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.NewPSADocumentBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			this.NewPSADocumentBtn.Click += new System.EventHandler(this.NewPSADocumentBtn_Click);
-			// 
-			// EditPSADocumentBtn
-			// 
-			this.EditPSADocumentBtn.Image = global::PriemMetalClient.Properties.Resources._173002___edit;
-			this.EditPSADocumentBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.EditPSADocumentBtn.Name = "EditPSADocumentBtn";
-			this.EditPSADocumentBtn.Size = new System.Drawing.Size(91, 51);
-			this.EditPSADocumentBtn.Text = "Редактировать";
-			this.EditPSADocumentBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.EditPSADocumentBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			this.EditPSADocumentBtn.Click += new System.EventHandler(this.EditPSADocumentBtn_Click);
-			// 
-			// DeletePSADocumentBtn
-			// 
-			this.DeletePSADocumentBtn.Image = global::PriemMetalClient.Properties.Resources._173055___minus;
-			this.DeletePSADocumentBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.DeletePSADocumentBtn.Name = "DeletePSADocumentBtn";
-			this.DeletePSADocumentBtn.Size = new System.Drawing.Size(55, 51);
-			this.DeletePSADocumentBtn.Text = "Удалить";
-			this.DeletePSADocumentBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.DeletePSADocumentBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			this.DeletePSADocumentBtn.Click += new System.EventHandler(this.DeletePSADocumentBtn_Click);
-			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.button1);
 			this.tabPage2.Controls.Add(this.panel1);
-			this.tabPage2.Controls.Add(this.PSAStepList);
-			this.tabPage2.Controls.Add(this.panel2);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -382,48 +329,6 @@
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// panel1
-			// 
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel1.Location = new System.Drawing.Point(3, 220);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1022, 172);
-			this.panel1.TabIndex = 3;
-			// 
-			// PSAStepList
-			// 
-			this.PSAStepList.Dock = System.Windows.Forms.DockStyle.Top;
-			this.PSAStepList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.PSAStepList.FullRowSelect = true;
-			this.PSAStepList.GridLines = true;
-			this.PSAStepList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-			this.PSAStepList.Location = new System.Drawing.Point(3, 56);
-			this.PSAStepList.MultiSelect = false;
-			this.PSAStepList.Name = "PSAStepList";
-			this.PSAStepList.Size = new System.Drawing.Size(1022, 164);
-			this.PSAStepList.TabIndex = 2;
-			this.PSAStepList.UseCompatibleStateImageBehavior = false;
-			this.PSAStepList.View = System.Windows.Forms.View.Details;
-			// 
-			// panel2
-			// 
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel2.Location = new System.Drawing.Point(3, 3);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1022, 53);
-			this.panel2.TabIndex = 4;
-			// 
-			// tabPage3
-			// 
-			this.tabPage3.Controls.Add(this.priemStep11);
-			this.tabPage3.Location = new System.Drawing.Point(4, 22);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(1028, 395);
-			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "tabPage3";
-			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
 			// tabPage4
 			// 
@@ -473,16 +378,6 @@
 			this.toolStrip3.TabIndex = 2;
 			this.toolStrip3.Text = "toolStrip3";
 			// 
-			// toolStripButton2
-			// 
-			this.toolStripButton2.Image = global::PriemMetalClient.Properties.Resources._173077___plus1;
-			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripButton2.Name = "toolStripButton2";
-			this.toolStripButton2.Size = new System.Drawing.Size(84, 51);
-			this.toolStripButton2.Text = "Поступление";
-			this.toolStripButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			// 
 			// imageList1
 			// 
 			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -499,16 +394,170 @@
 			this.printPreviewDialog1.Name = "printPreviewDialog1";
 			this.printPreviewDialog1.Visible = false;
 			// 
-			// priemStep11
+			// panel1
 			// 
-			this.priemStep11.AutoScroll = true;
-			this.priemStep11.Dock = System.Windows.Forms.DockStyle.Left;
-			this.priemStep11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.priemStep11.Location = new System.Drawing.Point(3, 3);
-			this.priemStep11.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-			this.priemStep11.Name = "priemStep11";
-			this.priemStep11.Size = new System.Drawing.Size(289, 389);
-			this.priemStep11.TabIndex = 0;
+			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Location = new System.Drawing.Point(137, 75);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(287, 62);
+			this.panel1.TabIndex = 0;
+			// 
+			// textBox1
+			// 
+			this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+			this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+			this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.textBox1.Location = new System.Drawing.Point(0, 0);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(287, 20);
+			this.textBox1.TabIndex = 0;
+			this.textBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
+			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+			this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+			this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(241, 154);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 1;
+			this.button1.Text = "button1";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click_3);
+			// 
+			// toolStripButton3
+			// 
+			this.toolStripButton3.Image = global::PriemMetalClient.Properties.Resources._173077___plus1;
+			this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton3.Name = "toolStripButton3";
+			this.toolStripButton3.Size = new System.Drawing.Size(104, 51);
+			this.toolStripButton3.Text = "Новый документ";
+			this.toolStripButton3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+			// 
+			// toolStripButton4
+			// 
+			this.toolStripButton4.Image = global::PriemMetalClient.Properties.Resources._173002___edit;
+			this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton4.Name = "toolStripButton4";
+			this.toolStripButton4.Size = new System.Drawing.Size(91, 51);
+			this.toolStripButton4.Text = "Редактировать";
+			this.toolStripButton4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			// 
+			// toolStripButton5
+			// 
+			this.toolStripButton5.Image = global::PriemMetalClient.Properties.Resources._173055___minus;
+			this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton5.Name = "toolStripButton5";
+			this.toolStripButton5.Size = new System.Drawing.Size(55, 51);
+			this.toolStripButton5.Text = "Удалить";
+			this.toolStripButton5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.toolStripButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			// 
+			// NewPSADocumentBtn
+			// 
+			this.NewPSADocumentBtn.Image = global::PriemMetalClient.Properties.Resources._173077___plus1;
+			this.NewPSADocumentBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.NewPSADocumentBtn.Name = "NewPSADocumentBtn";
+			this.NewPSADocumentBtn.Size = new System.Drawing.Size(104, 51);
+			this.NewPSADocumentBtn.Text = "Новый документ";
+			this.NewPSADocumentBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.NewPSADocumentBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.NewPSADocumentBtn.Click += new System.EventHandler(this.NewPSADocumentBtn_Click);
+			// 
+			// EditPSADocumentBtn
+			// 
+			this.EditPSADocumentBtn.Image = global::PriemMetalClient.Properties.Resources._173002___edit;
+			this.EditPSADocumentBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.EditPSADocumentBtn.Name = "EditPSADocumentBtn";
+			this.EditPSADocumentBtn.Size = new System.Drawing.Size(91, 51);
+			this.EditPSADocumentBtn.Text = "Редактировать";
+			this.EditPSADocumentBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.EditPSADocumentBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.EditPSADocumentBtn.Click += new System.EventHandler(this.EditPSADocumentBtn_Click);
+			// 
+			// DeletePSADocumentBtn
+			// 
+			this.DeletePSADocumentBtn.Image = global::PriemMetalClient.Properties.Resources._173055___minus;
+			this.DeletePSADocumentBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.DeletePSADocumentBtn.Name = "DeletePSADocumentBtn";
+			this.DeletePSADocumentBtn.Size = new System.Drawing.Size(55, 51);
+			this.DeletePSADocumentBtn.Text = "Удалить";
+			this.DeletePSADocumentBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.DeletePSADocumentBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.DeletePSADocumentBtn.Click += new System.EventHandler(this.DeletePSADocumentBtn_Click);
+			// 
+			// toolStripButton2
+			// 
+			this.toolStripButton2.Image = global::PriemMetalClient.Properties.Resources._173077___plus1;
+			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton2.Name = "toolStripButton2";
+			this.toolStripButton2.Size = new System.Drawing.Size(84, 51);
+			this.toolStripButton2.Text = "Поступление";
+			this.toolStripButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			// 
+			// toolStripButton1
+			// 
+			this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton1.Name = "toolStripButton1";
+			this.toolStripButton1.Size = new System.Drawing.Size(120, 22);
+			this.toolStripButton1.Text = "Перезагрузка порта";
+			this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
+			// 
+			// новыйДокументToolStripMenuItem
+			// 
+			this.новыйДокументToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173002___edit;
+			this.новыйДокументToolStripMenuItem.Name = "новыйДокументToolStripMenuItem";
+			this.новыйДокументToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+			this.новыйДокументToolStripMenuItem.Text = "Новый документ...";
+			this.новыйДокументToolStripMenuItem.Click += new System.EventHandler(this.НовыйДокументToolStripMenuItem_Click);
+			// 
+			// выходToolStripMenuItem
+			// 
+			this.выходToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173050___logout;
+			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
+			this.выходToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+			this.выходToolStripMenuItem.Text = "Выход";
+			this.выходToolStripMenuItem.Click += new System.EventHandler(this.ВыходToolStripMenuItem_Click);
+			// 
+			// закупочныеЦеныНаМеталлоломToolStripMenuItem
+			// 
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173163___book;
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Name = "закупочныеЦеныНаМеталлоломToolStripMenuItem";
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Text = "Закупочные цены на металлолом";
+			this.закупочныеЦеныНаМеталлоломToolStripMenuItem.Click += new System.EventHandler(this.ЗакупочныеЦеныНаМеталлоломToolStripMenuItem_Click);
+			// 
+			// контрагентыФизическиеЛицаToolStripMenuItem
+			// 
+			this.контрагентыФизическиеЛицаToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173163___book;
+			this.контрагентыФизическиеЛицаToolStripMenuItem.Name = "контрагентыФизическиеЛицаToolStripMenuItem";
+			this.контрагентыФизическиеЛицаToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+			this.контрагентыФизическиеЛицаToolStripMenuItem.Text = "Контрагенты: Физические лица";
+			this.контрагентыФизическиеЛицаToolStripMenuItem.Click += new System.EventHandler(this.КонтрагентыФизическиеЛицаToolStripMenuItem_Click);
+			// 
+			// контрагентыЮридическиеЛицаToolStripMenuItem
+			// 
+			this.контрагентыЮридическиеЛицаToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173163___book;
+			this.контрагентыЮридическиеЛицаToolStripMenuItem.Name = "контрагентыЮридическиеЛицаToolStripMenuItem";
+			this.контрагентыЮридическиеЛицаToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+			this.контрагентыЮридическиеЛицаToolStripMenuItem.Text = "Контрагенты: Юридические лица";
+			this.контрагентыЮридическиеЛицаToolStripMenuItem.Click += new System.EventHandler(this.КонтрагентыЮридическиеЛицаToolStripMenuItem_Click);
+			// 
+			// параметрыToolStripMenuItem
+			// 
+			this.параметрыToolStripMenuItem.Image = global::PriemMetalClient.Properties.Resources._173184___cog;
+			this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
+			this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+			this.параметрыToolStripMenuItem.Text = "Параметры...";
+			this.параметрыToolStripMenuItem.Click += new System.EventHandler(this.ПараметрыToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
@@ -530,16 +579,21 @@
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
+			this.tabPage3.ResumeLayout(false);
+			this.tabPage3.PerformLayout();
+			this.toolStrip4.ResumeLayout(false);
+			this.toolStrip4.PerformLayout();
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
 			this.toolStrip2.ResumeLayout(false);
 			this.toolStrip2.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
-			this.tabPage3.ResumeLayout(false);
 			this.tabPage5.ResumeLayout(false);
 			this.tabPage5.PerformLayout();
 			this.toolStrip3.ResumeLayout(false);
 			this.toolStrip3.PerformLayout();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -585,9 +639,13 @@
 		private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.ToolStrip toolStrip3;
 		private System.Windows.Forms.ToolStripButton toolStripButton2;
+		private System.Windows.Forms.Panel panel3;
+		private System.Windows.Forms.ToolStrip toolStrip4;
+		private System.Windows.Forms.ToolStripButton toolStripButton3;
+		private System.Windows.Forms.ToolStripButton toolStripButton4;
+		private System.Windows.Forms.ToolStripButton toolStripButton5;
+		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.ListView PSAStepList;
-		private System.Windows.Forms.Panel panel2;
-		private ModelView.Controls.PriemStep1 priemStep11;
+		private System.Windows.Forms.TextBox textBox1;
 	}
 }

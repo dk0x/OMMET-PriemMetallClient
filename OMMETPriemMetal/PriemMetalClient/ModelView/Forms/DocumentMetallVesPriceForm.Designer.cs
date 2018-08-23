@@ -76,7 +76,7 @@
 			this.tableLayoutPanel1.ColumnCount = 3;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 174F));
 			this.tableLayoutPanel1.Controls.Add(this.label8, 0, 1);
 			this.tableLayoutPanel1.Controls.Add(this.VesValue, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.label9, 0, 0);
@@ -170,7 +170,7 @@
 			this.MetallSelect.Location = new System.Drawing.Point(373, 27);
 			this.MetallSelect.Margin = new System.Windows.Forms.Padding(0);
 			this.MetallSelect.Name = "MetallSelect";
-			this.MetallSelect.Size = new System.Drawing.Size(170, 25);
+			this.MetallSelect.Size = new System.Drawing.Size(174, 25);
 			this.MetallSelect.TabIndex = 19;
 			this.MetallSelect.Text = "Выбрать...";
 			this.MetallSelect.UseVisualStyleBackColor = true;
@@ -313,7 +313,7 @@
 			this.button2.Location = new System.Drawing.Point(373, 166);
 			this.button2.Margin = new System.Windows.Forms.Padding(0);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(170, 25);
+			this.button2.Size = new System.Drawing.Size(174, 25);
 			this.button2.TabIndex = 15;
 			this.button2.Text = "< Взять с весов";
 			this.button2.UseVisualStyleBackColor = true;
@@ -325,7 +325,7 @@
 			this.button1.Location = new System.Drawing.Point(373, 140);
 			this.button1.Margin = new System.Windows.Forms.Padding(0);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(170, 25);
+			this.button1.Size = new System.Drawing.Size(174, 25);
 			this.button1.TabIndex = 14;
 			this.button1.Text = "< Взять с весов";
 			this.button1.UseVisualStyleBackColor = true;

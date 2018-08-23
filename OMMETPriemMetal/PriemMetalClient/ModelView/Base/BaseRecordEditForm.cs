@@ -36,8 +36,9 @@ namespace PriemMetalClient
 			EditUserControl = new BaseRecordEditUserControl<TRecord>
 			{
 				Parent = this,
-				Width = this.ClientSize.Width,
-				Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right
+				Dock = DockStyle.Top,
+				//Width = this.ClientSize.Width,
+				//Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right
 			};
 
 			EditUserControl.SetRecord(r);

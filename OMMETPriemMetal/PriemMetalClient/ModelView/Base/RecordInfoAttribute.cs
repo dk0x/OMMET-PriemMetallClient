@@ -26,11 +26,10 @@ namespace PriemMetalClient
 		public int MinVal { get; set; } = int.MinValue;
 		public int MaxVal { get; set; } = int.MaxValue;
 		public int DecimalDigits { get; set; } = 0;
-		//public string TextMask { get; set; } = string.Empty;
-		//public int UIValueDivide { get; set; } = 1;
+		public string TextMask { get; set; } = string.Empty;
 
 		public DateTimeFormat DateTimeFormat { get; set; } = DateTimeFormat.Full;
-		public string StringFormat { get; set; } = null;
+		public string ToStringFormat { get; set; } = null;
 		public StringCase StringCase { get; set; } = StringCase.Normal;
 		public RecordInfoAttribute(string text)
 		{
@@ -66,13 +65,13 @@ namespace PriemMetalClient
 			if (value.GetType() == typeof(int))
 			{
 				int v = Convert.ToInt32(value);
-				result = string.IsNullOrWhiteSpace(infoAttribute.StringFormat) ? v.ToString() : v.ToString(infoAttribute.StringFormat);
+				result = string.IsNullOrWhiteSpace(infoAttribute.ToStringFormat) ? v.ToString() : v.ToString(infoAttribute.ToStringFormat);
 			}
 			else
 			if (value.GetType() == typeof(decimal))
 			{
 				decimal v = Convert.ToDecimal(value);
-				result = string.IsNullOrWhiteSpace(infoAttribute.StringFormat) ? v.ToString() : v.ToString(infoAttribute.StringFormat);
+				result = string.IsNullOrWhiteSpace(infoAttribute.ToStringFormat) ? v.ToString() : v.ToString(infoAttribute.ToStringFormat);
 			}
 			else
 			if (value.GetType() == typeof(DateTime))
@@ -86,7 +85,7 @@ namespace PriemMetalClient
 					case DateTimeFormat.ShortDate: result = v.ToShortDateString(); break;
 					case DateTimeFormat.ShortTime: result = v.ToShortTimeString(); break;
 					case DateTimeFormat.Format:
-						result = string.IsNullOrWhiteSpace(infoAttribute.StringFormat) ? v.ToString() : v.ToString(infoAttribute.StringFormat);
+						result = string.IsNullOrWhiteSpace(infoAttribute.ToStringFormat) ? v.ToString() : v.ToString(infoAttribute.ToStringFormat);
 						break;
 				}
 			}

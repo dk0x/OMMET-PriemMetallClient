@@ -16,6 +16,7 @@ namespace PriemMetalClient
 		METALLCAT,
 		ZASOR,
 		TARA,
+		PRICETYPE
 	}
 
 	[RecordInfo("Приёмо-сдаточный акт")]
@@ -24,7 +25,7 @@ namespace PriemMetalClient
 		[RecordInfo("Стадия", ReadOnly = true)]
 		public PSADocumentStepEnum Step { get; set; } = PSADocumentStepEnum.NOMERDATA;
 
-		[RecordInfo("Номер документа", StringFormat = "D8")]
+		[RecordInfo("Номер документа", ToStringFormat = "D8")]
 		public int Nomer { get; set; } = 0;
 
 		[RecordInfo("От", DateTimeFormat = DateTimeFormat.ShortDate)]
@@ -54,10 +55,10 @@ namespace PriemMetalClient
 		[RecordInfo("Основание", TableNoColumn = true)]
 		public string Osnovanie { get; set; } = string.Empty;
 
-		[RecordInfo("Нетто", StringFormat = "N3", DecimalDigits = 3)]
+		[RecordInfo("Нетто", ToStringFormat = "N3", DecimalDigits = 3)]
 		public decimal Netto { get; set; } = 0;
 
-		[RecordInfo("Сумма", StringFormat = "C", DecimalDigits = 2)]
+		[RecordInfo("Сумма", ToStringFormat = "C", DecimalDigits = 2)]
 		public decimal Summa { get; set; } = 0;
 
 		[RecordInfo("Цена без НДС")]

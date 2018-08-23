@@ -32,6 +32,7 @@
 			this.SelectBtn = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.comboBox = new System.Windows.Forms.ComboBox();
+			this.AddBtn = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -69,6 +70,7 @@
 			// panel1
 			// 
 			this.panel1.Controls.Add(this.comboBox);
+			this.panel1.Controls.Add(this.AddBtn);
 			this.panel1.Controls.Add(this.SelectBtn);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(0, 20);
@@ -84,9 +86,28 @@
 			this.comboBox.FormattingEnabled = true;
 			this.comboBox.Location = new System.Drawing.Point(0, 0);
 			this.comboBox.Name = "comboBox";
-			this.comboBox.Size = new System.Drawing.Size(178, 21);
+			this.comboBox.Size = new System.Drawing.Size(156, 21);
 			this.comboBox.TabIndex = 12;
 			this.comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+			this.comboBox.TextUpdate += new System.EventHandler(this.comboBox_TextUpdate);
+			this.comboBox.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
+			this.comboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
+			// 
+			// AddBtn
+			// 
+			this.AddBtn.BackgroundImage = global::PriemMetalClient.Properties.Resources._173077___plus1;
+			this.AddBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.AddBtn.Dock = System.Windows.Forms.DockStyle.Right;
+			this.AddBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.AddBtn.Location = new System.Drawing.Point(156, 0);
+			this.AddBtn.Margin = new System.Windows.Forms.Padding(0);
+			this.AddBtn.Name = "AddBtn";
+			this.AddBtn.Size = new System.Drawing.Size(22, 22);
+			this.AddBtn.TabIndex = 13;
+			this.AddBtn.Text = "...";
+			this.AddBtn.UseVisualStyleBackColor = false;
+			this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
+			this.AddBtn.Resize += new System.EventHandler(this.AddBtn_Resize);
 			// 
 			// BaseRecordSelectUserControl
 			// 
@@ -108,5 +129,6 @@
 		private System.Windows.Forms.Label label;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.ComboBox comboBox;
+		private System.Windows.Forms.Button AddBtn;
 	}
 }

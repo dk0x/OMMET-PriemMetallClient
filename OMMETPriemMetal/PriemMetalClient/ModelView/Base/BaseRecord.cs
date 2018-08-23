@@ -42,8 +42,10 @@ namespace PriemMetalClient
 		}
 
 
-		public void DBUpsert() => DataBase.DB.GetCollection(this.GetType().Name).Upsert(BsonMapper.Global.ToDocument(this.GetType(), this));
-		public void DBDelete() => DataBase.DB.GetCollection(this.GetType().Name).Delete(Guid);
+		public void DBUpsert() => DataBase.DB.GetCollection(this.GetType().Name).
+			Upsert(BsonMapper.Global.ToDocument(this.GetType(), this));
+		public void DBDelete() => DataBase.DB.GetCollection(this.GetType().Name).
+			Delete(Guid);
 
 		public void ListUpsert<T>(List<T> list) where T : BaseRecord
 		{

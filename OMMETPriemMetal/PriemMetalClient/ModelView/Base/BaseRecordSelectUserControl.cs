@@ -21,6 +21,7 @@ namespace PriemMetalClient
 			label.Text = RecordInfoAttribute.GetClassRecordInfo<TRecord>()?.Text ?? typeof(TRecord).Name;
 			var col = DataBase.DB.GetCollection<TRecord>().FindAll().OrderBy(x => x.ToString()).ToList();
 			comboBox.Items.AddRange(col.ToArray());
+			//comboBox.DataSource = DataBase.DB.GetCollection<TRecord>().FindAll().OrderBy(x => x.ToString()).ToList();
 		}
 
 		public void SetRecord(TRecord r)
@@ -68,6 +69,37 @@ namespace PriemMetalClient
 			{
 				Record = r;
 				RecordSelect?.Invoke(this, r);
+			}
+		}
+
+		private void comboBox_TextUpdate(object sender, EventArgs e)
+		{
+
+		}
+
+		private void comboBox_TextChanged(object sender, EventArgs e)
+		{
+		}
+
+		private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
+		{
+		}
+
+		private void AddBtn_Resize(object sender, EventArgs e)
+		{
+			if (AddBtn.Width != AddBtn.Height)
+				AddBtn.Width = AddBtn.Height;
+		}
+
+		private void AddBtn_Click(object sender, EventArgs e)
+		{
+			using (var f = new BaseRecordEditForm<TRecord>())
+			{
+				f.SetRecord(Activator.CreateInstance<TRecord>());
+				if (f.ShowDialog(this) == DialogResult.OK)
+				{
+					SetRecord(f.Record);
+				}
 			}
 		}
 	}

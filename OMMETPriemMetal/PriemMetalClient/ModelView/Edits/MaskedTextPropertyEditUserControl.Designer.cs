@@ -2,7 +2,7 @@
 
 namespace PriemMetalClient
 {
-	partial class TextPropertyEditUserControl
+	partial class MaskedTextPropertyEditUserControl
 	{
 		/// <summary> 
 		/// Обязательная переменная конструктора.
@@ -31,7 +31,7 @@ namespace PriemMetalClient
 		private void InitializeComponent()
 		{
 			this.label = new System.Windows.Forms.Label();
-			this.TextBox = new System.Windows.Forms.TextBox();
+			this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
 			this.SuspendLayout();
 			// 
 			// label
@@ -44,24 +44,23 @@ namespace PriemMetalClient
 			this.label.TabIndex = 1;
 			this.label.Text = "label1";
 			// 
-			// TextBox
+			// maskedTextBox
 			// 
-			this.TextBox.Dock = System.Windows.Forms.DockStyle.Top;
-			this.TextBox.Location = new System.Drawing.Point(0, 13);
-			this.TextBox.Name = "TextBox";
-			this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.TextBox.Size = new System.Drawing.Size(202, 20);
-			this.TextBox.TabIndex = 0;
-			this.TextBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+			this.maskedTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.maskedTextBox.Location = new System.Drawing.Point(0, 13);
+			this.maskedTextBox.Name = "maskedTextBox";
+			this.maskedTextBox.Size = new System.Drawing.Size(202, 20);
+			this.maskedTextBox.TabIndex = 2;
+			this.maskedTextBox.TextChanged += new System.EventHandler(this.maskedTextBox_TextChanged);
 			// 
-			// TextPropertyEditUserControl
+			// MaskedTextPropertyEditUserControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.TextBox);
+			this.Controls.Add(this.maskedTextBox);
 			this.Controls.Add(this.label);
-			this.Name = "TextPropertyEditUserControl";
-			this.Size = new System.Drawing.Size(202, 62);
+			this.Name = "MaskedTextPropertyEditUserControl";
+			this.Size = new System.Drawing.Size(202, 43);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -69,6 +68,6 @@ namespace PriemMetalClient
 
 		#endregion
 		private Label label;
-		private TextBox TextBox;
+		private MaskedTextBox maskedTextBox;
 	}
 }

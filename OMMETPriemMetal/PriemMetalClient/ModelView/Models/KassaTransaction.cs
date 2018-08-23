@@ -32,9 +32,9 @@ namespace PriemMetalClient
 		public PSADocument PSADocument { get; set; } = default(PSADocument);
 
 
-		[RecordInfo("Дебет", StringFormat = "C", DecimalDigits = 2)]
+		[RecordInfo("Дебет", ToStringFormat = "C", DecimalDigits = 2)]
 		public decimal Debet { get; set; } = 0;
-		[RecordInfo("Кредит", StringFormat = "C", DecimalDigits = 2)]
+		[RecordInfo("Кредит", ToStringFormat = "C", DecimalDigits = 2)]
 		public decimal Credit { get; set; } = 0;
 
 

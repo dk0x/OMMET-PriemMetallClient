@@ -8,13 +8,15 @@ namespace PriemMetalClient
 {
 	public class BaseRecordEditUserControl<RecordType> : UserControl where RecordType : BaseRecord
 	{
+		private Panel panel1;
+
 		public RecordType Record { get; private set; }
 		public Button SelectBtn { get; private set; } = null;
 		private bool _SelectBtnVisible = false;
 		public bool SelectBtnVisible { get => _SelectBtnVisible; set => SelectButtonVisible(value); }
 		public BaseRecordEditUserControl()
 		{
-			
+			InitializeComponent();
 		}
 
 		public void SelectButtonVisible(bool visible)
@@ -33,13 +35,13 @@ namespace PriemMetalClient
 
 		public void RenderUI(RecordType record)
 		{
-			Controls.Clear();
+			panel1.Controls.Clear();
 			//this.AutoSize = true;
 			int h = 0;
 			SelectBtn = new Button
 			{
 				Text = "Выбрать...",
-				Parent = this,
+				Parent = panel1,
 				Dock = DockStyle.Bottom,
 				Visible = SelectBtnVisible
 			};
@@ -55,14 +57,27 @@ namespace PriemMetalClient
 				if (ri.ReadOnly) continue;
 				if (p.PropertyType == typeof(string))
 				{
-					TextPropertyEditUserControl f = new TextPropertyEditUserControl
+					if (ri.TextMask.IsNullOrWhiteSpace())
 					{
-						Dock = DockStyle.Top,
-						Parent = this,
-						//AutoSize = true
-					};
-					f.Set(record, p);
-					h += f.Height;
+						TextPropertyEditUserControl f = new TextPropertyEditUserControl
+						{
+							Dock = DockStyle.Top,
+							Parent = panel1,
+							//AutoSize = true
+						};
+						f.Set(record, p);
+						h += f.Height;
+					} else
+					{
+						MaskedTextPropertyEditUserControl f = new MaskedTextPropertyEditUserControl
+						{
+							Dock = DockStyle.Top,
+							Parent = panel1,
+							//AutoSize = true
+						};
+						f.Set(record, p);
+						h += f.Height;
+					}
 				}
 				else
 				if (p.PropertyType == typeof(decimal))
@@ -70,7 +85,7 @@ namespace PriemMetalClient
 					NumericPropertyEditUserControl f = new NumericPropertyEditUserControl
 					{
 						Dock = DockStyle.Top,
-						Parent = this,
+						Parent = panel1,
 
 						//AutoSize = true
 					};
@@ -85,7 +100,7 @@ namespace PriemMetalClient
 					NumericPropertyEditUserControl f = new NumericPropertyEditUserControl
 					{
 						Dock = DockStyle.Top,
-						Parent = this,
+						Parent = panel1,
 
 						//AutoSize = true
 					};
@@ -100,7 +115,7 @@ namespace PriemMetalClient
 					DateTimePropertyEditUserControl f = new DateTimePropertyEditUserControl
 					{
 						Dock = DockStyle.Top,
-						Parent = this,
+						Parent = panel1,
 						//AutoSize = true
 					};
 					f.Set(record, p);
@@ -110,13 +125,14 @@ namespace PriemMetalClient
 			Label caption = new Label
 			{
 				Text = $"-- {RecordInfoAttribute.GetClassRecordInfo<RecordType>()?.Text ?? ""} --",
-				Parent = this,
+				Parent = panel1,
 				AutoSize = false,
 				Dock = DockStyle.Top
 			};
 			h += caption.Height;
-			this.Height = h;
-			this.Width = 200;
+			//this.Dock = DockStyle.Top;
+			//this.Height = h;
+			//this.Width = 200;
 		}
 
 		/*private BaseRecordBookForm<RecordType> selectForm = null;
@@ -152,5 +168,32 @@ namespace PriemMetalClient
 			SetRecord(record);
 		}
 
+		private void InitializeComponent()
+		{
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.SuspendLayout();
+			// 
+			// panel1
+			// 
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.AutoSize = true;
+			this.panel1.Location = new System.Drawing.Point(10, 10);
+			this.panel1.Margin = new System.Windows.Forms.Padding(10);
+			this.panel1.MinimumSize = new System.Drawing.Size(200, 50);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(200, 50);
+			this.panel1.TabIndex = 0;
+			// 
+			// BaseRecordEditUserControl
+			// 
+			this.AutoSize = true;
+			this.Controls.Add(this.panel1);
+			this.Name = "BaseRecordEditUserControl";
+			this.Size = new System.Drawing.Size(217, 100);
+			this.ResumeLayout(false);
+			this.PerformLayout();
+
+		}
 	}
 }
