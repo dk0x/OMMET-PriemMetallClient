@@ -42,8 +42,22 @@ namespace PriemMetalClient
 		}
 
 
-		public void DBUpsert() => DataBase.DB.GetCollection(this.GetType().Name).
-			Upsert(BsonMapper.Global.ToDocument(this.GetType(), this));
+		public void DBUpsert()
+		{
+			try
+			{
+				var col = DataBase.DB.GetCollection(this.GetType().Name);
+				col.Upsert(BsonMapper.Global.ToDocument(this.GetType(), this));
+			} catch (System.IO.IOException)
+			{
+				//DBUpsert();
+			}
+		}
+		/*public void DBUpsert()
+		{
+			using (var r = DataBase.Repo)
+				r.Upsert(BsonMapper.Global.ToDocument(this.GetType(), this), this.GetType().Name);
+		}*/
 		public void DBDelete() => DataBase.DB.GetCollection(this.GetType().Name).
 			Delete(Guid);
 

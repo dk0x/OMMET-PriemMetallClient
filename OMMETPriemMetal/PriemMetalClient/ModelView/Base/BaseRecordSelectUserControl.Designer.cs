@@ -29,10 +29,11 @@
 		private void InitializeComponent()
 		{
 			this.label = new System.Windows.Forms.Label();
-			this.SelectBtn = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.comboBox = new System.Windows.Forms.ComboBox();
 			this.AddBtn = new System.Windows.Forms.Button();
+			this.SelectBtn = new System.Windows.Forms.Button();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.ClearBtn = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -51,25 +52,10 @@
 			this.label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.label.UseCompatibleTextRendering = true;
 			// 
-			// SelectBtn
-			// 
-			this.SelectBtn.BackgroundImage = global::PriemMetalClient.Properties.Resources._173095___search;
-			this.SelectBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.SelectBtn.Dock = System.Windows.Forms.DockStyle.Right;
-			this.SelectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.SelectBtn.Location = new System.Drawing.Point(178, 0);
-			this.SelectBtn.Margin = new System.Windows.Forms.Padding(0);
-			this.SelectBtn.Name = "SelectBtn";
-			this.SelectBtn.Size = new System.Drawing.Size(22, 22);
-			this.SelectBtn.TabIndex = 11;
-			this.SelectBtn.Text = "...";
-			this.SelectBtn.UseVisualStyleBackColor = false;
-			this.SelectBtn.Click += new System.EventHandler(this.SelectBtn_Click);
-			this.SelectBtn.Resize += new System.EventHandler(this.SelectBtn_Resize);
-			// 
 			// panel1
 			// 
-			this.panel1.Controls.Add(this.comboBox);
+			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.ClearBtn);
 			this.panel1.Controls.Add(this.AddBtn);
 			this.panel1.Controls.Add(this.SelectBtn);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -77,21 +63,6 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(200, 22);
 			this.panel1.TabIndex = 12;
-			// 
-			// comboBox
-			// 
-			this.comboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-			this.comboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.comboBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.comboBox.FormattingEnabled = true;
-			this.comboBox.Location = new System.Drawing.Point(0, 0);
-			this.comboBox.Name = "comboBox";
-			this.comboBox.Size = new System.Drawing.Size(156, 21);
-			this.comboBox.TabIndex = 12;
-			this.comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
-			this.comboBox.TextUpdate += new System.EventHandler(this.comboBox_TextUpdate);
-			this.comboBox.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
-			this.comboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			// 
 			// AddBtn
 			// 
@@ -104,10 +75,52 @@
 			this.AddBtn.Name = "AddBtn";
 			this.AddBtn.Size = new System.Drawing.Size(22, 22);
 			this.AddBtn.TabIndex = 13;
-			this.AddBtn.Text = "...";
 			this.AddBtn.UseVisualStyleBackColor = false;
 			this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
 			this.AddBtn.Resize += new System.EventHandler(this.AddBtn_Resize);
+			// 
+			// SelectBtn
+			// 
+			this.SelectBtn.BackgroundImage = global::PriemMetalClient.Properties.Resources._173095___search;
+			this.SelectBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.SelectBtn.Dock = System.Windows.Forms.DockStyle.Right;
+			this.SelectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.SelectBtn.Location = new System.Drawing.Point(178, 0);
+			this.SelectBtn.Margin = new System.Windows.Forms.Padding(0);
+			this.SelectBtn.Name = "SelectBtn";
+			this.SelectBtn.Size = new System.Drawing.Size(22, 22);
+			this.SelectBtn.TabIndex = 11;
+			this.SelectBtn.UseVisualStyleBackColor = false;
+			this.SelectBtn.Click += new System.EventHandler(this.SelectBtn_Click);
+			this.SelectBtn.Resize += new System.EventHandler(this.SelectBtn_Resize);
+			// 
+			// textBox1
+			// 
+			this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.textBox1.Location = new System.Drawing.Point(0, 0);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(134, 20);
+			this.textBox1.TabIndex = 14;
+			this.textBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
+			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+			this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+			this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+			this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
+			// 
+			// ClearBtn
+			// 
+			this.ClearBtn.BackgroundImage = global::PriemMetalClient.Properties.Resources._173055___minus;
+			this.ClearBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.ClearBtn.Dock = System.Windows.Forms.DockStyle.Right;
+			this.ClearBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.ClearBtn.Location = new System.Drawing.Point(134, 0);
+			this.ClearBtn.Margin = new System.Windows.Forms.Padding(0);
+			this.ClearBtn.Name = "ClearBtn";
+			this.ClearBtn.Size = new System.Drawing.Size(22, 22);
+			this.ClearBtn.TabIndex = 15;
+			this.ClearBtn.UseVisualStyleBackColor = false;
+			this.ClearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
+			this.ClearBtn.Resize += new System.EventHandler(this.ClearBtn_Resize);
 			// 
 			// BaseRecordSelectUserControl
 			// 
@@ -119,6 +132,7 @@
 			this.Name = "BaseRecordSelectUserControl";
 			this.Size = new System.Drawing.Size(200, 42);
 			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -128,7 +142,8 @@
 		private System.Windows.Forms.Button SelectBtn;
 		private System.Windows.Forms.Label label;
 		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.ComboBox comboBox;
 		private System.Windows.Forms.Button AddBtn;
+		private System.Windows.Forms.Button ClearBtn;
+		private System.Windows.Forms.TextBox textBox1;
 	}
 }

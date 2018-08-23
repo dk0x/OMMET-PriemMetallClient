@@ -11,6 +11,7 @@ namespace PriemMetalClient
 
 		private static LiteDatabase _DB = null;
 		public static LiteDatabase DB { get => GetDB(); }
+		public static LiteRepository Repo { get => new LiteRepository(DB); }
 		public static LiteCollection<PSADocument> PSADocumentCollection
 		{
 			get => DB.GetCollection<PSADocument>()/*.
@@ -34,7 +35,9 @@ namespace PriemMetalClient
 		{
 			if (_DB == null)
 			{
-				_DB = new LiteDatabase(Tools.Path(ConfigManager.Parameters.DataBasePath));
+				//_DB = new LiteDatabase(Tools.Path(ConfigManager.Parameters.DataBasePath));
+				var connStr = new ConnectionString($"filename=\"{Tools.Path(ConfigManager.Parameters.DataBasePath)}\"; journal =false;");
+				_DB = new LiteDatabase(connStr);
 				/*BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.Otdelenie);
 				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.Transport);
 				BsonMapper.Global.Entity<PSADocument>().DbRef(x => x.ContragentFizLico);
@@ -43,6 +46,7 @@ namespace PriemMetalClient
 				//DropDB();
 				FillTestData();
 			}
+			while (_DB.Engine.Locker.ThreadState != LockState.Unlocked) { System.Threading.Thread.Sleep(10); }
 			return _DB;
 		}
 
@@ -64,71 +68,67 @@ namespace PriemMetalClient
 			DropDB();
 			Otdelenie otdelenie;
 			{
-				var con = DB.GetCollection<Otdelenie>();
-				con.Upsert(otdelenie = new Otdelenie()
+				(otdelenie = new Otdelenie()
 				{
 					Adres = "г. Омск, ул. 22 Партсъезда, 105",
 					Nazvanie = "ОП ВМР-Амурское",
 					Telefon = "8-913-617-24-45"
-				});
+				}).DBUpsert();
 			}
 			{
-				var con = DB.GetCollection<MetallPrice>();
-				con.Upsert(new MetallPrice()
+				(new MetallPrice()
 				{
 					Category = "3АН",
 					Nomenklatura = "3АН Габаритный лом",
 					Description = "Размеры куска должны быть НЕ более 800*500*500 мм. без ограничений по толщине. Не допускается проволока и изделия из проволоки.",
 					Price = 11500
-				});
-				con.Upsert(new MetallPrice()
+				}).DBUpsert();
+				(new MetallPrice()
 				{
 					Category = "12А,5А",
 					Nomenklatura = "12А,5А Негабаритный лом",
 					Description = "Лом габаритами больше  800*500*500 мм. Допускается проволока и изделия из проволоки.",
 					Price = 11200
-				});
-				con.Upsert(new MetallPrice()
+				}).DBUpsert();
+				(new MetallPrice()
 				{
 					Category = "16А",
 					Nomenklatura = "16А",
 					Description = "Вьютнообразная стальная стружка. Не допускается кусковые отходы и лом. Не должна быть смешанной с легированной стружкой и стружкой из цветных металлов.",
 					Price = 3000
-				});
-				con.Upsert(new MetallPrice()
+				}).DBUpsert();
+				(new MetallPrice()
 				{
 					Category = "22А",
 					Nomenklatura = "22А",
 					Description = "Чугунные станки, узлы, детали и механизмы в собранном состоянии с содержанием стали не более 5% по массе.",
 					Price = 6000
-				});
+				}).DBUpsert();
 			}
 			Transport transport;
 			{
-				var con = DB.GetCollection<Transport>();
-				con.Upsert(transport = new Transport()
+				(transport = new Transport()
 				{
 					GosNomer = "К357РМ 55",
 					Marka = "ГАЗ",
 					Model = "3109"
-				});
-				con.Upsert(new Transport()
+				}).DBUpsert();
+				(new Transport()
 				{
 					GosNomer = "У965НР 55",
 					Marka = "УАЗ",
 					Model = "ПАТРИОТ"
-				});
-				con.Upsert(new Transport()
+				}).DBUpsert();
+				(new Transport()
 				{
 					GosNomer = "Е425МО 55",
 					Marka = "УАЗ",
 					Model = "БУХАНКА"
-				});
+				}).DBUpsert();
 			}
 			ContragentFizLico contragentFizLico;
 			{
-				var con = DB.GetCollection<ContragentFizLico>();
-				con.Upsert(contragentFizLico = new ContragentFizLico()
+				(contragentFizLico = new ContragentFizLico()
 				{
 					Familiya = "Иванов",
 					Imja = "Иван",
@@ -137,18 +137,17 @@ namespace PriemMetalClient
 					DataVidachiPasport = new DateTime(2008, 5, 8),
 					AdresRegistraciiPasport = "ул. Пушкина, д. 5",
 					MestoVidachiPasport = "УВД в ЦАО г. Омска"
-				});
+				}).DBUpsert();
 			}
 			{
-				var con = DB.GetCollection<PSADocument>();
-				con.Upsert(new PSADocument
+				(new PSADocument
 				{
 					ContragentFizLico = contragentFizLico,
 					ContragentType = ContragentType.FizLico,
 					Nomer = 564,
 					Otdelenie = otdelenie,
 					Transport = transport
-				});
+				}).DBUpsert();
 			}
 			for (int i = 0; i < 100; i++)
 			{
